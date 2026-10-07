@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#F4EDE3" />
   <meta name="description" content="Invitación de boda civil de Luis & Marlene — 19 de diciembre de 2026." />
-  <title>Luis & Marlene | 19.12.2026 · V2.7</title>
+  <title>Luis & Marlene | 19.12.2026 · V2.8.1</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1692,6 +1692,366 @@
       .story-branches path{stroke-dashoffset:0!important;animation:none!important}
       .story-heart{opacity:1!important;animation:none!important}
     }
+
+    /* V2.8 — HERO COMPOSITION + STORY FLOW + MOBILE INVITE GLOW */
+
+    /* Main hero: intentionally balanced as a single centered composition */
+    .hero{
+      min-height:100svh;
+      display:grid;
+      place-items:center;
+      padding:clamp(64px,8vh,100px) 24px clamp(72px,9vh,110px);
+    }
+    .hero-inner{
+      width:min(760px,100%);
+      margin:auto;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      transform:translateY(-1.5vh);
+    }
+    .hero .monogram-wrap{
+      margin-bottom:34px;
+    }
+    .hero .eyebrow,
+    .hero .hero-kicker{
+      margin-bottom:18px;
+    }
+    .hero .names,
+    .hero .hero-title{
+      margin-top:0;
+      margin-bottom:22px;
+    }
+    .hero .date-line,
+    .hero .hero-date{
+      margin-top:24px;
+    }
+
+    /* Give the ampersand breathing room and make it the visual hinge. */
+    .hero .amp,
+    .hero .ampersand{
+      color:var(--terracotta);
+      display:block;
+      margin:.02em auto -.02em;
+      line-height:.72;
+    }
+
+    /* The story now follows the hero as a deliberate second chapter. */
+    .story-v27{
+      border-top:1px solid rgba(185,154,106,.10);
+      min-height:100svh;
+      padding-top:clamp(105px,13vh,155px);
+      padding-bottom:clamp(105px,13vh,155px);
+    }
+    .story-v27-inner{
+      width:min(900px,100%);
+    }
+    .story-v27-kicker{
+      margin-bottom:42px;
+    }
+    .soul-quote{
+      max-width:860px;
+      margin-bottom:52px;
+    }
+    .story-body{
+      max-width:700px;
+    }
+    .love-closing{
+      max-width:750px;
+      margin-top:62px;
+    }
+
+    /* A soft bridge from the hero into the story. */
+    .story-v27:before{
+      content:"";
+      position:absolute;
+      left:50%;
+      top:0;
+      width:1px;
+      height:62px;
+      transform:translateX(-50%);
+      background:linear-gradient(to bottom,var(--gold),transparent);
+      opacity:.55;
+    }
+
+    /* Reliable button shimmer on both pointer and touch devices. */
+    .open-invite{
+      isolation:isolate;
+    }
+    .open-invite:before{
+      z-index:0;
+      will-change:transform;
+    }
+    .open-invite > *{
+      position:relative;
+      z-index:2;
+    }
+    .open-invite .open-heart{
+      position:relative;
+      z-index:2;
+    }
+
+    /* Mobile gets its own brighter, slower sweep so it remains visible
+       even when hover-based rendering is unavailable. */
+    @media(max-width:650px){
+      .open-invite:before{
+        background:linear-gradient(
+          108deg,
+          transparent 12%,
+          rgba(255,255,255,0) 26%,
+          rgba(255,247,235,.78) 48%,
+          rgba(185,154,106,.22) 55%,
+          rgba(255,255,255,0) 72%,
+          transparent 88%
+        );
+        width:155%;
+        left:-28%;
+        transform:translateX(-125%);
+        animation:mobileInviteSweep 4.2s cubic-bezier(.45,0,.25,1) 1.2s infinite!important;
+      }
+      @keyframes mobileInviteSweep{
+        0%,52%{transform:translateX(-125%);opacity:0}
+        57%{opacity:1}
+        76%{transform:translateX(82%);opacity:1}
+        82%,100%{transform:translateX(82%);opacity:0}
+      }
+
+      .open-invite{
+        box-shadow:
+          0 0 0 1px rgba(164,93,67,.06),
+          0 10px 34px rgba(90,55,41,.045);
+      }
+      .open-heart{
+        animation:mobileHeartPulse 3.2s ease-in-out 1.4s infinite;
+      }
+      @keyframes mobileHeartPulse{
+        0%,100%{transform:scale(1);color:inherit}
+        50%{transform:scale(1.16);color:var(--terracotta)}
+      }
+
+      .hero{
+        padding:72px 20px 82px;
+      }
+      .hero-inner{
+        width:100%;
+        transform:translateY(-1vh);
+      }
+      .hero .monogram-wrap{margin-bottom:28px}
+      .story-v27{
+        padding:100px 22px 108px;
+      }
+      .story-v27-kicker{margin-bottom:32px}
+      .soul-quote{
+        font-size:clamp(36px,10.4vw,53px);
+        line-height:1.04;
+        margin-bottom:42px;
+      }
+      .story-body{
+        font-size:20px;
+        line-height:1.62;
+      }
+      .love-closing{
+        font-size:29px;
+        line-height:1.3;
+        margin-top:50px;
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce){
+      .open-invite:before,.open-heart{animation:none!important}
+    }
+
+    /* V2.8.1 — RESTORED CEREMONY RINGS + MORE VISIBLE TIMELINE MOTION */
+
+    /* Ceremony icon is intentionally independent of the older .draw rules. */
+    .ceremony-rings-svg{
+      overflow:visible;
+    }
+    .ring-visible{
+      fill:none;
+      stroke:var(--terracotta);
+      stroke-width:1.65;
+      stroke-linecap:round;
+      vector-effect:non-scaling-stroke;
+      transform-box:fill-box;
+      transform-origin:center;
+    }
+    .ring-glow{
+      fill:none;
+      stroke:var(--gold);
+      stroke-width:1;
+      opacity:0;
+      vector-effect:non-scaling-stroke;
+      transform-box:fill-box;
+      transform-origin:center;
+    }
+    .ring-spark{
+      fill:none;
+      stroke:var(--gold);
+      stroke-width:1.15;
+      stroke-linecap:round;
+      opacity:0;
+      vector-effect:non-scaling-stroke;
+      transform-box:fill-box;
+      transform-origin:center;
+    }
+
+    .timeline-item.stage-active .ring-left-v28{
+      animation:ringMeetLeft 3.8s cubic-bezier(.45,0,.2,1) infinite;
+    }
+    .timeline-item.stage-active .ring-right-v28{
+      animation:ringMeetRight 3.8s cubic-bezier(.45,0,.2,1) infinite;
+    }
+    .timeline-item.stage-active .ring-glow-left,
+    .timeline-item.stage-active .ring-glow-right{
+      animation:ringUnionGlow 3.8s ease-in-out infinite;
+    }
+    .timeline-item.stage-active .ring-spark-a{
+      animation:ringSpark 3.8s ease-in-out .08s infinite;
+    }
+    .timeline-item.stage-active .ring-spark-b{
+      animation:ringSpark 3.8s ease-in-out .22s infinite;
+    }
+
+    @keyframes ringMeetLeft{
+      0%,15%,100%{transform:translateX(-4px) scale(.98)}
+      38%,70%{transform:translateX(2.3px) scale(1.035)}
+      82%{transform:translateX(-1px) scale(1)}
+    }
+    @keyframes ringMeetRight{
+      0%,15%,100%{transform:translateX(4px) scale(.98)}
+      38%,70%{transform:translateX(-2.3px) scale(1.035)}
+      82%{transform:translateX(1px) scale(1)}
+    }
+    @keyframes ringUnionGlow{
+      0%,25%,82%,100%{opacity:0;transform:scale(.88)}
+      42%,64%{opacity:.32;transform:scale(1.03)}
+    }
+    @keyframes ringSpark{
+      0%,31%,73%,100%{opacity:0;transform:scale(.55) rotate(0)}
+      43%{opacity:1;transform:scale(1.15) rotate(12deg)}
+      57%{opacity:.65;transform:scale(.9) rotate(24deg)}
+    }
+
+    /* Make all timeline micro-animations easier to notice while remaining elegant. */
+    .timeline-item.stage-active .reception-icon{
+      animation:iconFloatStrong 3.4s ease-in-out infinite!important;
+    }
+    .timeline-item.stage-active .toast-icon{
+      animation:toastFloatStrong 3.6s ease-in-out infinite!important;
+    }
+    .timeline-item.stage-active .dinner-icon{
+      animation:dinnerFloatStrong 4s ease-in-out infinite!important;
+    }
+    .timeline-item.stage-active .dance-icon{
+      animation:danceFloatStrong 3s ease-in-out infinite!important;
+    }
+    .timeline-item.stage-active .midnight-icon{
+      animation:midnightFloat 4.2s ease-in-out infinite;
+    }
+
+    @keyframes iconFloatStrong{
+      0%,100%{transform:translateY(2px)}
+      50%{transform:translateY(-5px)}
+    }
+    @keyframes toastFloatStrong{
+      0%,100%{transform:translateY(2px) rotate(0)}
+      50%{transform:translateY(-5px) rotate(1.4deg)}
+    }
+    @keyframes dinnerFloatStrong{
+      0%,100%{transform:translateY(2px) scale(.985)}
+      50%{transform:translateY(-4px) scale(1.025)}
+    }
+    @keyframes danceFloatStrong{
+      0%,100%{transform:translateY(2px) rotate(-1deg)}
+      50%{transform:translateY(-5px) rotate(1deg)}
+    }
+    @keyframes midnightFloat{
+      0%,100%{transform:translateY(2px)}
+      50%{transform:translateY(-4px)}
+    }
+
+    /* Stronger individual storytelling loops. */
+    .timeline-item.stage-active .welcome-heart{
+      animation:welcomeHeartStrong 2.25s ease-in-out infinite!important;
+    }
+    @keyframes welcomeHeartStrong{
+      0%,100%{transform:scale(.92);opacity:.58}
+      48%{transform:scale(1.16);opacity:1}
+    }
+
+    .timeline-item.stage-active .toast-icon .glass-left{
+      animation:clinkLeftStrong 4.2s ease-in-out infinite!important;
+    }
+    .timeline-item.stage-active .toast-icon .glass-right{
+      animation:clinkRightStrong 4.2s ease-in-out infinite!important;
+    }
+    @keyframes clinkLeftStrong{
+      0%,48%,100%{transform:translate(0,0) rotate(0)}
+      61%{transform:translate(4px,-3px) rotate(9deg)}
+      69%{transform:translate(2px,-1px) rotate(4deg)}
+      78%{transform:translate(0,0) rotate(0)}
+    }
+    @keyframes clinkRightStrong{
+      0%,48%,100%{transform:translate(0,0) rotate(0)}
+      61%{transform:translate(-4px,-3px) rotate(-9deg)}
+      69%{transform:translate(-2px,-1px) rotate(-4deg)}
+      78%{transform:translate(0,0) rotate(0)}
+    }
+
+    .timeline-item.stage-active .dinner-icon .plate-inner{
+      animation:plateBreatheStrong 3.5s ease-in-out infinite!important;
+    }
+    @keyframes plateBreatheStrong{
+      0%,100%{transform:scale(.91);opacity:.72}
+      50%{transform:scale(1.06);opacity:1}
+    }
+
+    .timeline-item.stage-active .dance-icon .music-note.n1{
+      animation:noteForeverStrong 3s ease-in-out infinite!important;
+    }
+    .timeline-item.stage-active .dance-icon .music-note.n2{
+      animation:noteForeverStrong 3s ease-in-out .75s infinite!important;
+    }
+    @keyframes noteForeverStrong{
+      0%,100%{opacity:.18;transform:translateY(5px) rotate(-3deg)}
+      45%{opacity:1;transform:translateY(-7px) rotate(3deg)}
+      72%{opacity:.55;transform:translateY(-3px)}
+    }
+
+    .timeline-item.stage-active .midnight-icon .moon{
+      animation:moonGlowStrong 3.6s ease-in-out infinite!important;
+    }
+    @keyframes moonGlowStrong{
+      0%,100%{opacity:.72;transform:scale(.94)}
+      50%{opacity:1;transform:scale(1.08)}
+    }
+
+    @media(max-width:650px){
+      /* Slightly larger icons on phones so the motion reads clearly. */
+      .stage-icon{
+        width:42px!important;
+        flex-basis:42px!important;
+      }
+      .stage-icon svg{
+        width:42px!important;
+        height:48px!important;
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce){
+      .ring-visible,.ring-glow,.ring-spark,
+      .timeline-item .stage-icon,.timeline-item .welcome-heart,
+      .timeline-item .glass-left,.timeline-item .glass-right,
+      .timeline-item .plate-inner,.timeline-item .music-note,
+      .timeline-item .moon{
+        animation:none!important;
+      }
+      .ring-visible{transform:none!important}
+      .ring-glow,.ring-spark{opacity:.25!important}
+    }
 </style>
 </head>
 
@@ -1733,7 +2093,7 @@
       <div class="gate-date">19 · diciembre · 2026</div>
 
       <button class="open-invite" id="openInvite" type="button">
-        Abrir invitación <span class="open-heart" aria-hidden="true">♡</span>
+        <span class="open-label">Abrir invitación</span> <span class="open-heart" aria-hidden="true">♡</span>
       </button>
 
       <p class="gate-note">Una celebración que queremos compartir contigo</p>
@@ -1762,35 +2122,6 @@
   <div class="toast" id="toast" role="status"></div>
 
   <main>
-    <section class="story-v27" id="nuestraHistoria" aria-labelledby="historia-title">
-      <div class="story-date-ghost" aria-hidden="true">L ♡ M</div>
-      <div class="story-v27-inner">
-        <div class="story-v27-kicker">Nuestra historia</div>
-        <h2 class="soul-quote" id="historia-title">
-          <span class="story-line">De lo que sea que estén hechas nuestras almas,</span>
-          <span class="story-line">la suya y la mía son iguales.</span>
-        </h2>
-
-        <p class="story-body">
-          <span class="story-fragment f1">El <span class="story-v27-visible-word">amor</span> nos encontró en el momento perfecto </span>
-          <span class="story-fragment f2">y desde entonces caminamos <span class="story-v27-visible-word">juntos</span> con un mismo sueño: </span>
-          <span class="story-fragment f3">construir una vida llena de amor, respeto y felicidad.</span>
-        </p>
-
-        <p class="love-closing">Pero además de todo esto, <em>vístanse de amor</em>, porque es un lazo de unión perfecto.</p>
-
-        <div class="story-branches" aria-hidden="true">
-          <svg viewBox="0 0 480 90">
-            <path d="M8 62 C82 61 126 48 192 29 C212 23 227 28 240 43"/>
-            <path d="M472 62 C398 61 354 48 288 29 C268 23 253 28 240 43"/>
-            <path d="M101 54 C88 43 82 33 82 23 C96 29 104 39 108 50"/>
-            <path d="M379 54 C392 43 398 33 398 23 C384 29 376 39 372 50"/>
-            <text class="story-heart" x="240" y="52" text-anchor="middle" fill="currentColor" stroke="none" font-size="20">♡</text>
-          </svg>
-        </div>
-      </div>
-    </section>
-
     <section class="hero" id="hero">
       <div class="ambient a" aria-hidden="true"></div>
       <div class="ambient b" aria-hidden="true"></div>
@@ -1813,6 +2144,35 @@
       </div>
 
       <a class="scroll" href="#invitacion">Descubre nuestra historia</a>
+    </section>
+
+    <section class="story-v27" id="nuestraHistoria" aria-labelledby="historia-title">
+      <div class="story-date-ghost" aria-hidden="true">L ♡ M</div>
+      <div class="story-v27-inner">
+        <div class="story-v27-kicker">Nuestra historia</div>
+        <h2 class="soul-quote" id="historia-title">
+          <span class="story-line">De lo que sea que estén hechas nuestras almas,</span>
+          <span class="story-line">la tuya y la mía están hechas de lo mismo.</span>
+        </h2>
+
+        <p class="story-body">
+          <span class="story-fragment f1">El <span class="story-v27-visible-word">amor</span> nos encontró en el momento perfecto. </span>
+          <span class="story-fragment f2">Desde entonces elegimos caminar <span class="story-v27-visible-word">juntos</span>, compartir nuestros días y soñar con el mismo futuro. </span>
+          <span class="story-fragment f3">Hoy damos un paso más hacia esa vida que queremos construir: una vida llena de amor, respeto, complicidad y felicidad.</span>
+        </p>
+
+        <p class="love-closing">Y mientras comienza este nuevo capítulo para nosotros, queremos llevar siempre algo por encima de todo: <em>vestirnos de amor</em>, porque el amor es el lazo que nos une.</p>
+
+        <div class="story-branches" aria-hidden="true">
+          <svg viewBox="0 0 480 90">
+            <path d="M8 62 C82 61 126 48 192 29 C212 23 227 28 240 43"/>
+            <path d="M472 62 C398 61 354 48 288 29 C268 23 253 28 240 43"/>
+            <path d="M101 54 C88 43 82 33 82 23 C96 29 104 39 108 50"/>
+            <path d="M379 54 C392 43 398 33 398 23 C384 29 376 39 372 50"/>
+            <text class="story-heart" x="240" y="52" text-anchor="middle" fill="currentColor" stroke="none" font-size="20">♡</text>
+          </svg>
+        </div>
+      </div>
     </section>
 
     <section class="intro" id="invitacion">
@@ -1878,10 +2238,13 @@
           <span class="timeline-dot" aria-hidden="true"></span>
           <div class="stage-wrap">
             <span class="stage-icon ceremony-icon" aria-hidden="true">
-              <svg viewBox="0 0 64 64">
-                <circle class="draw ring-left" cx="26" cy="33" r="12"/>
-                <circle class="draw ring-right" cx="38" cy="33" r="12"/>
-                <path class="draw spark" d="M32 9 V15 M29 12 H35"/>
+              <svg viewBox="0 0 64 64" class="ceremony-rings-svg">
+                <circle class="ring-visible ring-left-v28" cx="25" cy="32" r="13"/>
+                <circle class="ring-visible ring-right-v28" cx="39" cy="32" r="13"/>
+                <circle class="ring-glow ring-glow-left" cx="25" cy="32" r="15"/>
+                <circle class="ring-glow ring-glow-right" cx="39" cy="32" r="15"/>
+                <path class="ring-spark ring-spark-a" d="M32 11 V17 M29 14 H35"/>
+                <path class="ring-spark ring-spark-b" d="M49 20 V25 M46.5 22.5 H51.5"/>
               </svg>
             </span>
             <div>
