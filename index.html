@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#F4EDE3" />
   <meta name="description" content="Invitación de boda civil de Luis & Marlene — 19 de diciembre de 2026." />
-  <title>Luis & Marlene | 19.12.2026 · V4.3</title>
+  <title>Luis & Marlene | 19.12.2026 · V4.4</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -3308,6 +3308,67 @@
     }
   }
 }
+
+/* ============================================================
+   V4.4 — The proposal + ceremonial final folio
+   ============================================================ */
+#storybook .proposal-note{
+  margin:7px 0;padding:7px 10px;border-left:2px solid #9c5b35;
+  background:rgba(150,92,47,.07);color:#6f3e28;
+  font-family:"Cormorant Garamond",serif!important;font-style:italic;
+  font-size:12px;line-height:1.3;
+}
+#storybook .proposal-yes{color:#9b3d34;font-family:"Uncial Antiqua","Cormorant Garamond",serif!important;font-size:1.25em}
+#storybook .proposal-mini,#storybook .cave-mini{filter:drop-shadow(0 7px 9px rgba(65,38,20,.12))}
+
+#storybook .finale-right-v44{overflow:hidden!important}
+#storybook .finale-v44{
+  box-sizing:border-box;width:100%;height:100%;padding:clamp(25px,4vh,44px) clamp(28px,5vw,54px);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:clamp(9px,1.6vh,17px);text-align:center;
+}
+#storybook .final-ornament-v44{font-family:"Uncial Antiqua","Cormorant Garamond",serif!important;font-size:8px;letter-spacing:.16em;color:#95622f;opacity:.82}
+#storybook .final-prelude-v44{max-width:620px;margin:0;font-family:"Cormorant Garamond",serif!important;font-size:clamp(14px,1.3vw,18px);line-height:1.3;color:#50301f}
+#storybook .final-crest-v44{
+  width:min(310px,62%);aspect-ratio:2.05/1;border:2px solid #9d6c34;border-radius:50%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  box-shadow:inset 0 0 0 5px rgba(157,108,52,.07),0 8px 20px rgba(79,45,22,.07);color:#713a29
+}
+#storybook .final-crown-v44{font-size:16px;color:#a67835}
+#storybook .final-monogram-v44{font-family:"Cormorant Garamond",serif!important;font-size:clamp(32px,3.8vw,48px);letter-spacing:.15em;line-height:.9}
+#storybook .final-monogram-v44 span{color:#a43e35;letter-spacing:0}
+#storybook .final-date-v44{margin-top:6px;font-family:"Uncial Antiqua","Cormorant Garamond",serif!important;font-size:7px;letter-spacing:.18em;color:#87562f}
+#storybook .final-vow-v44{display:flex;flex-direction:column;gap:3px;color:#633722;font-family:"Cormorant Garamond",serif!important;font-size:clamp(14px,1.35vw,18px);line-height:1.15}
+#storybook .final-vow-v44 strong{font-family:"Uncial Antiqua","Cormorant Garamond",serif!important;font-size:1.12em;color:#853d2e}
+#storybook .final-signoff-v44{font-family:"Cormorant Garamond",serif!important;color:#5e3826;line-height:1.12}
+#storybook .final-signoff-v44 p{margin:0;font-size:14px}
+#storybook .final-signoff-v44 strong{display:block;margin-top:2px;font-family:"Uncial Antiqua","Cormorant Garamond",serif!important;font-size:19px;color:#843d2e}
+#storybook .final-signoff-v44 small{display:block;margin-top:5px;font-size:9px;font-style:italic;opacity:.7}
+#storybook .close-book-v44{border:1px solid #9e6c38;background:#4d2a1d;color:#f1dda8;padding:9px 22px 8px;min-width:205px;cursor:pointer;box-shadow:0 7px 18px rgba(60,32,18,.16)}
+#storybook .close-book-v44 span{display:block;font-family:"Uncial Antiqua","Cormorant Garamond",serif!important;font-size:10px;letter-spacing:.08em}
+#storybook .close-book-v44 small{display:block;margin-top:3px;font-family:"Cormorant Garamond",serif!important;font-size:9px;letter-spacing:.07em;opacity:.75}
+#storybook .final-whisper-v44{font-family:"Cormorant Garamond",serif!important;font-size:8px;font-style:italic;color:#805f42;opacity:.58}
+
+@media(max-width:700px){
+  #storybook .proposal-note{font-size:9px!important;padding:5px 7px!important;margin:4px 0!important}
+  #storybook .proposal-mini,#storybook .cave-mini{max-height:28%!important}
+  #storybook .finale-v44{padding:18px 20px 48px!important;gap:clamp(6px,1.05dvh,10px)!important}
+  #storybook .final-ornament-v44{font-size:6.5px!important}
+  #storybook .final-prelude-v44{font-size:11px!important;line-height:1.24!important;max-width:92%!important}
+  #storybook .final-crest-v44{width:min(235px,70%)!important;max-height:18dvh!important}
+  #storybook .final-crown-v44{font-size:12px!important}
+  #storybook .final-monogram-v44{font-size:32px!important}
+  #storybook .final-date-v44{font-size:6px!important;margin-top:3px!important}
+  #storybook .final-vow-v44{font-size:11px!important}
+  #storybook .final-vow-v44 strong{font-size:12.5px!important}
+  #storybook .final-signoff-v44 p{font-size:10px!important}
+  #storybook .final-signoff-v44 strong{font-size:15px!important}
+  #storybook .final-signoff-v44 small{font-size:7.5px!important;margin-top:3px!important}
+  #storybook .close-book-v44{min-width:180px!important;padding:7px 16px 6px!important}
+  #storybook .close-book-v44 span{font-size:8.5px!important}
+  #storybook .close-book-v44 small{font-size:7.5px!important}
+  #storybook .final-whisper-v44{font-size:6.5px!important}
+}
 </style>
 </head>
 
@@ -4119,8 +4180,67 @@
           </div>
         </section>
 
+        <!-- PROPOSAL -->
+        <section class="book-page manuscript-spread proposal-spread" data-page="6">
+          <div class="folio folio-left">
+            <div class="folio-border terracotta"></div>
+            <div class="v4-rubric">VIII · LA MISIÓN DEL ANILLO</div>
+            <div class="manuscript-copy">
+              <p class="illuminated-paragraph"><span class="illuminated-initial initial-red">E</span>n julio de 2026, Luis y Marlene emprendieron una nueva aventura: unas vacaciones en Playa del Carmen.</p>
+              <p>Sol. Mar. Descanso.</p>
+              <p>Y, escondido en una maleta, <strong>un pequeño objeto capaz de alterar considerablemente el itinerario.</strong></p>
+              <p class="emotional-manuscript">Luis había llevado un anillo.</p>
+              <p>El único inconveniente era llegar hasta el segundo día del viaje sin que Marlene descubriera absolutamente nada.</p>
+              <div class="scribe-note">El sujeto asegura que actuó con naturalidad. Los cronistas no encontraron evidencia que respalde esta versión.</div>
+            </div>
+            <svg class="miniature proposal-mini" viewBox="0 0 500 250" aria-hidden="true">
+              <circle cx="75" cy="55" r="26" fill="#d6ae58"/>
+              <path d="M0 165 Q80 130 165 163 T330 159 T500 160 V250 H0Z" fill="#47727a" opacity=".9"/>
+              <path d="M0 191 Q95 166 182 193 T360 188 T500 191" fill="none" stroke="#ead89e" stroke-width="5"/>
+              <rect x="350" y="80" width="110" height="118" rx="18" fill="#9a623e" stroke="#56301f" stroke-width="5"/>
+              <path d="M370 80 q35-42 70 0" fill="none" stroke="#56301f" stroke-width="7"/>
+              <circle cx="405" cy="139" r="25" fill="#ead79d" stroke="#713d29" stroke-width="5"/>
+              <circle cx="405" cy="139" r="9" fill="none" stroke="#a33f34" stroke-width="5"/>
+              <path d="M397 119 l8-14 8 14" fill="#d8b15b" stroke="#713d29" stroke-width="3"/>
+              <text x="405" y="229" text-anchor="middle" font-size="15" fill="#f0dfae" font-family="serif">OBJETO DE ALTO RIESGO ROMÁNTICO</text>
+            </svg>
+          </div>
+
+          <div class="folio folio-right">
+            <div class="folio-border gold"></div>
+            <div class="v4-rubric">IX · BAJO LA TIERRA</div>
+            <div class="manuscript-copy">
+              <p>Pero Luis había previsto incluso un enemigo inesperado:</p>
+              <p><strong>la inspección del equipaje en el aeropuerto.</strong></p>
+              <p>Así que dejó una nota dentro de la caja del anillo, por si alguien abría la maleta.</p>
+              <div class="proposal-note">“Si están leyendo esto… por favor no arruinen la sorpresa.”</div>
+              <p class="aside">Plan romántico. Nivel de ansiedad: absolutamente razonable.</p>
+              <p>La segunda noche llegaron a <strong>Alux</strong>, un elegante restaurante dentro de una cueva en Playa del Carmen.</p>
+              <p>Entre piedra, luces cálidas y un escenario que parecía preparado por el propio narrador…</p>
+              <p><strong>Luis finalmente hizo la pregunta.</strong></p>
+              <p>Y Marlene dijo <span class="proposal-yes">sí. ♡</span></p>
+            </div>
+            <svg class="miniature cave-mini" viewBox="0 0 500 260" aria-hidden="true">
+              <defs>
+                <radialGradient id="caveGlow44"><stop offset="0" stop-color="#e7bb66"/><stop offset=".55" stop-color="#7e4b2d"/><stop offset="1" stop-color="#2c1a12"/></radialGradient>
+              </defs>
+              <path d="M15 250 Q15 70 120 28 Q240-18 375 25 Q490 65 485 250Z" fill="#382218" stroke="#6d442a" stroke-width="9"/>
+              <path d="M65 250 Q70 103 155 67 Q245 27 350 66 Q440 102 445 250Z" fill="url(#caveGlow44)"/>
+              <path d="M118 25 l25 72 23-81 31 65 27-79 30 70 30-67 26 77 29-63 25 79" fill="#382218"/>
+              <ellipse cx="250" cy="199" rx="76" ry="20" fill="#44261a"/>
+              <rect x="243" y="198" width="14" height="45" fill="#4a291b"/>
+              <circle cx="250" cy="174" r="13" fill="#e0b35d"/>
+              <path d="M244 173 q6-17 12 0 q-6 12-12 0" fill="#a53f37"/>
+              <circle cx="172" cy="188" r="15" fill="#6c3d29"/><circle cx="328" cy="188" r="15" fill="#6c3d29"/>
+              <path d="M172 203 v40 M328 203 v40" stroke="#6c3d29" stroke-width="8"/>
+              <circle cx="108" cy="122" r="7" fill="#e9bd68"/><circle cx="397" cy="116" r="7" fill="#e9bd68"/>
+              <text x="250" y="253" text-anchor="middle" font-size="16" fill="#ead6a0" font-family="serif">ALUX · PLAYA DEL CARMEN · JULIO 2026</text>
+            </svg>
+          </div>
+        </section>
+
         <!-- FINALE -->
-        <section class="book-page manuscript-spread finale-spread" data-page="6">
+        <section class="book-page manuscript-spread finale-spread" data-page="7">
           <div class="folio folio-left finale-left">
             <div class="folio-border blue"></div>
             <div class="manuscript-copy">
@@ -4138,23 +4258,35 @@
             </svg>
           </div>
 
-          <div class="folio folio-right finale-right">
+          <div class="folio folio-right finale-right finale-right-v44">
             <div class="folio-border gold"></div>
-            <div class="final-center">
-              <p class="final-prelude">Frente a las personas que forman parte de su historia, Luis y Marlene comenzarán un nuevo capítulo de algo que llevan casi diez años escribiendo.</p>
-              <h3>Consiste en<br>elegir quedarse.</h3>
-              <div class="final-crest">
-                <div class="crest-crown">♕</div>
-                <div class="crest-monogram">L <span>♡</span> M</div>
-                <div class="crest-bond">🐾</div>
+            <div class="finale-v44">
+              <div class="final-ornament-v44">✦ &nbsp; ÚLTIMO FOLIO &nbsp; ✦</div>
+              <p class="final-prelude-v44">Frente a las personas que forman parte de su historia, Luis y Marlene comenzarán un nuevo capítulo de algo que llevan casi diez años escribiendo.</p>
+
+              <div class="final-crest-v44">
+                <div class="final-crown-v44">♕</div>
+                <div class="final-monogram-v44">L <span>♡</span> M</div>
+                <div class="final-date-v44">19 · 12 · 2026</div>
               </div>
-              <p class="final-cont">Y así, Luis y Marlene continuaron escribiendo su historia…</p>
-              <p class="final-together">juntos.</p>
-              <p class="bond-last-word">Y, por supuesto, Bond.<br><span>Porque aparentemente él también tenía que salir en el final. No pudo asistir a la revisión del texto: estaba durmiendo.</span></p>
-              <p class="continuara-v3">Continuará…</p>
+
+              <div class="final-vow-v44">
+                <span>El amor no consiste solamente en encontrarse.</span>
+                <strong>Consiste en elegir quedarse.</strong>
+              </div>
+
+              <div class="final-signoff-v44">
+                <p>Y así, Luis y Marlene continuaron escribiendo su historia…</p>
+                <strong>juntos.</strong>
+                <small>Bond también. No pudo asistir a la revisión final: estaba durmiendo. 🐾</small>
+              </div>
+
+              <button class="close-book-v44" id="closeBookButton" type="button">
+                <span>Cerrar el libro</span>
+                <small>y volver a la celebración</small>
+              </button>
+              <div class="final-whisper-v44">Si Marlene pregunta, esta sección siempre fue elegante. ♡</div>
             </div>
-            <button class="close-book-button" id="closeBookButton" type="button">Cerrar el libro</button>
-            <p class="marlene-secret">Si Marlene pregunta, esta sección siempre fue elegante. ♡</p>
           </div>
         </section>
 
