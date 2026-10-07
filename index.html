@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#F4EDE3" />
   <meta name="description" content="Invitación de boda civil de Luis & Marlene — 19 de diciembre de 2026." />
-  <title>Luis & Marlene | 19.12.2026 · V3.5.1</title>
+  <title>Luis & Marlene | 19.12.2026 · V3.6</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -3192,6 +3192,145 @@ html body #storybook.manuscript-mode .bond-last-word{
     line-height:1.28!important;
   }
 }
+
+/* ============================================================
+   V3.6 — readable illuminated manuscript
+   ============================================================ */
+
+/* Uncial remains the identity, but reading comes first. */
+html body #storybook.manuscript-mode .manuscript-copy p,
+html body #storybook.manuscript-mode .quest-list,
+html body #storybook.manuscript-mode .bond-legend,
+html body #storybook.manuscript-mode .aside,
+html body #storybook.manuscript-mode .bond-last-word{
+  font-family:"Uncial Antiqua",Georgia,serif!important;
+  font-size:11px!important;
+  line-height:1.42!important;
+  letter-spacing:-.01em!important;
+  margin:.38em 0!important;
+}
+html body #storybook.manuscript-mode .scribe-note{
+  font-family:"Uncial Antiqua",Georgia,serif!important;
+  font-size:8px!important;
+  line-height:1.28!important;
+  letter-spacing:0!important;
+}
+html body #storybook.manuscript-mode .manuscript-copy h3{
+  font-family:"Uncial Antiqua",Georgia,serif!important;
+  font-size:17px!important;
+  line-height:1.08!important;
+  margin:.28em 0 .38em!important;
+}
+html body #storybook.manuscript-mode .bond-title{
+  font-family:"Uncial Antiqua",Georgia,serif!important;
+  font-size:23px!important;
+  line-height:1!important;
+  margin:.18em 0!important;
+}
+html body #storybook.manuscript-mode .illuminated-initial{
+  font-size:2em!important;
+  line-height:.78!important;
+}
+
+/* Illuminated chapter marker */
+#storybook .chapter-ribbon{
+  display:inline-block;
+  position:relative;
+  z-index:5;
+  margin:0 0 7px;
+  padding:3px 8px 2px;
+  border-top:1px solid rgba(115,72,34,.42);
+  border-bottom:1px solid rgba(115,72,34,.42);
+  font-family:"Uncial Antiqua",Georgia,serif!important;
+  font-size:8px!important;
+  line-height:1.2;
+  letter-spacing:.13em;
+  color:#74451f;
+  text-transform:uppercase;
+  opacity:.82;
+}
+
+/* Give artwork its own visual territory. */
+#storybook .folio{
+  overflow:hidden;
+}
+#storybook .manuscript-copy{
+  position:relative;
+  z-index:5;
+}
+#storybook .cocker-mini,
+#storybook .manuscript-miniature,
+#storybook svg{
+  position:relative;
+  z-index:2;
+}
+#storybook .bond-folio .manuscript-copy p{
+  font-size:10px!important;
+  line-height:1.34!important;
+}
+
+/* More dimensional parchment without touching page navigation. */
+#storybook .folio:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+  background:
+    radial-gradient(circle at 16% 13%,rgba(114,71,31,.055),transparent 22%),
+    radial-gradient(circle at 82% 77%,rgba(114,71,31,.045),transparent 25%),
+    linear-gradient(90deg,rgba(73,39,16,.06),transparent 7%,transparent 93%,rgba(73,39,16,.055));
+  mix-blend-mode:multiply;
+}
+#storybook .folio:after{
+  content:"";
+  position:absolute;
+  inset:8px;
+  border:1px solid rgba(133,86,39,.17);
+  pointer-events:none;
+  z-index:3;
+}
+
+/* Cleaner, restrained page-turn sheet */
+.paper-turn-overlay{
+  animation-duration:.48s!important;
+  background:
+    linear-gradient(90deg,
+      rgba(93,53,24,.08) 0%,
+      rgba(247,232,190,.97) 10%,
+      rgba(255,243,208,.98) 50%,
+      rgba(231,205,153,.97) 91%,
+      rgba(93,53,24,.10) 100%)!important;
+}
+@media(max-width:700px){
+  html body #storybook.manuscript-mode .manuscript-copy p,
+  html body #storybook.manuscript-mode .quest-list,
+  html body #storybook.manuscript-mode .bond-legend,
+  html body #storybook.manuscript-mode .aside,
+  html body #storybook.manuscript-mode .bond-last-word{
+    font-size:10px!important;
+    line-height:1.4!important;
+    margin:.34em 0!important;
+  }
+  html body #storybook.manuscript-mode .scribe-note{
+    font-size:7.5px!important;
+    line-height:1.25!important;
+  }
+  html body #storybook.manuscript-mode .manuscript-copy h3{
+    font-size:15px!important;
+    line-height:1.08!important;
+  }
+  html body #storybook.manuscript-mode .bond-title{
+    font-size:20px!important;
+  }
+  #storybook .chapter-ribbon{
+    font-size:7px!important;
+    margin-bottom:5px;
+  }
+  #storybook .bond-folio .manuscript-copy p{
+    font-size:9.5px!important;
+  }
+}
 </style>
 </head>
 
@@ -3814,7 +3953,8 @@ html body #storybook.manuscript-mode .bond-last-word{
         <section class="book-page manuscript-spread" data-page="2">
           <div class="folio folio-left">
             <div class="folio-border green"></div>
-            <div class="manuscript-copy">
+            <div class="chapter-ribbon">II · LA GRAN EXPEDICIÓN</div>
+              <div class="manuscript-copy">
               <p class="illuminated-paragraph"><span class="illuminated-initial initial-green">M</span>arlene, intrigada por aquel misterioso joven, emprendió una misión tan peligrosa que pocos se habrían atrevido a intentarla.</p>
               <p class="quest-list">No cruzó un bosque encantado.<br>No enfrentó a un dragón.<br>No consultó a una bruja.</p>
               <h3 class="punch facebook-line">Buscó a Luis en Facebook.</h3>
@@ -3832,7 +3972,8 @@ html body #storybook.manuscript-mode .bond-last-word{
 
           <div class="folio folio-right">
             <div class="folio-border blue"></div>
-            <div class="manuscript-copy right-copy">
+            <div class="chapter-ribbon">III · SIN ACTA OFICIAL</div>
+              <div class="manuscript-copy right-copy">
               <p class="illuminated-paragraph"><span class="illuminated-initial initial-gold">D</span>espués llegaron los mensajes, más miradas, más conversaciones y cada vez más tiempo juntos.</p>
               <p>No hubo una gran declaración.</p>
               <p>No hubo una proclamación real.</p>
@@ -3857,7 +3998,8 @@ html body #storybook.manuscript-mode .bond-last-word{
         <section class="book-page manuscript-spread" data-page="3">
           <div class="folio folio-left">
             <div class="folio-border red"></div>
-            <div class="manuscript-copy">
+            <div class="chapter-ribbon">IV · AVENTURAS Y TROPIEZOS</div>
+              <div class="manuscript-copy">
               <p class="illuminated-paragraph"><span class="illuminated-initial initial-red">P</span>asaron los años. Llegaron aventuras, cambios, buenos momentos, dificultades y algunos tropiezos.</p>
               <p>Porque aparentemente una relación de casi diez años no incluye instrucciones.</p>
               <p class="aside">Qué falta de consideración. Ni tutorial. Ni garantía. Ni servicio al cliente.</p>
@@ -3875,7 +4017,8 @@ html body #storybook.manuscript-mode .bond-last-word{
 
           <div class="folio folio-right">
             <div class="folio-border green"></div>
-            <div class="manuscript-copy right-copy">
+            <div class="chapter-ribbon">V · EL REINO SE CIERRA</div>
+              <div class="manuscript-copy right-copy">
               <p class="illuminated-paragraph"><span class="illuminated-initial initial-blue">Y</span>entonces llegó el año en que todo el reino recibió una orden inesperada:</p>
               <h3 class="punch softer">Quédense en sus casas.</h3>
               <p>El mundo se detuvo. Las calles quedaron vacías y las personas tuvieron que mantenerse alejadas.</p>
@@ -3898,7 +4041,8 @@ html body #storybook.manuscript-mode .bond-last-word{
         <section class="book-page manuscript-spread" data-page="4">
           <div class="folio folio-left">
             <div class="folio-border gold"></div>
-            <div class="manuscript-copy">
+            <div class="chapter-ribbon">VI · EL HOGAR</div>
+              <div class="manuscript-copy">
               <p class="illuminated-paragraph"><span class="illuminated-initial initial-gold">C</span>on el tiempo dejaron de imaginar cómo sería compartir una vida y tomaron una decisión importante:</p>
               <h3 class="chapter-date">vivir juntos.</h3>
               <p>Compartir los buenos días. Las noches cansadas. Las responsabilidades. Los sueños. Las risas.</p>
@@ -3921,7 +4065,8 @@ html body #storybook.manuscript-mode .bond-last-word{
 
           <div class="folio folio-right bond-folio">
             <div class="folio-border blue"></div>
-            <div class="manuscript-copy right-copy">
+            <div class="chapter-ribbon">VII · APARECE LA BESTIA</div>
+              <div class="manuscript-copy right-copy">
               <p class="illuminated-paragraph"><span class="illuminated-initial initial-blue">P</span>ero cuando parecía que el reino finalmente estaba en paz… apareció una criatura.</p>
               <p>De largas orejas.<br>Mirada irresistible.<br>Y una agenda extremadamente ocupada.</p>
               <p>Su nombre era…</p>
@@ -4044,9 +4189,131 @@ html body #storybook.manuscript-mode .bond-last-word{
 <script>
 (function(){
   const storybook = document.getElementById('storybook');
+  
   const weddingAudio = document.getElementById('weddingAudio') || document.querySelector('audio:not(#medievalAudio)');
   const medievalAudio = document.getElementById('medievalAudio');
-  const paperTurnOverlay = document.getElementById('paperTurnOverlay');
+
+  /* One authoritative soundtrack controller.
+     No priming, no delayed pause callbacks, no competing fade promises. */
+  const Soundtrack = {
+    mode: 'wedding',
+    weddingTime: 0,
+    raf: 0,
+    storyStarted: false,
+
+    cancelFade(){
+      if(this.raf) cancelAnimationFrame(this.raf);
+      this.raf = 0;
+    },
+
+    fadePair(outTrack, inTrack, inTarget, duration, done){
+      this.cancelFade();
+      const start = performance.now();
+      const outStart = outTrack ? outTrack.volume : 0;
+      const inStart = inTrack ? inTrack.volume : 0;
+      const tick = (now)=>{
+        const p = Math.min(1,(now-start)/duration);
+        const eased = p*p*(3-2*p);
+        if(outTrack) outTrack.volume = Math.max(0,outStart*(1-eased));
+        if(inTrack) inTrack.volume = inStart + ((inTarget-inStart)*eased);
+        if(p < 1) this.raf = requestAnimationFrame(tick);
+        else{
+          this.raf = 0;
+          if(outTrack) outTrack.pause();
+          if(done) done();
+        }
+      };
+      this.raf = requestAnimationFrame(tick);
+    },
+
+    enterStory(){
+      if(!medievalAudio) return;
+      this.cancelFade();
+      this.mode = 'medieval';
+
+      if(weddingAudio){
+        this.weddingTime = weddingAudio.currentTime || 0;
+      }
+
+      // Critical: this play() happens immediately during the user's click.
+      try{
+        medievalAudio.pause();
+        medievalAudio.currentTime = 0;
+        medievalAudio.muted = false;
+        medievalAudio.volume = 0.12;
+        medievalAudio.loop = true;
+      }catch(e){}
+
+      const playAttempt = medievalAudio.play();
+
+      const started = ()=>{
+        this.storyStarted = true;
+        if(weddingAudio && !weddingAudio.paused){
+          this.fadePair(weddingAudio, medievalAudio, 0.72, 1100);
+        }else{
+          // No wedding track playing: medieval still plays normally.
+          const from = medievalAudio.volume;
+          const start = performance.now();
+          const tick = (now)=>{
+            const p=Math.min(1,(now-start)/650);
+            medievalAudio.volume=from+((0.72-from)*p);
+            if(p<1) this.raf=requestAnimationFrame(tick);
+            else this.raf=0;
+          };
+          this.raf=requestAnimationFrame(tick);
+        }
+      };
+
+      if(playAttempt && typeof playAttempt.then === 'function'){
+        playAttempt.then(started).catch(()=>{
+          // Keep state sane. A later user interaction can retry via toggle.
+          this.storyStarted = false;
+          this.mode = 'medieval';
+        });
+      }else{
+        started();
+      }
+    },
+
+    leaveStory(){
+      this.cancelFade();
+      this.mode = 'wedding';
+
+      if(!medievalAudio){
+        return;
+      }
+
+      if(weddingAudio){
+        try{
+          weddingAudio.currentTime = this.weddingTime || weddingAudio.currentTime || 0;
+          weddingAudio.muted = false;
+          weddingAudio.volume = 0.05;
+        }catch(e){}
+        const wp = weddingAudio.play();
+        const resume = ()=>{
+          this.fadePair(medievalAudio,weddingAudio,1,1100,()=>{
+            medievalAudio.currentTime=0;
+            medievalAudio.volume=0.72;
+            this.storyStarted=false;
+          });
+        };
+        if(wp && typeof wp.then === 'function'){
+          wp.then(resume).catch(()=>{
+            medievalAudio.pause();
+            medievalAudio.currentTime=0;
+            this.storyStarted=false;
+          });
+        }else resume();
+      }else{
+        medievalAudio.pause();
+        medievalAudio.currentTime=0;
+        this.storyStarted=false;
+      }
+    }
+  };
+
+
+const paperTurnOverlay = document.getElementById('paperTurnOverlay');
   let paperTurnTimer = 0;
   function paperSweep(direction){
     if(!paperTurnOverlay) return;
@@ -4056,104 +4323,7 @@ html body #storybook.manuscript-mode .bond-last-word{
     paperTurnOverlay.classList.add(direction === 'prev' ? 'turn-prev' : 'turn-next');
     paperTurnTimer = setTimeout(()=>{
       paperTurnOverlay.classList.remove('turn-next','turn-prev');
-    },620);
-  }
-  let weddingResumeTime = 0;
-  let weddingWasPlaying = false;
-  let fadeToken = 0;
-
-  function fadeAudio(audio, from, to, duration, pauseAtEnd=false){
-    if(!audio) return;
-    const token = ++fadeToken;
-    audio.volume = Math.max(0,Math.min(1,from));
-    const start = performance.now();
-    function step(now){
-      if(token !== fadeToken) return;
-      const p = Math.min(1,(now-start)/duration);
-      audio.volume = from + (to-from)*p;
-      if(p < 1) requestAnimationFrame(step);
-      else if(pauseAtEnd){ audio.pause(); audio.volume = Math.max(0,Math.min(1,to)); }
     }
-    requestAnimationFrame(step);
-  }
-  function crossfadeIntoStory(){
-    if(!medievalAudio) return;
-
-    weddingWasPlaying = !!weddingAudio && !weddingAudio.paused;
-    if(weddingAudio) weddingResumeTime = weddingAudio.currentTime || 0;
-
-    // This function is invoked synchronously by openBook(), which itself is
-    // invoked by the user's click/tap. Start the medieval track immediately
-    // inside that gesture. No async priming, pausing, or resetting afterward.
-    try{
-      medievalAudio.pause();
-      medievalAudio.currentTime = 0;
-      medievalAudio.volume = 0.06;
-      medievalAudio.muted = false;
-    }catch(e){}
-
-    let started = false;
-    const p = medievalAudio.play();
-
-    const beginFade = ()=>{
-      if(started) return;
-      started = true;
-      const token = ++fadeToken;
-      const fadeStart = performance.now();
-      const weddingStart = weddingAudio ? weddingAudio.volume : 0;
-
-      function step(now){
-        if(token !== fadeToken) return;
-        const x = Math.min(1,(now-fadeStart)/1500);
-        if(weddingAudio) weddingAudio.volume = weddingStart*(1-x);
-        medievalAudio.volume = 0.06 + ((0.72-0.06)*x);
-        if(x < 1){
-          requestAnimationFrame(step);
-        }else{
-          medievalAudio.volume = 0.72;
-          if(weddingAudio) weddingAudio.pause();
-        }
-      }
-      requestAnimationFrame(step);
-    };
-
-    if(p && typeof p.then === 'function'){
-      p.then(beginFade).catch(()=>{
-        // If a browser rejects the first attempt, keep the wedding track
-        // untouched rather than creating a broken half-transition.
-        if(weddingAudio) weddingAudio.volume = 1;
-      });
-    }else{
-      beginFade();
-    }
-  }
-  function crossfadeOutOfStory(){
-    if(!medievalAudio) return;
-    const token = ++fadeToken;
-    const start = performance.now();
-    const medievalStart = medievalAudio.volume;
-    if(weddingAudio && weddingWasPlaying){
-      try{ weddingAudio.currentTime = weddingResumeTime; }catch(e){}
-      weddingAudio.volume = 0;
-      const p = weddingAudio.play();
-      if(p && p.catch) p.catch(()=>{});
-    }
-    function step(now){
-      if(token !== fadeToken) return;
-      const x = Math.min(1,(now-start)/1800);
-      medievalAudio.volume = medievalStart*(1-x);
-      if(weddingAudio && weddingWasPlaying) weddingAudio.volume = x;
-      if(x < 1) requestAnimationFrame(step);
-      else {
-        medievalAudio.pause();
-        medievalAudio.currentTime = 0;
-        medievalAudio.volume = 0.72;
-      }
-    }
-    requestAnimationFrame(step);
-  }
-  const storyTrigger = document.getElementById('storyEastereggTrigger');
-  const storyX = document.getElementById('storybookX');
   const closeBookButton = document.getElementById('closeBookButton');
   const bookShell = document.getElementById('bookShell');
   const bookPages = Array.from(document.querySelectorAll('.book-page'));
@@ -4161,67 +4331,8 @@ html body #storybook.manuscript-mode .bond-last-word{
   const bookNext = document.getElementById('bookNext');
   const bookProgress = document.getElementById('bookProgress');
   const mobileMQ = window.matchMedia('(max-width:700px)');
-  let page = 0;
-  let mobileSide = 0;
-  let busy = false;
-
-  function dots(){
-    bookProgress.innerHTML='';
-    bookPages.forEach((_,i)=>{
-      const d=document.createElement('i');
-      if(i===page)d.classList.add('active');
-      bookProgress.appendChild(d);
-    });
-  }
-  function mobileHasSecond(){
-    const p=bookPages[page];
-    return mobileMQ.matches && p && p.classList.contains('manuscript-spread') && !!p.querySelector('.folio-right');
-  }
-  function syncMobile(){
-    bookPages.forEach(p=>p.classList.remove('mobile-second'));
-    if(mobileSide===1 && mobileHasSecond()) bookPages[page].classList.add('mobile-second');
-  }
-  function controls(){
-    const atStart=page===0;
-    const atEnd=page===bookPages.length-1 && (!mobileHasSecond() || mobileSide===1);
-    bookPrev.disabled=atStart;
-    bookNext.disabled=atEnd || page===0;
-    Array.from(bookProgress.children).forEach((d,i)=>d.classList.toggle('active',i===page));
-    syncMobile();
-  }
-  function go(index, side=0){
-    if(busy || index<0 || index>=bookPages.length)return;
-    busy=true;
-    const cur=bookPages[page], nxt=bookPages[index];
-    cur.classList.add('leaving');
-    setTimeout(()=>{
-      cur.classList.remove('active','leaving','mobile-second');
-      page=index; mobileSide=side;
-      nxt.classList.add('active');
-      if(page>0)bookShell.classList.add('opened');
-      controls();
-      setTimeout(()=>busy=false,560);
-    },300);
-  }
-  function next(){
-    paperSweep('next');
-    if(page===0){go(1,0);return}
-    if(mobileHasSecond() && mobileSide===0){
-      mobileSide=1;syncMobile();return;
-    }
-    go(page+1,0);
-  }
-  function prev(){
-    paperSweep('prev');
-    if(page===0)return;
-    if(mobileHasSecond() && mobileSide===1){
-      mobileSide=0;syncMobile();return;
-    }
-    if(page===1){go(0,0);return}
-    go(page-1,mobileMQ.matches?1:0);
-  }
   function openBook(){
-    crossfadeIntoStory();
+    Soundtrack.enterStory();
     page=0;mobileSide=0;
     bookPages.forEach((p,i)=>{p.classList.toggle('active',i===0);p.classList.remove('mobile-second','leaving')});
     bookShell.classList.remove('opened');
@@ -4235,7 +4346,7 @@ html body #storybook.manuscript-mode .bond-last-word{
     storybook.classList.remove('open');
     storybook.setAttribute('aria-hidden','true');
     document.body.classList.remove('storybook-open');
-    crossfadeOutOfStory();
+    Soundtrack.leaveStory();
     setTimeout(()=>{
       page=0;mobileSide=0;
       bookPages.forEach((p,i)=>{p.classList.toggle('active',i===0);p.classList.remove('mobile-second','leaving')});
