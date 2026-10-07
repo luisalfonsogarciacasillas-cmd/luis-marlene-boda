@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#F4EDE3" />
   <meta name="description" content="Invitación de boda civil de Luis & Marlene — 19 de diciembre de 2026." />
-  <title>Luis & Marlene | 19.12.2026</title>
+  <title>Luis & Marlene | 19.12.2026 · V2.2</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -532,7 +532,209 @@
     @keyframes driftA{to{transform:translate(-28px,38px) scale(1.04)}}
     @keyframes driftB{to{transform:translate(34px,-26px) scale(.96)}}
 
+
+    /* V2.2 — TIMELINE */
+    .timeline-section{
+      background:var(--paper);
+      position:relative;
+      overflow:hidden;
+    }
+    .timeline-section:before{
+      content:"19 · XII · 2026";
+      position:absolute;
+      left:50%;
+      top:54%;
+      transform:translate(-50%,-50%) rotate(-7deg);
+      white-space:nowrap;
+      font:500 clamp(82px,17vw,190px)/1 "Cormorant Garamond",serif;
+      letter-spacing:-.04em;
+      color:rgba(134,80,62,.035);
+      pointer-events:none;
+    }
+    .timeline-head{
+      text-align:center;
+      width:min(650px,100%);
+      margin:0 auto 58px;
+      position:relative;
+      z-index:1;
+    }
+    .timeline-head .section-title{margin-bottom:14px}
+    .timeline-sub{
+      margin:0;
+      color:var(--muted);
+      font:400 19px/1.5 "Cormorant Garamond",serif;
+    }
+    .timeline{
+      width:min(780px,100%);
+      margin:auto;
+      position:relative;
+      z-index:1;
+    }
+    .timeline:before{
+      content:"";
+      position:absolute;
+      top:12px;
+      bottom:12px;
+      left:50%;
+      width:1px;
+      background:linear-gradient(to bottom,transparent,var(--gold) 8%,var(--gold) 92%,transparent);
+      transform:translateX(-50%);
+    }
+    .timeline-item{
+      width:50%;
+      min-height:112px;
+      position:relative;
+      display:flex;
+      align-items:center;
+    }
+    .timeline-item:nth-child(odd){
+      padding-right:58px;
+      text-align:right;
+      justify-content:flex-end;
+    }
+    .timeline-item:nth-child(even){
+      margin-left:50%;
+      padding-left:58px;
+      text-align:left;
+    }
+    .timeline-dot{
+      position:absolute;
+      width:11px;height:11px;
+      border-radius:50%;
+      border:2px solid var(--paper);
+      background:var(--terracotta);
+      box-shadow:0 0 0 1px var(--gold);
+      top:50%;
+      transform:translateY(-50%);
+    }
+    .timeline-item:nth-child(odd) .timeline-dot{right:-5.5px}
+    .timeline-item:nth-child(even) .timeline-dot{left:-5.5px}
+    .timeline-time{
+      display:block;
+      color:var(--terracotta);
+      font-size:9px;
+      font-weight:600;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      margin-bottom:7px;
+    }
+    .timeline-event{
+      display:block;
+      font:500 clamp(25px,4vw,32px)/1.05 "Cormorant Garamond",serif;
+    }
+    .timeline-note{
+      display:block;
+      margin-top:7px;
+      color:var(--muted);
+      font-size:9px;
+      letter-spacing:.08em;
+      line-height:1.5;
+    }
+
+    /* V2.2 — DRESS CODE */
+    .dresscode{
+      background:var(--ivory);
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+    }
+    .dresscode-inner{
+      width:min(850px,100%);
+      margin:auto;
+      position:relative;
+      z-index:1;
+    }
+    .dresscode .section-title{
+      margin-bottom:8px;
+    }
+    .dress-label{
+      display:inline-block;
+      margin:8px 0 48px;
+      color:var(--terracotta);
+      font-size:10px;
+      font-weight:600;
+      letter-spacing:.31em;
+      text-transform:uppercase;
+    }
+    .wardrobe{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:1px;
+      background:var(--line);
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+    }
+    .look{
+      background:var(--ivory);
+      padding:42px 30px 38px;
+    }
+    .fashion-icon{
+      width:116px;
+      height:150px;
+      margin:0 auto 25px;
+      color:var(--cinnamon);
+      display:block;
+    }
+    .fashion-icon svg{
+      width:100%;
+      height:100%;
+      overflow:visible;
+    }
+    .fashion-icon path,
+    .fashion-icon line,
+    .fashion-icon polyline,
+    .fashion-icon circle{
+      fill:none;
+      stroke:currentColor;
+      stroke-width:1.35;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+      vector-effect:non-scaling-stroke;
+    }
+    .look h3{
+      margin:0 0 11px;
+      font:500 30px/1 "Cormorant Garamond",serif;
+    }
+    .look p{
+      margin:0 auto;
+      max-width:280px;
+      color:var(--muted);
+      font-size:10px;
+      line-height:1.8;
+      letter-spacing:.04em;
+    }
+    .dress-foot{
+      margin:32px auto 0;
+      max-width:570px;
+      color:var(--muted);
+      font:400 19px/1.5 "Cormorant Garamond",serif;
+    }
+
     @media(max-width:520px){
+      .timeline-section:before{font-size:86px;top:52%}
+      .timeline-head{margin-bottom:42px}
+      .timeline:before{left:18px}
+      .timeline-item,
+      .timeline-item:nth-child(even){
+        width:100%;
+        min-height:98px;
+        margin-left:0;
+        padding:16px 0 16px 52px;
+        text-align:left;
+        justify-content:flex-start;
+      }
+      .timeline-item:nth-child(odd){padding-right:0}
+      .timeline-item:nth-child(odd) .timeline-dot,
+      .timeline-item:nth-child(even) .timeline-dot{
+        left:12.5px;
+        right:auto;
+      }
+      .wardrobe{grid-template-columns:1fr}
+      .look{padding:38px 22px}
+      .look:first-child{border-bottom:1px solid var(--line)}
+      .fashion-icon{width:104px;height:136px}
+      .dress-label{margin-bottom:34px}
+
       .gate-monogram{width:88px;height:88px;margin-bottom:30px}
       .hero{padding-top:30px}
       .monogram-wrap{margin-bottom:32px}
@@ -631,6 +833,120 @@
         <div class="unit"><span class="number" id="hours">—</span><span class="label">Horas</span></div>
         <div class="unit"><span class="number" id="minutes">—</span><span class="label">Minutos</span></div>
         <div class="unit"><span class="number" id="seconds">—</span><span class="label">Segundos</span></div>
+      </div>
+    </section>
+
+
+    <section class="timeline-section" aria-labelledby="itinerario">
+      <div class="timeline-head reveal">
+        <div class="section-kicker">Nuestro día</div>
+        <h2 class="section-title" id="itinerario">Celebremos juntos</h2>
+        <p class="timeline-sub">Una tarde para recordar, brindar, cenar y bailar.</p>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item reveal">
+          <span class="timeline-dot" aria-hidden="true"></span>
+          <div>
+            <span class="timeline-time">5:00 PM</span>
+            <span class="timeline-event">Recepción de invitados</span>
+            <span class="timeline-note">Bienvenida</span>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal delay-1">
+          <span class="timeline-dot" aria-hidden="true"></span>
+          <div>
+            <span class="timeline-time">6:00 PM</span>
+            <span class="timeline-event">Ceremonia civil</span>
+            <span class="timeline-note">El momento del “sí”</span>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <span class="timeline-dot" aria-hidden="true"></span>
+          <div>
+            <span class="timeline-time">6:30 PM</span>
+            <span class="timeline-event">Brindis</span>
+            <span class="timeline-note">Por lo que comienza</span>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal delay-1">
+          <span class="timeline-dot" aria-hidden="true"></span>
+          <div>
+            <span class="timeline-time">7:00 PM</span>
+            <span class="timeline-event">Cena</span>
+            <span class="timeline-note">A la mesa</span>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <span class="timeline-dot" aria-hidden="true"></span>
+          <div>
+            <span class="timeline-time">8:00 PM</span>
+            <span class="timeline-event">¡A bailar!</span>
+            <span class="timeline-note">Que empiece la fiesta</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="dresscode" aria-labelledby="vestimenta">
+      <div class="dresscode-inner">
+        <div class="reveal">
+          <div class="section-kicker">Código de vestimenta</div>
+          <h2 class="section-title" id="vestimenta">Cóctel Chic</h2>
+          <span class="dress-label">Elegante · Moderno · Celebración</span>
+        </div>
+
+        <div class="wardrobe reveal delay-1">
+          <article class="look">
+            <span class="fashion-icon" aria-hidden="true">
+              <svg viewBox="0 0 120 160" role="img">
+                <!-- Custom minimalist cocktail dress -->
+                <path d="M48 13 C51 20 53 27 52 36" />
+                <path d="M72 13 C69 20 67 27 68 36" />
+                <path d="M48 13 C52 17 56 19 60 19 C64 19 68 17 72 13" />
+                <path d="M52 36 C50 49 46 62 40 75" />
+                <path d="M68 36 C70 49 74 62 80 75" />
+                <path d="M40 75 C33 96 27 118 23 143" />
+                <path d="M80 75 C87 96 93 118 97 143" />
+                <path d="M23 143 C43 149 77 149 97 143" />
+                <path d="M52 36 C56 39 64 39 68 36" />
+                <line x1="40" y1="75" x2="80" y2="75" />
+                <path d="M46 55 C54 59 66 59 74 55" opacity=".55" />
+              </svg>
+            </span>
+            <h3>Ellas</h3>
+            <p>Vestido cóctel, vestido midi o jumpsuit elegante.</p>
+          </article>
+
+          <article class="look">
+            <span class="fashion-icon" aria-hidden="true">
+              <svg viewBox="0 0 120 160" role="img">
+                <!-- Custom minimalist blazer / suit -->
+                <path d="M45 20 L29 31 L22 73 L31 77 L35 142" />
+                <path d="M75 20 L91 31 L98 73 L89 77 L85 142" />
+                <path d="M45 20 L53 39 L60 32 L67 39 L75 20" />
+                <path d="M53 39 L46 53 L59 67" />
+                <path d="M67 39 L74 53 L61 67" />
+                <line x1="60" y1="32" x2="60" y2="137" />
+                <line x1="35" y1="142" x2="85" y2="142" />
+                <line x1="31" y1="77" x2="28" y2="127" />
+                <line x1="89" y1="77" x2="92" y2="127" />
+                <circle cx="66" cy="81" r="1.2" />
+                <circle cx="66" cy="94" r="1.2" />
+                <path d="M42 88 L51 88" />
+                <path d="M69 88 L78 88" />
+              </svg>
+            </span>
+            <h3>Ellos</h3>
+            <p>Traje, blazer y pantalón de vestir con un estilo pulido.</p>
+          </article>
+        </div>
+
+        <p class="dress-foot reveal delay-2">Elegante, moderno y listo para celebrar. Queremos verte increíble, pero sobre todo disfrutar contigo.</p>
       </div>
     </section>
 
