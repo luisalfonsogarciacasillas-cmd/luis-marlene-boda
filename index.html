@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#F4EDE3" />
   <meta name="description" content="Invitación de boda civil de Luis & Marlene — 19 de diciembre de 2026." />
-  <title>Luis & Marlene | 19.12.2026 · V3.2</title>
+  <title>Luis & Marlene | 19.12.2026 · V3.3</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -2943,6 +2943,42 @@
     text-align:center!important;
   }
 }
+
+/* V3.3 — extra narrator mischief + story soundtrack */
+.story-sound-cue{
+  position:absolute;top:18px;left:50%;transform:translateX(-50%);
+  z-index:75;pointer-events:none;
+  font:500 9px/1 "Montserrat",sans-serif;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(229,197,133,.62);
+  opacity:0;transition:opacity .8s ease;
+}
+.storybook.open .story-sound-cue{opacity:1}
+.bond-folio .cocker-mini{
+  animation:bondNap 5.8s ease-in-out infinite!important;
+}
+@keyframes bondNap{
+  0%,100%{transform:translateY(0) rotate(0deg)}
+  45%,60%{transform:translateY(3px) rotate(.7deg)}
+}
+.bond-folio:after{
+  content:"Z  z  z";
+  position:absolute;
+  right:12%;bottom:30%;
+  z-index:4;
+  font:italic 700 clamp(18px,2vw,29px)/1 Georgia,serif;
+  color:#6c452b;opacity:.48;
+  transform:rotate(-10deg);
+  animation:bondZzz 3.2s ease-in-out infinite;
+}
+@keyframes bondZzz{
+  0%,100%{opacity:.22;transform:translate(0,6px) rotate(-10deg)}
+  50%{opacity:.66;transform:translate(5px,-7px) rotate(-10deg)}
+}
+@media(max-width:700px){
+  .story-sound-cue{top:14px;font-size:8px}
+  .bond-folio:after{right:13%;bottom:27%}
+}
 </style>
 </head>
 
@@ -3004,6 +3040,7 @@
   <audio id="bgMusic" loop preload="auto">
     <source src="lofi-wedding.mp3" type="audio/mpeg">
   </audio>
+  <audio id="medievalAudio" src="medieval-theme.mp3" preload="auto" loop></audio>
 
   <button class="music" id="musicButton" type="button" aria-label="Pausar música" aria-pressed="true">
     <span class="music-icon" aria-hidden="true">♪</span>
@@ -3488,6 +3525,7 @@
 
   <!-- V3.0 — Illuminated manuscript Easter egg -->
   <div class="storybook manuscript-mode" id="storybook" aria-hidden="true">
+    <div class="story-sound-cue" aria-hidden="true">♪ música del reino ♪</div>
     <div class="storybook-vignette" aria-hidden="true"></div>
     <button class="storybook-x" id="storybookX" type="button" aria-label="Cerrar nuestra historia">×</button>
 
@@ -3540,7 +3578,7 @@
               <p>Probablemente cansados, sudados y pensando más en llegar a casa que en encontrar al amor de su vida.</p>
               <h3 class="aside">Muy de cuento de hadas. ♡</h3>
               <p>Y fue ahí, entre un par de miradas, donde comenzó una historia que ninguno de los dos sabía que estaba empezando.</p>
-              <p class="scribe-note note-right">Representación artística. El camión probablemente tardó más.</p>
+              <p class="scribe-note note-right">Representación artística. El camión probablemente tardó más. El romance tuvo mejor puntualidad.</p>
             </div>
             <svg class="miniature bus-mini" viewBox="0 0 400 240" aria-hidden="true">
               <path class="ground" d="M15 211 H385"/>
@@ -3567,7 +3605,7 @@
               <p class="quest-list">No cruzó un bosque encantado.<br>No enfrentó a un dragón.<br>No consultó a una bruja.</p>
               <h3 class="punch facebook-line">Buscó a Luis en Facebook.</h3>
               <p class="aside">Eran otros tiempos. No juzguen.</p>
-              <p class="scribe-note note-left">Fuentes históricas confirman que Marlene inició esta expedición.</p>
+              <p class="scribe-note note-left">Fuentes históricas confirman que Marlene inició esta expedición. Luis, mientras tanto, participó activamente siendo encontrado.</p>
             </div>
             <svg class="miniature scroll-mini" viewBox="0 0 400 240" aria-hidden="true">
               <path class="scroll-paper" d="M103 55 Q84 55 84 76 V180 Q84 199 103 199 H301 Q319 199 319 180 V76 Q319 55 301 55Z"/>
@@ -3588,7 +3626,7 @@
               <p>Pero un buen día, después de revisar cuidadosamente la evidencia…</p>
               <h3 class="punch">resulta que ya eran novios. ♡</h3>
               <p class="aside">Nadie sabe exactamente cuándo ocurrió.<br>Ellos tampoco.</p>
-              <p class="scribe-note note-right">La administración de esta historia aún investiga la fecha exacta.</p>
+              <p class="scribe-note note-right">La administración de esta historia aún investiga la fecha exacta. Después de casi diez años, las probabilidades de resolver el caso son bajas.</p>
             </div>
             <svg class="miniature chat-mini" viewBox="0 0 400 240" aria-hidden="true">
               <path class="ribbon r1" d="M59 83 Q120 44 183 86 L169 119 Q111 86 65 118Z"/>
@@ -3608,9 +3646,10 @@
             <div class="manuscript-copy">
               <p class="illuminated-paragraph"><span class="illuminated-initial initial-red">P</span>asaron los años. Llegaron aventuras, cambios, buenos momentos, dificultades y algunos tropiezos.</p>
               <p>Porque aparentemente una relación de casi diez años no incluye instrucciones.</p>
-              <p class="aside">Qué falta de consideración.</p>
+              <p class="aside">Qué falta de consideración. Ni tutorial. Ni garantía. Ni servicio al cliente.</p>
               <p>Pero incluso cuando las cosas se complicaban, entre Luis y Marlene permanecía algo difícil de explicar.</p>
               <h3 class="emotional-manuscript">Una conexión que quizá no podía verse,<br>pero siempre podía sentirse.</h3>
+              <p class="scribe-note note-left">Los sabios llaman a esto “conexión”. Sus amigos probablemente ya lo habían notado antes.</p>
             </div>
             <svg class="miniature thread-mini" viewBox="0 0 400 240" aria-hidden="true">
               <circle class="figure" cx="90" cy="121" r="13"/><path class="figure-line" d="M90 135 V207 M90 153 L57 179"/>
@@ -3628,7 +3667,7 @@
               <p>El mundo se detuvo. Las calles quedaron vacías y las personas tuvieron que mantenerse alejadas.</p>
               <p>Y mientras una pandemia cortaba conexiones por todas partes… estos dos hicieron exactamente lo contrario.</p>
               <h3 class="emotional-manuscript">Se acercaron todavía más.</h3>
-              <p class="aside">Claramente nunca han sido buenos siguiendo la trama.</p>
+              <p class="aside">Claramente nunca han sido buenos siguiendo la trama. El narrador presentó una queja formal.</p>
             </div>
             <svg class="miniature bloom-mini" viewBox="0 0 400 240" aria-hidden="true">
               <path class="window-v3" d="M113 47 H289 V211 H113Z M201 47 V211 M113 129 H289"/>
@@ -3652,7 +3691,7 @@
               <p>Y, por supuesto, compartir la eterna pregunta:</p>
               <h3 class="aside">“¿Quién dejó eso ahí?”</h3>
               <p>En diciembre de 2023 comenzó un nuevo capítulo: construir un hogar y terminar cada día juntos.</p>
-              <p class="scribe-note note-left">El verdadero examen final. No se permitían acordeones.</p>
+              <p class="scribe-note note-left">El verdadero examen final. No se permitían acordeones. Sí se permitía preguntar “¿qué quieres cenar?” y rechazar todas las opciones.</p>
             </div>
             <svg class="miniature home-mini" viewBox="0 0 400 240" aria-hidden="true">
               <path class="house-fill" d="M76 137 L200 48 L325 137 V219 H76Z"/>
@@ -3670,13 +3709,14 @@
             <div class="folio-border blue"></div>
             <div class="manuscript-copy right-copy">
               <p class="illuminated-paragraph"><span class="illuminated-initial initial-blue">P</span>ero cuando parecía que el reino finalmente estaba en paz… apareció una criatura.</p>
-              <p>De largas orejas.<br>Mirada irresistible.<br>Y absolutamente ninguna intención de respetar la propiedad privada.</p>
+              <p>De largas orejas.<br>Mirada irresistible.<br>Y una agenda extremadamente ocupada.</p>
               <p>Su nombre era…</p>
               <h3 class="bond-title">BOND.</h3>
               <p>Un temible English Cocker Spaniel.</p>
-              <p class="bond-legend">Guardián del hogar.<br>Protector de la familia.<br>Inspector oficial de cualquier alimento que toque el suelo.</p>
-              <p class="aside">Su llegada completó la familia y dejó perfectamente claro quién era ahora el verdadero dueño de la casa. No era Luis.</p>
-              <p class="scribe-note note-right">Bestia representada aproximadamente a escala. Su apetito, no.</p>
+              <p class="bond-legend">Guardián del hogar.<br>Protector de la familia.<br>Defensor incansable del sofá.</p>
+              <p>Sus deberes diarios incluyen dormir por la mañana, descansar por la tarde y recuperarse de ambas actividades durante la noche.</p>
+              <p class="aside">Algunos héroes protegen reinos. Bond protege que nadie ocupe su lugar mientras duerme.</p>
+              <p class="scribe-note note-right">Los cronistas intentaron registrar una de sus hazañas. Seguía dormido al cierre de esta edición.</p>
             </div>
             <svg class="miniature cocker-mini" viewBox="0 0 400 260" aria-label="Ilustración de Bond, un English Cocker Spaniel">
               <ellipse class="cocker-body" cx="224" cy="176" rx="80" ry="48"/>
@@ -3708,11 +3748,12 @@
           <div class="folio folio-left">
             <div class="folio-border green"></div>
             <div class="manuscript-copy">
-              <p class="illuminated-paragraph"><span class="illuminated-initial initial-green">D</span>esde entonces han seguido creciendo.</p>
+              <p class="illuminated-paragraph"><span class="illuminated-initial initial-green">D</span>esde entonces han seguido creciendo. Bond también. Principalmente hacia los lados cuando se acomoda en la cama.</p>
               <p>Personalmente.<br>Profesionalmente.<br>Espiritualmente.</p>
               <p>Aprendieron a acompañarse en los cambios, a celebrar las pequeñas victorias, a sostenerse cuando algo pesa y a disfrutar esa vida cotidiana que alguna vez sólo imaginaron.</p>
               <p>Y casi sin darse cuenta, aquello que comenzó con dos personas esperando un camión se convirtió en algo mucho más grande.</p>
               <h3 class="punch softer">Una familia.</h3>
+              <p class="scribe-note note-left">Composición oficial del reino: dos humanos, un Cocker y suficientes pelos de perro para formar un segundo Cocker.</p>
             </div>
             <svg class="miniature family-mini" viewBox="0 0 400 240" aria-hidden="true">
               <circle class="gold-sun" cx="201" cy="106" r="63"/>
@@ -3771,7 +3812,7 @@
               </div>
               <p class="final-cont">Y así, Luis y Marlene continuaron escribiendo su historia…</p>
               <p class="final-together">juntos.</p>
-              <p class="bond-last-word">Y, por supuesto, Bond.<br><span>Porque aparentemente él también tenía que salir en el final.</span></p>
+              <p class="bond-last-word">Y, por supuesto, Bond.<br><span>Porque aparentemente él también tenía que salir en el final. No pudo asistir a la revisión del texto: estaba durmiendo.</span></p>
               <p class="continuara-v3">Continuará…</p>
             </div>
             <button class="close-book-button" id="closeBookButton" type="button">Cerrar el libro</button>
@@ -3789,6 +3830,75 @@
 <script>
 (function(){
   const storybook = document.getElementById('storybook');
+  const weddingAudio = document.getElementById('weddingAudio') || document.querySelector('audio:not(#medievalAudio)');
+  const medievalAudio = document.getElementById('medievalAudio');
+  let weddingResumeTime = 0;
+  let weddingWasPlaying = false;
+  let fadeToken = 0;
+
+  function fadeAudio(audio, from, to, duration, pauseAtEnd=false){
+    if(!audio) return;
+    const token = ++fadeToken;
+    audio.volume = Math.max(0,Math.min(1,from));
+    const start = performance.now();
+    function step(now){
+      if(token !== fadeToken) return;
+      const p = Math.min(1,(now-start)/duration);
+      audio.volume = from + (to-from)*p;
+      if(p < 1) requestAnimationFrame(step);
+      else if(pauseAtEnd){ audio.pause(); audio.volume = Math.max(0,Math.min(1,to)); }
+    }
+    requestAnimationFrame(step);
+  }
+  function crossfadeIntoStory(){
+    if(!medievalAudio) return;
+    weddingWasPlaying = !!weddingAudio && !weddingAudio.paused;
+    if(weddingAudio) weddingResumeTime = weddingAudio.currentTime || 0;
+
+    // Opening the book is a direct user gesture, so browsers permit this play().
+    medievalAudio.currentTime = 0;
+    medievalAudio.volume = 0;
+    const playPromise = medievalAudio.play();
+    if(playPromise && playPromise.catch) playPromise.catch(()=>{});
+
+    const token = ++fadeToken;
+    const start = performance.now();
+    const weddingStart = weddingAudio ? weddingAudio.volume : 0;
+    function step(now){
+      if(token !== fadeToken) return;
+      const p = Math.min(1,(now-start)/1800);
+      if(weddingAudio) weddingAudio.volume = weddingStart*(1-p);
+      medievalAudio.volume = 0.72*p;
+      if(p < 1) requestAnimationFrame(step);
+      else if(weddingAudio) weddingAudio.pause();
+    }
+    requestAnimationFrame(step);
+  }
+  function crossfadeOutOfStory(){
+    if(!medievalAudio) return;
+    const token = ++fadeToken;
+    const start = performance.now();
+    const medievalStart = medievalAudio.volume;
+    if(weddingAudio && weddingWasPlaying){
+      try{ weddingAudio.currentTime = weddingResumeTime; }catch(e){}
+      weddingAudio.volume = 0;
+      const p = weddingAudio.play();
+      if(p && p.catch) p.catch(()=>{});
+    }
+    function step(now){
+      if(token !== fadeToken) return;
+      const x = Math.min(1,(now-start)/1800);
+      medievalAudio.volume = medievalStart*(1-x);
+      if(weddingAudio && weddingWasPlaying) weddingAudio.volume = x;
+      if(x < 1) requestAnimationFrame(step);
+      else {
+        medievalAudio.pause();
+        medievalAudio.currentTime = 0;
+        medievalAudio.volume = 0.72;
+      }
+    }
+    requestAnimationFrame(step);
+  }
   const storyTrigger = document.getElementById('storyEastereggTrigger');
   const storyX = document.getElementById('storybookX');
   const closeBookButton = document.getElementById('closeBookButton');
@@ -3862,12 +3972,14 @@
     storybook.classList.add('open');
     storybook.setAttribute('aria-hidden','false');
     document.body.classList.add('storybook-open');
+    crossfadeIntoStory();
     dots();controls();
   }
   function closeBook(){
     storybook.classList.remove('open');
     storybook.setAttribute('aria-hidden','true');
     document.body.classList.remove('storybook-open');
+    crossfadeOutOfStory();
     setTimeout(()=>{
       page=0;mobileSide=0;
       bookPages.forEach((p,i)=>{p.classList.toggle('active',i===0);p.classList.remove('mobile-second','leaving')});
