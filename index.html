@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#F4EDE3" />
   <meta name="description" content="Invitación de boda civil de Luis & Marlene — 19 de diciembre de 2026." />
-  <title>V5.3 · Luis & Marlene | 19.12.2026 · Illustrated Storybook</title>
+  <title>V5.4 · Luis & Marlene | 19.12.2026 · Illustrated Storybook</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -3774,7 +3774,7 @@
 @media(prefers-reduced-motion:reduce){#storybook.v5-book .v5-page.turn-next,#storybook.v5-book .v5-page.turn-prev{animation:none!important}}
 </style>
 \n<style id="v53-experience-polish">
-/* V5.3 — final storybook experience polish */
+/* V5.4 — final storybook experience polish */
 #storybook.v5-book .v53-particles{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}
 #storybook.v5-book .v53-particles i{position:absolute;left:var(--x);bottom:-4%;width:3px;height:3px;border-radius:50%;background:#d9aa58;box-shadow:0 0 9px rgba(218,166,80,.75);opacity:0;animation:v53Dust var(--d) linear var(--delay) infinite;transform:scale(var(--s))}
 @keyframes v53Dust{0%{transform:translate3d(0,0,0) scale(var(--s));opacity:0}12%{opacity:.28}55%{opacity:.16;transform:translate3d(14px,-48vh,0) scale(var(--s))}100%{transform:translate3d(-8px,-102vh,0) scale(var(--s));opacity:0}}
@@ -3801,7 +3801,45 @@
 @keyframes v53Zzz{0%{opacity:0;transform:translateY(12px) scale(.8)}20%{opacity:1}100%{opacity:0;transform:translate(24px,-80px) scale(1.3)}}
 @media(max-width:700px){#storybook.v5-book .v5-counter{bottom:max(38px,env(safe-area-inset-bottom));font-size:7px}.v5-book .book-progress{bottom:max(19px,env(safe-area-inset-bottom))}}
 @media(prefers-reduced-motion:reduce){#storybook.v5-book .v53-particles i{animation:none!important}.v5-book .v5-page.v53-enter-next,.v5-book .v5-page.v53-exit-next,.v5-book .v5-page.v53-enter-prev,.v5-book .v5-page.v53-exit-prev,.v5-book.v53-opening .v5-folio-frame,.v5-book.v53-closing .v5-folio-frame{animation-duration:.01ms!important}}
-</style>\n</head>
+</style>\n
+<style id="v54-living-storybook">
+/* V5.4 — Living Storybook: delayed scene magic layered over the finished PNG folios. */
+#storybook.v5-book .v54-effects{position:absolute;inset:0;z-index:38;pointer-events:none;overflow:hidden;border-radius:4px}
+#storybook.v5-book .v54-fx{position:absolute;pointer-events:none;opacity:0}
+#storybook.v5-book .v54-spark{width:9px;height:9px;border-radius:50%;background:#ffe4a0;box-shadow:0 0 8px #ffe4a0,0 0 20px #d9a548,0 0 34px rgba(217,165,72,.7)}
+#storybook.v5-book .v54-star{color:#ffe9a9;font:700 22px/1 Georgia,serif;text-shadow:0 0 8px #ffe2৮০,0 0 16px #c98f35}
+#storybook.v5-book .v54-heart{color:#f0c06b;font:700 clamp(24px,5vw,42px)/1 Georgia,serif;text-shadow:0 0 10px rgba(255,211,122,.95),0 0 26px rgba(198,110,70,.65)}
+#storybook.v5-book .v54-glow{border-radius:50%;background:radial-gradient(circle,rgba(255,224,142,.55) 0,rgba(224,165,72,.22) 36%,rgba(224,165,72,0) 72%);mix-blend-mode:screen}
+#storybook.v5-book .v54-cover-glint{left:25%;top:18%;width:50%;height:18%;background:linear-gradient(105deg,transparent 25%,rgba(255,238,177,.05) 38%,rgba(255,238,177,.78) 50%,rgba(255,238,177,.05) 62%,transparent 75%);transform:translateX(-130%) skewX(-18deg);mix-blend-mode:screen;animation:v54Glint 1.6s ease-out both}
+@keyframes v54Glint{0%{opacity:0;transform:translateX(-130%) skewX(-18deg)}20%{opacity:.9}100%{opacity:0;transform:translateX(130%) skewX(-18deg)}}
+#storybook.v5-book .v54-twinkle{animation:v54Twinkle 2.4s ease-in-out both}
+@keyframes v54Twinkle{0%,100%{opacity:0;transform:scale(.35) rotate(0)}25%,65%{opacity:1;transform:scale(1.15) rotate(35deg)}}
+#storybook.v5-book .v54-connection{height:3px;transform-origin:left center;background:linear-gradient(90deg,rgba(255,222,128,0),#ffe29a 18%,#e6ad55 82%,rgba(255,222,128,0));box-shadow:0 0 12px #efc46f;animation:v54Connect 2.25s ease-in-out both}
+@keyframes v54Connect{0%{opacity:0;transform:scaleX(.02)}25%{opacity:.9}72%{opacity:.75;transform:scaleX(1)}100%{opacity:0;transform:scaleX(1)}}
+#storybook.v5-book .v54-message{font:700 18px/1 Georgia,serif;color:#ffe4a0;text-shadow:0 0 9px #d69742;animation:v54Message 2.1s ease-out both}
+@keyframes v54Message{0%{opacity:0;transform:translate(0,14px) scale(.65)}22%{opacity:1}100%{opacity:0;transform:translate(var(--dx),-58px) scale(1.08)}}
+#storybook.v5-book .v54-stamp{left:50%;top:51%;padding:8px 13px;border:3px double #7e241d;border-radius:5px;color:#7e241d;background:rgba(231,202,137,.84);font:700 clamp(15px,3vw,25px)/1.05 Georgia,serif;letter-spacing:.06em;text-transform:uppercase;box-shadow:0 5px 16px rgba(50,20,10,.22);transform:translate(-50%,-50%) rotate(-9deg) scale(2.2);animation:v54Stamp 1.15s cubic-bezier(.16,.82,.2,1) both}
+@keyframes v54Stamp{0%{opacity:0;transform:translate(-50%,-50%) rotate(-9deg) scale(2.2)}52%{opacity:.92;transform:translate(-50%,-50%) rotate(-9deg) scale(.9)}68%{transform:translate(-50%,-50%) rotate(-9deg) scale(1.08)}100%{opacity:.82;transform:translate(-50%,-50%) rotate(-9deg) scale(1)}}
+#storybook.v5-book .v54-trail{height:2px;background:linear-gradient(90deg,transparent,#f4d383,transparent);box-shadow:0 0 8px #e4ae55;transform-origin:left;animation:v54Trail 2.3s ease-in-out both}
+@keyframes v54Trail{0%{opacity:0;transform:scaleX(0)}30%{opacity:.8}72%{transform:scaleX(1);opacity:.75}100%{opacity:0}}
+#storybook.v5-book .v54-pulse{animation:v54Pulse 2.8s ease-in-out 2 both}
+@keyframes v54Pulse{0%,100%{opacity:0;transform:scale(.65)}28%,65%{opacity:.58;transform:scale(1.08)}}
+#storybook.v5-book .v54-flicker{background:radial-gradient(circle,rgba(255,190,78,.62),rgba(255,126,35,.2) 36%,transparent 72%);mix-blend-mode:screen;animation:v54Flicker 2.7s ease-in-out 2 both}
+@keyframes v54Flicker{0%,100%{opacity:.08;transform:scale(.92)}20%{opacity:.45;transform:scale(1.04)}38%{opacity:.18}58%{opacity:.5;transform:scale(1.08)}78%{opacity:.2}}
+#storybook.v5-book .v54-halo{border:2px solid rgba(245,207,119,.62);border-radius:50%;box-shadow:0 0 22px rgba(242,194,92,.42),inset 0 0 20px rgba(242,194,92,.18);animation:v54Halo 3s ease-in-out both}
+@keyframes v54Halo{0%{opacity:0;transform:scale(.72)}35%,72%{opacity:.7;transform:scale(1)}100%{opacity:0;transform:scale(1.08)}}
+#storybook.v5-book .v54-ring-glint{font:700 30px/1 Georgia,serif;color:#fff0b7;text-shadow:0 0 7px #fff,0 0 18px #e4ae55;animation:v54Ring 1.9s ease-out both}
+@keyframes v54Ring{0%,12%{opacity:0;transform:scale(.3) rotate(0)}32%{opacity:1;transform:scale(1.4) rotate(40deg)}52%{opacity:.4;transform:scale(.8) rotate(75deg)}68%{opacity:1;transform:scale(1.15) rotate(110deg)}100%{opacity:0;transform:scale(.5) rotate(150deg)}}
+#storybook.v5-book .v54-burst{animation:v54Burst 1.8s ease-out both}
+@keyframes v54Burst{0%{opacity:0;transform:translate(0,0) scale(.4)}22%{opacity:1}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(1.1)}}
+#storybook.v5-book .v54-zzz-auto{color:#6f3d22;font:italic 700 clamp(22px,5vw,42px)/1 Cormorant Garamond,serif;text-shadow:0 1px #ead19b;animation:v54ZAuto 3s ease-out both}
+@keyframes v54ZAuto{0%{opacity:0;transform:translateY(10px) scale(.7)}18%,50%{opacity:.9}100%{opacity:0;transform:translate(24px,-82px) scale(1.3)}}
+#storybook.v5-book .v54-button-trail{height:3px;border-radius:50%;background:linear-gradient(90deg,transparent,#ffe6a4,transparent);box-shadow:0 0 12px #e7ad52;animation:v54ButtonTrail 2.1s ease-in-out both}
+@keyframes v54ButtonTrail{0%{opacity:0;transform:translateX(-40px) scaleX(.25)}40%{opacity:.9}100%{opacity:0;transform:translateX(85px) scaleX(1.1)}}
+@media(prefers-reduced-motion:reduce){#storybook.v5-book .v54-fx{animation:none!important;display:none!important}}
+</style>
+
+</head>
 
 <body class="locked">
 
@@ -4376,6 +4414,7 @@
   const medievalAudio=document.getElementById('medievalAudio');
   let page=0,busy=false,touchX=null,weddingWasPlaying=false,weddingResumeTime=0,storyMusicWanted=true,loadRetries={};
   let audioCtx=null;
+  let sceneTimer=null,sceneRun=0;
   const pages=[];
   files.forEach((src,i)=>{
     const p=document.createElement('section'); p.className='v5-page'+(i===0?' active':''); p.dataset.page=i;
@@ -4383,6 +4422,7 @@
     img.addEventListener('error',()=>handleImageError(img,i));
     img.addEventListener('load',()=>{p.classList.remove('load-failed');});
     p.appendChild(img);
+    const fx=document.createElement('div');fx.className='v54-effects';fx.setAttribute('aria-hidden','true');p.appendChild(fx);
     if(i===8){const bond=document.createElement('button');bond.className='v53-bond-hotspot';bond.type='button';bond.setAttribute('aria-label','Bond está durmiendo');bond.addEventListener('click',(e)=>{e.preventDefault();e.stopPropagation();bondNap(p)});p.appendChild(bond)}
     if(i===0){const b=document.createElement('button');b.className='v5-cover-action';b.type='button';b.setAttribute('aria-label','Abrir el libro');b.addEventListener('click',(e)=>{e.preventDefault();e.stopPropagation();go(1,'next')});b.addEventListener('touchend',(e)=>{e.preventDefault();e.stopPropagation();go(1,'next')},{passive:false});p.appendChild(b)}
     if(i===files.length-1){const b=document.createElement('button');b.className='v5-close-action';b.type='button';b.setAttribute('aria-label','Cerrar el libro y volver a la celebración');b.addEventListener('click',(e)=>{e.preventDefault();e.stopPropagation();closeBook()});b.addEventListener('touchend',(e)=>{e.preventDefault();e.stopPropagation();closeBook()},{passive:false});p.appendChild(b)}
@@ -4393,16 +4433,35 @@
   function preloadAround(){[page-1,page+1,page+2,page+3].forEach(i=>{if(i>=0&&i<files.length){const im=new Image();im.src=files[i];if(im.decode)im.decode().catch(()=>{})}})}
   function handleImageError(img,i){const n=(loadRetries[i]||0)+1;loadRetries[i]=n;if(n<=2){setTimeout(()=>{img.src=files[i]+'?retry='+n},250*n);return}const p=pages[i]||img.parentElement;p.classList.add('load-failed');if(!p.querySelector('.v53-load-note')){const note=document.createElement('div');note.className='v53-load-note';note.innerHTML='<strong>El folio se resiste a aparecer.</strong><span>Toca aquí para intentarlo de nuevo.</span>';note.addEventListener('click',()=>{loadRetries[i]=0;p.classList.remove('load-failed');img.src=files[i]+'?retry='+Date.now()});p.appendChild(note)}}
   function pageRustle(){try{audioCtx=audioCtx||new (window.AudioContext||window.webkitAudioContext)();const ctx=audioCtx;if(ctx.state==='suspended')ctx.resume();const len=Math.floor(ctx.sampleRate*.22),buf=ctx.createBuffer(1,len,ctx.sampleRate),d=buf.getChannelData(0);for(let i=0;i<len;i++){const env=Math.sin(Math.PI*i/len);d[i]=(Math.random()*2-1)*env*.16}const src=ctx.createBufferSource(),f=ctx.createBiquadFilter(),g=ctx.createGain();f.type='bandpass';f.frequency.value=1050;f.Q.value=.55;g.gain.value=.12;src.buffer=buf;src.connect(f);f.connect(g);g.connect(ctx.destination);src.start()}catch(e){}}
-  function go(i,dir){if(busy||i<0||i>=pages.length||i===page)return;busy=true;pageRustle();const old=pages[page],incoming=pages[i];old.classList.add('active',dir==='prev'?'v53-exit-prev':'v53-exit-next');incoming.classList.add('active',dir==='prev'?'v53-enter-prev':'v53-enter-next');page=i;controls();preloadAround();setTimeout(()=>{old.classList.remove('active','v53-exit-next','v53-exit-prev');incoming.classList.remove('v53-enter-next','v53-enter-prev');busy=false},1280)}
+  function clearSceneEffects(){sceneRun++;if(sceneTimer){clearTimeout(sceneTimer);sceneTimer=null}pages.forEach(p=>{const h=p.querySelector('.v54-effects');if(h)h.innerHTML=''})}
+  function fxEl(host,cls,styles={},text=''){const e=document.createElement('span');e.className='v54-fx '+cls;if(text)e.textContent=text;Object.entries(styles).forEach(([k,v])=>e.style.setProperty(k,v));host.appendChild(e);return e}
+  function sparkBurst(host,cx,cy,count=8){for(let n=0;n<count;n++){const a=(Math.PI*2*n/count)+(Math.random()*.35),r=38+Math.random()*46;fxEl(host,'v54-spark v54-burst',{left:cx+'%',top:cy+'%','--dx':Math.cos(a)*r+'px','--dy':Math.sin(a)*r+'px',animationDelay:(n*.045)+'s'})}}
+  function activateScene(i,delay=1900){clearSceneEffects();const run=sceneRun;sceneTimer=setTimeout(()=>{if(run!==sceneRun||page!==i||!storybook.classList.contains('open'))return;const host=pages[i].querySelector('.v54-effects');if(!host)return;
+    if(i===0){fxEl(host,'v54-cover-glint');sparkBurst(host,50,28,6)}
+    else if(i===1){[[20,17],[78,20],[67,31],[31,34],[52,15]].forEach((p,n)=>fxEl(host,'v54-star v54-twinkle',{left:p[0]+'%',top:p[1]+'%',animationDelay:(n*.18)+'s'},'✦'))}
+    else if(i===2){fxEl(host,'v54-connection',{left:'28%',top:'64%',width:'44%',transform:'rotate(-7deg)'});fxEl(host,'v54-spark v54-twinkle',{left:'48%',top:'59%'})}
+    else if(i===3){fxEl(host,'v54-glow v54-pulse',{left:'16%',top:'55%',width:'22%',height:'18%'});fxEl(host,'v54-glow v54-pulse',{right:'16%',top:'55%',width:'22%',height:'18%',animationDelay:'.25s'});['✦','♡','✦'].forEach((t,n)=>fxEl(host,'v54-message',{left:(39+n*9)+'%',top:(67-n*4)+'%','--dx':((n-1)*22)+'px',animationDelay:(n*.18)+'s'},t))}
+    else if(i===4){fxEl(host,'v54-stamp',{},'CASO RESUELTO')}
+    else if(i===5){[['17%','62%','28%','-8deg'],['42%','71%','25%','7deg'],['62%','61%','22%','-5deg']].forEach((a,n)=>fxEl(host,'v54-trail',{left:a[0],top:a[1],width:a[2],transform:'rotate('+a[3]+')',animationDelay:(n*.28)+'s'}))}
+    else if(i===6){fxEl(host,'v54-glow v54-pulse',{left:'30%',top:'54%',width:'40%',height:'28%'});fxEl(host,'v54-heart v54-twinkle',{left:'48%',top:'64%'},'♡')}
+    else if(i===7){fxEl(host,'v54-flicker',{left:'18%',top:'64%',width:'18%',height:'20%'});fxEl(host,'v54-flicker',{right:'17%',top:'68%',width:'15%',height:'18%',animationDelay:'.35s'})}
+    else if(i===8){fxEl(host,'v54-zzz-auto',{left:'59%',top:'69%'},'Z  z  z…')}
+    else if(i===9){fxEl(host,'v54-halo',{left:'22%',top:'55%',width:'56%',height:'34%'});[[30,57],[72,61],[51,52],[38,83],[66,80]].forEach((p,n)=>fxEl(host,'v54-star v54-twinkle',{left:p[0]+'%',top:p[1]+'%',animationDelay:(n*.16)+'s'},'✦'))}
+    else if(i===10){fxEl(host,'v54-ring-glint',{left:'51%',top:'77%'},'✦');setTimeout(()=>{if(run===sceneRun&&page===i)sparkBurst(host,52,79,5)},520)}
+    else if(i===11){fxEl(host,'v54-ring-glint',{left:'52%',top:'73%'},'✦');setTimeout(()=>{if(run===sceneRun&&page===i)sparkBurst(host,53,74,10)},420)}
+    else if(i===12){fxEl(host,'v54-flicker',{left:'19%',top:'62%',width:'20%',height:'23%'});[[23,53],[77,52],[29,45],[70,43],[52,38]].forEach((p,n)=>fxEl(host,'v54-star v54-twinkle',{left:p[0]+'%',top:p[1]+'%',animationDelay:(n*.18)+'s'},'✦'));fxEl(host,'v54-zzz-auto',{left:'57%',top:'78%',animationDelay:'.55s'},'z  z…')}
+    else if(i===13){fxEl(host,'v54-glow v54-pulse',{left:'31%',top:'27%',width:'38%',height:'22%'});fxEl(host,'v54-ring-glint',{left:'50%',top:'69%'},'✦');fxEl(host,'v54-button-trail',{left:'34%',top:'88%',width:'32%',animationDelay:'.55s'})}
+  },delay)}
+  function go(i,dir){if(busy||i<0||i>=pages.length||i===page)return;clearSceneEffects();busy=true;pageRustle();const old=pages[page],incoming=pages[i];old.classList.add('active',dir==='prev'?'v53-exit-prev':'v53-exit-next');incoming.classList.add('active',dir==='prev'?'v53-enter-prev':'v53-enter-next');page=i;controls();preloadAround();setTimeout(()=>{old.classList.remove('active','v53-exit-next','v53-exit-prev');incoming.classList.remove('v53-enter-next','v53-enter-prev');busy=false;activateScene(page,850)},1280)}
   function bondNap(p){if(p.querySelector('.v53-zzz'))return;const z=document.createElement('div');z.className='v53-zzz';z.textContent='Z  z  z…';p.appendChild(z);setTimeout(()=>z.remove(),2200)}
   function seedParticles(){const host=document.getElementById('v53Particles');if(!host||host.children.length)return;for(let i=0;i<18;i++){const q=document.createElement('i');q.style.setProperty('--x',(4+Math.random()*92)+'%');q.style.setProperty('--d',(7+Math.random()*9)+'s');q.style.setProperty('--delay',(-Math.random()*12)+'s');q.style.setProperty('--s',(.6+Math.random()*1.4));host.appendChild(q)}}
   function updateSound(needsTap=false){if(!sound)return;const playing=medievalAudio&&!medievalAudio.paused;sound.classList.toggle('is-playing',!!playing);sound.classList.toggle('needs-tap',needsTap);sound.setAttribute('aria-label',playing?'Pausar música del cuento':'Activar música del cuento')}
   function enterAudio(){weddingWasPlaying=!!weddingAudio&&!weddingAudio.paused;if(weddingAudio){weddingResumeTime=weddingAudio.currentTime||0;weddingAudio.pause()}if(!medievalAudio||!storyMusicWanted)return;try{medievalAudio.loop=true;medievalAudio.muted=false;medievalAudio.volume=.68;medievalAudio.currentTime=0;const p=medievalAudio.play();if(p&&p.then)p.then(()=>updateSound(false)).catch(()=>updateSound(true));else updateSound(false)}catch(e){updateSound(true)}}
   function leaveAudio(){if(medievalAudio){medievalAudio.pause();try{medievalAudio.currentTime=0}catch(e){}}updateSound(false);if(weddingAudio&&weddingWasPlaying){try{weddingAudio.currentTime=weddingResumeTime;weddingAudio.volume=1;weddingAudio.muted=false;const p=weddingAudio.play();if(p&&p.catch)p.catch(()=>{})}catch(e){}}}
   function toggleSound(){if(!medievalAudio)return;if(medievalAudio.paused){storyMusicWanted=true;medievalAudio.muted=false;medievalAudio.volume=.68;const p=medievalAudio.play();if(p&&p.then)p.then(()=>updateSound(false)).catch(()=>updateSound(true));else updateSound(false)}else{storyMusicWanted=false;medievalAudio.pause();updateSound(false)}}
-  function reset(){pages.forEach((p,i)=>{p.classList.toggle('active',i===0);p.classList.remove('turn-next','turn-prev')});page=0;busy=false;makeDots();controls();preloadAround()}
-  function openBook(e){if(e)e.preventDefault();enterAudio();reset();seedParticles();storybook.classList.add('open','v53-opening');storybook.setAttribute('aria-hidden','false');document.body.classList.add('storybook-open');setTimeout(()=>storybook.classList.remove('v53-opening'),1100)}
-  function closeBook(){if(storybook.classList.contains('v53-closing'))return;storybook.classList.add('v53-closing');pageRustle();setTimeout(()=>{storybook.classList.remove('open','v53-closing');storybook.setAttribute('aria-hidden','true');document.body.classList.remove('storybook-open');leaveAudio();reset()},900)}
+  function reset(){clearSceneEffects();pages.forEach((p,i)=>{p.classList.toggle('active',i===0);p.classList.remove('turn-next','turn-prev')});page=0;busy=false;makeDots();controls();preloadAround()}
+  function openBook(e){if(e)e.preventDefault();enterAudio();reset();seedParticles();storybook.classList.add('open','v53-opening');storybook.setAttribute('aria-hidden','false');document.body.classList.add('storybook-open');setTimeout(()=>{storybook.classList.remove('v53-opening');activateScene(0,900)},1100)}
+  function closeBook(){if(storybook.classList.contains('v53-closing'))return;clearSceneEffects();storybook.classList.add('v53-closing');pageRustle();setTimeout(()=>{storybook.classList.remove('open','v53-closing');storybook.setAttribute('aria-hidden','true');document.body.classList.remove('storybook-open');leaveAudio();reset()},900)}
   trigger&&trigger.addEventListener('click',openBook);x&&x.addEventListener('click',closeBook);sound&&sound.addEventListener('click',toggleSound);prev.addEventListener('click',()=>go(page-1,'prev'));next.addEventListener('click',()=>go(page+1,'next'));
   document.addEventListener('keydown',e=>{if(!storybook.classList.contains('open'))return;if(e.key==='Escape')closeBook();else if(e.key==='ArrowRight')go(page+1,'next');else if(e.key==='ArrowLeft')go(page-1,'prev')});
   storybook.addEventListener('touchstart',e=>{touchX=e.changedTouches[0].clientX},{passive:true});storybook.addEventListener('touchend',e=>{if(e.target.closest&&e.target.closest('.v5-cover-action,.v5-close-action,.story-sound,.storybook-x,.v5-nav')){touchX=null;return}if(touchX===null)return;const dx=e.changedTouches[0].clientX-touchX;touchX=null;if(Math.abs(dx)>52)go(page+(dx<0?1:-1),dx<0?'next':'prev')},{passive:true});
