@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#F4EDE3" />
   <meta name="description" content="Invitación de boda civil de Luis & Marlene — 19 de diciembre de 2026." />
-  <title>Luis & Marlene | 19.12.2026 · V4.6 Illustrated Edition</title>
+  <title>V5 · Luis & Marlene | 19.12.2026 · V4.6 Illustrated Edition</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -3707,7 +3707,47 @@
   #storybook .bond-art-v46 text{animation:none!important}
 }
 </style>
-</head>
+\n<style id="v5-png-storybook-css">
+/* V5 — PNG folio storybook. Main invitation intentionally untouched. */
+#storybook.v5-book{position:fixed;inset:0;z-index:99999;background:radial-gradient(circle at 50% 38%,#24170f 0,#0b0806 48%,#020202 100%);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .35s ease,visibility .35s ease;overflow:hidden;touch-action:pan-y}
+#storybook.v5-book.open{opacity:1;visibility:visible;pointer-events:auto}
+#storybook.v5-book .v5-ambient{position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 45%,rgba(192,132,58,.12),transparent 42%);animation:v5Glow 5s ease-in-out infinite alternate}
+@keyframes v5Glow{to{opacity:.58;transform:scale(1.025)}}
+#storybook.v5-book .v5-topbar{position:absolute;top:max(12px,env(safe-area-inset-top));left:0;right:0;z-index:20;display:flex;justify-content:center;align-items:center;pointer-events:none}
+#storybook.v5-book .v5-music-label{font:500 11px/1 Montserrat,sans-serif;letter-spacing:.28em;text-transform:uppercase;color:#c9a46a;opacity:.88}
+#storybook.v5-book .story-sound,#storybook.v5-book .storybook-x{position:absolute;z-index:30;top:max(10px,env(safe-area-inset-top));border:1px solid rgba(207,166,96,.55);background:rgba(34,20,12,.82);color:#e7c98f;display:grid;place-items:center;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+#storybook.v5-book .story-sound{right:64px;width:42px;height:42px;border-radius:50%;padding:0}.v5-book .story-sound-label{display:none}.v5-book .story-sound-icon{font-size:16px}
+#storybook.v5-book .storybook-x{right:12px;width:42px;height:42px;border-radius:50%;font:300 30px/1 Arial,sans-serif;cursor:pointer}
+#storybook.v5-book .v5-stage{position:absolute;inset:62px 0 48px;display:grid;place-items:center;padding:10px 54px 8px}
+#storybook.v5-book .v5-folio-frame{position:relative;height:100%;max-height:calc(100svh - 122px);aspect-ratio:2/3;max-width:min(92vw,760px);display:grid;place-items:center;perspective:1400px;filter:drop-shadow(0 22px 38px rgba(0,0,0,.58))}
+#storybook.v5-book .v5-page{position:absolute;inset:0;display:grid;place-items:center;opacity:0;visibility:hidden;transform:translateX(16px) scale(.985);transition:opacity .22s ease,transform .35s cubic-bezier(.2,.75,.25,1);transform-origin:left center}
+#storybook.v5-book .v5-page.active{opacity:1;visibility:visible;transform:none;z-index:2}
+#storybook.v5-book .v5-page.turn-next{animation:v5Next .46s cubic-bezier(.2,.7,.25,1)}
+#storybook.v5-book .v5-page.turn-prev{animation:v5Prev .46s cubic-bezier(.2,.7,.25,1)}
+@keyframes v5Next{0%{opacity:.2;transform:perspective(1400px) rotateY(-9deg) translateX(3%) scale(.985);filter:brightness(.72)}100%{opacity:1;transform:none;filter:none}}
+@keyframes v5Prev{0%{opacity:.2;transform:perspective(1400px) rotateY(9deg) translateX(-3%) scale(.985);filter:brightness(.72)}100%{opacity:1;transform:none;filter:none}}
+#storybook.v5-book .v5-page img{display:block;width:100%;height:100%;object-fit:contain;object-position:center;border-radius:4px;user-select:none;-webkit-user-drag:none}
+#storybook.v5-book .v5-cover-action,#storybook.v5-book .v5-close-action{position:absolute;left:18%;right:18%;bottom:3%;height:13%;z-index:8;border:0;background:transparent;cursor:pointer;color:transparent;font-size:0}
+#storybook.v5-book .v5-close-action{bottom:4%;height:16%}
+#storybook.v5-book .v5-nav{position:absolute;z-index:20;top:50%;transform:translateY(-50%);width:44px;height:58px;border:1px solid rgba(210,170,103,.36);background:rgba(38,23,14,.68);color:#d9b574;font:300 36px/1 Georgia,serif;border-radius:5px;display:grid;place-items:center;cursor:pointer;transition:.2s ease}
+#storybook.v5-book .v5-nav:hover{background:rgba(83,48,25,.86);transform:translateY(-50%) scale(1.04)}
+#storybook.v5-book .v5-nav:disabled{opacity:0;pointer-events:none}.v5-book #bookPrev{left:8px}.v5-book #bookNext{right:8px}
+#storybook.v5-book .book-progress{position:absolute;left:50%;bottom:max(14px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:20;display:flex;gap:7px;align-items:center;justify-content:center}
+#storybook.v5-book .book-progress i{width:5px;height:5px;border:1px solid #c99a50;border-radius:50%;display:block;transition:.2s}.v5-book .book-progress i.active{background:#d6a453;transform:scale(1.55)}
+#storybook.v5-book .v5-counter{position:absolute;right:16px;bottom:max(12px,env(safe-area-inset-bottom));color:#9d7b4c;font:500 9px/1 Montserrat,sans-serif;letter-spacing:.12em;z-index:20}
+@media(max-width:700px){
+ #storybook.v5-book .v5-stage{inset:58px 0 40px;padding:8px 8px 4px}
+ #storybook.v5-book .v5-folio-frame{width:min(96vw,calc((100svh - 106px)*.6667));height:auto;max-height:none;aspect-ratio:2/3}
+ #storybook.v5-book .v5-page img{width:100%;height:auto;max-height:calc(100svh - 106px);object-fit:contain}
+ #storybook.v5-book .v5-nav{top:auto;bottom:max(7px,env(safe-area-inset-bottom));transform:none;width:38px;height:30px;border-radius:16px;font-size:24px;background:rgba(38,23,14,.78)}
+ #storybook.v5-book .v5-nav:hover{transform:none}.v5-book #bookPrev{left:14px}.v5-book #bookNext{right:14px}
+ #storybook.v5-book .book-progress{bottom:max(18px,env(safe-area-inset-bottom));gap:5px}.v5-book .book-progress i{width:4px;height:4px}
+ #storybook.v5-book .v5-counter{display:none}
+ #storybook.v5-book .v5-music-label{font-size:9px;letter-spacing:.22em}
+}
+@media(max-width:380px){#storybook.v5-book .v5-stage{padding-left:4px;padding-right:4px}#storybook.v5-book .v5-folio-frame{width:min(98vw,calc((100svh - 102px)*.6667))}}
+@media(prefers-reduced-motion:reduce){#storybook.v5-book .v5-ambient{animation:none}.v5-book .v5-page.turn-next,.v5-book .v5-page.turn-prev{animation:none!important}}
+</style>\n</head>
 
 <body class="locked">
 
@@ -4250,643 +4290,61 @@
 </script>
 
 
-  <!-- V3.0 — Illuminated manuscript Easter egg -->
-  <div class="storybook manuscript-mode" id="storybook" aria-hidden="true">
-    <div class="epic-atmosphere-v45" aria-hidden="true">
-      <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-    </div>
-    <button class="story-sound" id="storySound" type="button" aria-label="Activar o pausar música del cuento">
-      <span class="story-sound-icon">♫</span>
-      <span class="story-sound-label">Música del cuento</span>
-    </button>
-    <div class="story-sound-cue" aria-hidden="true">♪ música del reino ♪</div>
-    <div class="storybook-vignette" aria-hidden="true"></div>
+  <!-- V5 — PNG folio Easter egg -->
+  <div class="storybook v5-book" id="storybook" aria-hidden="true">
+    <div class="v5-ambient" aria-hidden="true"></div>
+    <div class="v5-topbar"><span class="v5-music-label">♪ Música del reino ♪</span></div>
+    <button class="story-sound" id="storySound" type="button" aria-label="Activar o pausar música del cuento"><span class="story-sound-icon">♫</span><span class="story-sound-label">Música del cuento</span></button>
     <button class="storybook-x" id="storybookX" type="button" aria-label="Cerrar nuestra historia">×</button>
-
-    <div class="manuscript-stage">
-      <div class="manuscript-book" id="bookShell">
-
-        <!-- COVER -->
-        <section class="book-page manuscript-cover active" data-page="0">
-          <div class="cover-leather">
-            <div class="cover-gold-frame">
-              <div class="cover-medallion">L <span>♡</span> M</div>
-              <p class="cover-small">UN RELATO CASI LEGENDARIO</p>
-              <h2>La historia<br>de Luis &amp; Marlene</h2>
-              <div class="cover-rule">❦</div>
-              <p class="cover-year">Hace casi diez años…</p>
-            </div>
-          </div>
-          <button class="book-start" type="button" data-next>Abrir el libro</button>
-        </section>
-
-        <!-- SPREAD I -->
-        <section class="book-page manuscript-spread" data-page="1">
-          <div class="folio folio-left">
-            <div class="folio-border blue"></div>
-            <div class="corner-ornament tl">❧</div><div class="corner-ornament br">❦</div>
-            <div class="manuscript-copy">
-              <p class="illuminated-paragraph"><span class="illuminated-initial initial-red">É</span>rase una vez, hace casi diez años, dos jóvenes destinados a encontrarse en una noche cualquiera.</p>
-              <p>Quizá en un gran castillo.</p>
-              <p>Quizá bajo un cielo lleno de estrellas.</p>
-              <p>Quizá durante un elegante baile real.</p>
-              <p class="narrator-pause">…</p>
-              <h3 class="punch">No.</h3>
-              <p class="scribe-note note-left">El narrador había preparado un castillo. Fue rechazado por falta de evidencia histórica.</p>
-            </div>
-            <svg class="miniature castle-mini illustrated-v46" viewBox="0 0 520 270" aria-hidden="true">
-<defs><linearGradient id="sky46a" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#55758a"/><stop offset="1" stop-color="#d7b66b"/></linearGradient></defs>
-<rect x="8" y="8" width="504" height="254" rx="28" fill="url(#sky46a)" stroke="#593421" stroke-width="7"/>
-<circle cx="90" cy="68" r="31" fill="#e0bd68"/><circle cx="410" cy="47" r="3.5" fill="#f3dda1"/><circle cx="448" cy="78" r="3" fill="#f3dda1"/><circle cx="365" cy="88" r="2.5" fill="#f3dda1"/>
-<path d="M8 190 Q75 132 145 183 Q205 111 279 179 Q350 115 512 183 V262 H8Z" fill="#66814d" stroke="#3d532f" stroke-width="6"/>
-<path d="M319 179V91h39V61h38v30h40v-44h40v132Z" fill="#a94e31" stroke="#5c3021" stroke-width="7"/>
-<path d="M345 179v-48h25v48M410 179v-61h25v61" fill="#5b3022" stroke="#5b3022" stroke-width="5"/>
-<path d="M128 95q20-19 40 0M175 75q16-14 32 0" fill="none" stroke="#593421" stroke-width="5" stroke-linecap="round"/>
-<path d="M33 226 Q117 201 194 224" fill="none" stroke="#d9c17a" stroke-width="5"/>
-</svg><div class="art-caption-v46">El castillo que el narrador quería usar.</div>
-          </div>
-
-          <div class="folio folio-right">
-            <div class="folio-border red"></div>
-            <div class="manuscript-copy right-copy">
-              <p class="illuminated-paragraph"><span class="illuminated-initial initial-blue">E</span>staban esperando el camión para regresar a casa.</p>
-              <p>Después de la universidad.</p>
-              <p>Después de entrenar tochito.</p>
-              <p>Probablemente cansados, sudados y pensando más en llegar a casa que en encontrar al amor de su vida.</p>
-              <h3 class="aside">Muy de cuento de hadas. ♡</h3>
-              <p>Y fue ahí, entre un par de miradas, donde comenzó una historia que ninguno de los dos sabía que estaba empezando.</p>
-              <p class="scribe-note note-right">Representación artística. El camión probablemente tardó más. El romance tuvo mejor puntualidad.</p>
-            </div>
-            <svg class="miniature bus-mini illustrated-v46" viewBox="0 0 520 270" aria-hidden="true">
-<rect x="8" y="8" width="504" height="254" rx="28" fill="#e7d59c" stroke="#593421" stroke-width="7"/>
-<circle cx="76" cy="55" r="27" fill="#d7ad58"/><path d="M8 190 Q90 150 168 185 T330 181 T512 186V262H8Z" fill="#657d4b"/>
-<path d="M130 98h245q22 0 22 22v75H110v-75q0-22 20-22Z" fill="#a74e32" stroke="#593421" stroke-width="7"/>
-<rect x="139" y="116" width="58" height="42" rx="4" fill="#668595"/><rect x="209" y="116" width="58" height="42" rx="4" fill="#668595"/><rect x="279" y="116" width="58" height="42" rx="4" fill="#668595"/>
-<circle cx="167" cy="199" r="25" fill="#35261f" stroke="#d6b568" stroke-width="7"/><circle cx="343" cy="199" r="25" fill="#35261f" stroke="#d6b568" stroke-width="7"/>
-<path d="M76 184v-58M60 139h32" stroke="#593421" stroke-width="7" stroke-linecap="round"/><circle cx="76" cy="111" r="17" fill="#b76d45" stroke="#593421" stroke-width="5"/>
-<path d="M428 184v-58M412 139h32" stroke="#593421" stroke-width="7" stroke-linecap="round"/><circle cx="428" cy="111" r="17" fill="#b76d45" stroke="#593421" stroke-width="5"/>
-<path d="M89 109q18-19 36 0" fill="none" stroke="#8c3e30" stroke-width="5"/>
-</svg><div class="art-caption-v46">Una parada cualquiera. Una historia nada cualquiera.</div>
-          </div>
-        </section>
-
-        <!-- SPREAD II -->
-        <section class="book-page manuscript-spread" data-page="2">
-          <div class="folio folio-left">
-            <div class="folio-border green"></div>
-            <div class="manuscript-copy">
-<div class="v4-rubric">II · LA EXPEDICIÓN DIGITAL</div>
-              <p class="illuminated-paragraph"><span class="illuminated-initial initial-green">M</span>arlene, intrigada por aquel misterioso joven, emprendió una misión tan peligrosa que pocos se habrían atrevido a intentarla.</p>
-              <p class="quest-list">No cruzó un bosque encantado.<br>No enfrentó a un dragón.<br>No consultó a una bruja.</p>
-              <h3 class="punch facebook-line">Buscó a Luis en Facebook.</h3>
-              <p class="aside">Eran otros tiempos. No juzguen.</p>
-              <p class="scribe-note note-left">Fuentes históricas confirman que Marlene inició esta expedición. Luis, mientras tanto, participó activamente siendo encontrado.</p>
-            </div>
-            <svg class="miniature scroll-mini illustrated-v46" viewBox="0 0 520 270" aria-hidden="true">
-<rect x="8" y="8" width="504" height="254" rx="28" fill="#e6d39a" stroke="#593421" stroke-width="7"/>
-<path d="M95 68h300q25 0 25 25v112q0 22-22 22H100q-25 0-25-25V92q0-24 20-24Z" fill="#efdca3" stroke="#6b3a25" stroke-width="7"/>
-<path d="M116 103h235M116 132h195M116 161h221M116 190h150" stroke="#6b3a25" stroke-width="6" stroke-linecap="round"/>
-<path d="M92 206l59-76 18 14-58 76-30 10Z" fill="#f0dca3" stroke="#6b3a25" stroke-width="6"/><path d="M145 138l18 14" stroke="#9d3e31" stroke-width="5"/>
-<circle cx="399" cy="193" r="31" fill="#a23f32" stroke="#6b3a25" stroke-width="6"/><path d="M391 193h16M399 185v16" stroke="#f0dca3" stroke-width="4"/>
-<path d="M431 48q17 14 34 0M448 32v33" stroke="#d2a954" stroke-width="4"/>
-</svg><div class="art-caption-v46">La expedición digital.</div>
-          </div>
-
-          <div class="folio folio-right">
-            <div class="folio-border blue"></div>
-            <div class="manuscript-copy right-copy">
-<div class="v4-rubric">III · EL CASO RESUELTO</div>
-              <p class="illuminated-paragraph"><span class="illuminated-initial initial-gold">D</span>espués llegaron los mensajes, más miradas, más conversaciones y cada vez más tiempo juntos.</p>
-              <p>No hubo una gran declaración.</p>
-              <p>No hubo una proclamación real.</p>
-              <p>Nadie levantó un pergamino para preguntar: “¿Quieres ser mi novia?”</p>
-              <p>Pero un buen día, después de revisar cuidadosamente la evidencia…</p>
-              <h3 class="punch">resulta que ya eran novios. ♡</h3>
-              <p class="aside">Nadie sabe exactamente cuándo ocurrió.<br>Ellos tampoco.</p>
-              <p class="scribe-note note-right">La administración de esta historia aún investiga la fecha exacta. Después de casi diez años, las probabilidades de resolver el caso son bajas.</p>
-            </div>
-            <svg class="miniature chat-mini illustrated-v46" viewBox="0 0 520 270" aria-hidden="true">
-<rect x="8" y="8" width="504" height="254" rx="28" fill="#d9c48c" stroke="#593421" stroke-width="7"/>
-<rect x="126" y="42" width="270" height="164" rx="14" fill="#5b3928" stroke="#3c281f" stroke-width="7"/><rect x="145" y="59" width="232" height="127" fill="#6f8d91"/>
-<path d="M95 222h332l-39 24H132Z" fill="#8d5938" stroke="#593421" stroke-width="6"/>
-<path d="M177 85h101q12 0 12 12v31q0 12-12 12h-61l-20 17 5-17h-25q-12 0-12-12V97q0-12 12-12Z" fill="#ead69d"/>
-<path d="M254 127h85q11 0 11 11v27q0 11-11 11h-49l-18 14 4-14h-22q-11 0-11-11v-27q0-11 11-11Z" fill="#b65339"/>
-<path d="M199 107h54M277 148h47" stroke="#6a3a28" stroke-width="5" stroke-linecap="round"/>
-<path d="M77 79c0-19 27-27 37-9 10-18 37-10 37 9 0 21-37 42-37 42S77 100 77 79Z" fill="#a13f32"/>
-</svg><div class="art-caption-v46">Mensajes, conversaciones… y cero anuncio oficial.</div>
-          </div>
-        </section>
-
-        <!-- SPREAD III -->
-        <section class="book-page manuscript-spread" data-page="3">
-          <div class="folio folio-left">
-            <div class="folio-border red"></div>
-            <div class="manuscript-copy">
-              <p class="illuminated-paragraph"><span class="illuminated-initial initial-red">P</span>asaron los años. Llegaron aventuras, cambios, buenos momentos, dificultades y algunos tropiezos.</p>
-              <p>Porque aparentemente una relación de casi diez años no incluye instrucciones.</p>
-              <p class="aside">Qué falta de consideración. Ni tutorial. Ni garantía. Ni servicio al cliente.</p>
-              <p>Pero incluso cuando las cosas se complicaban, entre Luis y Marlene permanecía algo difícil de explicar.</p>
-              <h3 class="emotional-manuscript">Una conexión que quizá no podía verse,<br>pero siempre podía sentirse.</h3>
-              <p class="scribe-note note-left">Los sabios llaman a esto “conexión”. Sus amigos probablemente ya lo habían notado antes.</p>
-            </div>
-            <svg class="miniature thread-mini illustrated-v46" viewBox="0 0 520 270" aria-hidden="true">
-<rect x="8" y="8" width="504" height="254" rx="28" fill="#e8d79e" stroke="#593421" stroke-width="7"/>
-<path d="M8 209Q93 153 171 201Q244 136 320 198Q396 144 512 195V262H8Z" fill="#6c824e"/>
-<circle cx="111" cy="131" r="20" fill="#b66b45" stroke="#593421" stroke-width="5"/><path d="M111 151v63M111 169l-37 35M111 169l34 35" stroke="#593421" stroke-width="7" stroke-linecap="round"/>
-<circle cx="409" cy="131" r="20" fill="#b66b45" stroke="#593421" stroke-width="5"/><path d="M409 151v63M409 169l-34 35M409 169l37 35" stroke="#593421" stroke-width="7" stroke-linecap="round"/>
-<path d="M145 153Q260 53 375 153" fill="none" stroke="#a33f34" stroke-width="7" stroke-linecap="round"/>
-<path d="M260 105c-21-31-64 2 0 54 64-52 21-85 0-54Z" fill="#ead59b" stroke="#a33f34" stroke-width="6"/>
-<circle cx="260" cy="58" r="5" fill="#d6ad58"/><circle cx="222" cy="72" r="3" fill="#d6ad58"/><circle cx="299" cy="73" r="3" fill="#d6ad58"/>
-</svg><div class="art-caption-v46">Una conexión que siempre podía sentirse.</div>
-          </div>
-
-          <div class="folio folio-right">
-            <div class="folio-border green"></div>
-            <div class="manuscript-copy right-copy">
-<div class="v4-rubric">V · EL REINO SE CIERRA</div>
-              <p class="illuminated-paragraph"><span class="illuminated-initial initial-blue">Y</span>entonces llegó el año en que todo el reino recibió una orden inesperada:</p>
-              <h3 class="punch softer">Quédense en sus casas.</h3>
-              <p>El mundo se detuvo. Las calles quedaron vacías y las personas tuvieron que mantenerse alejadas.</p>
-              <p>Y mientras una pandemia cortaba conexiones por todas partes… estos dos hicieron exactamente lo contrario.</p>
-              <h3 class="emotional-manuscript">Se acercaron todavía más.</h3>
-              <p class="aside">Claramente nunca han sido buenos siguiendo la trama. El narrador presentó una queja formal.</p>
-            </div>
-            <svg class="miniature bloom-mini illustrated-v46" viewBox="0 0 520 270" aria-hidden="true">
-<rect x="8" y="8" width="504" height="254" rx="28" fill="#4f6470" stroke="#593421" stroke-width="7"/>
-<circle cx="410" cy="62" r="29" fill="#d6b464"/><path d="M8 207Q87 166 160 204Q232 147 309 202Q390 153 512 199V262H8Z" fill="#536b47"/>
-<path d="M260 224V111" stroke="#6f8c48" stroke-width="8"/><path d="M259 171q-42-35-70-7 32 40 70 7ZM261 145q39-42 72-16-28 43-72 16Z" fill="#789452" stroke="#415a34" stroke-width="5"/>
-<circle cx="260" cy="94" r="22" fill="#d9a94f"/><circle cx="240" cy="84" r="17" fill="#b9503a"/><circle cx="280" cy="84" r="17" fill="#b9503a"/><circle cx="244" cy="106" r="17" fill="#b9503a"/><circle cx="278" cy="106" r="17" fill="#b9503a"/>
-<path d="M77 70l5 12 13 2-10 9 3 13-11-6-12 6 3-13-10-9 14-2Z" fill="#d8b55d"/>
-<path d="M143 48l3 8 9 1-7 6 2 9-7-4-8 4 2-9-6-6 8-1Z" fill="#d8b55d"/>
-</svg><div class="art-caption-v46">Cuando el mundo se detuvo, ellos siguieron creciendo.</div>
-          </div>
-        </section>
-
-        <!-- SPREAD IV -->
-        <section class="book-page manuscript-spread" data-page="4">
-          <div class="folio folio-left">
-            <div class="folio-border gold"></div>
-            <div class="manuscript-copy">
-<div class="v4-rubric">VI · UN HOGAR</div>
-              <p class="illuminated-paragraph"><span class="illuminated-initial initial-gold">C</span>on el tiempo dejaron de imaginar cómo sería compartir una vida y tomaron una decisión importante:</p>
-              <h3 class="chapter-date">vivir juntos.</h3>
-              <p>Compartir los buenos días. Las noches cansadas. Las responsabilidades. Los sueños. Las risas.</p>
-              <p>Y, por supuesto, compartir la eterna pregunta:</p>
-              <h3 class="aside">“¿Quién dejó eso ahí?”</h3>
-              <p>En diciembre de 2023 comenzó un nuevo capítulo: construir un hogar y terminar cada día juntos.</p>
-              <p class="scribe-note note-left">El verdadero examen final. No se permitían acordeones. Sí se permitía preguntar “¿qué quieres cenar?” y rechazar todas las opciones.</p>
-            </div>
-            <svg class="miniature home-mini illustrated-v46" viewBox="0 0 520 270" aria-hidden="true">
-<rect x="8" y="8" width="504" height="254" rx="28" fill="#e3cf92" stroke="#593421" stroke-width="7"/>
-<circle cx="76" cy="57" r="27" fill="#d6ad58"/><path d="M8 211Q99 165 179 207Q267 158 348 205Q422 165 512 201V262H8Z" fill="#687f4c"/>
-<path d="M158 133 260 55l105 78v99H158Z" fill="#ad5538" stroke="#593421" stroke-width="7"/><path d="M135 139 260 42l128 97" fill="none" stroke="#593421" stroke-width="11" stroke-linejoin="round"/>
-<rect x="236" y="165" width="49" height="67" fill="#5d3425"/><rect x="182" y="153" width="37" height="37" fill="#668896" stroke="#593421" stroke-width="5"/><rect x="303" y="153" width="37" height="37" fill="#668896" stroke="#593421" stroke-width="5"/>
-<path d="M92 214q28-43 56 0M386 214q28-43 56 0" fill="none" stroke="#d6ad58" stroke-width="6"/>
-<path d="M245 107c0-17 23-24 32-8 9-16 32-9 32 8 0 18-32 37-32 37s-32-19-32-37Z" fill="#e5c978"/>
-</svg><div class="art-caption-v46">Diciembre 2023 · Un hogar compartido.</div>
-          </div>
-
-          <div class="folio folio-right bond-folio">
-            <div class="folio-border blue"></div>
-            <div class="manuscript-copy right-copy">
-<div class="v4-rubric">VII · APARECE LA BESTIA</div>
-              <p class="illuminated-paragraph"><span class="illuminated-initial initial-blue">P</span>ero cuando parecía que el reino finalmente estaba en paz… apareció una criatura.</p>
-              <p>De largas orejas.<br>Mirada irresistible.<br>Y una agenda extremadamente ocupada.</p>
-              <p>Su nombre era…</p>
-              <h3 class="bond-title">BOND.</h3>
-              <p>Un temible English Cocker Spaniel.</p>
-              <p class="bond-legend">Guardián del hogar.<br>Protector de la familia.<br>Defensor incansable del sofá.</p>
-              <p>Sus deberes diarios incluyen dormir por la mañana, descansar por la tarde y recuperarse de ambas actividades durante la noche.</p>
-              <p class="aside">Algunos héroes protegen reinos. Bond protege que nadie ocupe su lugar mientras duerme.</p>
-              <p class="scribe-note note-right">Los cronistas intentaron registrar una de sus hazañas. Seguía dormido al cierre de esta edición.</p>
-            </div>
-            <svg class="miniature cocker-mini illustrated-v46 bond-art-v46" viewBox="0 0 520 270" aria-hidden="true">
-<rect x="8" y="8" width="504" height="254" rx="28" fill="#dfca8e" stroke="#593421" stroke-width="7"/>
-<ellipse cx="261" cy="217" rx="168" ry="26" fill="#9c7c50" opacity=".32"/>
-<path d="M145 190q9-72 79-79 86-9 141 48 24 25 7 54H158q-20-4-13-23Z" fill="#b66b43" stroke="#593421" stroke-width="7"/>
-<ellipse cx="190" cy="139" rx="58" ry="70" fill="#c2784b" stroke="#593421" stroke-width="7"/>
-<path d="M155 105q-55 9-51 82 7 45 46 31 27-11 25-62Z" fill="#7d452f" stroke="#593421" stroke-width="7"/>
-<path d="M226 105q55 9 51 82-7 45-46 31-27-11-25-62Z" fill="#7d452f" stroke="#593421" stroke-width="7"/>
-<ellipse cx="190" cy="157" rx="40" ry="35" fill="#d99a68"/><ellipse cx="190" cy="147" rx="13" ry="10" fill="#3d281f"/>
-<circle cx="168" cy="127" r="6" fill="#2e231e"/><circle cx="212" cy="127" r="6" fill="#2e231e"/>
-<path d="M181 165q9 10 18 0" fill="none" stroke="#593421" stroke-width="4" stroke-linecap="round"/>
-<path d="M150 188q40 24 80 0" fill="none" stroke="#9e3f32" stroke-width="8"/><circle cx="190" cy="196" r="11" fill="#d6ad58" stroke="#593421" stroke-width="4"/>
-<path d="M352 181q54-28 77 15" fill="none" stroke="#b66b43" stroke-width="20" stroke-linecap="round"/>
-<text x="347" y="74" font-size="27" fill="#8f5533" font-family="serif" font-style="italic">Z</text><text x="379" y="52" font-size="21" fill="#8f5533" font-family="serif" font-style="italic">z</text><text x="405" y="35" font-size="16" fill="#8f5533" font-family="serif" font-style="italic">z</text>
-</svg><div class="art-caption-v46">Bond · Guardián del sofá · Actualmente dormido.</div>
-          </div>
-        </section>
-
-        <!-- SPREAD V -->
-        <section class="book-page manuscript-spread" data-page="5">
-          <div class="folio folio-left">
-            <div class="folio-border green"></div>
-            <div class="manuscript-copy">
-              <p class="illuminated-paragraph"><span class="illuminated-initial initial-green">D</span>esde entonces han seguido creciendo. Bond también. Principalmente hacia los lados cuando se acomoda en la cama.</p>
-              <p>Personalmente.<br>Profesionalmente.<br>Espiritualmente.</p>
-              <p>Aprendieron a acompañarse en los cambios, a celebrar las pequeñas victorias, a sostenerse cuando algo pesa y a disfrutar esa vida cotidiana que alguna vez sólo imaginaron.</p>
-              <p>Y casi sin darse cuenta, aquello que comenzó con dos personas esperando un camión se convirtió en algo mucho más grande.</p>
-              <h3 class="punch softer">Una familia.</h3>
-              <p class="scribe-note note-left">Composición oficial del reino: dos humanos, un Cocker y suficientes pelos de perro para formar un segundo Cocker.</p>
-            </div>
-            <svg class="miniature family-mini illustrated-v46" viewBox="0 0 520 270" aria-hidden="true">
-<rect x="8" y="8" width="504" height="254" rx="28" fill="#e4d097" stroke="#593421" stroke-width="7"/>
-<path d="M8 213Q100 163 181 207Q258 153 342 204Q423 160 512 202V262H8Z" fill="#6a814d"/>
-<circle cx="172" cy="115" r="23" fill="#b66b45" stroke="#593421" stroke-width="6"/><path d="M172 138v76M172 159l-40 35M172 159l39 35" stroke="#593421" stroke-width="8" stroke-linecap="round"/>
-<circle cx="346" cy="115" r="23" fill="#b66b45" stroke="#593421" stroke-width="6"/><path d="M346 138v76M346 159l-39 35M346 159l40 35" stroke="#593421" stroke-width="8" stroke-linecap="round"/>
-<path d="M214 181q45-49 91 0" fill="#b66b43" stroke="#593421" stroke-width="7"/><path d="M221 171q-20-32 5-48l24 33M298 171q20-32-5-48l-24 33" fill="#7d452f" stroke="#593421" stroke-width="6"/>
-<circle cx="259" cy="178" r="8" fill="#3d281f"/>
-<path d="M229 86c0-18 25-25 34-8 10-17 35-10 35 8 0 20-35 41-35 41s-34-21-34-41Z" fill="#a33f34"/>
-</svg><div class="art-caption-v46">Dos humanos, un Cocker y una familia.</div>
-          </div>
-
-          <div class="folio folio-right">
-            <div class="folio-border red"></div>
-            <div class="manuscript-copy right-copy">
-              <p class="illuminated-paragraph"><span class="illuminated-initial initial-red">Y</span>así llegamos al</p>
-              <h3 class="grand-date">19 · 12 · 2026</h3>
-              <p>Tres años después de comenzar aquel capítulo, lo que nació de un par de miradas en una parada de camión ya no es sólo una historia de amor.</p>
-              <div class="three-lines">Es un hogar.<br>Es una historia.<br>Es una familia.</div>
-            </div>
-            <svg class="miniature road-mini illustrated-v46" viewBox="0 0 520 270" aria-hidden="true">
-<rect x="8" y="8" width="504" height="254" rx="28" fill="#607886" stroke="#593421" stroke-width="7"/>
-<circle cx="418" cy="59" r="29" fill="#d8b55f"/><path d="M8 179Q92 124 177 175Q259 117 343 173Q423 127 512 171V262H8Z" fill="#607b4b"/>
-<path d="M238 262q-8-81 17-124 8-15 4-62h18q-3 46 5 62 25 44 9 124Z" fill="#d8c081"/>
-<path d="M264 128 199 84M270 128l67-44" stroke="#d8c081" stroke-width="16" stroke-linecap="round"/>
-<path d="M197 78l-8 24 25-6M340 78l8 24-25-6" fill="#d8c081"/>
-<path d="M64 208q35-48 70 0M382 208q35-48 70 0" fill="none" stroke="#3f5838" stroke-width="7"/>
-</svg><div class="art-caption-v46">Años, cambios y caminos recorridos juntos.</div>
-          </div>
-        </section>
-
-        <!-- PROPOSAL -->
-        <section class="book-page manuscript-spread proposal-spread" data-page="6">
-          <div class="folio folio-left">
-            <div class="folio-border terracotta"></div>
-            <div class="v4-rubric">VIII · LA MISIÓN DEL ANILLO</div>
-            <div class="manuscript-copy">
-              <p class="illuminated-paragraph"><span class="illuminated-initial initial-red">E</span>n julio de 2026, Luis y Marlene emprendieron una nueva aventura: unas vacaciones en Playa del Carmen.</p>
-              <p>Sol. Mar. Descanso.</p>
-              <p>Y, escondido en una maleta, <strong>un pequeño objeto capaz de alterar considerablemente el itinerario.</strong></p>
-              <p class="emotional-manuscript">Luis había llevado un anillo.</p>
-              <p>El único inconveniente era llegar hasta el segundo día del viaje sin que Marlene descubriera absolutamente nada.</p>
-              <div class="scribe-note">El sujeto asegura que actuó con naturalidad. Los cronistas no encontraron evidencia que respalde esta versión.</div>
-            </div>
-            <svg class="miniature proposal-mini illustrated-v46" viewBox="0 0 520 270" aria-hidden="true">
-<rect x="8" y="8" width="504" height="254" rx="28" fill="#e4d098" stroke="#593421" stroke-width="7"/>
-<circle cx="79" cy="57" r="29" fill="#d9b35e"/><path d="M8 176Q88 137 170 171T335 169T512 169V262H8Z" fill="#4e7880"/>
-<path d="M8 199Q102 173 184 201T365 195T512 199" fill="none" stroke="#ead99d" stroke-width="6"/>
-<rect x="342" y="77" width="116" height="125" rx="20" fill="#a0613e" stroke="#593421" stroke-width="7"/><path d="M365 78q35-46 70 0" fill="none" stroke="#593421" stroke-width="8"/>
-<circle cx="400" cy="142" r="29" fill="#e7d29a" stroke="#713d29" stroke-width="6"/><circle cx="400" cy="142" r="10" fill="none" stroke="#a33f34" stroke-width="5"/><path d="M391 120l9-16 9 16" fill="#d8b15b" stroke="#713d29" stroke-width="3"/>
-<path d="M120 129h115q16 0 16 16v65H104v-65q0-16 16-16Z" fill="#8f5838" stroke="#593421" stroke-width="6"/><path d="M132 154h88M132 176h67" stroke="#ead99d" stroke-width="5" stroke-linecap="round"/>
-<path d="M238 116l25-25" stroke="#a33f34" stroke-width="5"/><path d="M260 89l2 13 13 2-11 8 3 13-11-7-12 7 4-13-11-8 13-2Z" fill="#e2bd61"/>
-</svg><div class="art-caption-v46">Playa del Carmen · Julio 2026 · Misión: ocultar el anillo.</div><span class="ring-glint-v45" aria-hidden="true">✦</span>
-          </div>
-
-          <div class="folio folio-right">
-            <div class="folio-border gold"></div>
-            <div class="v4-rubric">IX · BAJO LA TIERRA</div>
-            <div class="manuscript-copy">
-              <p>Pero Luis había previsto incluso un enemigo inesperado:</p>
-              <p><strong>la inspección del equipaje en el aeropuerto.</strong></p>
-              <p>Así que dejó una nota dentro de la caja del anillo, por si alguien abría la maleta.</p>
-              <div class="proposal-note">“Si están leyendo esto… por favor no arruinen la sorpresa.”</div>
-              <p class="aside">Plan romántico. Nivel de ansiedad: absolutamente razonable.</p>
-              <p>La segunda noche llegaron a <strong>Alux</strong>, un elegante restaurante dentro de una cueva en Playa del Carmen.</p>
-              <p>Entre piedra, luces cálidas y un escenario que parecía preparado por el propio narrador…</p>
-              <p><strong>Luis finalmente hizo la pregunta.</strong></p>
-              <p>Y Marlene dijo <span class="proposal-yes">sí. ♡</span></p>
-            </div>
-            <svg class="miniature cave-mini illustrated-v46" viewBox="0 0 520 270" aria-hidden="true">
-<rect x="8" y="8" width="504" height="254" rx="28" fill="#2e1c15" stroke="#593421" stroke-width="7"/>
-<path d="M35 247Q31 68 139 28Q253-13 384 27Q490 68 485 247Z" fill="#4b2a1c" stroke="#70442a" stroke-width="8"/>
-<path d="M78 247Q82 106 165 70Q254 31 356 70Q438 106 443 247Z" fill="#6c4027"/>
-<ellipse cx="260" cy="152" rx="115" ry="91" fill="#a36a34" opacity=".34"/><ellipse cx="260" cy="151" rx="69" ry="57" fill="#d9a84f" opacity=".28"/>
-<path d="M137 30l20 64 24-75 27 62 26-77 29 69 29-66 26 75 30-60 24 72" fill="#352017"/>
-<ellipse cx="260" cy="207" rx="80" ry="21" fill="#3d2419"/><rect x="253" y="205" width="14" height="44" fill="#43271a"/>
-<circle cx="260" cy="180" r="13" fill="#e1b45d"/><path d="M254 178q6-16 12 0q-6 12-12 0" fill="#a33f34"/>
-<circle cx="180" cy="195" r="16" fill="#75442d"/><circle cx="340" cy="195" r="16" fill="#75442d"/><path d="M180 210v39M340 210v39" stroke="#75442d" stroke-width="8"/>
-<circle cx="116" cy="124" r="7" fill="#e8bd68"/><circle cx="404" cy="119" r="7" fill="#e8bd68"/>
-</svg><div class="art-caption-v46">Alux · Playa del Carmen · La pregunta.</div><span class="cave-motes-v45" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-          </div>
-        </section>
-
-        <!-- FINALE -->
-        <section class="book-page manuscript-spread finale-spread" data-page="7">
-          <div class="folio folio-left finale-left">
-            <div class="folio-border blue"></div>
-            <div class="manuscript-copy">
-              <p class="illuminated-paragraph"><span class="illuminated-initial initial-blue">D</span>espués de casi diez años, quizá esta nunca fue la historia de dos personas destinadas a encontrarse.</p>
-              <p>Tal vez fue la historia de dos personas que, después de encontrarse, decidieron seguir eligiéndose.</p>
-              <p>En los días buenos. En los difíciles. En los extraordinarios.</p>
-              <p>Y, sobre todo, en todos esos días comunes que terminaron convirtiéndose en una vida juntos.</p>
-              <h3 class="emotional-manuscript large">Un hogar el uno en el otro.</h3>
-              <p>El 19 de diciembre de 2026 no comienza su historia.</p>
-              <h3 class="emotional-manuscript">La celebra.</h3>
-            </div>
-            <svg class="miniature final-vine illustrated-v46" viewBox="0 0 520 180" aria-hidden="true">
-<path d="M45 116Q118 40 202 92Q260 128 318 92Q402 40 475 116" fill="none" stroke="#667a45" stroke-width="8"/>
-<path d="M109 72q-35-31-56 4 33 23 56-4ZM411 72q35-31 56 4-33 23-56-4ZM183 86q-27-35-52-5 28 29 52 5ZM337 86q27-35 52-5-28 29-52 5Z" fill="#768b4d" stroke="#4f6138" stroke-width="4"/>
-<path d="M260 76c-24-34-69 3 0 59 69-56 24-93 0-59Z" fill="#a33f34" stroke="#713a29" stroke-width="5"/>
-<circle cx="260" cy="46" r="7" fill="#d6ad58"/><circle cx="238" cy="51" r="4" fill="#d6ad58"/><circle cx="282" cy="51" r="4" fill="#d6ad58"/>
-</svg><div class="art-caption-v46">Continuará…</div>
-          </div>
-
-          <div class="folio folio-right finale-right finale-right-v44">
-            <div class="folio-border gold"></div>
-            <div class="finale-v44">
-              <div class="final-ornament-v44">✦ &nbsp; ÚLTIMO FOLIO &nbsp; ✦</div>
-              <p class="final-prelude-v44">Frente a las personas que forman parte de su historia, Luis y Marlene comenzarán un nuevo capítulo de algo que llevan casi diez años escribiendo.</p>
-
-              <div class="final-crest-v44">
-                <div class="final-crown-v44">♕</div>
-                <div class="final-monogram-v44">L <span>♡</span> M</div>
-                <div class="final-date-v44">19 · 12 · 2026</div>
-              </div>
-
-              <div class="final-vow-v44">
-                <span>El amor no consiste solamente en encontrarse.</span>
-                <strong>Consiste en elegir quedarse.</strong>
-              </div>
-
-              <div class="final-signoff-v44">
-                <p>Y así, Luis y Marlene continuaron escribiendo su historia…</p>
-                <strong>juntos.</strong>
-                <small>Bond también. No pudo asistir a la revisión final: estaba durmiendo. 🐾</small>
-              </div>
-
-              <button class="close-book-v44" id="closeBookButton" type="button">
-                <span>Cerrar el libro</span>
-                <small>y volver a la celebración</small>
-              </button>
-              <div class="final-whisper-v44">Si Marlene pregunta, esta sección siempre fue elegante. ♡</div>
-            </div>
-          </div>
-        </section>
-
-        <button class="book-nav prev" id="bookPrev" type="button" aria-label="Página anterior">‹</button>
-        <button class="book-nav next" id="bookNext" type="button" aria-label="Página siguiente">›</button>
-        <div class="book-progress" id="bookProgress" aria-hidden="true"></div>
+    <main class="v5-stage" aria-label="La historia de Luis y Marlene">
+      <div class="v5-folio-frame" id="bookShell">
+        <div id="bookPages"></div>
       </div>
-    </div>
+    </main>
+    <button class="v5-nav" id="bookPrev" type="button" aria-label="Página anterior">‹</button>
+    <button class="v5-nav" id="bookNext" type="button" aria-label="Página siguiente">›</button>
+    <div class="book-progress" id="bookProgress" aria-hidden="true"></div>
+    <div class="v5-counter" id="v5Counter" aria-hidden="true"></div>
   </div>
-
 <script>
 (function(){
   "use strict";
-
-  const storybook = document.getElementById('storybook');
-  const storyTrigger = document.getElementById('storyEastereggTrigger');
-  const storyX = document.getElementById('storybookX');
-  const closeBookButton = document.getElementById('closeBookButton');
-  const bookShell = document.getElementById('bookShell');
-  const bookPages = Array.from(document.querySelectorAll('.book-page'));
-  const bookPrev = document.getElementById('bookPrev');
-  const bookNext = document.getElementById('bookNext');
-  const bookProgress = document.getElementById('bookProgress');
-  const storySound = document.getElementById('storySound');
-  const weddingAudio = document.getElementById('weddingAudio') || document.querySelector('audio:not(#medievalAudio)');
-  const medievalAudio = document.getElementById('medievalAudio');
-  const mobileMQ = window.matchMedia('(max-width:700px)');
-
-  let page = 0;
-  let mobileSide = 0;
-  let busy = false;
-  let weddingResumeTime = 0;
-  let weddingWasPlaying = false;
-  let storyMusicWanted = true;
-
-  /* ---------------- SOUNDTRACK ----------------
-     Reliability first:
-     - no priming
-     - no competing fade timers
-     - no async callback is allowed to pause a newly-started track
-     - first medieval play is called directly from the trigger click
-  ------------------------------------------------ */
-  function updateStorySoundUI(needsTap=false){
-    if(!storySound) return;
-    const playing = !!medievalAudio && !medievalAudio.paused;
-    storySound.classList.toggle('is-playing',playing);
-    storySound.classList.toggle('needs-tap',needsTap);
-    storySound.setAttribute('aria-label',playing ? 'Pausar música del cuento' : 'Activar música del cuento');
-  }
-
-  function startStoryMusic(){
-    if(!medievalAudio || !storyMusicWanted) return;
-    try{
-      medievalAudio.loop = true;
-      medievalAudio.muted = false;
-      medievalAudio.volume = 0.68;
-      medievalAudio.currentTime = 0;
-      const p = medievalAudio.play();
-      if(p && typeof p.then === 'function'){
-        p.then(()=>updateStorySoundUI(false))
-         .catch(()=>updateStorySoundUI(true));
-      }else{
-        updateStorySoundUI(false);
-      }
-    }catch(e){
-      updateStorySoundUI(true);
-    }
-  }
-
-  function enterStoryAudio(){
-    weddingWasPlaying = !!weddingAudio && !weddingAudio.paused;
-    if(weddingAudio){
-      weddingResumeTime = weddingAudio.currentTime || 0;
-      // Pause synchronously before starting the second track.
-      // This avoids mobile browsers juggling two media play states.
-      weddingAudio.pause();
-    }
-    startStoryMusic();
-  }
-
-  function leaveStoryAudio(){
-    if(medievalAudio){
-      medievalAudio.pause();
-      try{ medievalAudio.currentTime = 0; }catch(e){}
-    }
-    updateStorySoundUI(false);
-
-    if(weddingAudio && weddingWasPlaying){
-      try{
-        weddingAudio.currentTime = weddingResumeTime;
-        weddingAudio.volume = 1;
-        weddingAudio.muted = false;
-        const p = weddingAudio.play();
-        if(p && p.catch) p.catch(()=>{});
-      }catch(e){}
-    }
-  }
-
-  function toggleStorySound(){
-    if(!medievalAudio) return;
-    if(medievalAudio.paused){
-      storyMusicWanted = true;
-      medievalAudio.muted = false;
-      medievalAudio.volume = 0.68;
-      const p = medievalAudio.play();
-      if(p && p.then) p.then(()=>updateStorySoundUI(false)).catch(()=>updateStorySoundUI(true));
-      else updateStorySoundUI(false);
-    }else{
-      storyMusicWanted = false;
-      medievalAudio.pause();
-      updateStorySoundUI(false);
-    }
-  }
-
-  /* ---------------- BOOK STATE ----------------
-     This is intentionally based on the proven V3.3 navigation.
-     Audio and visual effects cannot block or mutate navigation.
-  ------------------------------------------------ */
-  function dots(){
-    if(!bookProgress) return;
-    bookProgress.innerHTML='';
-    bookPages.forEach((_,i)=>{
-      const d=document.createElement('i');
-      if(i===page)d.classList.add('active');
-      bookProgress.appendChild(d);
-    });
-  }
-
-  function mobileHasSecond(){
-    const p=bookPages[page];
-    return mobileMQ.matches && p && p.classList.contains('manuscript-spread') && !!p.querySelector('.folio-right');
-  }
-
-  function syncMobile(){
-    bookPages.forEach(p=>p.classList.remove('mobile-second'));
-    if(mobileSide===1 && mobileHasSecond()) bookPages[page].classList.add('mobile-second');
-  }
-
-  function controls(){
-    const atStart=page===0;
-    const atEnd=page===bookPages.length-1 && (!mobileHasSecond() || mobileSide===1);
-    if(bookPrev) bookPrev.disabled=atStart;
-    if(bookNext) bookNext.disabled=atEnd || page===0;
-    if(bookProgress){
-      Array.from(bookProgress.children).forEach((d,i)=>d.classList.toggle('active',i===page));
-    }
-    syncMobile();
-  }
-
-  function decorateTurn(el,direction){
-    if(!el) return;
-    el.classList.remove('v4-turn-next','v4-turn-prev');
-    void el.offsetWidth;
-    el.classList.add(direction==='prev'?'v4-turn-prev':'v4-turn-next');
-    setTimeout(()=>el.classList.remove('v4-turn-next','v4-turn-prev'),460);
-  }
-
-  function go(index,side=0,direction='next'){
-    if(busy || index<0 || index>=bookPages.length)return;
-    busy=true;
-    const cur=bookPages[page], nxt=bookPages[index];
-    cur.classList.add('leaving');
-    setTimeout(()=>{
-      cur.classList.remove('active','leaving','mobile-second');
-      page=index;
-      mobileSide=side;
-      nxt.classList.add('active');
-      // V4.5: restart decorative CSS reveals only. Navigation state is unchanged.
-      void nxt.offsetWidth;
-      decorateTurn(nxt,direction);
-      if(page>0)bookShell.classList.add('opened');
-      controls();
-      setTimeout(()=>busy=false,500);
-    },260);
-  }
-
-  function next(){
-    if(page===0){go(1,0,'next');return}
-    if(mobileHasSecond() && mobileSide===0){
-      mobileSide=1;
-      syncMobile();
-      decorateTurn(bookPages[page],'next');
-      return;
-    }
-    go(page+1,0,'next');
-  }
-
-  function prev(){
-    if(page===0)return;
-    if(mobileHasSecond() && mobileSide===1){
-      mobileSide=0;
-      syncMobile();
-      decorateTurn(bookPages[page],'prev');
-      return;
-    }
-    if(page===1){go(0,0,'prev');return}
-    go(page-1,mobileMQ.matches?1:0,'prev');
-  }
-
-  function resetBook(){
-    page=0;
-    mobileSide=0;
-    busy=false;
-    bookPages.forEach((p,i)=>{
-      p.classList.toggle('active',i===0);
-      p.classList.remove('mobile-second','leaving','v4-turn-next','v4-turn-prev');
-    });
-    if(bookShell) bookShell.classList.remove('opened');
-    dots();
-    controls();
-  }
-
-  function openBook(e){
-    if(e) e.preventDefault();
-
-    // Audio is deliberately first so play() remains in the direct click gesture.
-    enterStoryAudio();
-
-    resetBook();
-    storybook.classList.add('open');
-    storybook.setAttribute('aria-hidden','false');
-    document.body.classList.add('storybook-open');
-  }
-
-  function closeBook(){
-    storybook.classList.remove('open');
-    storybook.setAttribute('aria-hidden','true');
-    document.body.classList.remove('storybook-open');
-    leaveStoryAudio();
-    setTimeout(resetBook,420);
-  }
-
-  if(storyTrigger) storyTrigger.addEventListener('click',openBook);
-  if(storyX) storyX.addEventListener('click',closeBook);
-  if(closeBookButton) closeBookButton.addEventListener('click',closeBook);
-  if(bookPrev) bookPrev.addEventListener('click',prev);
-  if(bookNext) bookNext.addEventListener('click',next);
-  if(storySound) storySound.addEventListener('click',toggleStorySound);
-
-  const start=document.querySelector('[data-next]');
-  if(start) start.addEventListener('click',next);
-
-  document.addEventListener('keydown',e=>{
-    if(!storybook || !storybook.classList.contains('open'))return;
-    if(e.key==='Escape')closeBook();
-    else if(e.key==='ArrowRight')next();
-    else if(e.key==='ArrowLeft')prev();
+  const files=[
+    "00-Inicio.png","01-El_Encuentro.png","02-La_Conexion.png","03-La_Expedición_Digital.png",
+    "04-El_Caso_Resuelto.png","05-Los_Años_Compartidos.png","06-Unidos_a_la_distancia.png",
+    "07-Vivir_Juntos.png","08-Aparece_el_Guardian.png","09-Una_Familia.png","10-La_Misión_del_Anillo.png",
+    "11-Una_Sorpresa.png","12_De_Vuelta_A_Casa.png","13-Ultimo_Folio.png"
+  ];
+  const labels=["Portada","I · El Encuentro","II · La Conexión","III · La Expedición Digital","IV · El Caso Resuelto","V · Los Años Compartidos","VI · Unidos a la distancia","VII · Vivir Juntos","VIII · Aparece el Guardián","IX · Una Familia","X · La Misión del Anillo","XI · Una Sorpresa","XII · De Vuelta a Casa","Último Folio"];
+  const storybook=document.getElementById('storybook'), trigger=document.getElementById('storyEastereggTrigger'), x=document.getElementById('storybookX');
+  const pagesHost=document.getElementById('bookPages'), prev=document.getElementById('bookPrev'), next=document.getElementById('bookNext'), progress=document.getElementById('bookProgress'), counter=document.getElementById('v5Counter'), sound=document.getElementById('storySound');
+  const weddingAudio=document.getElementById('bgMusic')||document.querySelector('audio:not(#medievalAudio)');
+  const medievalAudio=document.getElementById('medievalAudio');
+  let page=0,busy=false,touchX=null,weddingWasPlaying=false,weddingResumeTime=0,storyMusicWanted=true;
+  const pages=[];
+  files.forEach((src,i)=>{
+    const p=document.createElement('section'); p.className='v5-page'+(i===0?' active':''); p.dataset.page=i;
+    const img=document.createElement('img'); img.src=src; img.alt=labels[i]; img.draggable=false; if(i>1) img.loading='lazy'; img.decoding='async';
+    p.appendChild(img);
+    if(i===0){const b=document.createElement('button');b.className='v5-cover-action';b.type='button';b.setAttribute('aria-label','Abrir el libro');b.addEventListener('click',()=>go(1,'next'));p.appendChild(b)}
+    if(i===files.length-1){const b=document.createElement('button');b.className='v5-close-action';b.type='button';b.setAttribute('aria-label','Cerrar el libro y volver a la celebración');b.addEventListener('click',closeBook);p.appendChild(b)}
+    pagesHost.appendChild(p); pages.push(p);
   });
-
-  let tx=null;
-  if(storybook){
-    storybook.addEventListener('touchstart',e=>{tx=e.changedTouches[0].clientX},{passive:true});
-    storybook.addEventListener('touchend',e=>{
-      if(tx===null)return;
-      const dx=e.changedTouches[0].clientX-tx;
-      tx=null;
-      if(Math.abs(dx)<55)return;
-      dx<0?next():prev();
-    },{passive:true});
-  }
-
-  if(mobileMQ.addEventListener){
-    mobileMQ.addEventListener('change',()=>{mobileSide=0;syncMobile();});
-  }
-
-  resetBook();
+  function makeDots(){progress.innerHTML='';files.forEach((_,i)=>{const d=document.createElement('i');if(i===page)d.classList.add('active');progress.appendChild(d)})}
+  function controls(){prev.disabled=page===0;next.disabled=page===files.length-1;Array.from(progress.children).forEach((d,i)=>d.classList.toggle('active',i===page));counter.textContent=(page+1)+' / '+files.length}
+  function preloadAround(){[page-1,page+1,page+2].forEach(i=>{if(i>=0&&i<files.length){const im=new Image();im.src=files[i]}})}
+  function go(i,dir){if(busy||i<0||i>=pages.length||i===page)return;busy=true;pages[page].classList.remove('active');page=i;const p=pages[page];p.classList.add('active',dir==='prev'?'turn-prev':'turn-next');controls();preloadAround();setTimeout(()=>{p.classList.remove('turn-next','turn-prev');busy=false},480)}
+  function updateSound(needsTap=false){if(!sound)return;const playing=medievalAudio&&!medievalAudio.paused;sound.classList.toggle('is-playing',!!playing);sound.classList.toggle('needs-tap',needsTap);sound.setAttribute('aria-label',playing?'Pausar música del cuento':'Activar música del cuento')}
+  function enterAudio(){weddingWasPlaying=!!weddingAudio&&!weddingAudio.paused;if(weddingAudio){weddingResumeTime=weddingAudio.currentTime||0;weddingAudio.pause()}if(!medievalAudio||!storyMusicWanted)return;try{medievalAudio.loop=true;medievalAudio.muted=false;medievalAudio.volume=.68;medievalAudio.currentTime=0;const p=medievalAudio.play();if(p&&p.then)p.then(()=>updateSound(false)).catch(()=>updateSound(true));else updateSound(false)}catch(e){updateSound(true)}}
+  function leaveAudio(){if(medievalAudio){medievalAudio.pause();try{medievalAudio.currentTime=0}catch(e){}}updateSound(false);if(weddingAudio&&weddingWasPlaying){try{weddingAudio.currentTime=weddingResumeTime;weddingAudio.volume=1;weddingAudio.muted=false;const p=weddingAudio.play();if(p&&p.catch)p.catch(()=>{})}catch(e){}}}
+  function toggleSound(){if(!medievalAudio)return;if(medievalAudio.paused){storyMusicWanted=true;medievalAudio.muted=false;medievalAudio.volume=.68;const p=medievalAudio.play();if(p&&p.then)p.then(()=>updateSound(false)).catch(()=>updateSound(true));else updateSound(false)}else{storyMusicWanted=false;medievalAudio.pause();updateSound(false)}}
+  function reset(){pages.forEach((p,i)=>{p.classList.toggle('active',i===0);p.classList.remove('turn-next','turn-prev')});page=0;busy=false;makeDots();controls();preloadAround()}
+  function openBook(e){if(e)e.preventDefault();enterAudio();reset();storybook.classList.add('open');storybook.setAttribute('aria-hidden','false');document.body.classList.add('storybook-open')}
+  function closeBook(){storybook.classList.remove('open');storybook.setAttribute('aria-hidden','true');document.body.classList.remove('storybook-open');leaveAudio();setTimeout(reset,380)}
+  trigger&&trigger.addEventListener('click',openBook);x&&x.addEventListener('click',closeBook);sound&&sound.addEventListener('click',toggleSound);prev.addEventListener('click',()=>go(page-1,'prev'));next.addEventListener('click',()=>go(page+1,'next'));
+  document.addEventListener('keydown',e=>{if(!storybook.classList.contains('open'))return;if(e.key==='Escape')closeBook();else if(e.key==='ArrowRight')go(page+1,'next');else if(e.key==='ArrowLeft')go(page-1,'prev')});
+  storybook.addEventListener('touchstart',e=>{touchX=e.changedTouches[0].clientX},{passive:true});storybook.addEventListener('touchend',e=>{if(touchX===null)return;const dx=e.changedTouches[0].clientX-touchX;touchX=null;if(Math.abs(dx)>52)go(page+(dx<0?1:-1),dx<0?'next':'prev')},{passive:true});
+  makeDots();controls();preloadAround();
 })();
 </script>
 </body>
