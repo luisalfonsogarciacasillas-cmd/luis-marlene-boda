@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#F4EDE3" />
   <meta name="description" content="Invitación de boda civil de Luis & Marlene — 19 de diciembre de 2026." />
-  <title>Luis & Marlene | 19.12.2026 · V2.4</title>
+  <title>Luis & Marlene | 19.12.2026 · V2.5</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -692,6 +692,60 @@
       .ambient-specks i:nth-child(5){display:none}
     }
 
+
+    /* V2.4.1 — clearer welcome + forever motif */
+    .welcome-heart{
+      transform-origin:32px 34px;
+    }
+    .timeline-item.stage-active .welcome-heart{
+      animation:welcomeHeart 2.8s ease-in-out .85s infinite;
+    }
+    @keyframes welcomeHeart{
+      0%,100%{transform:scale(1);opacity:.72}
+      50%{transform:scale(1.08);opacity:1}
+    }
+
+    .dancer-left,.dancer-right{
+      transform-box:fill-box;
+      transform-origin:center bottom;
+    }
+    .timeline-item.stage-active .dancer-left{
+      animation:danceSwayLeft 2.7s ease-in-out .75s infinite;
+    }
+    .timeline-item.stage-active .dancer-right{
+      animation:danceSwayRight 2.7s ease-in-out .75s infinite;
+    }
+    @keyframes danceSwayLeft{
+      0%,100%{transform:rotate(0deg)}
+      50%{transform:rotate(-4deg) translateY(-1px)}
+    }
+    @keyframes danceSwayRight{
+      0%,100%{transform:rotate(0deg)}
+      50%{transform:rotate(4deg) translateY(-1px)}
+    }
+
+    .infinity-path{
+      fill:none;
+      stroke:var(--gold);
+      stroke-width:1.35;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+      vector-effect:non-scaling-stroke;
+      stroke-dasharray:92;
+      stroke-dashoffset:92;
+      opacity:0;
+    }
+    .timeline-item.stage-active .infinity-path{
+      animation:foreverTrace 4.8s ease-in-out 1.05s infinite;
+    }
+    @keyframes foreverTrace{
+      0%{stroke-dashoffset:92;opacity:0}
+      14%{opacity:1}
+      52%{stroke-dashoffset:0;opacity:1}
+      78%{stroke-dashoffset:0;opacity:.95}
+      100%{stroke-dashoffset:-92;opacity:0}
+    }
+
     @media(prefers-reduced-motion:reduce){
       .ambient-specks i,.love-divider .heart{animation:none!important}
       .botanical path{stroke-dashoffset:0!important}
@@ -857,7 +911,7 @@
       .timeline:after{transition:none}
       .stage-icon .draw{stroke-dashoffset:0!important;animation:none!important}
       .ring-left,.ring-right{transform:none!important}
-      .glass-left,.glass-right,.plate-inner,.music-note,.spark{animation:none!important;opacity:1!important}
+      .glass-left,.glass-right,.plate-inner,.music-note,.spark,.welcome-heart,.dancer-left,.dancer-right,.infinity-path{animation:none!important;opacity:1!important}
     }
 
     /* V2.2 — TIMELINE */
@@ -1076,7 +1130,185 @@
       *{scroll-behavior:auto!important;animation:none!important;transition:none!important}
       .reveal,.monogram-wrap,.eyebrow,h1 .name,h1 .amp,.date,.scroll{opacity:1!important;transform:none!important}
     }
-  </style>
+  
+    /* V2.5 — PROFESSIONAL MOBILE CENTERED JOURNEY */
+    @media(max-width:520px){
+      .timeline-section{
+        padding-left:18px;
+        padding-right:18px;
+      }
+      .timeline-head{
+        width:min(92%,420px);
+        margin-bottom:48px;
+      }
+      .timeline-head .section-title{
+        font-size:clamp(44px,12vw,62px);
+        line-height:.98;
+      }
+      .timeline-sub{
+        width:88%;
+        margin-left:auto;
+        margin-right:auto;
+        font-size:17px;
+        line-height:1.45;
+      }
+
+      .timeline{
+        width:100%;
+        max-width:430px;
+        margin:0 auto;
+        padding:8px 0 14px;
+      }
+      .timeline:before{
+        left:50% !important;
+        top:12px;
+        bottom:12px;
+        transform:translateX(-50%);
+      }
+      .timeline:after{
+        left:50% !important;
+        transform:translateX(-50%);
+      }
+
+      .timeline-item,
+      .timeline-item:nth-child(even),
+      .timeline-item:nth-child(odd){
+        width:50%;
+        min-height:150px;
+        margin-left:0;
+        padding-top:16px;
+        padding-bottom:16px;
+        display:flex;
+        align-items:center;
+        box-sizing:border-box;
+      }
+
+      .timeline-item:nth-child(odd){
+        padding-left:0;
+        padding-right:24px;
+        text-align:right;
+        justify-content:flex-end;
+      }
+      .timeline-item:nth-child(even){
+        margin-left:50%;
+        padding-left:24px;
+        padding-right:0;
+        text-align:left;
+        justify-content:flex-start;
+      }
+
+      .timeline-item:nth-child(odd) .timeline-dot{
+        left:auto !important;
+        right:-5.5px !important;
+      }
+      .timeline-item:nth-child(even) .timeline-dot{
+        left:-5.5px !important;
+        right:auto !important;
+      }
+
+      .stage-wrap,
+      .timeline-item:nth-child(odd) .stage-wrap,
+      .timeline-item:nth-child(even) .stage-wrap{
+        width:100%;
+        display:flex;
+        gap:7px;
+        align-items:center;
+      }
+      .timeline-item:nth-child(odd) .stage-wrap{
+        flex-direction:row-reverse;
+        justify-content:flex-start;
+      }
+      .timeline-item:nth-child(even) .stage-wrap{
+        flex-direction:row;
+        justify-content:flex-start;
+      }
+
+      .stage-wrap > div{
+        min-width:0;
+        flex:1 1 auto;
+      }
+      .stage-icon{
+        width:38px;
+        height:46px;
+        flex:0 0 38px;
+        margin:0;
+      }
+      .stage-icon svg{
+        width:38px;
+        height:46px;
+      }
+
+      .timeline-time{
+        font-size:8px;
+        letter-spacing:.18em;
+        margin-bottom:6px;
+        white-space:nowrap;
+      }
+      .timeline-event{
+        font-size:clamp(20px,5.8vw,27px);
+        line-height:1.02;
+        overflow-wrap:normal;
+        word-break:normal;
+      }
+      .timeline-note{
+        margin-top:6px;
+        font-size:8px;
+        line-height:1.35;
+        letter-spacing:.045em;
+      }
+
+      /* Keep the first long title graceful on a narrow phone. */
+      .timeline-item:first-child .timeline-event{
+        font-size:clamp(18px,5.2vw,24px);
+      }
+
+      /* More breathing room around the final, symbolic stage. */
+      .timeline-item:last-child{
+        min-height:164px;
+      }
+      .timeline-item:last-child .stage-icon{
+        width:42px;
+        flex-basis:42px;
+      }
+      .timeline-item:last-child .stage-icon svg{
+        width:42px;
+      }
+
+      /* Background date remains atmospheric rather than competing with content. */
+      .timeline-section:before{
+        font-size:72px;
+        opacity:.72;
+        top:52%;
+      }
+
+      /* On phones, horizontal reveal movement is intentionally smaller. */
+      .reveal.reveal-left{transform:translateX(-9px);opacity:0}
+      .reveal.reveal-right{transform:translateX(9px);opacity:0}
+      .reveal.reveal-left.visible,
+      .reveal.reveal-right.visible{transform:translateX(0);opacity:1}
+    }
+
+    /* Extra-small phones: protect the alternating composition. */
+    @media(max-width:370px){
+      .timeline-section{
+        padding-left:10px;
+        padding-right:10px;
+      }
+      .timeline-item:nth-child(odd){padding-right:18px}
+      .timeline-item:nth-child(even){padding-left:18px}
+      .stage-wrap,
+      .timeline-item:nth-child(odd) .stage-wrap,
+      .timeline-item:nth-child(even) .stage-wrap{gap:5px}
+      .stage-icon{
+        width:31px;
+        flex-basis:31px;
+      }
+      .stage-icon svg{width:31px}
+      .timeline-event{font-size:19px}
+      .timeline-item:first-child .timeline-event{font-size:17px}
+      .timeline-note{font-size:7.5px}
+    }
+</style>
 </head>
 
 <body class="locked">
@@ -1185,10 +1417,11 @@
           <div class="stage-wrap">
             <span class="stage-icon reception-icon" aria-hidden="true">
               <svg viewBox="0 0 64 64">
-                <path class="draw" d="M17 19 L21 45 M11 31 H25 M39 20 L43 45 M33 31 H47"/>
-                <path class="draw" d="M15 19 H19 M37 20 H41"/>
-                <path class="draw spark" d="M52 12 V20 M48 16 H56"/>
-                <path class="draw spark" d="M8 12 V17 M5.5 14.5 H10.5"/>
+                <path class="draw" d="M15 50 V27 C15 17 22 11 32 11 C42 11 49 17 49 27 V50"/>
+                <path class="draw" d="M21 50 V29 C21 22 25 18 32 18 C39 18 43 22 43 29 V50"/>
+                <path class="draw" d="M11 50 H53"/>
+                <path class="draw welcome-heart" d="M32 31 C28 25 21 29 23 35 C25 39 32 43 32 43 C32 43 39 39 41 35 C43 29 36 25 32 31 Z"/>
+                <path class="draw spark" d="M53 18 V24 M50 21 H56"/>
               </svg>
             </span>
             <div>
@@ -1265,10 +1498,14 @@
           <div class="stage-wrap">
             <span class="stage-icon dance-icon" aria-hidden="true">
               <svg viewBox="0 0 64 64">
-                <path class="draw" d="M18 43 C23 34 28 28 32 20 C36 29 40 35 47 42"/>
-                <path class="draw" d="M25 45 C30 40 35 40 40 45"/>
-                <path class="draw music-note n1" d="M45 14 V29 C42 27 38 29 39 32 C40 35 46 34 46 30 V19 L54 17 V27 C51 25 48 27 49 30 C50 33 55 32 55 28 V14 Z"/>
-                <path class="draw music-note n2" d="M13 19 V30 C10 28 7 30 8 33 C9 36 14 35 14 31 V22 L20 20"/>
+                <circle class="draw dancer-head" cx="24" cy="19" r="3.2"/>
+                <circle class="draw dancer-head" cx="40" cy="19" r="3.2"/>
+                <path class="draw dancer-left" d="M24 23 C23 29 22 34 19 39 M23 28 L16 32 M22 34 L27 42 M19 39 L15 48"/>
+                <path class="draw dancer-right" d="M40 23 C41 29 42 34 45 39 M41 28 L48 31 M42 34 L37 42 M45 39 L50 48"/>
+                <path class="draw joined-hands" d="M27 28 C30 25 34 25 37 28"/>
+                <path class="draw music-note n1" d="M51 11 V20 C48 18 46 20 47 22 C48 24 52 23 52 20 V14 L57 13"/>
+                <path class="draw music-note n2" d="M10 14 V22 C7 20 5 22 6 24 C7 26 11 25 11 22 V17 L15 16"/>
+                <path class="infinity-path" d="M17 53 C22 46 27 46 32 53 C37 60 42 60 47 53 C42 46 37 46 32 53 C27 60 22 60 17 53"/>
               </svg>
             </span>
             <div>
