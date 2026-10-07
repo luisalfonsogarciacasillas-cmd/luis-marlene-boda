@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#F4EDE3" />
   <meta name="description" content="Invitación de boda civil de Luis & Marlene — 19 de diciembre de 2026." />
-  <title>Luis & Marlene | 19.12.2026 · V2.6</title>
+  <title>Luis & Marlene | 19.12.2026 · V2.7</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -921,7 +921,7 @@
       overflow:hidden;
     }
     .timeline-section:before{
-      content:"19 · XII · 2026";
+      content:"";
       position:absolute;
       left:50%;
       top:54%;
@@ -1383,7 +1383,7 @@
       animation:sealRotate 18s linear infinite;
     }
     .gate-monogram:after{
-      content:"19 · XII · 2026";position:absolute;left:50%;bottom:-25px;transform:translateX(-50%);
+      content:"";position:absolute;left:50%;bottom:-25px;transform:translateX(-50%);
       width:max-content;font:500 6px/1 "Montserrat",sans-serif;letter-spacing:.25em;color:rgba(139,83,62,.58);
     }
     @keyframes sealRotate{to{transform:rotate(360deg)}}
@@ -1439,12 +1439,269 @@
       .open-invite:before,.open-heart:after,.gate-scroll-cue i{animation:none!important}
       .gate-botanical path{stroke-dashoffset:0}.gate-title span{opacity:1!important;transform:none!important}
     }
+
+    /* V2.7 — CLEANER OPENING + NUESTRA HISTORIA */
+    .gate .gate-ring,
+    .gate-ring.three{
+      display:none!important;
+    }
+    .gate-monogram:after{display:none!important}
+
+    /* Replace geometry with restrained living ornament */
+    .gate{
+      background:
+        radial-gradient(circle at 50% 45%,rgba(202,162,121,.105),rgba(202,162,121,.025) 31%,transparent 62%),
+        var(--ivory);
+    }
+    .gate-ghost{
+      color:rgba(117,72,55,.018);
+      font-size:clamp(170px,28vw,430px);
+    }
+    .gate-light-arc{
+      position:absolute;
+      width:min(72vw,720px);
+      height:min(42vw,410px);
+      left:50%;top:48%;
+      transform:translate(-50%,-50%);
+      border-top:1px solid rgba(185,154,106,.15);
+      border-radius:50%;
+      pointer-events:none;
+      z-index:-1;
+      animation:arcBreathe 7s ease-in-out infinite alternate;
+    }
+    @keyframes arcBreathe{
+      to{transform:translate(-50%,-52%) scaleX(1.035);opacity:.55}
+    }
+    .gate-heart-thread{
+      position:absolute;
+      left:50%;top:50%;
+      width:min(66vw,660px);
+      height:min(55vh,520px);
+      transform:translate(-50%,-50%);
+      pointer-events:none;
+      z-index:-1;
+      opacity:.42;
+    }
+    .gate-heart-thread path{
+      fill:none;stroke:rgba(164,93,67,.19);stroke-width:1;
+      stroke-linecap:round;vector-effect:non-scaling-stroke;
+      stroke-dasharray:900;stroke-dashoffset:900;
+      animation:threadDraw 7.5s ease-in-out 1s infinite;
+    }
+    @keyframes threadDraw{
+      0%{stroke-dashoffset:900;opacity:0}
+      18%{opacity:1}
+      58%,78%{stroke-dashoffset:0;opacity:1}
+      100%{stroke-dashoffset:-900;opacity:0}
+    }
+
+    /* Emotional quote section */
+    .story-v27{
+      position:relative;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 50% 42%,rgba(185,154,106,.07),transparent 46%),
+        var(--ivory);
+      min-height:100vh;
+      display:grid;
+      place-items:center;
+      padding:120px 24px;
+    }
+    .story-v27-inner{
+      width:min(880px,100%);
+      margin:auto;
+      text-align:center;
+      position:relative;
+      z-index:2;
+    }
+    .story-v27-kicker{
+      color:var(--terracotta);
+      font-size:9px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;
+      margin-bottom:34px;
+    }
+    .soul-quote{
+      margin:0 auto 42px;
+      max-width:820px;
+      font:500 clamp(38px,6vw,72px)/1.06 "Cormorant Garamond",serif;
+      letter-spacing:-.025em;
+    }
+    .story-line{
+      display:block;
+      opacity:0;
+      transform:translateY(18px);
+      filter:blur(4px);
+      transition:opacity 1.15s ease,transform 1.15s var(--ease),filter 1.15s ease;
+    }
+    .story-v27.visible .story-line{
+      opacity:1;transform:translateY(0);filter:blur(0);
+    }
+    .story-v27.visible .story-line:nth-child(2){transition-delay:.55s}
+    .story-body{
+      max-width:650px;margin:0 auto;
+      color:var(--muted);
+      font:400 clamp(19px,2.6vw,25px)/1.65 "Cormorant Garamond",serif;
+    }
+    .story-body .story-fragment{
+      opacity:0;transform:translateY(12px);
+      display:inline;
+      transition:opacity 1s ease,transform 1s ease;
+    }
+    .story-v27.visible .story-fragment{opacity:1;transform:translateY(0)}
+    .story-v27.visible .f2{transition-delay:.7s}
+    .story-v27.visible .f3{transition-delay:1.25s}
+    .story-v27-visible-word{
+      color:var(--cinnamon);
+      font-style:italic;
+    }
+    .love-closing{
+      margin:56px auto 0;
+      max-width:690px;
+      font:500 clamp(27px,4.3vw,43px)/1.25 "Cormorant Garamond",serif;
+      color:var(--ink);
+      opacity:0;transform:translateY(14px);
+      transition:opacity 1.2s ease 1.7s,transform 1.2s var(--ease) 1.7s;
+    }
+    .story-v27.visible .love-closing{opacity:1;transform:translateY(0)}
+    .love-closing em{color:var(--cinnamon);font-weight:500}
+    .story-branches{
+      width:min(480px,82vw);height:90px;margin:26px auto 0;
+      color:rgba(134,80,62,.36);
+    }
+    .story-branches svg{width:100%;height:100%;overflow:visible}
+    .story-branches path{
+      fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;
+      vector-effect:non-scaling-stroke;stroke-dasharray:300;stroke-dashoffset:300;
+    }
+    .story-v27.visible .story-branches path{
+      animation:storyBranch 2.3s ease 2.05s forwards;
+    }
+    .story-heart{
+      opacity:0;transform-origin:center;
+    }
+    .story-v27.visible .story-heart{
+      animation:storyHeart 1s ease 3.7s forwards,heartBreath 3.6s ease-in-out 4.7s infinite;
+    }
+    @keyframes storyBranch{to{stroke-dashoffset:0}}
+    @keyframes storyHeart{to{opacity:1}}
+
+    .story-date-ghost{
+      position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-7deg);
+      font:500 clamp(100px,18vw,230px)/1 "Cormorant Garamond",serif;
+      color:rgba(134,80,62,.025);white-space:nowrap;pointer-events:none;
+    }
+
+    /* V2.7 — Timeline icons remain gently alive after their initial draw */
+    .timeline-item.stage-active .reception-icon{
+      animation:iconFloat 4.2s ease-in-out 1.4s infinite;
+    }
+    .timeline-item.stage-active .ceremony-icon{
+      animation:ringFloat 4.8s ease-in-out 1.3s infinite;
+    }
+    .timeline-item.stage-active .toast-icon{
+      animation:toastFloat 4.4s ease-in-out 1.45s infinite;
+    }
+    .timeline-item.stage-active .dinner-icon{
+      animation:dinnerFloat 5s ease-in-out 1.5s infinite;
+    }
+    .timeline-item.stage-active .dance-icon{
+      animation:danceIconFloat 3.8s ease-in-out 1.4s infinite;
+    }
+    @keyframes iconFloat{50%{transform:translateY(-3px)}}
+    @keyframes ringFloat{50%{transform:translateY(-2px) scale(1.025)}}
+    @keyframes toastFloat{50%{transform:translateY(-3px) rotate(.7deg)}}
+    @keyframes dinnerFloat{50%{transform:translateY(-2px)}}
+    @keyframes danceIconFloat{50%{transform:translateY(-3px) scale(1.02)}}
+
+    /* Reception heart continues breathing */
+    .timeline-item.stage-active .reception-icon .welcome-heart{
+      animation:welcomeHeart 2.8s ease-in-out .85s infinite!important;
+    }
+
+    /* Rings gently move together and apart */
+    .timeline-item.stage-active .ceremony-icon .ring-left{
+      animation:ringLeftForever 4s ease-in-out 1.5s infinite;
+    }
+    .timeline-item.stage-active .ceremony-icon .ring-right{
+      animation:ringRightForever 4s ease-in-out 1.5s infinite;
+    }
+    @keyframes ringLeftForever{0%,100%{transform:translateX(0)}50%{transform:translateX(1.5px)}}
+    @keyframes ringRightForever{0%,100%{transform:translateX(0)}50%{transform:translateX(-1.5px)}}
+
+    /* Toast repeats a restrained clink */
+    .timeline-item.stage-active .toast-icon .glass-left{
+      animation:clinkLeftForever 5.2s ease-in-out 1.6s infinite!important;
+    }
+    .timeline-item.stage-active .toast-icon .glass-right{
+      animation:clinkRightForever 5.2s ease-in-out 1.6s infinite!important;
+    }
+    @keyframes clinkLeftForever{
+      0%,58%,100%{transform:rotate(0)}
+      68%{transform:translate(3px,-2px) rotate(7deg)}
+      77%{transform:rotate(0)}
+    }
+    @keyframes clinkRightForever{
+      0%,58%,100%{transform:rotate(0)}
+      68%{transform:translate(-3px,-2px) rotate(-7deg)}
+      77%{transform:rotate(0)}
+    }
+
+    /* Dinner gets a tiny plate pulse, not a distracting spin */
+    .timeline-item.stage-active .dinner-icon .plate-inner{
+      animation:plateBreathe 4.6s ease-in-out 1.7s infinite!important;
+    }
+    @keyframes plateBreathe{50%{transform:scale(.94)}}
+
+    /* Music notes keep floating */
+    .timeline-item.stage-active .dance-icon .music-note.n1{
+      animation:noteForever 3.8s ease-in-out .7s infinite!important;
+    }
+    .timeline-item.stage-active .dance-icon .music-note.n2{
+      animation:noteForever 3.8s ease-in-out 1.4s infinite!important;
+    }
+    @keyframes noteForever{
+      0%,100%{opacity:.25;transform:translateY(4px)}
+      45%{opacity:1;transform:translateY(-4px)}
+      75%{opacity:.55}
+    }
+
+    /* Midnight closing stage */
+    .midnight-icon .moon{
+      transform-origin:center;
+      animation:moonGlow 4.6s ease-in-out infinite;
+    }
+    .midnight-icon .star-a{animation:starTwinkle 2.8s ease-in-out infinite}
+    .midnight-icon .star-b{animation:starTwinkle 2.8s ease-in-out 1.2s infinite}
+    .midnight-icon .star-c{animation:starTwinkle 2.8s ease-in-out 2s infinite}
+    @keyframes moonGlow{50%{opacity:.58;transform:scale(1.04)}}
+    @keyframes starTwinkle{0%,100%{opacity:.22;transform:scale(.8)}50%{opacity:1;transform:scale(1.12)}}
+
+    @media(max-width:650px){
+      .gate-light-arc{width:105vw;height:58vw}
+      .gate-heart-thread{width:105vw;height:54vh}
+      .story-v27{padding:96px 22px}
+      .soul-quote{font-size:clamp(37px,11vw,56px)}
+      .story-body{font-size:20px}
+      .love-closing{font-size:30px}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .gate-light-arc,.gate-heart-thread path,.timeline-item .stage-icon,
+      .timeline-item .welcome-heart,.timeline-item .ring-left,.timeline-item .ring-right,
+      .timeline-item .glass-left,.timeline-item .glass-right,.timeline-item .plate-inner,
+      .timeline-item .music-note,.midnight-icon *{animation:none!important}
+      .story-line,.story-fragment,.love-closing{opacity:1!important;transform:none!important;filter:none!important}
+      .story-branches path{stroke-dashoffset:0!important;animation:none!important}
+      .story-heart{opacity:1!important;animation:none!important}
+    }
 </style>
 </head>
 
 <body class="locked">
 
   <div class="gate" id="gate">
+    <div class="gate-light-arc" aria-hidden="true"></div>
+    <svg class="gate-heart-thread" viewBox="0 0 700 520" aria-hidden="true">
+      <path d="M40 330 C150 190 248 185 350 298 C452 185 550 190 660 330"/>
+    </svg>
     <div class="gate-ghost" aria-hidden="true">L<span class="ghost-heart">♡</span>M</div>
     <div class="gate-ring three" aria-hidden="true"></div>
     <div class="gate-botanical gb-left" aria-hidden="true">
@@ -1505,6 +1762,35 @@
   <div class="toast" id="toast" role="status"></div>
 
   <main>
+    <section class="story-v27" id="nuestraHistoria" aria-labelledby="historia-title">
+      <div class="story-date-ghost" aria-hidden="true">L ♡ M</div>
+      <div class="story-v27-inner">
+        <div class="story-v27-kicker">Nuestra historia</div>
+        <h2 class="soul-quote" id="historia-title">
+          <span class="story-line">De lo que sea que estén hechas nuestras almas,</span>
+          <span class="story-line">la suya y la mía son iguales.</span>
+        </h2>
+
+        <p class="story-body">
+          <span class="story-fragment f1">El <span class="story-v27-visible-word">amor</span> nos encontró en el momento perfecto </span>
+          <span class="story-fragment f2">y desde entonces caminamos <span class="story-v27-visible-word">juntos</span> con un mismo sueño: </span>
+          <span class="story-fragment f3">construir una vida llena de amor, respeto y felicidad.</span>
+        </p>
+
+        <p class="love-closing">Pero además de todo esto, <em>vístanse de amor</em>, porque es un lazo de unión perfecto.</p>
+
+        <div class="story-branches" aria-hidden="true">
+          <svg viewBox="0 0 480 90">
+            <path d="M8 62 C82 61 126 48 192 29 C212 23 227 28 240 43"/>
+            <path d="M472 62 C398 61 354 48 288 29 C268 23 253 28 240 43"/>
+            <path d="M101 54 C88 43 82 33 82 23 C96 29 104 39 108 50"/>
+            <path d="M379 54 C392 43 398 33 398 23 C384 29 376 39 372 50"/>
+            <text class="story-heart" x="240" y="52" text-anchor="middle" fill="currentColor" stroke="none" font-size="20">♡</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
     <section class="hero" id="hero">
       <div class="ambient a" aria-hidden="true"></div>
       <div class="ambient b" aria-hidden="true"></div>
@@ -1668,6 +1954,25 @@
               <span class="timeline-time">8:00 PM</span>
               <span class="timeline-event">¡A bailar!</span>
               <span class="timeline-note">Que empiece la fiesta</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal reveal-right delay-1 midnight-stage">
+          <span class="timeline-dot" aria-hidden="true"></span>
+          <div class="stage-wrap">
+            <span class="stage-icon midnight-icon" aria-hidden="true">
+              <svg viewBox="0 0 64 64">
+                <path class="draw moon" d="M39 13 C27 17 22 30 28 40 C33 49 45 52 54 45 C43 46 34 38 34 28 C34 22 36 17 39 13 Z"/>
+                <path class="draw star-a" d="M17 16 V23 M13.5 19.5 H20.5"/>
+                <path class="draw star-b" d="M13 37 V42 M10.5 39.5 H15.5"/>
+                <path class="draw star-c" d="M48 10 V15 M45.5 12.5 H50.5"/>
+              </svg>
+            </span>
+            <div>
+              <span class="timeline-time">12:00 AM</span>
+              <span class="timeline-event">Fin de la celebración</span>
+              <span class="timeline-note">Gracias por celebrar con nosotros</span>
             </div>
           </div>
         </div>
@@ -1934,6 +2239,21 @@
     updateWeddingJourney();
     window.addEventListener('scroll', updateWeddingJourney, { passive:true });
     window.addEventListener('resize', updateWeddingJourney);
+
+
+    // V2.7 — emotional story reveal
+    const storySection = document.querySelector('.story-v27');
+    if (storySection) {
+      const storyObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            storyObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.28 });
+      storyObserver.observe(storySection);
+    }
 
 </script>
 </body>
