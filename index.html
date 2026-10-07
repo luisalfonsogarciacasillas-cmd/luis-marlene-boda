@@ -3759,8 +3759,8 @@
 #storybook.v5-book .v5-cover-action,#storybook.v5-book .v5-close-action{left:22%;right:22%;bottom:2.5%;height:14%;z-index:50;pointer-events:auto;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 #storybook.v5-book .v5-close-action{left:20%;right:20%;bottom:3%;height:17%}
 /* A more book-like page turn: curl, shadow and slight depth without changing layout. */
-#storybook.v5-book .v5-page.turn-next{animation:v51TurnNext .62s cubic-bezier(.22,.72,.18,1)}
-#storybook.v5-book .v5-page.turn-prev{animation:v51TurnPrev .62s cubic-bezier(.22,.72,.18,1)}
+#storybook.v5-book .v5-page.turn-next{animation:v51TurnNext 1.15s cubic-bezier(.22,.72,.18,1)}
+#storybook.v5-book .v5-page.turn-prev{animation:v51TurnPrev 1.15s cubic-bezier(.22,.72,.18,1)}
 @keyframes v51TurnNext{0%{opacity:.15;transform:perspective(1600px) translateX(10%) rotateY(-18deg) scale(.97);filter:brightness(.72)}45%{opacity:1;transform:perspective(1600px) translateX(1.5%) rotateY(-5deg) scale(.992);filter:brightness(.9)}100%{opacity:1;transform:perspective(1600px) translateX(0) rotateY(0) scale(1);filter:brightness(1)}}
 @keyframes v51TurnPrev{0%{opacity:.15;transform:perspective(1600px) translateX(-10%) rotateY(18deg) scale(.97);filter:brightness(.72)}45%{opacity:1;transform:perspective(1600px) translateX(-1.5%) rotateY(5deg) scale(.992);filter:brightness(.9)}100%{opacity:1;transform:perspective(1600px) translateX(0) rotateY(0) scale(1);filter:brightness(1)}}
 @media(max-width:700px){
@@ -4337,7 +4337,7 @@
   "use strict";
   const files=[
     "00-Inicio.png","01-El_Encuentro.png","02-La_Conexion.png","03-La_Expedición_Digital.png",
-    "04-El_Caso_Resuelto.png","05-Los_Años_Compartidos.png","06-Unidos_a_la_distancia.png",
+    "04-El_Caso_Resuelto.png","05-Los_Anos_Compartidos.png","06-Unidos_a_la_distancia.png",
     "07-Vivir_Juntos.png","08-Aparece_el_Guardian.png","09-Una_Familia.png","10-La_Misión_del_Anillo.png",
     "11-Una_Sorpresa.png","12_De_Vuelta_A_Casa.png","13-Ultimo_Folio.png"
   ];
@@ -4359,7 +4359,7 @@
   function makeDots(){progress.innerHTML='';files.forEach((_,i)=>{const d=document.createElement('i');if(i===page)d.classList.add('active');progress.appendChild(d)})}
   function controls(){prev.disabled=page===0;next.disabled=page===files.length-1;Array.from(progress.children).forEach((d,i)=>d.classList.toggle('active',i===page));counter.textContent=(page+1)+' / '+files.length}
   function preloadAround(){[page-1,page+1,page+2].forEach(i=>{if(i>=0&&i<files.length){const im=new Image();im.src=files[i]}})}
-  function go(i,dir){if(busy||i<0||i>=pages.length||i===page)return;busy=true;pages[page].classList.remove('active');page=i;const p=pages[page];p.classList.add('active',dir==='prev'?'turn-prev':'turn-next');controls();preloadAround();setTimeout(()=>{p.classList.remove('turn-next','turn-prev');busy=false},650)}
+  function go(i,dir){if(busy||i<0||i>=pages.length||i===page)return;busy=true;pages[page].classList.remove('active');page=i;const p=pages[page];p.classList.add('active',dir==='prev'?'turn-prev':'turn-next');controls();preloadAround();setTimeout(()=>{p.classList.remove('turn-next','turn-prev');busy=false},1200)}
   function updateSound(needsTap=false){if(!sound)return;const playing=medievalAudio&&!medievalAudio.paused;sound.classList.toggle('is-playing',!!playing);sound.classList.toggle('needs-tap',needsTap);sound.setAttribute('aria-label',playing?'Pausar música del cuento':'Activar música del cuento')}
   function enterAudio(){weddingWasPlaying=!!weddingAudio&&!weddingAudio.paused;if(weddingAudio){weddingResumeTime=weddingAudio.currentTime||0;weddingAudio.pause()}if(!medievalAudio||!storyMusicWanted)return;try{medievalAudio.loop=true;medievalAudio.muted=false;medievalAudio.volume=.68;medievalAudio.currentTime=0;const p=medievalAudio.play();if(p&&p.then)p.then(()=>updateSound(false)).catch(()=>updateSound(true));else updateSound(false)}catch(e){updateSound(true)}}
   function leaveAudio(){if(medievalAudio){medievalAudio.pause();try{medievalAudio.currentTime=0}catch(e){}}updateSound(false);if(weddingAudio&&weddingWasPlaying){try{weddingAudio.currentTime=weddingResumeTime;weddingAudio.volume=1;weddingAudio.muted=false;const p=weddingAudio.play();if(p&&p.catch)p.catch(()=>{})}catch(e){}}}
