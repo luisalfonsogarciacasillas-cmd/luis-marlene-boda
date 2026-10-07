@@ -3747,7 +3747,33 @@
 }
 @media(max-width:380px){#storybook.v5-book .v5-stage{padding-left:4px;padding-right:4px}#storybook.v5-book .v5-folio-frame{width:min(98vw,calc((100svh - 102px)*.6667))}}
 @media(prefers-reduced-motion:reduce){#storybook.v5-book .v5-ambient{animation:none}.v5-book .v5-page.turn-next,.v5-book .v5-page.turn-prev{animation:none!important}}
-</style>\n</head>
+</style>\n
+<style id="v51-mobile-and-turn-fixes">
+/* V5.1 — fit the entire illustrated folio inside the usable viewport. */
+#storybook.v5-book .v5-stage{inset:64px 0 42px;padding:10px 52px;overflow:hidden}
+#storybook.v5-book .v5-folio-frame{width:100%;height:100%;max-width:none;max-height:none;aspect-ratio:auto;perspective:1800px}
+#storybook.v5-book #bookPages{position:absolute;inset:0}
+#storybook.v5-book .v5-page{inset:0;display:flex;align-items:center;justify-content:center;transform-style:preserve-3d;backface-visibility:hidden}
+#storybook.v5-book .v5-page img{width:auto;height:auto;max-width:100%;max-height:100%;object-fit:contain;object-position:center;filter:drop-shadow(0 18px 30px rgba(0,0,0,.5))}
+/* Action hotspots cover the visible lower-center button areas and stay above the PNG. */
+#storybook.v5-book .v5-cover-action,#storybook.v5-book .v5-close-action{left:22%;right:22%;bottom:2.5%;height:14%;z-index:50;pointer-events:auto;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+#storybook.v5-book .v5-close-action{left:20%;right:20%;bottom:3%;height:17%}
+/* A more book-like page turn: curl, shadow and slight depth without changing layout. */
+#storybook.v5-book .v5-page.turn-next{animation:v51TurnNext .62s cubic-bezier(.22,.72,.18,1)}
+#storybook.v5-book .v5-page.turn-prev{animation:v51TurnPrev .62s cubic-bezier(.22,.72,.18,1)}
+@keyframes v51TurnNext{0%{opacity:.15;transform:perspective(1600px) translateX(10%) rotateY(-18deg) scale(.97);filter:brightness(.72)}45%{opacity:1;transform:perspective(1600px) translateX(1.5%) rotateY(-5deg) scale(.992);filter:brightness(.9)}100%{opacity:1;transform:perspective(1600px) translateX(0) rotateY(0) scale(1);filter:brightness(1)}}
+@keyframes v51TurnPrev{0%{opacity:.15;transform:perspective(1600px) translateX(-10%) rotateY(18deg) scale(.97);filter:brightness(.72)}45%{opacity:1;transform:perspective(1600px) translateX(-1.5%) rotateY(5deg) scale(.992);filter:brightness(.9)}100%{opacity:1;transform:perspective(1600px) translateX(0) rotateY(0) scale(1);filter:brightness(1)}}
+@media(max-width:700px){
+ #storybook.v5-book .v5-stage{inset:70px 0 48px;padding:8px 10px 8px}
+ #storybook.v5-book .v5-folio-frame{width:100%;height:100%}
+ #storybook.v5-book .v5-page img{max-width:calc(100vw - 20px);max-height:calc(100dvh - 126px);max-height:calc(100svh - 126px)}
+ #storybook.v5-book .v5-cover-action{left:24%;right:24%;bottom:2%;height:15%}
+ #storybook.v5-book .v5-close-action{left:20%;right:20%;bottom:3%;height:18%}
+}
+@media(max-width:380px){#storybook.v5-book .v5-stage{padding-left:6px;padding-right:6px}#storybook.v5-book .v5-page img{max-width:calc(100vw - 12px)}}
+@media(prefers-reduced-motion:reduce){#storybook.v5-book .v5-page.turn-next,#storybook.v5-book .v5-page.turn-prev{animation:none!important}}
+</style>
+</head>
 
 <body class="locked">
 
@@ -4326,14 +4352,14 @@
     const p=document.createElement('section'); p.className='v5-page'+(i===0?' active':''); p.dataset.page=i;
     const img=document.createElement('img'); img.src=src; img.alt=labels[i]; img.draggable=false; if(i>1) img.loading='lazy'; img.decoding='async';
     p.appendChild(img);
-    if(i===0){const b=document.createElement('button');b.className='v5-cover-action';b.type='button';b.setAttribute('aria-label','Abrir el libro');b.addEventListener('click',()=>go(1,'next'));p.appendChild(b)}
-    if(i===files.length-1){const b=document.createElement('button');b.className='v5-close-action';b.type='button';b.setAttribute('aria-label','Cerrar el libro y volver a la celebración');b.addEventListener('click',closeBook);p.appendChild(b)}
+    if(i===0){const b=document.createElement('button');b.className='v5-cover-action';b.type='button';b.setAttribute('aria-label','Abrir el libro');b.addEventListener('click',(e)=>{e.preventDefault();e.stopPropagation();go(1,'next')});b.addEventListener('touchend',(e)=>{e.preventDefault();e.stopPropagation();go(1,'next')},{passive:false});p.appendChild(b)}
+    if(i===files.length-1){const b=document.createElement('button');b.className='v5-close-action';b.type='button';b.setAttribute('aria-label','Cerrar el libro y volver a la celebración');b.addEventListener('click',(e)=>{e.preventDefault();e.stopPropagation();closeBook()});b.addEventListener('touchend',(e)=>{e.preventDefault();e.stopPropagation();closeBook()},{passive:false});p.appendChild(b)}
     pagesHost.appendChild(p); pages.push(p);
   });
   function makeDots(){progress.innerHTML='';files.forEach((_,i)=>{const d=document.createElement('i');if(i===page)d.classList.add('active');progress.appendChild(d)})}
   function controls(){prev.disabled=page===0;next.disabled=page===files.length-1;Array.from(progress.children).forEach((d,i)=>d.classList.toggle('active',i===page));counter.textContent=(page+1)+' / '+files.length}
   function preloadAround(){[page-1,page+1,page+2].forEach(i=>{if(i>=0&&i<files.length){const im=new Image();im.src=files[i]}})}
-  function go(i,dir){if(busy||i<0||i>=pages.length||i===page)return;busy=true;pages[page].classList.remove('active');page=i;const p=pages[page];p.classList.add('active',dir==='prev'?'turn-prev':'turn-next');controls();preloadAround();setTimeout(()=>{p.classList.remove('turn-next','turn-prev');busy=false},480)}
+  function go(i,dir){if(busy||i<0||i>=pages.length||i===page)return;busy=true;pages[page].classList.remove('active');page=i;const p=pages[page];p.classList.add('active',dir==='prev'?'turn-prev':'turn-next');controls();preloadAround();setTimeout(()=>{p.classList.remove('turn-next','turn-prev');busy=false},650)}
   function updateSound(needsTap=false){if(!sound)return;const playing=medievalAudio&&!medievalAudio.paused;sound.classList.toggle('is-playing',!!playing);sound.classList.toggle('needs-tap',needsTap);sound.setAttribute('aria-label',playing?'Pausar música del cuento':'Activar música del cuento')}
   function enterAudio(){weddingWasPlaying=!!weddingAudio&&!weddingAudio.paused;if(weddingAudio){weddingResumeTime=weddingAudio.currentTime||0;weddingAudio.pause()}if(!medievalAudio||!storyMusicWanted)return;try{medievalAudio.loop=true;medievalAudio.muted=false;medievalAudio.volume=.68;medievalAudio.currentTime=0;const p=medievalAudio.play();if(p&&p.then)p.then(()=>updateSound(false)).catch(()=>updateSound(true));else updateSound(false)}catch(e){updateSound(true)}}
   function leaveAudio(){if(medievalAudio){medievalAudio.pause();try{medievalAudio.currentTime=0}catch(e){}}updateSound(false);if(weddingAudio&&weddingWasPlaying){try{weddingAudio.currentTime=weddingResumeTime;weddingAudio.volume=1;weddingAudio.muted=false;const p=weddingAudio.play();if(p&&p.catch)p.catch(()=>{})}catch(e){}}}
@@ -4343,7 +4369,7 @@
   function closeBook(){storybook.classList.remove('open');storybook.setAttribute('aria-hidden','true');document.body.classList.remove('storybook-open');leaveAudio();setTimeout(reset,380)}
   trigger&&trigger.addEventListener('click',openBook);x&&x.addEventListener('click',closeBook);sound&&sound.addEventListener('click',toggleSound);prev.addEventListener('click',()=>go(page-1,'prev'));next.addEventListener('click',()=>go(page+1,'next'));
   document.addEventListener('keydown',e=>{if(!storybook.classList.contains('open'))return;if(e.key==='Escape')closeBook();else if(e.key==='ArrowRight')go(page+1,'next');else if(e.key==='ArrowLeft')go(page-1,'prev')});
-  storybook.addEventListener('touchstart',e=>{touchX=e.changedTouches[0].clientX},{passive:true});storybook.addEventListener('touchend',e=>{if(touchX===null)return;const dx=e.changedTouches[0].clientX-touchX;touchX=null;if(Math.abs(dx)>52)go(page+(dx<0?1:-1),dx<0?'next':'prev')},{passive:true});
+  storybook.addEventListener('touchstart',e=>{touchX=e.changedTouches[0].clientX},{passive:true});storybook.addEventListener('touchend',e=>{if(e.target.closest&&e.target.closest('.v5-cover-action,.v5-close-action,.story-sound,.storybook-x,.v5-nav')){touchX=null;return}if(touchX===null)return;const dx=e.changedTouches[0].clientX-touchX;touchX=null;if(Math.abs(dx)>52)go(page+(dx<0?1:-1),dx<0?'next':'prev')},{passive:true});
   makeDots();controls();preloadAround();
 })();
 </script>
