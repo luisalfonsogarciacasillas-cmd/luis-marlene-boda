@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#F4EDE3" />
   <meta name="description" content="Invitación de boda civil de Luis & Marlene — 19 de diciembre de 2026." />
-  <title>Luis & Marlene | 19.12.2026 · V2.9</title>
+  <title>Luis & Marlene | 19.12.2026 · V2.9.1</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -2388,6 +2388,23 @@
       .spark-line,.red-thread,.gold-path,.growing-vine{stroke-dashoffset:0!important;animation:none!important}
       .chat-bubble{opacity:1!important;animation:none!important}
     }
+
+    /* V2.9.1 — Easter egg trigger reliability fix */
+    button.scroll.story-easteregg-trigger{
+      border:0;
+      background:transparent;
+      width:auto;
+      height:auto;
+      cursor:pointer;
+      z-index:20;
+      -webkit-tap-highlight-color:transparent;
+      touch-action:manipulation;
+    }
+    button.scroll.story-easteregg-trigger:focus-visible{
+      outline:1px solid rgba(185,154,106,.55);
+      outline-offset:7px;
+      border-radius:2px;
+    }
 </style>
 </head>
 
@@ -2479,7 +2496,7 @@
         <div class="date"><span>19 · 12 · 2026</span></div>
       </div>
 
-      <a class="scroll" href="#invitacion"><button class="story-easteregg-trigger" id="storyEastereggTrigger" type="button" aria-label="Descubre nuestra historia">Descubre nuestra historia</button></a>
+      <button class="scroll story-easteregg-trigger" id="storyEastereggTrigger" type="button" aria-label="Descubre nuestra historia">Descubre nuestra historia</button>
     </section>
 
 
@@ -2928,112 +2945,6 @@
     }
 
 
-    // =========================================================
-    // V2.9 — Hidden storybook Easter egg
-    // =========================================================
-    const storybook = document.getElementById('storybook');
-    const storyTrigger = document.getElementById('storyEastereggTrigger');
-    const storyX = document.getElementById('storybookX');
-    const closeBookButton = document.getElementById('closeBookButton');
-    const bookShell = document.getElementById('bookShell');
-    const bookPages = Array.from(document.querySelectorAll('.book-page'));
-    const bookPrev = document.getElementById('bookPrev');
-    const bookNext = document.getElementById('bookNext');
-    const bookProgress = document.getElementById('bookProgress');
-    let bookPageIndex = 0;
-    let bookAnimating = false;
-
-    function buildBookProgress(){
-      if (!bookProgress) return;
-      bookProgress.innerHTML = '';
-      bookPages.forEach((_, index) => {
-        const dot = document.createElement('i');
-        if (index === bookPageIndex) dot.classList.add('active');
-        bookProgress.appendChild(dot);
-      });
-    }
-
-    function updateBookControls(){
-      if (!bookPrev || !bookNext) return;
-      bookPrev.disabled = bookPageIndex <= 1;
-      bookNext.disabled = bookPageIndex >= bookPages.length - 1 || bookPageIndex === 0;
-      if (bookProgress) {
-        Array.from(bookProgress.children).forEach((dot, index) => {
-          dot.classList.toggle('active', index === bookPageIndex);
-        });
-      }
-    }
-
-    function showBookPage(index){
-      if (bookAnimating || index < 0 || index >= bookPages.length || index === bookPageIndex) return;
-      bookAnimating = true;
-      const current = bookPages[bookPageIndex];
-      const next = bookPages[index];
-
-      current.classList.add('leaving');
-      setTimeout(() => {
-        current.classList.remove('active','leaving');
-        next.classList.add('active');
-        bookPageIndex = index;
-        if (bookPageIndex > 0) bookShell.classList.add('opened');
-        updateBookControls();
-        setTimeout(() => { bookAnimating = false; }, 720);
-      }, 390);
-    }
-
-    function openStorybook(){
-      if (!storybook) return;
-      bookPageIndex = 0;
-      bookPages.forEach((p,i) => p.classList.toggle('active', i === 0));
-      bookShell.classList.remove('opened');
-      storybook.classList.add('open');
-      storybook.setAttribute('aria-hidden','false');
-      document.body.classList.add('storybook-open');
-      buildBookProgress();
-      updateBookControls();
-    }
-
-    function closeStorybook(){
-      if (!storybook) return;
-      storybook.classList.remove('open');
-      storybook.setAttribute('aria-hidden','true');
-      document.body.classList.remove('storybook-open');
-      setTimeout(() => {
-        bookPageIndex = 0;
-        bookPages.forEach((p,i) => p.classList.toggle('active', i === 0));
-        bookShell.classList.remove('opened');
-        updateBookControls();
-      }, 760);
-    }
-
-    storyTrigger?.addEventListener('click', openStorybook);
-    storyX?.addEventListener('click', closeStorybook);
-    closeBookButton?.addEventListener('click', closeStorybook);
-    bookPrev?.addEventListener('click', () => showBookPage(bookPageIndex - 1));
-    bookNext?.addEventListener('click', () => showBookPage(bookPageIndex + 1));
-    document.querySelector('[data-next]')?.addEventListener('click', () => showBookPage(1));
-
-    document.addEventListener('keydown', (event) => {
-      if (!storybook?.classList.contains('open')) return;
-      if (event.key === 'Escape') closeStorybook();
-      if (event.key === 'ArrowRight' && bookPageIndex > 0) showBookPage(bookPageIndex + 1);
-      if (event.key === 'ArrowLeft' && bookPageIndex > 1) showBookPage(bookPageIndex - 1);
-    });
-
-    // Touch swipe support inside the hidden book.
-    let bookTouchStartX = null;
-    storybook?.addEventListener('touchstart', (event) => {
-      bookTouchStartX = event.changedTouches[0]?.clientX ?? null;
-    }, { passive:true });
-    storybook?.addEventListener('touchend', (event) => {
-      if (bookTouchStartX === null || bookPageIndex === 0) return;
-      const endX = event.changedTouches[0]?.clientX ?? bookTouchStartX;
-      const delta = endX - bookTouchStartX;
-      bookTouchStartX = null;
-      if (Math.abs(delta) < 55) return;
-      if (delta < 0 && bookPageIndex < bookPages.length - 1) showBookPage(bookPageIndex + 1);
-      if (delta > 0 && bookPageIndex > 1) showBookPage(bookPageIndex - 1);
-    }, { passive:true });
 </script>
 
   <!-- V2.9 — Hidden storybook Easter egg -->
@@ -3248,5 +3159,116 @@
     </div>
   </div>
 
+
+<script>
+    // =========================================================
+    // V2.9 — Hidden storybook Easter egg
+    // =========================================================
+    const storybook = document.getElementById('storybook');
+    const storyTrigger = document.getElementById('storyEastereggTrigger');
+    const storyX = document.getElementById('storybookX');
+    const closeBookButton = document.getElementById('closeBookButton');
+    const bookShell = document.getElementById('bookShell');
+    const bookPages = Array.from(document.querySelectorAll('.book-page'));
+    const bookPrev = document.getElementById('bookPrev');
+    const bookNext = document.getElementById('bookNext');
+    const bookProgress = document.getElementById('bookProgress');
+    let bookPageIndex = 0;
+    let bookAnimating = false;
+
+    function buildBookProgress(){
+      if (!bookProgress) return;
+      bookProgress.innerHTML = '';
+      bookPages.forEach((_, index) => {
+        const dot = document.createElement('i');
+        if (index === bookPageIndex) dot.classList.add('active');
+        bookProgress.appendChild(dot);
+      });
+    }
+
+    function updateBookControls(){
+      if (!bookPrev || !bookNext) return;
+      bookPrev.disabled = bookPageIndex <= 1;
+      bookNext.disabled = bookPageIndex >= bookPages.length - 1 || bookPageIndex === 0;
+      if (bookProgress) {
+        Array.from(bookProgress.children).forEach((dot, index) => {
+          dot.classList.toggle('active', index === bookPageIndex);
+        });
+      }
+    }
+
+    function showBookPage(index){
+      if (bookAnimating || index < 0 || index >= bookPages.length || index === bookPageIndex) return;
+      bookAnimating = true;
+      const current = bookPages[bookPageIndex];
+      const next = bookPages[index];
+
+      current.classList.add('leaving');
+      setTimeout(() => {
+        current.classList.remove('active','leaving');
+        next.classList.add('active');
+        bookPageIndex = index;
+        if (bookPageIndex > 0) bookShell.classList.add('opened');
+        updateBookControls();
+        setTimeout(() => { bookAnimating = false; }, 720);
+      }, 390);
+    }
+
+    function openStorybook(){
+      if (!storybook) return;
+      bookPageIndex = 0;
+      bookPages.forEach((p,i) => p.classList.toggle('active', i === 0));
+      bookShell.classList.remove('opened');
+      storybook.classList.add('open');
+      storybook.setAttribute('aria-hidden','false');
+      document.body.classList.add('storybook-open');
+      buildBookProgress();
+      updateBookControls();
+    }
+
+    function closeStorybook(){
+      if (!storybook) return;
+      storybook.classList.remove('open');
+      storybook.setAttribute('aria-hidden','true');
+      document.body.classList.remove('storybook-open');
+      setTimeout(() => {
+        bookPageIndex = 0;
+        bookPages.forEach((p,i) => p.classList.toggle('active', i === 0));
+        bookShell.classList.remove('opened');
+        updateBookControls();
+      }, 760);
+    }
+
+    if (storyTrigger) storyTrigger.addEventListener('click', openStorybook);
+    if (storyX) storyX.addEventListener('click', closeStorybook);
+    if (closeBookButton) closeBookButton.addEventListener('click', closeStorybook);
+    if (bookPrev) bookPrev.addEventListener('click', () => showBookPage(bookPageIndex - 1));
+    if (bookNext) bookNext.addEventListener('click', () => showBookPage(bookPageIndex + 1));
+    const bookStartButton = document.querySelector('[data-next]');
+    if (bookStartButton) bookStartButton.addEventListener('click', () => showBookPage(1));
+
+    document.addEventListener('keydown', (event) => {
+      if (!storybook || !storybook.classList.contains('open')) return;
+      if (event.key === 'Escape') closeStorybook();
+      if (event.key === 'ArrowRight' && bookPageIndex > 0) showBookPage(bookPageIndex + 1);
+      if (event.key === 'ArrowLeft' && bookPageIndex > 1) showBookPage(bookPageIndex - 1);
+    });
+
+    // Touch swipe support inside the hidden book.
+    let bookTouchStartX = null;
+    if (storybook) storybook.addEventListener('touchstart', (event) => {
+      bookTouchStartX = event.changedTouches[0]?.clientX ?? null;
+    }, { passive:true });
+    if (storybook) storybook.addEventListener('touchend', (event) => {
+      if (bookTouchStartX === null || bookPageIndex === 0) return;
+      const endX = event.changedTouches[0]?.clientX ?? bookTouchStartX;
+      const delta = endX - bookTouchStartX;
+      bookTouchStartX = null;
+      if (Math.abs(delta) < 55) return;
+      if (delta < 0 && bookPageIndex < bookPages.length - 1) showBookPage(bookPageIndex + 1);
+      if (delta > 0 && bookPageIndex > 1) showBookPage(bookPageIndex - 1);
+    }, { passive:true });
+
+</script>
 </body>
 </html>
