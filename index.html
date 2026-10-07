@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#F4EDE3" />
   <meta name="description" content="Invitación de boda civil de Luis & Marlene — 19 de diciembre de 2026." />
-  <title>Luis & Marlene | 19.12.2026 · V4.5 Final</title>
+  <title>Luis & Marlene | 19.12.2026 · V4.6 Illustrated Edition</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -3631,6 +3631,81 @@
     animation:none!important;
   }
 }
+
+/* ============================================================
+   V4.6 ILLUSTRATED EDITION
+   Cohesive medieval flat-illustration system.
+   ============================================================ */
+#storybook .illustrated-v46{
+  overflow:visible;
+  filter:drop-shadow(0 8px 10px rgba(67,39,22,.12));
+}
+#storybook .art-caption-v46{
+  position:absolute;
+  left:50%;
+  bottom:clamp(13px,2.1vh,24px);
+  transform:translateX(-50%);
+  z-index:12;
+  width:min(88%,440px);
+  padding:5px 11px 4px;
+  border-top:1px solid rgba(126,80,42,.35);
+  border-bottom:1px solid rgba(126,80,42,.22);
+  background:rgba(239,220,164,.82);
+  color:#70462c;
+  text-align:center;
+  font-family:"Cormorant Garamond",serif!important;
+  font-size:10px;
+  font-style:italic;
+  line-height:1.15;
+  letter-spacing:.02em;
+  pointer-events:none;
+  backdrop-filter:blur(2px);
+}
+#storybook .folio{position:relative}
+#storybook .book-page.active .illustrated-v46{
+  animation:v46ArtArrival .9s .13s cubic-bezier(.18,.78,.2,1) both;
+}
+#storybook .book-page.active .art-caption-v46{
+  animation:v46Caption .55s .55s ease both;
+}
+#storybook .bond-art-v46 text{
+  transform-origin:center;
+  animation:v46Sleep 2.6s ease-in-out infinite;
+}
+#storybook .bond-art-v46 text:nth-of-type(2){animation-delay:.4s}
+#storybook .bond-art-v46 text:nth-of-type(3){animation-delay:.8s}
+@keyframes v46ArtArrival{
+  from{opacity:0;transform:translateY(11px) scale(.97);filter:drop-shadow(0 3px 4px rgba(67,39,22,.05)) saturate(.78)}
+  to{opacity:1;transform:none;filter:drop-shadow(0 8px 10px rgba(67,39,22,.12)) saturate(1)}
+}
+@keyframes v46Caption{from{opacity:0;transform:translate(-50%,5px)}to{opacity:1;transform:translate(-50%,0)}}
+@keyframes v46Sleep{0%,100%{opacity:.35;transform:translateY(3px)}50%{opacity:1;transform:translateY(-4px)}}
+
+/* Let captions live beneath the art instead of being painted into it. */
+#storybook .proposal-spread .ring-glint-v45{z-index:14}
+#storybook .proposal-spread .cave-motes-v45{z-index:13}
+
+@media(max-width:700px){
+  #storybook .art-caption-v46{
+    bottom:clamp(7px,1.2dvh,12px);
+    width:min(90%,360px);
+    padding:3px 7px;
+    font-size:7.6px;
+    line-height:1.1;
+    background:rgba(239,220,164,.9);
+  }
+  #storybook .illustrated-v46{
+    filter:drop-shadow(0 5px 7px rgba(67,39,22,.11));
+  }
+}
+@media(max-width:700px) and (max-height:740px){
+  #storybook .art-caption-v46{font-size:6.8px;bottom:5px;padding:2px 5px}
+}
+@media(prefers-reduced-motion:reduce){
+  #storybook .book-page.active .illustrated-v46,
+  #storybook .book-page.active .art-caption-v46,
+  #storybook .bond-art-v46 text{animation:none!important}
+}
 </style>
 </head>
 
@@ -4219,13 +4294,16 @@
               <h3 class="punch">No.</h3>
               <p class="scribe-note note-left">El narrador había preparado un castillo. Fue rechazado por falta de evidencia histórica.</p>
             </div>
-            <svg class="miniature castle-mini" viewBox="0 0 400 240" aria-hidden="true">
-              <path class="hill-green" d="M12 211 Q95 119 190 193 Q270 111 391 205 V239 H12Z"/>
-              <path class="castle-fill" d="M230 191 V93 H258 V64 H283 V93 H309 V46 H335 V93 H359 V191Z"/>
-              <path class="castle-line" d="M230 191 V93 H258 V64 H283 V93 H309 V46 H335 V93 H359 V191 M245 191 V143 H267 V191 M319 191 V128 H340 V191"/>
-              <circle class="gold-sun" cx="83" cy="62" r="28"/>
-              <path class="bird" d="M123 73 q12-11 24 0 q12-11 24 0"/>
-            </svg>
+            <svg class="miniature castle-mini illustrated-v46" viewBox="0 0 520 270" aria-hidden="true">
+<defs><linearGradient id="sky46a" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#55758a"/><stop offset="1" stop-color="#d7b66b"/></linearGradient></defs>
+<rect x="8" y="8" width="504" height="254" rx="28" fill="url(#sky46a)" stroke="#593421" stroke-width="7"/>
+<circle cx="90" cy="68" r="31" fill="#e0bd68"/><circle cx="410" cy="47" r="3.5" fill="#f3dda1"/><circle cx="448" cy="78" r="3" fill="#f3dda1"/><circle cx="365" cy="88" r="2.5" fill="#f3dda1"/>
+<path d="M8 190 Q75 132 145 183 Q205 111 279 179 Q350 115 512 183 V262 H8Z" fill="#66814d" stroke="#3d532f" stroke-width="6"/>
+<path d="M319 179V91h39V61h38v30h40v-44h40v132Z" fill="#a94e31" stroke="#5c3021" stroke-width="7"/>
+<path d="M345 179v-48h25v48M410 179v-61h25v61" fill="#5b3022" stroke="#5b3022" stroke-width="5"/>
+<path d="M128 95q20-19 40 0M175 75q16-14 32 0" fill="none" stroke="#593421" stroke-width="5" stroke-linecap="round"/>
+<path d="M33 226 Q117 201 194 224" fill="none" stroke="#d9c17a" stroke-width="5"/>
+</svg><div class="art-caption-v46">El castillo que el narrador quería usar.</div>
           </div>
 
           <div class="folio folio-right">
@@ -4239,19 +4317,16 @@
               <p>Y fue ahí, entre un par de miradas, donde comenzó una historia que ninguno de los dos sabía que estaba empezando.</p>
               <p class="scribe-note note-right">Representación artística. El camión probablemente tardó más. El romance tuvo mejor puntualidad.</p>
             </div>
-            <svg class="miniature bus-mini" viewBox="0 0 400 240" aria-hidden="true">
-              <path class="ground" d="M15 211 H385"/>
-              <path class="bus-stop" d="M56 210 V73 M56 73 H121 M72 88 H108 V120 H72Z"/>
-              <text x="90" y="108" text-anchor="middle" class="mini-label">PARADA</text>
-              <path class="bus" d="M181 210 V132 Q181 113 201 113 H329 Q348 113 348 132 V210Z M197 132 H332 M222 132 V174 M271 132 V174 M317 132 V174"/>
-              <circle class="wheel" cx="211" cy="210" r="12"/><circle class="wheel" cx="319" cy="210" r="12"/>
-              <circle class="figure" cx="130" cy="162" r="9"/><path class="figure-line" d="M130 171 V208 M130 184 L112 197"/>
-              <circle class="figure" cx="160" cy="163" r="9"/><path class="figure-line" d="M160 172 V208 M160 184 L178 197"/>
-              <path class="glance" d="M140 151 Q145 145 150 151"/>
-            
-              <path d="M20 218 Q70 189 119 214 Q164 185 207 216 Q272 184 381 216" fill="#667641" stroke="#43522b" stroke-width="1.5"/>
-              <path d="M25 70 Q47 43 67 69 M335 78 Q357 48 379 78" fill="none" stroke="#9b452f" stroke-width="2"/>
-</svg>
+            <svg class="miniature bus-mini illustrated-v46" viewBox="0 0 520 270" aria-hidden="true">
+<rect x="8" y="8" width="504" height="254" rx="28" fill="#e7d59c" stroke="#593421" stroke-width="7"/>
+<circle cx="76" cy="55" r="27" fill="#d7ad58"/><path d="M8 190 Q90 150 168 185 T330 181 T512 186V262H8Z" fill="#657d4b"/>
+<path d="M130 98h245q22 0 22 22v75H110v-75q0-22 20-22Z" fill="#a74e32" stroke="#593421" stroke-width="7"/>
+<rect x="139" y="116" width="58" height="42" rx="4" fill="#668595"/><rect x="209" y="116" width="58" height="42" rx="4" fill="#668595"/><rect x="279" y="116" width="58" height="42" rx="4" fill="#668595"/>
+<circle cx="167" cy="199" r="25" fill="#35261f" stroke="#d6b568" stroke-width="7"/><circle cx="343" cy="199" r="25" fill="#35261f" stroke="#d6b568" stroke-width="7"/>
+<path d="M76 184v-58M60 139h32" stroke="#593421" stroke-width="7" stroke-linecap="round"/><circle cx="76" cy="111" r="17" fill="#b76d45" stroke="#593421" stroke-width="5"/>
+<path d="M428 184v-58M412 139h32" stroke="#593421" stroke-width="7" stroke-linecap="round"/><circle cx="428" cy="111" r="17" fill="#b76d45" stroke="#593421" stroke-width="5"/>
+<path d="M89 109q18-19 36 0" fill="none" stroke="#8c3e30" stroke-width="5"/>
+</svg><div class="art-caption-v46">Una parada cualquiera. Una historia nada cualquiera.</div>
           </div>
         </section>
 
@@ -4267,13 +4342,14 @@
               <p class="aside">Eran otros tiempos. No juzguen.</p>
               <p class="scribe-note note-left">Fuentes históricas confirman que Marlene inició esta expedición. Luis, mientras tanto, participó activamente siendo encontrado.</p>
             </div>
-            <svg class="miniature scroll-mini" viewBox="0 0 400 240" aria-hidden="true">
-              <path class="scroll-paper" d="M103 55 Q84 55 84 76 V180 Q84 199 103 199 H301 Q319 199 319 180 V76 Q319 55 301 55Z"/>
-              <path class="scroll-line" d="M121 91 H280 M121 119 H256 M121 147 H286"/>
-              <circle class="wax-seal" cx="292" cy="184" r="25"/>
-              <text x="292" y="192" text-anchor="middle" class="seal-letter">f</text>
-              <path class="quill" d="M64 199 Q105 145 157 111 Q126 161 78 207Z"/>
-            </svg>
+            <svg class="miniature scroll-mini illustrated-v46" viewBox="0 0 520 270" aria-hidden="true">
+<rect x="8" y="8" width="504" height="254" rx="28" fill="#e6d39a" stroke="#593421" stroke-width="7"/>
+<path d="M95 68h300q25 0 25 25v112q0 22-22 22H100q-25 0-25-25V92q0-24 20-24Z" fill="#efdca3" stroke="#6b3a25" stroke-width="7"/>
+<path d="M116 103h235M116 132h195M116 161h221M116 190h150" stroke="#6b3a25" stroke-width="6" stroke-linecap="round"/>
+<path d="M92 206l59-76 18 14-58 76-30 10Z" fill="#f0dca3" stroke="#6b3a25" stroke-width="6"/><path d="M145 138l18 14" stroke="#9d3e31" stroke-width="5"/>
+<circle cx="399" cy="193" r="31" fill="#a23f32" stroke="#6b3a25" stroke-width="6"/><path d="M391 193h16M399 185v16" stroke="#f0dca3" stroke-width="4"/>
+<path d="M431 48q17 14 34 0M448 32v33" stroke="#d2a954" stroke-width="4"/>
+</svg><div class="art-caption-v46">La expedición digital.</div>
           </div>
 
           <div class="folio folio-right">
@@ -4289,14 +4365,15 @@
               <p class="aside">Nadie sabe exactamente cuándo ocurrió.<br>Ellos tampoco.</p>
               <p class="scribe-note note-right">La administración de esta historia aún investiga la fecha exacta. Después de casi diez años, las probabilidades de resolver el caso son bajas.</p>
             </div>
-            <svg class="miniature chat-mini" viewBox="0 0 400 240" aria-hidden="true">
-              <path class="ribbon r1" d="M59 83 Q120 44 183 86 L169 119 Q111 86 65 118Z"/>
-              <path class="ribbon r2" d="M216 123 Q278 83 342 127 L329 160 Q273 127 223 160Z"/>
-              <text x="121" y="91" text-anchor="middle" class="ribbon-text">Hola :)</text>
-              <text x="281" y="134" text-anchor="middle" class="ribbon-text">♡</text>
-              <path class="vine" d="M44 205 Q84 172 66 131 Q51 98 80 67"/>
-              <path class="vine" d="M354 205 Q315 172 334 132 Q348 101 320 68"/>
-            </svg>
+            <svg class="miniature chat-mini illustrated-v46" viewBox="0 0 520 270" aria-hidden="true">
+<rect x="8" y="8" width="504" height="254" rx="28" fill="#d9c48c" stroke="#593421" stroke-width="7"/>
+<rect x="126" y="42" width="270" height="164" rx="14" fill="#5b3928" stroke="#3c281f" stroke-width="7"/><rect x="145" y="59" width="232" height="127" fill="#6f8d91"/>
+<path d="M95 222h332l-39 24H132Z" fill="#8d5938" stroke="#593421" stroke-width="6"/>
+<path d="M177 85h101q12 0 12 12v31q0 12-12 12h-61l-20 17 5-17h-25q-12 0-12-12V97q0-12 12-12Z" fill="#ead69d"/>
+<path d="M254 127h85q11 0 11 11v27q0 11-11 11h-49l-18 14 4-14h-22q-11 0-11-11v-27q0-11 11-11Z" fill="#b65339"/>
+<path d="M199 107h54M277 148h47" stroke="#6a3a28" stroke-width="5" stroke-linecap="round"/>
+<path d="M77 79c0-19 27-27 37-9 10-18 37-10 37 9 0 21-37 42-37 42S77 100 77 79Z" fill="#a13f32"/>
+</svg><div class="art-caption-v46">Mensajes, conversaciones… y cero anuncio oficial.</div>
           </div>
         </section>
 
@@ -4312,12 +4389,15 @@
               <h3 class="emotional-manuscript">Una conexión que quizá no podía verse,<br>pero siempre podía sentirse.</h3>
               <p class="scribe-note note-left">Los sabios llaman a esto “conexión”. Sus amigos probablemente ya lo habían notado antes.</p>
             </div>
-            <svg class="miniature thread-mini" viewBox="0 0 400 240" aria-hidden="true">
-              <circle class="figure" cx="90" cy="121" r="13"/><path class="figure-line" d="M90 135 V207 M90 153 L57 179"/>
-              <circle class="figure" cx="310" cy="121" r="13"/><path class="figure-line" d="M310 135 V207 M310 153 L343 179"/>
-              <path class="red-thread-v3" d="M104 154 C159 94 244 94 296 154"/>
-              <path class="red-thread-v3 heart-thread" d="M199 121 C187 100 159 117 172 139 C183 154 199 166 199 166 C199 166 215 154 226 139 C239 117 211 100 199 121Z"/>
-            </svg>
+            <svg class="miniature thread-mini illustrated-v46" viewBox="0 0 520 270" aria-hidden="true">
+<rect x="8" y="8" width="504" height="254" rx="28" fill="#e8d79e" stroke="#593421" stroke-width="7"/>
+<path d="M8 209Q93 153 171 201Q244 136 320 198Q396 144 512 195V262H8Z" fill="#6c824e"/>
+<circle cx="111" cy="131" r="20" fill="#b66b45" stroke="#593421" stroke-width="5"/><path d="M111 151v63M111 169l-37 35M111 169l34 35" stroke="#593421" stroke-width="7" stroke-linecap="round"/>
+<circle cx="409" cy="131" r="20" fill="#b66b45" stroke="#593421" stroke-width="5"/><path d="M409 151v63M409 169l-34 35M409 169l37 35" stroke="#593421" stroke-width="7" stroke-linecap="round"/>
+<path d="M145 153Q260 53 375 153" fill="none" stroke="#a33f34" stroke-width="7" stroke-linecap="round"/>
+<path d="M260 105c-21-31-64 2 0 54 64-52 21-85 0-54Z" fill="#ead59b" stroke="#a33f34" stroke-width="6"/>
+<circle cx="260" cy="58" r="5" fill="#d6ad58"/><circle cx="222" cy="72" r="3" fill="#d6ad58"/><circle cx="299" cy="73" r="3" fill="#d6ad58"/>
+</svg><div class="art-caption-v46">Una conexión que siempre podía sentirse.</div>
           </div>
 
           <div class="folio folio-right">
@@ -4331,14 +4411,14 @@
               <h3 class="emotional-manuscript">Se acercaron todavía más.</h3>
               <p class="aside">Claramente nunca han sido buenos siguiendo la trama. El narrador presentó una queja formal.</p>
             </div>
-            <svg class="miniature bloom-mini" viewBox="0 0 400 240" aria-hidden="true">
-              <path class="window-v3" d="M113 47 H289 V211 H113Z M201 47 V211 M113 129 H289"/>
-              <circle class="figure" cx="168" cy="158" r="10"/><path class="figure-line" d="M168 169 V207 M168 182 L191 193"/>
-              <circle class="figure" cx="235" cy="158" r="10"/><path class="figure-line" d="M235 169 V207 M235 182 L212 193"/>
-              <path class="green-vine gv1" d="M81 213 C65 175 78 143 111 116 C129 101 128 81 117 65"/>
-              <path class="green-vine gv2" d="M319 213 C335 175 322 143 289 116 C271 101 272 81 283 65"/>
-              <circle class="flower" cx="81" cy="174" r="7"/><circle class="flower" cx="318" cy="171" r="7"/>
-            </svg>
+            <svg class="miniature bloom-mini illustrated-v46" viewBox="0 0 520 270" aria-hidden="true">
+<rect x="8" y="8" width="504" height="254" rx="28" fill="#4f6470" stroke="#593421" stroke-width="7"/>
+<circle cx="410" cy="62" r="29" fill="#d6b464"/><path d="M8 207Q87 166 160 204Q232 147 309 202Q390 153 512 199V262H8Z" fill="#536b47"/>
+<path d="M260 224V111" stroke="#6f8c48" stroke-width="8"/><path d="M259 171q-42-35-70-7 32 40 70 7ZM261 145q39-42 72-16-28 43-72 16Z" fill="#789452" stroke="#415a34" stroke-width="5"/>
+<circle cx="260" cy="94" r="22" fill="#d9a94f"/><circle cx="240" cy="84" r="17" fill="#b9503a"/><circle cx="280" cy="84" r="17" fill="#b9503a"/><circle cx="244" cy="106" r="17" fill="#b9503a"/><circle cx="278" cy="106" r="17" fill="#b9503a"/>
+<path d="M77 70l5 12 13 2-10 9 3 13-11-6-12 6 3-13-10-9 14-2Z" fill="#d8b55d"/>
+<path d="M143 48l3 8 9 1-7 6 2 9-7-4-8 4 2-9-6-6 8-1Z" fill="#d8b55d"/>
+</svg><div class="art-caption-v46">Cuando el mundo se detuvo, ellos siguieron creciendo.</div>
           </div>
         </section>
 
@@ -4356,16 +4436,14 @@
               <p>En diciembre de 2023 comenzó un nuevo capítulo: construir un hogar y terminar cada día juntos.</p>
               <p class="scribe-note note-left">El verdadero examen final. No se permitían acordeones. Sí se permitía preguntar “¿qué quieres cenar?” y rechazar todas las opciones.</p>
             </div>
-            <svg class="miniature home-mini" viewBox="0 0 400 240" aria-hidden="true">
-              <path class="house-fill" d="M76 137 L200 48 L325 137 V219 H76Z"/>
-              <path class="house-line" d="M76 137 L200 48 L325 137 V219 H76Z M137 219 V151 H196 V219 M235 148 H293 V188 H235Z"/>
-              <rect class="lit-window" x="241" y="154" width="46" height="28"/>
-              <path class="smoke-v3" d="M282 76 C297 63 283 51 296 39 C307 29 297 18 307 9"/>
-            
-              <path d="M28 223 Q86 174 143 216 Q207 171 372 223" fill="#667641" stroke="#43522b" stroke-width="1.5"/>
-              <path d="M53 216 Q43 181 59 157 M347 216 Q360 181 343 153" fill="none" stroke="#566638" stroke-width="2"/>
-              <circle cx="58" cy="158" r="6" fill="#a84631"/><circle cx="343" cy="154" r="6" fill="#a84631"/>
-</svg>
+            <svg class="miniature home-mini illustrated-v46" viewBox="0 0 520 270" aria-hidden="true">
+<rect x="8" y="8" width="504" height="254" rx="28" fill="#e3cf92" stroke="#593421" stroke-width="7"/>
+<circle cx="76" cy="57" r="27" fill="#d6ad58"/><path d="M8 211Q99 165 179 207Q267 158 348 205Q422 165 512 201V262H8Z" fill="#687f4c"/>
+<path d="M158 133 260 55l105 78v99H158Z" fill="#ad5538" stroke="#593421" stroke-width="7"/><path d="M135 139 260 42l128 97" fill="none" stroke="#593421" stroke-width="11" stroke-linejoin="round"/>
+<rect x="236" y="165" width="49" height="67" fill="#5d3425"/><rect x="182" y="153" width="37" height="37" fill="#668896" stroke="#593421" stroke-width="5"/><rect x="303" y="153" width="37" height="37" fill="#668896" stroke="#593421" stroke-width="5"/>
+<path d="M92 214q28-43 56 0M386 214q28-43 56 0" fill="none" stroke="#d6ad58" stroke-width="6"/>
+<path d="M245 107c0-17 23-24 32-8 9-16 32-9 32 8 0 18-32 37-32 37s-32-19-32-37Z" fill="#e5c978"/>
+</svg><div class="art-caption-v46">Diciembre 2023 · Un hogar compartido.</div>
           </div>
 
           <div class="folio folio-right bond-folio">
@@ -4382,28 +4460,20 @@
               <p class="aside">Algunos héroes protegen reinos. Bond protege que nadie ocupe su lugar mientras duerme.</p>
               <p class="scribe-note note-right">Los cronistas intentaron registrar una de sus hazañas. Seguía dormido al cierre de esta edición.</p>
             </div>
-            <svg class="miniature cocker-mini" viewBox="0 0 400 260" aria-label="Ilustración de Bond, un English Cocker Spaniel">
-              <ellipse class="cocker-body" cx="224" cy="176" rx="80" ry="48"/>
-              <circle class="cocker-head" cx="147" cy="129" r="48"/>
-              <path class="cocker-ear" d="M119 104 Q75 91 79 147 Q84 183 119 179 Q103 148 119 104Z"/>
-              <path class="cocker-ear" d="M176 104 Q218 89 216 147 Q211 183 178 179 Q193 147 176 104Z"/>
-              <path class="cocker-muzzle" d="M124 141 Q147 126 172 141 Q168 165 147 169 Q127 164 124 141Z"/>
-              <circle class="cocker-eye" cx="132" cy="125" r="4"/><circle class="cocker-eye" cx="163" cy="125" r="4"/>
-              <ellipse class="cocker-nose" cx="148" cy="145" rx="8" ry="6"/>
-              <path class="cocker-smile" d="M148 151 Q141 161 132 157 M148 151 Q155 161 164 157"/>
-              <path class="cocker-feather" d="M167 179 Q184 204 205 188 M185 192 Q202 218 221 194 M240 204 Q260 225 278 201"/>
-              <path class="cocker-tail" d="M298 169 Q349 135 354 166 Q356 186 332 193"/>
-              <path class="cocker-leg" d="M186 208 V241 M258 210 V241"/>
-              <path class="cocker-collar" d="M118 170 Q148 185 179 169"/>
-              <circle class="cocker-tag" cx="149" cy="180" r="8"/>
-              <text x="149" y="184" text-anchor="middle" class="tag-letter-v3">B</text>
-              <path class="heroic-rays" d="M147 46 V17 M101 56 L85 30 M193 56 L210 30"/>
-            
-              <path d="M30 245 Q83 207 137 238 Q203 208 370 245" fill="#657642" stroke="#43522b" stroke-width="1.5"/>
-              <path d="M54 238 Q42 203 61 178 M345 239 Q359 201 341 177" fill="none" stroke="#536438" stroke-width="2"/>
-              <circle cx="60" cy="178" r="7" fill="#a84330"/><circle cx="341" cy="177" r="7" fill="#a84330"/>
-              <path d="M112 96 Q145 74 181 96" fill="none" stroke="#b17b31" stroke-width="1.5"/>
-</svg>
+            <svg class="miniature cocker-mini illustrated-v46 bond-art-v46" viewBox="0 0 520 270" aria-hidden="true">
+<rect x="8" y="8" width="504" height="254" rx="28" fill="#dfca8e" stroke="#593421" stroke-width="7"/>
+<ellipse cx="261" cy="217" rx="168" ry="26" fill="#9c7c50" opacity=".32"/>
+<path d="M145 190q9-72 79-79 86-9 141 48 24 25 7 54H158q-20-4-13-23Z" fill="#b66b43" stroke="#593421" stroke-width="7"/>
+<ellipse cx="190" cy="139" rx="58" ry="70" fill="#c2784b" stroke="#593421" stroke-width="7"/>
+<path d="M155 105q-55 9-51 82 7 45 46 31 27-11 25-62Z" fill="#7d452f" stroke="#593421" stroke-width="7"/>
+<path d="M226 105q55 9 51 82-7 45-46 31-27-11-25-62Z" fill="#7d452f" stroke="#593421" stroke-width="7"/>
+<ellipse cx="190" cy="157" rx="40" ry="35" fill="#d99a68"/><ellipse cx="190" cy="147" rx="13" ry="10" fill="#3d281f"/>
+<circle cx="168" cy="127" r="6" fill="#2e231e"/><circle cx="212" cy="127" r="6" fill="#2e231e"/>
+<path d="M181 165q9 10 18 0" fill="none" stroke="#593421" stroke-width="4" stroke-linecap="round"/>
+<path d="M150 188q40 24 80 0" fill="none" stroke="#9e3f32" stroke-width="8"/><circle cx="190" cy="196" r="11" fill="#d6ad58" stroke="#593421" stroke-width="4"/>
+<path d="M352 181q54-28 77 15" fill="none" stroke="#b66b43" stroke-width="20" stroke-linecap="round"/>
+<text x="347" y="74" font-size="27" fill="#8f5533" font-family="serif" font-style="italic">Z</text><text x="379" y="52" font-size="21" fill="#8f5533" font-family="serif" font-style="italic">z</text><text x="405" y="35" font-size="16" fill="#8f5533" font-family="serif" font-style="italic">z</text>
+</svg><div class="art-caption-v46">Bond · Guardián del sofá · Actualmente dormido.</div>
           </div>
         </section>
 
@@ -4419,14 +4489,15 @@
               <h3 class="punch softer">Una familia.</h3>
               <p class="scribe-note note-left">Composición oficial del reino: dos humanos, un Cocker y suficientes pelos de perro para formar un segundo Cocker.</p>
             </div>
-            <svg class="miniature family-mini" viewBox="0 0 400 240" aria-hidden="true">
-              <circle class="gold-sun" cx="201" cy="106" r="63"/>
-              <path class="hill-green" d="M18 219 Q101 153 190 207 Q271 144 385 219 V240 H18Z"/>
-              <circle class="figure" cx="167" cy="157" r="11"/><path class="figure-line" d="M167 169 V212 M167 181 L192 194"/>
-              <circle class="figure" cx="237" cy="157" r="11"/><path class="figure-line" d="M237 169 V212 M237 181 L213 194"/>
-              <ellipse class="dog-mini" cx="202" cy="207" rx="27" ry="16"/><circle class="dog-mini" cx="181" cy="195" r="14"/>
-              <path class="dog-tail-mini" d="M226 202 Q249 183 257 199"/>
-            </svg>
+            <svg class="miniature family-mini illustrated-v46" viewBox="0 0 520 270" aria-hidden="true">
+<rect x="8" y="8" width="504" height="254" rx="28" fill="#e4d097" stroke="#593421" stroke-width="7"/>
+<path d="M8 213Q100 163 181 207Q258 153 342 204Q423 160 512 202V262H8Z" fill="#6a814d"/>
+<circle cx="172" cy="115" r="23" fill="#b66b45" stroke="#593421" stroke-width="6"/><path d="M172 138v76M172 159l-40 35M172 159l39 35" stroke="#593421" stroke-width="8" stroke-linecap="round"/>
+<circle cx="346" cy="115" r="23" fill="#b66b45" stroke="#593421" stroke-width="6"/><path d="M346 138v76M346 159l-39 35M346 159l40 35" stroke="#593421" stroke-width="8" stroke-linecap="round"/>
+<path d="M214 181q45-49 91 0" fill="#b66b43" stroke="#593421" stroke-width="7"/><path d="M221 171q-20-32 5-48l24 33M298 171q20-32-5-48l-24 33" fill="#7d452f" stroke="#593421" stroke-width="6"/>
+<circle cx="259" cy="178" r="8" fill="#3d281f"/>
+<path d="M229 86c0-18 25-25 34-8 10-17 35-10 35 8 0 20-35 41-35 41s-34-21-34-41Z" fill="#a33f34"/>
+</svg><div class="art-caption-v46">Dos humanos, un Cocker y una familia.</div>
           </div>
 
           <div class="folio folio-right">
@@ -4437,11 +4508,14 @@
               <p>Tres años después de comenzar aquel capítulo, lo que nació de un par de miradas en una parada de camión ya no es sólo una historia de amor.</p>
               <div class="three-lines">Es un hogar.<br>Es una historia.<br>Es una familia.</div>
             </div>
-            <svg class="miniature road-mini" viewBox="0 0 400 240" aria-hidden="true">
-              <path class="gold-road" d="M203 239 C179 197 248 177 219 138 C194 105 168 98 194 62 C213 36 243 42 250 14"/>
-              <path class="tree" d="M71 220 L101 145 L131 220 M286 220 L320 137 L354 220"/>
-              <path class="tiny-heart-v3" d="M250 16 C243 5 228 13 234 24 L250 37 L266 24 C272 13 257 5 250 16Z"/>
-            </svg>
+            <svg class="miniature road-mini illustrated-v46" viewBox="0 0 520 270" aria-hidden="true">
+<rect x="8" y="8" width="504" height="254" rx="28" fill="#607886" stroke="#593421" stroke-width="7"/>
+<circle cx="418" cy="59" r="29" fill="#d8b55f"/><path d="M8 179Q92 124 177 175Q259 117 343 173Q423 127 512 171V262H8Z" fill="#607b4b"/>
+<path d="M238 262q-8-81 17-124 8-15 4-62h18q-3 46 5 62 25 44 9 124Z" fill="#d8c081"/>
+<path d="M264 128 199 84M270 128l67-44" stroke="#d8c081" stroke-width="16" stroke-linecap="round"/>
+<path d="M197 78l-8 24 25-6M340 78l8 24-25-6" fill="#d8c081"/>
+<path d="M64 208q35-48 70 0M382 208q35-48 70 0" fill="none" stroke="#3f5838" stroke-width="7"/>
+</svg><div class="art-caption-v46">Años, cambios y caminos recorridos juntos.</div>
           </div>
         </section>
 
@@ -4458,17 +4532,15 @@
               <p>El único inconveniente era llegar hasta el segundo día del viaje sin que Marlene descubriera absolutamente nada.</p>
               <div class="scribe-note">El sujeto asegura que actuó con naturalidad. Los cronistas no encontraron evidencia que respalde esta versión.</div>
             </div>
-            <svg class="miniature proposal-mini" viewBox="0 0 500 250" aria-hidden="true">
-              <circle cx="75" cy="55" r="26" fill="#d6ae58"/>
-              <path d="M0 165 Q80 130 165 163 T330 159 T500 160 V250 H0Z" fill="#47727a" opacity=".9"/>
-              <path d="M0 191 Q95 166 182 193 T360 188 T500 191" fill="none" stroke="#ead89e" stroke-width="5"/>
-              <rect x="350" y="80" width="110" height="118" rx="18" fill="#9a623e" stroke="#56301f" stroke-width="5"/>
-              <path d="M370 80 q35-42 70 0" fill="none" stroke="#56301f" stroke-width="7"/>
-              <circle cx="405" cy="139" r="25" fill="#ead79d" stroke="#713d29" stroke-width="5"/>
-              <circle cx="405" cy="139" r="9" fill="none" stroke="#a33f34" stroke-width="5"/>
-              <path d="M397 119 l8-14 8 14" fill="#d8b15b" stroke="#713d29" stroke-width="3"/>
-              <text x="405" y="229" text-anchor="middle" font-size="15" fill="#f0dfae" font-family="serif">OBJETO DE ALTO RIESGO ROMÁNTICO</text>
-            </svg><span class="ring-glint-v45" aria-hidden="true">✦</span>
+            <svg class="miniature proposal-mini illustrated-v46" viewBox="0 0 520 270" aria-hidden="true">
+<rect x="8" y="8" width="504" height="254" rx="28" fill="#e4d098" stroke="#593421" stroke-width="7"/>
+<circle cx="79" cy="57" r="29" fill="#d9b35e"/><path d="M8 176Q88 137 170 171T335 169T512 169V262H8Z" fill="#4e7880"/>
+<path d="M8 199Q102 173 184 201T365 195T512 199" fill="none" stroke="#ead99d" stroke-width="6"/>
+<rect x="342" y="77" width="116" height="125" rx="20" fill="#a0613e" stroke="#593421" stroke-width="7"/><path d="M365 78q35-46 70 0" fill="none" stroke="#593421" stroke-width="8"/>
+<circle cx="400" cy="142" r="29" fill="#e7d29a" stroke="#713d29" stroke-width="6"/><circle cx="400" cy="142" r="10" fill="none" stroke="#a33f34" stroke-width="5"/><path d="M391 120l9-16 9 16" fill="#d8b15b" stroke="#713d29" stroke-width="3"/>
+<path d="M120 129h115q16 0 16 16v65H104v-65q0-16 16-16Z" fill="#8f5838" stroke="#593421" stroke-width="6"/><path d="M132 154h88M132 176h67" stroke="#ead99d" stroke-width="5" stroke-linecap="round"/>
+<path d="M238 116l25-25" stroke="#a33f34" stroke-width="5"/><path d="M260 89l2 13 13 2-11 8 3 13-11-7-12 7 4-13-11-8 13-2Z" fill="#e2bd61"/>
+</svg><div class="art-caption-v46">Playa del Carmen · Julio 2026 · Misión: ocultar el anillo.</div><span class="ring-glint-v45" aria-hidden="true">✦</span>
           </div>
 
           <div class="folio folio-right">
@@ -4485,22 +4557,17 @@
               <p><strong>Luis finalmente hizo la pregunta.</strong></p>
               <p>Y Marlene dijo <span class="proposal-yes">sí. ♡</span></p>
             </div>
-            <svg class="miniature cave-mini" viewBox="0 0 500 260" aria-hidden="true">
-              <defs>
-                <radialGradient id="caveGlow44"><stop offset="0" stop-color="#e7bb66"/><stop offset=".55" stop-color="#7e4b2d"/><stop offset="1" stop-color="#2c1a12"/></radialGradient>
-              </defs>
-              <path d="M15 250 Q15 70 120 28 Q240-18 375 25 Q490 65 485 250Z" fill="#382218" stroke="#6d442a" stroke-width="9"/>
-              <path d="M65 250 Q70 103 155 67 Q245 27 350 66 Q440 102 445 250Z" fill="url(#caveGlow44)"/>
-              <path d="M118 25 l25 72 23-81 31 65 27-79 30 70 30-67 26 77 29-63 25 79" fill="#382218"/>
-              <ellipse cx="250" cy="199" rx="76" ry="20" fill="#44261a"/>
-              <rect x="243" y="198" width="14" height="45" fill="#4a291b"/>
-              <circle cx="250" cy="174" r="13" fill="#e0b35d"/>
-              <path d="M244 173 q6-17 12 0 q-6 12-12 0" fill="#a53f37"/>
-              <circle cx="172" cy="188" r="15" fill="#6c3d29"/><circle cx="328" cy="188" r="15" fill="#6c3d29"/>
-              <path d="M172 203 v40 M328 203 v40" stroke="#6c3d29" stroke-width="8"/>
-              <circle cx="108" cy="122" r="7" fill="#e9bd68"/><circle cx="397" cy="116" r="7" fill="#e9bd68"/>
-              <text x="250" y="253" text-anchor="middle" font-size="16" fill="#ead6a0" font-family="serif">ALUX · PLAYA DEL CARMEN · JULIO 2026</text>
-            </svg><span class="cave-motes-v45" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            <svg class="miniature cave-mini illustrated-v46" viewBox="0 0 520 270" aria-hidden="true">
+<rect x="8" y="8" width="504" height="254" rx="28" fill="#2e1c15" stroke="#593421" stroke-width="7"/>
+<path d="M35 247Q31 68 139 28Q253-13 384 27Q490 68 485 247Z" fill="#4b2a1c" stroke="#70442a" stroke-width="8"/>
+<path d="M78 247Q82 106 165 70Q254 31 356 70Q438 106 443 247Z" fill="#6c4027"/>
+<ellipse cx="260" cy="152" rx="115" ry="91" fill="#a36a34" opacity=".34"/><ellipse cx="260" cy="151" rx="69" ry="57" fill="#d9a84f" opacity=".28"/>
+<path d="M137 30l20 64 24-75 27 62 26-77 29 69 29-66 26 75 30-60 24 72" fill="#352017"/>
+<ellipse cx="260" cy="207" rx="80" ry="21" fill="#3d2419"/><rect x="253" y="205" width="14" height="44" fill="#43271a"/>
+<circle cx="260" cy="180" r="13" fill="#e1b45d"/><path d="M254 178q6-16 12 0q-6 12-12 0" fill="#a33f34"/>
+<circle cx="180" cy="195" r="16" fill="#75442d"/><circle cx="340" cy="195" r="16" fill="#75442d"/><path d="M180 210v39M340 210v39" stroke="#75442d" stroke-width="8"/>
+<circle cx="116" cy="124" r="7" fill="#e8bd68"/><circle cx="404" cy="119" r="7" fill="#e8bd68"/>
+</svg><div class="art-caption-v46">Alux · Playa del Carmen · La pregunta.</div><span class="cave-motes-v45" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
           </div>
         </section>
 
@@ -4517,10 +4584,12 @@
               <p>El 19 de diciembre de 2026 no comienza su historia.</p>
               <h3 class="emotional-manuscript">La celebra.</h3>
             </div>
-            <svg class="miniature final-vine" viewBox="0 0 400 180" aria-hidden="true">
-              <path class="green-vine final-grow" d="M25 151 Q83 93 144 132 Q198 164 252 112 Q303 64 376 113"/>
-              <path class="leaf-v3" d="M88 107 Q61 88 55 111 Q73 125 94 119 M292 83 Q318 60 328 83 Q313 102 288 96"/>
-            </svg>
+            <svg class="miniature final-vine illustrated-v46" viewBox="0 0 520 180" aria-hidden="true">
+<path d="M45 116Q118 40 202 92Q260 128 318 92Q402 40 475 116" fill="none" stroke="#667a45" stroke-width="8"/>
+<path d="M109 72q-35-31-56 4 33 23 56-4ZM411 72q35-31 56 4-33 23-56-4ZM183 86q-27-35-52-5 28 29 52 5ZM337 86q27-35 52-5-28 29-52 5Z" fill="#768b4d" stroke="#4f6138" stroke-width="4"/>
+<path d="M260 76c-24-34-69 3 0 59 69-56 24-93 0-59Z" fill="#a33f34" stroke="#713a29" stroke-width="5"/>
+<circle cx="260" cy="46" r="7" fill="#d6ad58"/><circle cx="238" cy="51" r="4" fill="#d6ad58"/><circle cx="282" cy="51" r="4" fill="#d6ad58"/>
+</svg><div class="art-caption-v46">Continuará…</div>
           </div>
 
           <div class="folio folio-right finale-right finale-right-v44">
