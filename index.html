@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#F4EDE3" />
   <meta name="description" content="Invitación de boda civil de Luis & Marlene — 19 de diciembre de 2026." />
-  <title>Luis & Marlene | 19.12.2026 · V4.4</title>
+  <title>Luis & Marlene | 19.12.2026 · V4.5 Final</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -3369,6 +3369,268 @@
   #storybook .close-book-v44 small{font-size:7.5px!important}
   #storybook .final-whisper-v44{font-size:6.5px!important}
 }
+
+/* ============================================================
+   V4.5 FINAL — Readability + cinematic manuscript polish
+   Decorative only: never owns navigation, audio, or page state.
+   ============================================================ */
+
+/* Global story readability guardrails */
+#storybook .manuscript-copy{
+  text-wrap:pretty;
+}
+#storybook .manuscript-copy p,
+#storybook .scribe-note,
+#storybook .aside,
+#storybook .proposal-note{
+  overflow-wrap:break-word;
+  hyphens:auto;
+}
+#storybook button{touch-action:manipulation}
+
+/* Background atmosphere */
+#storybook .epic-atmosphere-v45{
+  position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+}
+#storybook .epic-atmosphere-v45 i{
+  position:absolute;width:3px;height:3px;border-radius:50%;
+  background:#d8ad61;opacity:.12;
+  box-shadow:0 0 10px rgba(221,176,95,.7);
+  animation:v45Drift 9s ease-in-out infinite;
+}
+#storybook .epic-atmosphere-v45 i:nth-child(1){left:9%;top:19%;animation-delay:-2s}
+#storybook .epic-atmosphere-v45 i:nth-child(2){left:21%;top:72%;animation-delay:-6s}
+#storybook .epic-atmosphere-v45 i:nth-child(3){left:37%;top:29%;animation-delay:-4s}
+#storybook .epic-atmosphere-v45 i:nth-child(4){left:52%;top:81%;animation-delay:-8s}
+#storybook .epic-atmosphere-v45 i:nth-child(5){left:66%;top:22%;animation-delay:-1s}
+#storybook .epic-atmosphere-v45 i:nth-child(6){left:79%;top:63%;animation-delay:-5s}
+#storybook .epic-atmosphere-v45 i:nth-child(7){left:91%;top:34%;animation-delay:-7s}
+#storybook .epic-atmosphere-v45 i:nth-child(8){left:58%;top:47%;animation-delay:-3s}
+@keyframes v45Drift{
+  0%,100%{transform:translate3d(0,8px,0) scale(.8);opacity:.08}
+  50%{transform:translate3d(7px,-16px,0) scale(1.35);opacity:.28}
+}
+
+/* Active-page reveal. Existing V4 page logic only adds/removes .active. */
+#storybook .book-page.active .folio-border{
+  animation:v45BorderWake .8s ease both;
+}
+#storybook .book-page.active .v4-rubric{
+  animation:v45Rubric .6s .08s ease both;
+}
+#storybook .book-page.active .manuscript-copy{
+  animation:v45CopyIn .62s .06s ease both;
+}
+#storybook .book-page.active .miniature{
+  animation:v45MiniatureIn .85s .16s cubic-bezier(.2,.72,.2,1) both;
+}
+@keyframes v45BorderWake{
+  from{opacity:.2;filter:brightness(.8)}
+  to{opacity:1;filter:brightness(1)}
+}
+@keyframes v45Rubric{
+  from{opacity:0;transform:translateY(-5px);letter-spacing:.22em}
+  to{opacity:.84;transform:none}
+}
+@keyframes v45CopyIn{
+  from{opacity:0;transform:translateY(7px)}
+  to{opacity:1;transform:none}
+}
+@keyframes v45MiniatureIn{
+  from{opacity:0;transform:translateY(13px) scale(.975);filter:saturate(.82)}
+  to{opacity:1;transform:none;filter:saturate(1)}
+}
+
+/* Illuminated initials get a tiny manuscript flourish */
+#storybook .book-page.active .illuminated-initial{
+  display:inline-block;
+  transform-origin:50% 60%;
+  animation:v45Initial .75s .15s cubic-bezier(.2,.8,.2,1) both;
+}
+@keyframes v45Initial{
+  0%{opacity:0;transform:scale(.72) rotate(-5deg);filter:brightness(1.45)}
+  70%{transform:scale(1.05) rotate(1deg)}
+  100%{opacity:1;transform:none;filter:none}
+}
+
+/* Proposal: one tasteful ring sparkle, not a disco ball. */
+#storybook .proposal-spread .folio-left{position:relative}
+#storybook .ring-glint-v45{
+  position:absolute;
+  right:17%;bottom:19%;
+  z-index:9;pointer-events:none;
+  color:#f0d27e;font-size:20px;
+  text-shadow:0 0 7px #fff1ae,0 0 15px rgba(224,176,76,.75);
+  animation:v45RingGlint 3.4s 1.2s ease-in-out infinite;
+}
+@keyframes v45RingGlint{
+  0%,65%,100%{opacity:0;transform:scale(.45) rotate(0)}
+  73%{opacity:1;transform:scale(1.25) rotate(65deg)}
+  82%{opacity:.2;transform:scale(.7) rotate(110deg)}
+}
+
+/* Alux: warm cave breathing light + floating motes. */
+#storybook .proposal-spread .folio-right{position:relative}
+#storybook .cave-mini{
+  animation-name:v45MiniatureIn,v45CaveBreath!important;
+  animation-duration:.85s,5.5s!important;
+  animation-delay:.16s,.9s!important;
+  animation-timing-function:cubic-bezier(.2,.72,.2,1),ease-in-out!important;
+  animation-fill-mode:both,both!important;
+  animation-iteration-count:1,infinite!important;
+}
+#storybook .cave-motes-v45{position:absolute;inset:45% 10% 8%;z-index:8;pointer-events:none}
+#storybook .cave-motes-v45 i{
+  position:absolute;width:4px;height:4px;border-radius:50%;background:#e7bb66;
+  box-shadow:0 0 8px #e7bb66;animation:v45Mote 4s ease-in-out infinite;
+}
+#storybook .cave-motes-v45 i:nth-child(1){left:18%;top:66%;animation-delay:-1s}
+#storybook .cave-motes-v45 i:nth-child(2){left:39%;top:34%;animation-delay:-3s}
+#storybook .cave-motes-v45 i:nth-child(3){left:67%;top:57%;animation-delay:-2s}
+#storybook .cave-motes-v45 i:nth-child(4){left:82%;top:28%;animation-delay:-.4s}
+@keyframes v45CaveBreath{
+  0%,100%{filter:drop-shadow(0 7px 9px rgba(65,38,20,.12)) brightness(.97)}
+  50%{filter:drop-shadow(0 8px 14px rgba(194,126,54,.2)) brightness(1.07)}
+}
+@keyframes v45Mote{
+  0%,100%{opacity:.05;transform:translateY(8px) scale(.7)}
+  50%{opacity:.65;transform:translateY(-14px) scale(1.15)}
+}
+
+/* Final folio: ceremonial reveal */
+#storybook .book-page.active .final-ornament-v44{animation:v45FinalFade .55s ease both}
+#storybook .book-page.active .final-prelude-v44{animation:v45FinalFade .65s .12s ease both}
+#storybook .book-page.active .final-crest-v44{animation:v45Crest .95s .2s cubic-bezier(.18,.82,.2,1) both}
+#storybook .book-page.active .final-vow-v44{animation:v45FinalFade .65s .38s ease both}
+#storybook .book-page.active .final-signoff-v44{animation:v45FinalFade .65s .5s ease both}
+#storybook .book-page.active .close-book-v44{animation:v45FinalFade .65s .62s ease both}
+#storybook .book-page.active .final-whisper-v44{animation:v45FinalFade .65s .72s ease both}
+#storybook .final-monogram-v44 span{
+  display:inline-block;
+  animation:v45Heart 2.5s 1.4s ease-in-out infinite;
+}
+@keyframes v45FinalFade{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+@keyframes v45Crest{
+  from{opacity:0;transform:scale(.84);box-shadow:inset 0 0 0 5px rgba(157,108,52,0)}
+  65%{transform:scale(1.025)}
+  to{opacity:1;transform:none}
+}
+@keyframes v45Heart{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+
+/* Close button gets a restrained gold sweep on hover/touch-capable browsers. */
+#storybook .close-book-v44{position:relative;overflow:hidden;isolation:isolate}
+#storybook .close-book-v44::after{
+  content:"";position:absolute;inset:-40% auto -40% -45%;width:30%;
+  transform:skewX(-20deg);background:linear-gradient(90deg,transparent,rgba(255,232,169,.22),transparent);
+  animation:v45ButtonSweep 4.6s 1.8s ease-in-out infinite;pointer-events:none
+}
+@keyframes v45ButtonSweep{0%,65%{left:-45%}82%,100%{left:125%}}
+
+/* -------- MOBILE FINAL QA -------- */
+@media(max-width:700px){
+  /* Keep all meaningful content inside the V4.3 viewport model. */
+  #storybook .manuscript-copy{
+    max-height:58%!important;
+    overflow:visible!important;
+  }
+
+  /* Minimum guest-readable type. Short phones get a separate rule below. */
+  html body #storybook .manuscript-copy p,
+  html body #storybook .quest-list,
+  html body #storybook .bond-legend{
+    font-size:11px!important;
+    line-height:1.36!important;
+  }
+  html body #storybook .scribe-note,
+  html body #storybook .aside,
+  html body #storybook .proposal-note{
+    font-size:8.5px!important;
+    line-height:1.28!important;
+  }
+
+  /* Proposal pages have more copy, so artwork yields a little space. */
+  #storybook .proposal-spread .miniature{max-height:25%!important}
+  #storybook .ring-glint-v45{right:15%;bottom:15%;font-size:15px}
+  #storybook .cave-motes-v45{inset:55% 9% 10%}
+
+  /* Finale is intentionally compact and entirely visible. */
+  #storybook .finale-v44{
+    box-sizing:border-box!important;
+    height:100%!important;
+    max-height:100%!important;
+    overflow:hidden!important;
+    padding:16px 18px 48px!important;
+    gap:clamp(5px,.9dvh,9px)!important;
+  }
+  #storybook .final-prelude-v44{font-size:10.5px!important;line-height:1.2!important}
+  #storybook .final-crest-v44{width:min(220px,67%)!important;max-height:17dvh!important}
+  #storybook .final-vow-v44{font-size:10.5px!important}
+  #storybook .final-vow-v44 strong{font-size:12px!important}
+  #storybook .final-signoff-v44 p{font-size:9.5px!important}
+  #storybook .final-signoff-v44 strong{font-size:14px!important}
+  #storybook .final-signoff-v44 small{font-size:7px!important}
+  #storybook .close-book-v44{padding:7px 15px 6px!important;min-width:176px!important}
+  #storybook .final-whisper-v44{font-size:6px!important}
+
+  /* Keep decorative effects behind interaction targets. */
+  #storybook .epic-atmosphere-v45,
+  #storybook .ring-glint-v45,
+  #storybook .cave-motes-v45{pointer-events:none!important}
+}
+
+/* Short phones: protect content before protecting artwork. */
+@media(max-width:700px) and (max-height:740px){
+  #storybook .manuscript-spread .folio{
+    padding-top:20px!important;
+    padding-left:20px!important;
+    padding-right:20px!important;
+    padding-bottom:40px!important;
+  }
+  html body #storybook .manuscript-copy p,
+  html body #storybook .quest-list,
+  html body #storybook .bond-legend{
+    font-size:9.8px!important;
+    line-height:1.28!important;
+    margin:.24em 0!important;
+  }
+  html body #storybook .scribe-note,
+  html body #storybook .aside,
+  html body #storybook .proposal-note{font-size:7.6px!important}
+  #storybook .manuscript-spread .miniature{max-height:23%!important}
+  #storybook .proposal-spread .miniature{max-height:20%!important}
+  #storybook .finale-v44{padding-top:11px!important;gap:4px!important}
+  #storybook .final-crest-v44{max-height:15dvh!important}
+}
+
+/* Very narrow phones: prevent horizontal crowding. */
+@media(max-width:360px){
+  #storybook .manuscript-spread .folio{padding-left:17px!important;padding-right:17px!important}
+  #storybook .finale-v44{padding-left:14px!important;padding-right:14px!important}
+}
+
+/* Accessibility / battery: full static manuscript when reduced motion is requested. */
+@media(prefers-reduced-motion:reduce){
+  #storybook .epic-atmosphere-v45 i,
+  #storybook .book-page.active .folio-border,
+  #storybook .book-page.active .v4-rubric,
+  #storybook .book-page.active .manuscript-copy,
+  #storybook .book-page.active .miniature,
+  #storybook .book-page.active .illuminated-initial,
+  #storybook .ring-glint-v45,
+  #storybook .cave-mini,
+  #storybook .cave-motes-v45 i,
+  #storybook .book-page.active .final-ornament-v44,
+  #storybook .book-page.active .final-prelude-v44,
+  #storybook .book-page.active .final-crest-v44,
+  #storybook .book-page.active .final-vow-v44,
+  #storybook .book-page.active .final-signoff-v44,
+  #storybook .book-page.active .close-book-v44,
+  #storybook .book-page.active .final-whisper-v44,
+  #storybook .final-monogram-v44 span,
+  #storybook .close-book-v44::after{
+    animation:none!important;
+  }
+}
 </style>
 </head>
 
@@ -3915,6 +4177,9 @@
 
   <!-- V3.0 — Illuminated manuscript Easter egg -->
   <div class="storybook manuscript-mode" id="storybook" aria-hidden="true">
+    <div class="epic-atmosphere-v45" aria-hidden="true">
+      <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+    </div>
     <button class="story-sound" id="storySound" type="button" aria-label="Activar o pausar música del cuento">
       <span class="story-sound-icon">♫</span>
       <span class="story-sound-label">Música del cuento</span>
@@ -4203,7 +4468,7 @@
               <circle cx="405" cy="139" r="9" fill="none" stroke="#a33f34" stroke-width="5"/>
               <path d="M397 119 l8-14 8 14" fill="#d8b15b" stroke="#713d29" stroke-width="3"/>
               <text x="405" y="229" text-anchor="middle" font-size="15" fill="#f0dfae" font-family="serif">OBJETO DE ALTO RIESGO ROMÁNTICO</text>
-            </svg>
+            </svg><span class="ring-glint-v45" aria-hidden="true">✦</span>
           </div>
 
           <div class="folio folio-right">
@@ -4235,7 +4500,7 @@
               <path d="M172 203 v40 M328 203 v40" stroke="#6c3d29" stroke-width="8"/>
               <circle cx="108" cy="122" r="7" fill="#e9bd68"/><circle cx="397" cy="116" r="7" fill="#e9bd68"/>
               <text x="250" y="253" text-anchor="middle" font-size="16" fill="#ead6a0" font-family="serif">ALUX · PLAYA DEL CARMEN · JULIO 2026</text>
-            </svg>
+            </svg><span class="cave-motes-v45" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
           </div>
         </section>
 
@@ -4454,6 +4719,8 @@
       page=index;
       mobileSide=side;
       nxt.classList.add('active');
+      // V4.5: restart decorative CSS reveals only. Navigation state is unchanged.
+      void nxt.offsetWidth;
       decorateTurn(nxt,direction);
       if(page>0)bookShell.classList.add('opened');
       controls();
