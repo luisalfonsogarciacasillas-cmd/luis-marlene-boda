@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#F4EDE3" />
   <meta name="description" content="Invitación de boda civil de Luis & Marlene — 19 de diciembre de 2026." />
-  <title>Luis & Marlene | 19.12.2026 · V4.2</title>
+  <title>Luis & Marlene | 19.12.2026 · V4.3</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -3130,294 +3130,102 @@
 }
 
 /* ============================================================
-   V4.1 — TRUE RESPONSIVE MOBILE FOLIOS
-   Layout only. Book/audio/navigation logic intentionally untouched.
-   ============================================================ */
-@media(max-width:700px){
-  /* Use the browser's actual visible viewport, not a rigid manuscript canvas. */
-  #storybook .manuscript-stage,
-  #storybook .storybook-stage{
-    height:100dvh!important;
-    min-height:100dvh!important;
-    overflow:hidden!important;
-  }
-  #storybook .manuscript-book,
-  #storybook .book-shell{
-    height:100%!important;
-    min-height:0!important;
-    max-height:none!important;
-  }
-  #storybook .manuscript-spread.active{
-    height:100%!important;
-    min-height:0!important;
-    overflow:hidden!important;
-  }
-
-  /* Each visible folio becomes a flexible vertical composition. */
-  #storybook .manuscript-spread .folio{
-    box-sizing:border-box!important;
-    width:100%!important;
-    height:100%!important;
-    min-height:0!important;
-    max-height:none!important;
-    overflow-y:auto!important;
-    overflow-x:hidden!important;
-    overscroll-behavior:contain;
-    -webkit-overflow-scrolling:touch;
-    padding:
-      max(74px,calc(env(safe-area-inset-top) + 58px))
-      clamp(20px,6vw,30px)
-      max(76px,calc(env(safe-area-inset-bottom) + 58px))!important;
-    display:flex!important;
-    flex-direction:column!important;
-    align-items:stretch!important;
-    justify-content:flex-start!important;
-    gap:clamp(8px,1.5dvh,14px)!important;
-  }
-  #storybook .manuscript-spread .folio-right{display:none!important}
-  #storybook .manuscript-spread.mobile-second .folio-left{display:none!important}
-  #storybook .manuscript-spread.mobile-second .folio-right{display:flex!important}
-
-  /* Text participates in flow instead of occupying a desktop-positioned region. */
-  #storybook .manuscript-copy,
-  #storybook .manuscript-copy.right-copy{
-    flex:0 0 auto!important;
-    width:100%!important;
-    max-width:none!important;
-    height:auto!important;
-    min-height:0!important;
-    margin:0!important;
-    padding:0 clamp(2px,1vw,6px)!important;
-    position:relative!important;
-    inset:auto!important;
-  }
-  #storybook .v4-rubric{margin-bottom:clamp(3px,.7dvh,7px)!important}
-
-  /* Miniatures are now normal flex items. This is the key fix: no absolute
-     bottom positioning, no 31%-of-a-desktop-page height. */
-  #storybook .manuscript-spread .miniature,
-  #storybook .manuscript-spread .castle-mini,
-  #storybook .manuscript-spread .bus-mini,
-  #storybook .manuscript-spread .scroll-mini,
-  #storybook .manuscript-spread .chat-mini,
-  #storybook .manuscript-spread .thread-mini,
-  #storybook .manuscript-spread .bloom-mini,
-  #storybook .manuscript-spread .home-mini,
-  #storybook .manuscript-spread .family-mini,
-  #storybook .manuscript-spread .road-mini,
-  #storybook .manuscript-spread .cocker-mini{
-    position:relative!important;
-    inset:auto!important;
-    left:auto!important;
-    right:auto!important;
-    top:auto!important;
-    bottom:auto!important;
-    flex:1 1 auto!important;
-    align-self:center!important;
-    width:min(82vw,430px)!important;
-    height:auto!important;
-    min-height:clamp(150px,24dvh,245px)!important;
-    max-height:clamp(230px,38dvh,380px)!important;
-    margin:clamp(3px,.7dvh,9px) auto 0!important;
-  }
-  #storybook .manuscript-spread .cocker-mini{
-    width:min(88vw,455px)!important;
-    min-height:clamp(175px,27dvh,270px)!important;
-    max-height:clamp(250px,40dvh,400px)!important;
-  }
-  #storybook .manuscript-spread .miniature svg,
-  #storybook .manuscript-spread .castle-mini svg,
-  #storybook .manuscript-spread .bus-mini svg,
-  #storybook .manuscript-spread .scroll-mini svg,
-  #storybook .manuscript-spread .chat-mini svg,
-  #storybook .manuscript-spread .thread-mini svg,
-  #storybook .manuscript-spread .bloom-mini svg,
-  #storybook .manuscript-spread .home-mini svg,
-  #storybook .manuscript-spread .family-mini svg,
-  #storybook .manuscript-spread .road-mini svg,
-  #storybook .manuscript-spread .cocker-mini svg{
-    display:block!important;
-    width:100%!important;
-    height:100%!important;
-    max-height:inherit!important;
-  }
-
-  /* Decorative lower-page washes must not reserve a giant empty zone. */
-  #storybook .manuscript-spread .folio::after{
-    height:auto!important;
-    bottom:7px!important;
-  }
-
-  /* Navigation follows the visible viewport, including safe areas. */
-  #storybook .book-nav{
-    position:fixed!important;
-    bottom:max(12px,env(safe-area-inset-bottom))!important;
-    z-index:10030!important;
-  }
-  #storybook .book-progress{
-    position:fixed!important;
-    bottom:max(27px,calc(env(safe-area-inset-bottom) + 15px))!important;
-    z-index:10025!important;
-  }
-
-  /* Final page keeps its ceremonial center, but also fits the viewport. */
-  #storybook .finale-spread .final-center{
-    box-sizing:border-box!important;
-    min-height:0!important;
-    height:auto!important;
-    padding:clamp(18px,3dvh,34px) 12px clamp(42px,6dvh,66px)!important;
-  }
-}
-
-/* Short phones: prioritize fitting the whole composition without tiny text. */
-@media(max-width:700px) and (max-height:760px){
-  #storybook .manuscript-spread .folio{
-    padding-top:max(64px,calc(env(safe-area-inset-top) + 50px))!important;
-    gap:6px!important;
-  }
-  #storybook .manuscript-spread .miniature,
-  #storybook .manuscript-spread .castle-mini,
-  #storybook .manuscript-spread .bus-mini,
-  #storybook .manuscript-spread .scroll-mini,
-  #storybook .manuscript-spread .chat-mini,
-  #storybook .manuscript-spread .thread-mini,
-  #storybook .manuscript-spread .bloom-mini,
-  #storybook .manuscript-spread .home-mini,
-  #storybook .manuscript-spread .family-mini,
-  #storybook .manuscript-spread .road-mini{
-    min-height:130px!important;
-    max-height:29dvh!important;
-  }
-  #storybook .manuscript-spread .cocker-mini{
-    min-height:145px!important;
-    max-height:31dvh!important;
-  }
-}
-
-/* Very narrow phones. */
-@media(max-width:390px){
-  #storybook .manuscript-spread .folio{
-    padding-left:18px!important;
-    padding-right:18px!important;
-  }
-  #storybook .manuscript-spread .miniature,
-  #storybook .manuscript-spread .castle-mini,
-  #storybook .manuscript-spread .bus-mini,
-  #storybook .manuscript-spread .scroll-mini,
-  #storybook .manuscript-spread .chat-mini,
-  #storybook .manuscript-spread .thread-mini,
-  #storybook .manuscript-spread .bloom-mini,
-  #storybook .manuscript-spread .home-mini,
-  #storybook .manuscript-spread .family-mini,
-  #storybook .manuscript-spread .road-mini{
-    width:min(88vw,390px)!important;
-  }
-}
-
-/* ============================================================
-   V4.2 — CINEMATIC MOBILE FOLIO
-   Desktop manuscript remains unchanged.
+   V4.3 — STABLE MOBILE MANUSCRIPT
+   Based directly on V4. No V4.1/V4.2 reflow layers.
    ============================================================ */
 @media(max-width:700px){
 
-  /* The overlay is the viewport. The manuscript itself no longer pretends
-     to be a full-height sheet of physical paper. */
+  /* Story overlay owns the visible browser area. */
   #storybook{
     overflow:hidden!important;
   }
+
+  /* Keep the original V4 book structure, but constrain it to the viewport. */
   #storybook .manuscript-stage,
   #storybook .storybook-stage{
     box-sizing:border-box!important;
-    width:100%!important;
+    width:100vw!important;
     height:100dvh!important;
-    min-height:0!important;
+    min-height:100dvh!important;
     padding:
-      max(74px,calc(env(safe-area-inset-top) + 58px))
-      clamp(12px,3.5vw,18px)
-      max(58px,calc(env(safe-area-inset-bottom) + 46px))!important;
+      max(70px,calc(env(safe-area-inset-top) + 54px))
+      10px
+      max(48px,calc(env(safe-area-inset-bottom) + 38px))!important;
+    overflow:hidden!important;
     display:flex!important;
     align-items:center!important;
     justify-content:center!important;
-    overflow:hidden!important;
   }
 
   #storybook .manuscript-book,
   #storybook .book-shell{
+    box-sizing:border-box!important;
     width:100%!important;
-    height:auto!important;
+    height:100%!important;
     min-height:0!important;
-    max-height:calc(100dvh - 145px)!important;
-    margin:auto!important;
-    overflow:visible!important;
+    max-height:100%!important;
+    margin:0 auto!important;
+    overflow:hidden!important;
   }
 
-  #storybook .manuscript-spread.active{
+  /* The active page fills the book viewport; no page is pushed below it. */
+  #storybook .book-page.active,
+  #storybook .manuscript-spread.active,
+  #storybook .finale-spread.active{
+    box-sizing:border-box!important;
     width:100%!important;
-    height:auto!important;
+    height:100%!important;
     min-height:0!important;
-    max-height:calc(100dvh - 145px)!important;
-    overflow:visible!important;
+    max-height:100%!important;
+    margin:0!important;
+    overflow:hidden!important;
   }
 
-  /* One deliberately proportioned mobile card. */
+  /* Preserve V4's single-folio mobile switching exactly. */
   #storybook .manuscript-spread .folio{
     box-sizing:border-box!important;
-    width:min(94vw,560px)!important;
-    height:auto!important;
-    min-height:min(72dvh,650px)!important;
-    max-height:calc(100dvh - 150px)!important;
-    margin:auto!important;
-    padding:clamp(24px,4.5dvh,42px) clamp(22px,6vw,34px) 48px!important;
-    border-radius:10px!important;
-    overflow-y:auto!important;
-    overflow-x:hidden!important;
-    display:grid!important;
-    grid-template-rows:auto minmax(170px,1fr)!important;
-    align-content:stretch!important;
-    gap:clamp(14px,2.3dvh,24px)!important;
-    scrollbar-width:none;
+    width:100%!important;
+    height:100%!important;
+    min-height:0!important;
+    max-height:100%!important;
+    margin:0!important;
+    overflow:hidden!important;
+    padding:
+      clamp(30px,4.6dvh,44px)
+      clamp(22px,6vw,34px)
+      clamp(48px,6.5dvh,64px)!important;
   }
-  #storybook .manuscript-spread .folio::-webkit-scrollbar{display:none}
-
   #storybook .manuscript-spread .folio-right{display:none!important}
   #storybook .manuscript-spread.mobile-second .folio-left{display:none!important}
-  #storybook .manuscript-spread.mobile-second .folio-right{display:grid!important}
+  #storybook .manuscript-spread.mobile-second .folio-right{display:block!important}
 
-  /* Reading block: comfortably readable again. */
-  #storybook .manuscript-copy,
-  #storybook .manuscript-copy.right-copy{
-    position:relative!important;
-    inset:auto!important;
-    width:100%!important;
-    height:auto!important;
-    min-height:0!important;
-    margin:0!important;
-    padding:0!important;
-    align-self:start!important;
-  }
+  /* Text: readable, but compact enough to leave illustration territory. */
   html body #storybook .manuscript-copy p,
   html body #storybook .quest-list,
   html body #storybook .bond-legend{
-    font-size:12px!important;
-    line-height:1.42!important;
-    margin:.36em 0!important;
+    font-size:11px!important;
+    line-height:1.36!important;
+    margin:.30em 0!important;
   }
   html body #storybook .scribe-note,
   html body #storybook .aside{
-    font-size:9px!important;
-    line-height:1.32!important;
+    font-size:8px!important;
+    line-height:1.28!important;
   }
   html body #storybook .manuscript-copy h3{
-    font-size:17px!important;
-    line-height:1.08!important;
+    font-size:15px!important;
+    line-height:1.06!important;
+  }
+  html body #storybook .bond-title{
+    font-size:19px!important;
   }
   #storybook .v4-rubric{
-    font-size:8px!important;
-    margin-bottom:7px!important;
+    font-size:7px!important;
+    margin-bottom:5px!important;
   }
 
-  /* Artwork owns the second half of the composition instead of floating
-     at an arbitrary desktop coordinate. */
+  /* Artwork remains in V4's original coordinate system.
+     Only cap oversized miniatures so they cannot consume the whole page. */
   #storybook .manuscript-spread .miniature,
   #storybook .manuscript-spread .castle-mini,
   #storybook .manuscript-spread .bus-mini,
@@ -3429,69 +3237,61 @@
   #storybook .manuscript-spread .family-mini,
   #storybook .manuscript-spread .road-mini,
   #storybook .manuscript-spread .cocker-mini{
-    position:relative!important;
-    inset:auto!important;
-    left:auto!important;
-    right:auto!important;
-    top:auto!important;
-    bottom:auto!important;
-    box-sizing:border-box!important;
-    width:min(78vw,410px)!important;
-    height:100%!important;
-    min-height:170px!important;
-    max-height:30dvh!important;
-    margin:auto!important;
-    align-self:center!important;
-    justify-self:center!important;
-  }
-  #storybook .manuscript-spread .cocker-mini{
-    width:min(84vw,440px)!important;
-    max-height:32dvh!important;
-  }
-  #storybook .manuscript-spread .miniature svg,
-  #storybook .manuscript-spread .castle-mini svg,
-  #storybook .manuscript-spread .bus-mini svg,
-  #storybook .manuscript-spread .scroll-mini svg,
-  #storybook .manuscript-spread .chat-mini svg,
-  #storybook .manuscript-spread .thread-mini svg,
-  #storybook .manuscript-spread .bloom-mini svg,
-  #storybook .manuscript-spread .home-mini svg,
-  #storybook .manuscript-spread .family-mini svg,
-  #storybook .manuscript-spread .road-mini svg,
-  #storybook .manuscript-spread .cocker-mini svg{
-    display:block!important;
-    width:100%!important;
-    height:100%!important;
-    object-fit:contain!important;
+    max-height:32%!important;
   }
 
-  /* Progress belongs to the card, visually close to the content. */
+  /* Cover/final pages need explicit containment; this fixes the giant title
+     seen in the V4.2 screenshot without changing their design. */
+  #storybook .storybook-cover,
+  #storybook .book-cover,
+  #storybook .final-center{
+    box-sizing:border-box!important;
+    max-width:100%!important;
+    max-height:100%!important;
+    overflow:hidden!important;
+  }
+  #storybook .storybook-cover h2,
+  #storybook .book-cover h2,
+  #storybook .cover-title{
+    font-size:clamp(34px,11vw,58px)!important;
+    line-height:.92!important;
+  }
+  #storybook .final-center h3,
+  #storybook .continuara-v3{
+    font-size:clamp(28px,9vw,48px)!important;
+    line-height:.96!important;
+  }
+
+  /* Controls are viewport controls, not page-flow content. */
   #storybook .book-progress{
     position:fixed!important;
     left:50%!important;
     transform:translateX(-50%)!important;
-    bottom:max(20px,calc(env(safe-area-inset-bottom) + 10px))!important;
+    bottom:max(18px,calc(env(safe-area-inset-bottom) + 8px))!important;
     z-index:10040!important;
   }
   #storybook .book-nav{
     position:fixed!important;
-    bottom:max(12px,env(safe-area-inset-bottom))!important;
+    bottom:max(10px,env(safe-area-inset-bottom))!important;
     z-index:10045!important;
   }
 
-  /* Less ornamental dead space on short phones. */
+  /* Short phones get a little more room, without changing layout model. */
   @media(max-height:760px){
     #storybook .manuscript-stage,
     #storybook .storybook-stage{
       padding-top:max(62px,calc(env(safe-area-inset-top) + 48px))!important;
-      padding-bottom:max(48px,calc(env(safe-area-inset-bottom) + 38px))!important;
+      padding-bottom:max(42px,calc(env(safe-area-inset-bottom) + 32px))!important;
     }
     #storybook .manuscript-spread .folio{
-      min-height:calc(100dvh - 125px)!important;
-      max-height:calc(100dvh - 125px)!important;
-      padding-top:22px!important;
-      gap:10px!important;
-      grid-template-rows:auto minmax(130px,1fr)!important;
+      padding-top:24px!important;
+      padding-bottom:42px!important;
+    }
+    html body #storybook .manuscript-copy p,
+    html body #storybook .quest-list,
+    html body #storybook .bond-legend{
+      font-size:10px!important;
+      line-height:1.32!important;
     }
     #storybook .manuscript-spread .miniature,
     #storybook .manuscript-spread .castle-mini,
@@ -3502,9 +3302,9 @@
     #storybook .manuscript-spread .bloom-mini,
     #storybook .manuscript-spread .home-mini,
     #storybook .manuscript-spread .family-mini,
-    #storybook .manuscript-spread .road-mini{
-      min-height:130px!important;
-      max-height:25dvh!important;
+    #storybook .manuscript-spread .road-mini,
+    #storybook .manuscript-spread .cocker-mini{
+      max-height:28%!important;
     }
   }
 }
