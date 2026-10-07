@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#F4EDE3" />
   <meta name="description" content="Invitación de boda civil de Luis & Marlene — 19 de diciembre de 2026." />
-  <title>Luis & Marlene | 19.12.2026 · V2.8.1</title>
+  <title>Luis & Marlene | 19.12.2026 · V2.9</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -2052,6 +2052,342 @@
       .ring-visible{transform:none!important}
       .ring-glow,.ring-spark{opacity:.25!important}
     }
+
+    /* =========================================================
+       V2.9 — HIDDEN FANTASY STORYBOOK EASTER EGG
+       ========================================================= */
+
+    .story-easteregg-trigger{
+      appearance:none;border:0;background:none;padding:8px 12px;margin:0;
+      font:500 7px/1 "Montserrat",sans-serif;
+      letter-spacing:.22em;text-transform:uppercase;color:inherit;
+      cursor:pointer;position:relative;opacity:.62;
+      transition:opacity .3s ease,color .3s ease,letter-spacing .35s ease;
+    }
+    .story-easteregg-trigger:after{
+      content:"";position:absolute;left:50%;bottom:1px;width:0;height:1px;
+      background:var(--gold);transform:translateX(-50%);
+      transition:width .4s var(--ease);
+    }
+    .story-easteregg-trigger:hover,
+    .story-easteregg-trigger:focus-visible{opacity:1;color:var(--terracotta);letter-spacing:.26em}
+    .story-easteregg-trigger:hover:after,
+    .story-easteregg-trigger:focus-visible:after{width:54%}
+
+    body.storybook-open{overflow:hidden}
+
+    .storybook{
+      position:fixed;inset:0;z-index:99999;
+      display:grid;place-items:center;
+      background:
+        radial-gradient(circle at 50% 42%,rgba(111,73,36,.32),transparent 38%),
+        radial-gradient(circle at 20% 20%,rgba(207,146,69,.13),transparent 25%),
+        linear-gradient(145deg,#160f0b 0%,#2b1a10 48%,#120c09 100%);
+      opacity:0;visibility:hidden;pointer-events:none;
+      transition:opacity .75s ease,visibility .75s;
+      font-family:Georgia,"Times New Roman",serif;
+    }
+    .storybook.open{opacity:1;visibility:visible;pointer-events:auto}
+    .storybook:before{
+      content:"";position:absolute;inset:0;pointer-events:none;opacity:.20;
+      background-image:
+        radial-gradient(circle at 20% 30%,rgba(255,213,139,.28) 0 1px,transparent 1.3px),
+        radial-gradient(circle at 72% 62%,rgba(255,230,178,.20) 0 .8px,transparent 1.1px);
+      background-size:87px 87px,123px 123px;
+      animation:bookDust 18s linear infinite;
+    }
+    @keyframes bookDust{to{background-position:40px -80px,-60px -120px}}
+
+    .storybook-stars{
+      position:absolute;inset:0;pointer-events:none;overflow:hidden;
+    }
+    .storybook-stars:before,.storybook-stars:after{
+      content:"";position:absolute;inset:-20%;
+      background:
+        radial-gradient(circle at 10% 20%,#e9c787 0 1px,transparent 1.5px),
+        radial-gradient(circle at 31% 73%,#d9ad62 0 1px,transparent 1.5px),
+        radial-gradient(circle at 82% 29%,#f0d79f 0 1px,transparent 1.5px),
+        radial-gradient(circle at 66% 81%,#c58d45 0 1px,transparent 1.5px);
+      animation:starDrift 16s ease-in-out infinite alternate;
+      opacity:.38;
+    }
+    .storybook-stars:after{transform:scale(.72) rotate(33deg);animation-duration:23s}
+    @keyframes starDrift{to{transform:translate(18px,-25px) rotate(2deg)}}
+
+    .storybook-x{
+      position:absolute;right:22px;top:18px;z-index:10;
+      width:42px;height:42px;border:1px solid rgba(236,202,143,.38);
+      border-radius:50%;background:rgba(22,14,9,.48);color:#e5c58d;
+      font:300 27px/1 Georgia,serif;cursor:pointer;
+      transition:transform .3s ease,background .3s ease;
+    }
+    .storybook-x:hover{transform:rotate(8deg) scale(1.05);background:rgba(73,43,22,.75)}
+
+    .storybook-stage{
+      width:min(1120px,94vw);height:min(760px,88svh);
+      display:grid;place-items:center;perspective:1800px;
+    }
+    .book-shell{
+      position:relative;width:100%;height:100%;
+      max-width:1040px;max-height:700px;
+      filter:drop-shadow(0 28px 55px rgba(0,0,0,.58));
+      transform-style:preserve-3d;
+    }
+    .book-shell:before{
+      content:"";position:absolute;inset:1.2% -1.2% -1.5%;
+      border-radius:16px 20px 20px 16px;
+      background:#3b2113;border:1px solid #6f4525;z-index:-3;
+      box-shadow:inset 0 0 0 4px rgba(202,145,63,.13);
+    }
+    .book-spine{
+      position:absolute;left:50%;top:2%;bottom:2%;width:24px;transform:translateX(-50%);
+      z-index:30;pointer-events:none;
+      background:linear-gradient(90deg,rgba(76,42,20,.35),rgba(255,226,170,.10),rgba(67,36,17,.36));
+      box-shadow:0 0 18px rgba(44,23,11,.28);
+      opacity:0;
+      transition:opacity .5s ease;
+    }
+    .book-shell.opened .book-spine{opacity:1}
+
+    .book-page{
+      position:absolute;inset:0;display:none;overflow:hidden;
+      border-radius:10px;
+      backface-visibility:hidden;
+    }
+    .book-page.active{display:block;animation:pageEnter .72s cubic-bezier(.18,.78,.22,1) both}
+    .book-page.leaving{display:block;animation:pageLeave .46s ease both}
+    @keyframes pageEnter{
+      from{opacity:0;transform:rotateY(-7deg) translateX(18px) scale(.985)}
+      to{opacity:1;transform:rotateY(0) translateX(0) scale(1)}
+    }
+    @keyframes pageLeave{
+      to{opacity:0;transform:rotateY(7deg) translateX(-18px) scale(.985)}
+    }
+
+    .cover-page{
+      color:#e8c98f;
+      background:
+        radial-gradient(circle at 50% 38%,rgba(171,94,35,.28),transparent 31%),
+        linear-gradient(135deg,rgba(255,196,92,.05),transparent 34%),
+        #28150e;
+      border:3px solid #9d672b;
+      box-shadow:inset 0 0 0 7px #321b10,inset 0 0 0 9px rgba(199,139,53,.65),inset 0 0 70px rgba(0,0,0,.62);
+      text-align:center;
+      place-items:center;
+    }
+    .cover-page.active{display:grid}
+    .cover-frame{
+      width:calc(100% - 70px);height:calc(100% - 70px);
+      border:1px solid rgba(221,165,79,.68);
+      outline:1px solid rgba(221,165,79,.20);outline-offset:9px;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      position:relative;
+    }
+    .cover-frame:before,.cover-frame:after{
+      content:"";position:absolute;width:78px;height:78px;border-color:#c58c3d;opacity:.55;
+    }
+    .cover-frame:before{left:14px;top:14px;border-left:2px solid;border-top:2px solid}
+    .cover-frame:after{right:14px;bottom:14px;border-right:2px solid;border-bottom:2px solid}
+    .cover-kicker{font-size:clamp(16px,2.1vw,25px);font-style:italic;margin-bottom:20px}
+    .cover-page h2{
+      margin:0;font:500 clamp(58px,8vw,105px)/.9 "Cormorant Garamond",Georgia,serif;
+      color:#f0d19a;text-shadow:0 2px 0 #120b08;
+    }
+    .cover-page h2 span{color:#d68a48}
+    .cover-heart{font-size:36px;margin:13px 0;color:#d99955;animation:coverHeart 2.8s ease-in-out infinite}
+    @keyframes coverHeart{50%{transform:scale(1.15);text-shadow:0 0 16px rgba(224,161,87,.5)}}
+    .cover-page p{font-size:20px;font-style:italic;margin:0}
+    .cover-ornament{font-size:34px;color:#b67a38;position:absolute;left:50%;transform:translateX(-50%)}
+    .cover-ornament.top{top:20px}.cover-ornament.bottom{bottom:20px;transform:translateX(-50%) rotate(180deg)}
+    .book-start{
+      position:absolute;bottom:40px;left:50%;transform:translateX(-50%);
+      border:1px solid #bd8745;background:#3c2113;color:#edcf99;
+      padding:12px 23px;font:600 9px/1 "Montserrat",sans-serif;letter-spacing:.22em;
+      cursor:pointer;box-shadow:0 8px 22px rgba(0,0,0,.25);
+    }
+
+    .parchment-page{
+      color:#4b2b18;
+      background:
+        radial-gradient(circle at 22% 17%,rgba(255,255,255,.25),transparent 23%),
+        radial-gradient(circle at 82% 76%,rgba(124,69,26,.08),transparent 26%),
+        repeating-radial-gradient(circle at 30% 40%,rgba(96,52,21,.035) 0 .7px,transparent .9px 4px),
+        #ead0a0;
+      border:1px solid #9d713d;
+      box-shadow:inset 0 0 80px rgba(104,54,20,.22),inset 0 0 0 8px rgba(112,65,29,.05);
+      padding:clamp(38px,5vw,70px);
+    }
+    .parchment-page:before{
+      content:"";position:absolute;inset:18px;border:1px solid rgba(112,66,28,.20);pointer-events:none;
+    }
+    .page-number{
+      position:absolute;top:24px;left:50%;transform:translateX(-50%);
+      font-size:10px;letter-spacing:.22em;color:rgba(79,45,24,.45);
+    }
+    .page-copy{
+      width:54%;height:100%;display:flex;flex-direction:column;justify-content:center;
+      position:relative;z-index:3;
+    }
+    .page-copy.compact p{margin:.34em 0}
+    .page-copy p{font-size:clamp(18px,2vw,27px);line-height:1.38;margin:.55em 0}
+    .page-copy h3{
+      font:600 clamp(31px,4vw,52px)/1.05 "Cormorant Garamond",Georgia,serif;
+      margin:.35em 0;color:#65341c;
+    }
+    .dropcap-line{display:flex;align-items:flex-start;font-size:clamp(35px,5vw,65px);line-height:.95;margin-bottom:24px}
+    .dropcap{
+      display:inline-grid;place-items:center;width:1.12em;height:1.12em;margin-right:.12em;
+      border:2px solid #8b592a;color:#7a3f1e;font-size:1.35em;font-weight:700;
+      background:rgba(194,134,57,.12);
+    }
+    .storybook-flourish{text-align:center;color:#8a572d;margin:12px 0;font-size:20px}
+    .book-punchline{font-style:italic;font-size:clamp(22px,2.6vw,34px)!important}
+    .tiny-joke{font-size:15px!important;font-style:italic;opacity:.7}
+    .emotional-line{font-style:italic;color:#6c361e;font-size:clamp(22px,2.5vw,34px)!important}
+    .bond-list{font-style:italic}.bond-name{font-size:clamp(45px,6vw,78px)!important}
+    .big-date{font-size:clamp(45px,6vw,78px)!important;letter-spacing:.06em}
+    .finale-copy{width:70%;margin:auto;text-align:center;align-items:center}
+    .finale-copy p{max-width:760px}
+    .final-monogram{
+      font:500 clamp(52px,7vw,88px)/1 "Cormorant Garamond",Georgia,serif;
+      color:#5c2e19;margin:15px 0 4px;
+    }
+    .final-monogram span{color:#a65231}
+    .continuara{font-size:clamp(26px,3.4vw,43px)!important;font-style:italic}
+    .close-book-button{
+      position:absolute;bottom:50px;left:50%;transform:translateX(-50%);
+      padding:12px 22px;border:1px solid #6f3f20;background:#3d2113;color:#e8c78f;
+      font:600 9px/1 "Montserrat",sans-serif;letter-spacing:.2em;cursor:pointer;z-index:5;
+    }
+    .marlene-secret{
+      position:absolute;bottom:22px;left:50%;transform:translateX(-50%);
+      font-size:10px!important;font-style:italic;opacity:.48;white-space:nowrap;
+    }
+
+    .book-illustration{
+      position:absolute;right:4%;bottom:7%;width:42%;height:52%;
+      overflow:visible;color:#71401f;
+    }
+    .book-illustration .ink,.book-illustration.ink{
+      fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;
+      vector-effect:non-scaling-stroke;
+    }
+    .book-illustration .soft{opacity:.45}
+    .book-moon,.sunset{fill:#d8a657;opacity:.35}
+    .ink-fill{fill:#633719}.person-head{fill:#9b6035;stroke:#5b321c;stroke-width:1.5}
+    .person{stroke-width:3!important}
+    .spark-line,.red-thread,.gold-path{
+      fill:none;stroke:#a65333;stroke-width:2;stroke-linecap:round;vector-effect:non-scaling-stroke;
+      stroke-dasharray:500;stroke-dashoffset:500;
+    }
+    .book-page.active .spark-line,.book-page.active .red-thread,.book-page.active .gold-path{
+      animation:inkDraw 2.2s ease .5s forwards;
+    }
+    @keyframes inkDraw{to{stroke-dashoffset:0}}
+    .svg-label{font:600 10px Georgia,serif;fill:#61361d}.svg-heart{font:700 24px Georgia,serif;fill:#a65231}
+    .phone{fill:rgba(105,57,28,.04)}
+    .chat-bubble{fill:rgba(255,239,200,.72);stroke:#7d4726;stroke-width:1.5;opacity:0}
+    .book-page.active .b1{animation:bubblePop .7s ease .6s forwards}
+    .book-page.active .b2{animation:bubblePop .7s ease 1.1s forwards}
+    @keyframes bubblePop{from{opacity:0;transform:translateY(8px) scale(.92)}to{opacity:1;transform:none}}
+    .floating-heart{fill:rgba(166,82,49,.13);stroke:#a65231;stroke-width:1.5;transform-origin:center;animation:floatHeart 3.5s ease-in-out infinite}
+    .h2{animation-delay:-1.6s}
+    @keyframes floatHeart{50%{transform:translateY(-8px) scale(1.08)}}
+    .window,.house{fill:rgba(112,63,30,.03)}
+    .growing-vine{fill:none;stroke:#6f6a36;stroke-width:2;stroke-dasharray:400;stroke-dashoffset:400}
+    .book-page.active .growing-vine{animation:vineGrow 2.8s ease .5s forwards}
+    .book-page.active .v2{animation-delay:.85s}
+    @keyframes vineGrow{to{stroke-dashoffset:0}}
+    .leaf{fill:rgba(106,105,49,.18);stroke:#6f6a36;stroke-width:1.5}
+    .warm-window{fill:#d69743;opacity:.25;animation:windowGlow 3s ease-in-out infinite}
+    @keyframes windowGlow{50%{opacity:.55}}
+    .box{fill:rgba(142,87,39,.08);stroke:#71401f;stroke-width:1.5}
+    .smoke{fill:none;stroke:#8c6645;stroke-width:1.3;opacity:.45;animation:smokeRise 4s ease-in-out infinite}
+    @keyframes smokeRise{50%{transform:translateY(-7px);opacity:.18}}
+
+    .dog-body{fill:#a66a3e;stroke:#65391f;stroke-width:2}
+    .dog-head{fill:#b57949;stroke:#65391f;stroke-width:2}
+    .dog-ear{fill:#7b4729;stroke:#65391f;stroke-width:2}
+    .dog-eye,.dog-nose{fill:#382116}.dog-smile,.dog-tail,.dog-leg,.dog-collar{fill:none;stroke:#65391f;stroke-width:2.5;stroke-linecap:round}
+    .dog-tag{fill:#c18a42;stroke:#65391f;stroke-width:1.5}.tag-letter{font:bold 8px Georgia;fill:#4d2b18}
+    .paw{fill:rgba(126,72,39,.16);stroke:#784425;stroke-width:1.2;animation:pawFloat 3s ease-in-out infinite}
+    @keyframes pawFloat{50%{transform:translateY(-5px) rotate(5deg)}}
+    .hill{fill:rgba(104,92,48,.13);stroke:#6e6336;stroke-width:1.5}
+    .dog-silhouette{fill:#744324}.dog-silhouette-line{fill:none;stroke:#744324;stroke-width:5;stroke-linecap:round}
+    .trees{fill:none;stroke:#6b5d34;stroke-width:2}
+    .small-heart{fill:#a75332;animation:smallHeartPulse 2.6s ease-in-out infinite}
+    @keyframes smallHeartPulse{50%{transform:scale(1.3);transform-origin:center}}
+
+    .book-nav{
+      position:absolute;top:50%;transform:translateY(-50%);
+      width:46px;height:58px;border:1px solid rgba(106,60,28,.34);
+      background:rgba(234,208,160,.62);color:#5d321b;
+      font:400 38px/1 Georgia,serif;cursor:pointer;z-index:40;
+      opacity:0;pointer-events:none;transition:opacity .3s ease,background .3s ease;
+    }
+    .book-shell.opened .book-nav{opacity:.72;pointer-events:auto}
+    .book-nav:hover{opacity:1;background:rgba(242,220,178,.92)}
+    .book-nav.prev{left:14px}.book-nav.next{right:14px}
+    .book-nav:disabled{opacity:.15;pointer-events:none}
+    .book-progress{
+      position:absolute;left:50%;bottom:14px;transform:translateX(-50%);
+      display:flex;gap:6px;z-index:42;
+    }
+    .book-progress i{
+      display:block;width:5px;height:5px;border-radius:50%;
+      border:1px solid rgba(88,48,25,.55);
+      transition:background .3s ease,transform .3s ease;
+    }
+    .book-progress i.active{background:#7b4425;transform:scale(1.35)}
+
+    @media(max-width:700px){
+      .storybook-stage{width:100vw;height:100svh}
+      .book-shell{width:100%;height:100%;max-height:none}
+      .book-shell:before{inset:0;border-radius:0}
+      .book-page{border-radius:0}
+      .parchment-page{padding:70px 32px 72px}
+      .parchment-page:before{inset:12px}
+      .page-copy,.page-copy.compact,.finale-copy{
+        width:100%;height:auto;min-height:48%;
+        justify-content:flex-start;text-align:center;align-items:center;
+      }
+      .page-copy p{font-size:clamp(17px,4.7vw,22px);line-height:1.36}
+      .page-copy h3{font-size:clamp(31px,8.5vw,46px)}
+      .dropcap-line{justify-content:center;font-size:38px}
+      .book-illustration{
+        width:76%;height:34%;right:12%;bottom:7%;
+      }
+      .cover-frame{width:calc(100% - 44px);height:calc(100% - 60px)}
+      .cover-page h2{font-size:clamp(58px,18vw,88px)}
+      .cover-kicker{font-size:17px;width:80%}
+      .book-start{bottom:42px}
+      .book-nav{width:38px;height:48px;font-size:31px;background:rgba(234,208,160,.82)}
+      .book-nav.prev{left:4px}.book-nav.next{right:4px}
+      .storybook-x{right:12px;top:10px;width:38px;height:38px}
+      .finale-copy{padding-top:10px}
+      .finale-copy p{font-size:16px}
+      .final-monogram{font-size:58px}
+      .close-book-button{bottom:54px}
+      .marlene-secret{bottom:26px;font-size:8px!important}
+      .book-spine{display:none}
+      .bond-page .book-illustration{height:32%}
+    }
+
+    @media(max-width:390px){
+      .parchment-page{padding:58px 27px 65px}
+      .page-copy p{font-size:16px}
+      .book-illustration{width:72%;right:14%;height:31%;bottom:6%}
+      .page-copy h3{font-size:30px}
+      .emotional-line{font-size:20px!important}
+    }
+
+    @media(prefers-reduced-motion:reduce){
+      .storybook:before,.storybook-stars:before,.storybook-stars:after,
+      .cover-heart,.floating-heart,.warm-window,.smoke,.paw,.small-heart{animation:none!important}
+      .book-page.active,.book-page.leaving{animation:none!important}
+      .spark-line,.red-thread,.gold-path,.growing-vine{stroke-dashoffset:0!important;animation:none!important}
+      .chat-bubble{opacity:1!important;animation:none!important}
+    }
 </style>
 </head>
 
@@ -2143,37 +2479,10 @@
         <div class="date"><span>19 · 12 · 2026</span></div>
       </div>
 
-      <a class="scroll" href="#invitacion">Descubre nuestra historia</a>
+      <a class="scroll" href="#invitacion"><button class="story-easteregg-trigger" id="storyEastereggTrigger" type="button" aria-label="Descubre nuestra historia">Descubre nuestra historia</button></a>
     </section>
 
-    <section class="story-v27" id="nuestraHistoria" aria-labelledby="historia-title">
-      <div class="story-date-ghost" aria-hidden="true">L ♡ M</div>
-      <div class="story-v27-inner">
-        <div class="story-v27-kicker">Nuestra historia</div>
-        <h2 class="soul-quote" id="historia-title">
-          <span class="story-line">De lo que sea que estén hechas nuestras almas,</span>
-          <span class="story-line">la tuya y la mía están hechas de lo mismo.</span>
-        </h2>
 
-        <p class="story-body">
-          <span class="story-fragment f1">El <span class="story-v27-visible-word">amor</span> nos encontró en el momento perfecto. </span>
-          <span class="story-fragment f2">Desde entonces elegimos caminar <span class="story-v27-visible-word">juntos</span>, compartir nuestros días y soñar con el mismo futuro. </span>
-          <span class="story-fragment f3">Hoy damos un paso más hacia esa vida que queremos construir: una vida llena de amor, respeto, complicidad y felicidad.</span>
-        </p>
-
-        <p class="love-closing">Y mientras comienza este nuevo capítulo para nosotros, queremos llevar siempre algo por encima de todo: <em>vestirnos de amor</em>, porque el amor es el lazo que nos une.</p>
-
-        <div class="story-branches" aria-hidden="true">
-          <svg viewBox="0 0 480 90">
-            <path d="M8 62 C82 61 126 48 192 29 C212 23 227 28 240 43"/>
-            <path d="M472 62 C398 61 354 48 288 29 C268 23 253 28 240 43"/>
-            <path d="M101 54 C88 43 82 33 82 23 C96 29 104 39 108 50"/>
-            <path d="M379 54 C392 43 398 33 398 23 C384 29 376 39 372 50"/>
-            <text class="story-heart" x="240" y="52" text-anchor="middle" fill="currentColor" stroke="none" font-size="20">♡</text>
-          </svg>
-        </div>
-      </div>
-    </section>
 
     <section class="intro" id="invitacion">
       <div class="intro-inner reveal">
@@ -2618,6 +2927,326 @@
       storyObserver.observe(storySection);
     }
 
+
+    // =========================================================
+    // V2.9 — Hidden storybook Easter egg
+    // =========================================================
+    const storybook = document.getElementById('storybook');
+    const storyTrigger = document.getElementById('storyEastereggTrigger');
+    const storyX = document.getElementById('storybookX');
+    const closeBookButton = document.getElementById('closeBookButton');
+    const bookShell = document.getElementById('bookShell');
+    const bookPages = Array.from(document.querySelectorAll('.book-page'));
+    const bookPrev = document.getElementById('bookPrev');
+    const bookNext = document.getElementById('bookNext');
+    const bookProgress = document.getElementById('bookProgress');
+    let bookPageIndex = 0;
+    let bookAnimating = false;
+
+    function buildBookProgress(){
+      if (!bookProgress) return;
+      bookProgress.innerHTML = '';
+      bookPages.forEach((_, index) => {
+        const dot = document.createElement('i');
+        if (index === bookPageIndex) dot.classList.add('active');
+        bookProgress.appendChild(dot);
+      });
+    }
+
+    function updateBookControls(){
+      if (!bookPrev || !bookNext) return;
+      bookPrev.disabled = bookPageIndex <= 1;
+      bookNext.disabled = bookPageIndex >= bookPages.length - 1 || bookPageIndex === 0;
+      if (bookProgress) {
+        Array.from(bookProgress.children).forEach((dot, index) => {
+          dot.classList.toggle('active', index === bookPageIndex);
+        });
+      }
+    }
+
+    function showBookPage(index){
+      if (bookAnimating || index < 0 || index >= bookPages.length || index === bookPageIndex) return;
+      bookAnimating = true;
+      const current = bookPages[bookPageIndex];
+      const next = bookPages[index];
+
+      current.classList.add('leaving');
+      setTimeout(() => {
+        current.classList.remove('active','leaving');
+        next.classList.add('active');
+        bookPageIndex = index;
+        if (bookPageIndex > 0) bookShell.classList.add('opened');
+        updateBookControls();
+        setTimeout(() => { bookAnimating = false; }, 720);
+      }, 390);
+    }
+
+    function openStorybook(){
+      if (!storybook) return;
+      bookPageIndex = 0;
+      bookPages.forEach((p,i) => p.classList.toggle('active', i === 0));
+      bookShell.classList.remove('opened');
+      storybook.classList.add('open');
+      storybook.setAttribute('aria-hidden','false');
+      document.body.classList.add('storybook-open');
+      buildBookProgress();
+      updateBookControls();
+    }
+
+    function closeStorybook(){
+      if (!storybook) return;
+      storybook.classList.remove('open');
+      storybook.setAttribute('aria-hidden','true');
+      document.body.classList.remove('storybook-open');
+      setTimeout(() => {
+        bookPageIndex = 0;
+        bookPages.forEach((p,i) => p.classList.toggle('active', i === 0));
+        bookShell.classList.remove('opened');
+        updateBookControls();
+      }, 760);
+    }
+
+    storyTrigger?.addEventListener('click', openStorybook);
+    storyX?.addEventListener('click', closeStorybook);
+    closeBookButton?.addEventListener('click', closeStorybook);
+    bookPrev?.addEventListener('click', () => showBookPage(bookPageIndex - 1));
+    bookNext?.addEventListener('click', () => showBookPage(bookPageIndex + 1));
+    document.querySelector('[data-next]')?.addEventListener('click', () => showBookPage(1));
+
+    document.addEventListener('keydown', (event) => {
+      if (!storybook?.classList.contains('open')) return;
+      if (event.key === 'Escape') closeStorybook();
+      if (event.key === 'ArrowRight' && bookPageIndex > 0) showBookPage(bookPageIndex + 1);
+      if (event.key === 'ArrowLeft' && bookPageIndex > 1) showBookPage(bookPageIndex - 1);
+    });
+
+    // Touch swipe support inside the hidden book.
+    let bookTouchStartX = null;
+    storybook?.addEventListener('touchstart', (event) => {
+      bookTouchStartX = event.changedTouches[0]?.clientX ?? null;
+    }, { passive:true });
+    storybook?.addEventListener('touchend', (event) => {
+      if (bookTouchStartX === null || bookPageIndex === 0) return;
+      const endX = event.changedTouches[0]?.clientX ?? bookTouchStartX;
+      const delta = endX - bookTouchStartX;
+      bookTouchStartX = null;
+      if (Math.abs(delta) < 55) return;
+      if (delta < 0 && bookPageIndex < bookPages.length - 1) showBookPage(bookPageIndex + 1);
+      if (delta > 0 && bookPageIndex > 1) showBookPage(bookPageIndex - 1);
+    }, { passive:true });
 </script>
+
+  <!-- V2.9 — Hidden storybook Easter egg -->
+  <div class="storybook" id="storybook" aria-hidden="true">
+    <div class="storybook-stars" aria-hidden="true"></div>
+    <button class="storybook-x" id="storybookX" type="button" aria-label="Cerrar nuestra historia">×</button>
+
+    <div class="storybook-stage">
+      <div class="book-shell" id="bookShell">
+        <div class="book-spine" aria-hidden="true"></div>
+
+        <article class="book-page active cover-page" data-page="0">
+          <div class="cover-frame">
+            <div class="cover-ornament top">❦</div>
+            <div class="cover-kicker">La nada convencional historia de</div>
+            <h2>Luis <span>&amp;</span> Marlene</h2>
+            <div class="cover-heart">♡</div>
+            <p>Hace casi 10 años…</p>
+            <div class="cover-ornament bottom">❦</div>
+          </div>
+          <button class="book-start" type="button" data-next>ABRIR EL LIBRO</button>
+        </article>
+
+        <article class="book-page parchment-page" data-page="1">
+          <div class="page-number">I</div>
+          <div class="page-copy">
+            <div class="dropcap-line"><span class="dropcap">É</span><span>rase una vez…</span></div>
+            <p>una historia de amor destinada a comenzar en el lugar más romántico imaginable.</p>
+            <div class="storybook-flourish">— ❦ —</div>
+            <p class="book-punchline">Bueno…<br>quizá no fue exactamente así.</p>
+          </div>
+          <svg class="book-illustration castle-scene" viewBox="0 0 420 250" aria-hidden="true">
+            <path class="ink" d="M40 216 H380 M104 216 V125 H145 V216 M120 125 V89 L132 67 L145 89 V125 M181 216 V102 H242 V216 M194 102 V72 L211 44 L229 72 V102 M279 216 V132 H320 V216 M293 132 V100 L307 78 L320 100 V132"/>
+            <path class="ink soft" d="M65 216 C90 187 111 182 136 195 M244 201 C275 172 311 174 349 210"/>
+            <circle class="book-moon" cx="334" cy="57" r="24"/>
+          </svg>
+        </article>
+
+        <article class="book-page parchment-page" data-page="2">
+          <div class="page-number">II</div>
+          <div class="page-copy compact">
+            <p>No hubo un castillo.<br>No hubo un dragón.<br>Y definitivamente no hubo un príncipe llegando en caballo blanco.</p>
+            <div class="storybook-flourish">— ❦ —</div>
+            <h3>Hubo una parada de camión.</h3>
+            <p>Después de la universidad.<br>Después de entrenar tochito.<br>Probablemente cansados.</p>
+            <p class="tiny-joke">Muy de cuento de hadas. ♡</p>
+          </div>
+          <svg class="book-illustration bus-scene" viewBox="0 0 420 250" aria-hidden="true">
+            <path class="ink" d="M34 211 H386 M68 211 V67 M68 67 H128 M84 83 H116 V112 H84 Z"/>
+            <text x="100" y="103" text-anchor="middle" class="svg-label">PARADA</text>
+            <path class="ink" d="M180 211 V142 C180 127 193 116 208 116 H312 C329 116 342 129 342 146 V211 M193 139 H326 M214 139 V179 M263 139 V179 M312 139 V179"/>
+            <circle class="ink-fill" cx="205" cy="211" r="11"/><circle class="ink-fill" cx="316" cy="211" r="11"/>
+            <circle class="person-head" cx="126" cy="162" r="8"/><path class="ink person" d="M126 170 V202 M126 180 L111 192 M126 180 L140 191"/>
+            <circle class="person-head" cx="154" cy="163" r="8"/><path class="ink person" d="M154 171 V202 M154 181 L141 191 M154 181 L169 192"/>
+            <path class="spark-line" d="M135 151 Q140 143 145 151"/>
+          </svg>
+        </article>
+
+        <article class="book-page parchment-page" data-page="3">
+          <div class="page-number">III</div>
+          <div class="page-copy compact">
+            <p>Y fue ahí, entre un par de miradas, donde todo comenzó.</p>
+            <p>Después llegaron algunos chats… porque Marlene hizo lo que cualquier princesa moderna haría:</p>
+            <h3>buscó a Luis en Facebook.</h3>
+            <p class="book-punchline">Y funcionó.</p>
+          </div>
+          <svg class="book-illustration chat-scene" viewBox="0 0 420 250" aria-hidden="true">
+            <rect class="ink phone" x="155" y="35" width="110" height="180" rx="15"/>
+            <circle class="ink" cx="210" cy="194" r="5"/>
+            <path class="chat-bubble b1" d="M176 74 H230 Q240 74 240 84 V99 Q240 109 230 109 H192 L181 120 V109 H176 Q166 109 166 99 V84 Q166 74 176 74Z"/>
+            <path class="chat-bubble b2" d="M194 130 H247 Q257 130 257 140 V154 Q257 164 247 164 H218 L207 175 V164 H194 Q184 164 184 154 V140 Q184 130 194 130Z"/>
+            <text x="203" y="96" text-anchor="middle" class="svg-heart">♡</text>
+            <text x="221" y="151" text-anchor="middle" class="svg-label">Hola :)</text>
+            <path class="floating-heart h1" d="M103 79 C92 63 72 78 82 94 L103 112 L124 94 C134 78 114 63 103 79Z"/>
+            <path class="floating-heart h2" d="M320 126 C311 113 294 126 302 139 L320 154 L338 139 C346 126 329 113 320 126Z"/>
+          </svg>
+        </article>
+
+        <article class="book-page parchment-page" data-page="4">
+          <div class="page-number">IV</div>
+          <div class="page-copy compact">
+            <p>Más conversaciones. Más momentos juntos.</p>
+            <p>Sin anunciarlo.<br>Sin proponérselo.<br>Sin confirmación oficial…</p>
+            <h3>ya estaban juntos. ♡</h3>
+            <p>Y aunque pasaron los años, las dificultades y algunos tropiezos, permaneció algo difícil de explicar:</p>
+            <p class="emotional-line">una conexión que quizá no podía verse,<br>pero siempre podía sentirse.</p>
+          </div>
+          <svg class="book-illustration thread-scene" viewBox="0 0 420 250" aria-hidden="true">
+            <circle class="person-head" cx="105" cy="126" r="13"/><path class="ink person" d="M105 140 V204 M105 158 L76 180 M105 158 L137 178"/>
+            <circle class="person-head" cx="315" cy="126" r="13"/><path class="ink person" d="M315 140 V204 M315 158 L284 178 M315 158 L345 180"/>
+            <path class="red-thread" d="M119 158 C167 112 254 112 301 158"/>
+            <path class="red-thread heart-thread-mini" d="M200 130 C190 113 166 126 177 145 C187 158 200 167 200 167 C200 167 213 158 223 145 C234 126 210 113 200 130Z"/>
+          </svg>
+        </article>
+
+        <article class="book-page parchment-page" data-page="5">
+          <div class="page-number">V</div>
+          <div class="page-copy compact">
+            <p>Entonces el mundo se detuvo.</p>
+            <p>Una pandemia cortó conexiones entre personas, cambió rutinas y nos enseñó cuánto podían pesar las distancias.</p>
+            <p>Pero entre Luis y Marlene ocurrió algo distinto.</p>
+            <h3>Su amor floreció más.</h3>
+          </div>
+          <svg class="book-illustration bloom-scene" viewBox="0 0 420 250" aria-hidden="true">
+            <path class="ink window" d="M98 44 H322 V210 H98 Z M210 44 V210 M98 128 H322"/>
+            <circle class="person-head" cx="169" cy="154" r="10"/><path class="ink person" d="M169 164 V201 M169 176 L190 187"/>
+            <circle class="person-head" cx="248" cy="154" r="10"/><path class="ink person" d="M248 164 V201 M248 176 L227 187"/>
+            <path class="growing-vine v1" d="M82 210 C70 179 81 148 102 127 C116 113 120 94 111 77"/>
+            <path class="growing-vine v2" d="M337 210 C349 179 338 148 317 127 C303 113 299 94 308 77"/>
+            <path class="leaf" d="M87 171 Q60 158 68 139 Q91 145 96 164 M329 170 Q357 157 349 138 Q326 145 321 164"/>
+          </svg>
+        </article>
+
+        <article class="book-page parchment-page" data-page="6">
+          <div class="page-number">VI</div>
+          <div class="page-copy compact">
+            <p>Con el tiempo dejaron de imaginar cómo sería compartir una vida…</p>
+            <p>y decidieron comenzar a vivirla.</p>
+            <h3>Diciembre de 2023.</h3>
+            <p>Eligieron compartir lo extraordinario y también lo cotidiano: los buenos días, las noches cansadas, las responsabilidades, las risas y la maravillosa normalidad de terminar cada día juntos.</p>
+          </div>
+          <svg class="book-illustration home-scene" viewBox="0 0 420 250" aria-hidden="true">
+            <path class="ink house" d="M91 132 L210 48 L329 132 V216 H91 Z M150 216 V151 H207 V216 M241 150 H294 V188 H241 Z"/>
+            <path class="warm-window" d="M247 156 H288 V183 H247 Z"/>
+            <path class="box" d="M52 186 H115 V221 H52 Z M310 177 H372 V221 H310 Z"/>
+            <text x="83" y="207" text-anchor="middle" class="svg-label">HOGAR</text>
+            <path class="smoke" d="M291 76 C303 63 291 54 301 42 C310 31 301 22 308 14"/>
+          </svg>
+        </article>
+
+        <article class="book-page parchment-page bond-page" data-page="7">
+          <div class="page-number">VII</div>
+          <div class="page-copy compact">
+            <p>Y cuando creían que aquella pequeña familia ya tenía todo lo necesario…</p>
+            <p>llegó alguien más.</p>
+            <p class="bond-list">Cuatro patas.<br>Mucha personalidad.<br>Y probablemente cero respeto por el espacio personal.</p>
+            <h3 class="bond-name">Bond. ♡</h3>
+            <p>Y así, el hogar que estaban construyendo tuvo un integrante más.</p>
+          </div>
+          <svg class="book-illustration bond-scene" viewBox="0 0 420 250" aria-hidden="true">
+            <ellipse class="dog-body" cx="216" cy="161" rx="74" ry="44"/>
+            <circle class="dog-head" cx="151" cy="128" r="45"/>
+            <path class="dog-ear" d="M118 105 Q83 86 89 137 Q101 157 124 146"/>
+            <path class="dog-ear" d="M177 105 Q211 84 207 137 Q195 157 174 145"/>
+            <circle class="dog-eye" cx="136" cy="125" r="3.5"/><circle class="dog-eye" cx="165" cy="125" r="3.5"/>
+            <ellipse class="dog-nose" cx="151" cy="141" rx="7" ry="5"/>
+            <path class="dog-smile" d="M151 146 Q145 155 137 151 M151 146 Q157 155 165 151"/>
+            <path class="dog-tail" d="M283 151 Q333 113 345 148 Q352 171 328 177"/>
+            <path class="dog-leg" d="M180 188 V220 M245 190 V220"/>
+            <path class="dog-collar" d="M123 163 Q151 176 181 160"/>
+            <circle class="dog-tag" cx="153" cy="171" r="7"/>
+            <text x="153" y="174" text-anchor="middle" class="tag-letter">B</text>
+            <path class="paw pwa" d="M74 63 C68 55 58 61 62 70 C66 77 76 74 74 63Z M91 56 C85 48 75 55 80 63 C84 70 94 66 91 56Z M80 79 C71 72 62 82 69 90 C76 96 86 88 80 79Z"/>
+          </svg>
+        </article>
+
+        <article class="book-page parchment-page" data-page="8">
+          <div class="page-number">VIII</div>
+          <div class="page-copy compact">
+            <p>Desde entonces han seguido creciendo.</p>
+            <p>Personalmente.<br>Profesionalmente.<br>Espiritualmente.</p>
+            <p>Han aprendido a construir un hogar, a acompañarse en los cambios y a celebrar en equipo cada pequeña victoria.</p>
+            <h3>Y lo más importante:<br>como una familia.</h3>
+          </div>
+          <svg class="book-illustration family-scene" viewBox="0 0 420 250" aria-hidden="true">
+            <circle class="sunset" cx="210" cy="119" r="65"/>
+            <path class="hill" d="M25 219 Q112 142 196 207 Q273 139 395 219"/>
+            <circle class="person-head" cx="174" cy="154" r="11"/><path class="ink person" d="M174 166 V210 M174 178 L198 191"/>
+            <circle class="person-head" cx="245" cy="154" r="11"/><path class="ink person" d="M245 166 V210 M245 178 L221 191"/>
+            <ellipse class="dog-silhouette" cx="210" cy="204" rx="25" ry="15"/>
+            <circle class="dog-silhouette" cx="191" cy="192" r="13"/>
+            <path class="dog-silhouette-line" d="M232 199 Q252 182 258 197"/>
+          </svg>
+        </article>
+
+        <article class="book-page parchment-page" data-page="9">
+          <div class="page-number">IX</div>
+          <div class="page-copy">
+            <p>Y así llegamos a</p>
+            <h3 class="big-date">19 · 12 · 2026</h3>
+            <p>Tres años después de comenzar aquel capítulo, aquello que empezó con un par de miradas en una parada de camión se ha convertido en algo mucho más grande.</p>
+            <p class="emotional-line">Un hogar.<br>Una historia.<br>Una familia.</p>
+          </div>
+          <svg class="book-illustration path-scene" viewBox="0 0 420 250" aria-hidden="true">
+            <path class="gold-path" d="M207 236 C188 192 245 177 220 139 C200 109 171 100 193 66 C210 39 242 46 249 19"/>
+            <path class="ink trees" d="M73 218 L100 146 L127 218 M293 218 L322 139 L351 218"/>
+            <circle class="small-heart" cx="249" cy="19" r="7"/>
+          </svg>
+        </article>
+
+        <article class="book-page parchment-page finale-page" data-page="10">
+          <div class="page-number">X</div>
+          <div class="page-copy finale-copy">
+            <p>Por eso, el 19 de diciembre de 2026 no representa el comienzo de su historia.</p>
+            <p>Su historia comenzó hace mucho tiempo.</p>
+            <div class="storybook-flourish">— ❦ —</div>
+            <p>Este día representa algo diferente:</p>
+            <h3>la decisión de seguir eligiéndose.</h3>
+            <p>Porque después de casi diez años, Luis y Marlene saben que el amor no consiste solamente en encontrarse.</p>
+            <p class="emotional-line">Consiste en elegir quedarse.</p>
+            <div class="final-monogram">L <span>♡</span> M</div>
+            <p class="continuara">Y ahora sí… continuará.</p>
+          </div>
+          <button class="close-book-button" id="closeBookButton" type="button">CERRAR EL LIBRO</button>
+          <p class="marlene-secret">Si Marlene pregunta, esta sección siempre fue elegante. ♡</p>
+        </article>
+
+        <button class="book-nav prev" id="bookPrev" type="button" aria-label="Página anterior">‹</button>
+        <button class="book-nav next" id="bookNext" type="button" aria-label="Página siguiente">›</button>
+        <div class="book-progress" id="bookProgress" aria-hidden="true"></div>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>
