@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#F4EDE3" />
   <meta name="description" content="Invitación de boda civil de Luis & Marlene — 19 de diciembre de 2026." />
-  <title>Luis & Marlene | 19.12.2026 · V4.1</title>
+  <title>Luis & Marlene | 19.12.2026 · V4.2</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -3311,6 +3311,201 @@
   #storybook .manuscript-spread .family-mini,
   #storybook .manuscript-spread .road-mini{
     width:min(88vw,390px)!important;
+  }
+}
+
+/* ============================================================
+   V4.2 — CINEMATIC MOBILE FOLIO
+   Desktop manuscript remains unchanged.
+   ============================================================ */
+@media(max-width:700px){
+
+  /* The overlay is the viewport. The manuscript itself no longer pretends
+     to be a full-height sheet of physical paper. */
+  #storybook{
+    overflow:hidden!important;
+  }
+  #storybook .manuscript-stage,
+  #storybook .storybook-stage{
+    box-sizing:border-box!important;
+    width:100%!important;
+    height:100dvh!important;
+    min-height:0!important;
+    padding:
+      max(74px,calc(env(safe-area-inset-top) + 58px))
+      clamp(12px,3.5vw,18px)
+      max(58px,calc(env(safe-area-inset-bottom) + 46px))!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    overflow:hidden!important;
+  }
+
+  #storybook .manuscript-book,
+  #storybook .book-shell{
+    width:100%!important;
+    height:auto!important;
+    min-height:0!important;
+    max-height:calc(100dvh - 145px)!important;
+    margin:auto!important;
+    overflow:visible!important;
+  }
+
+  #storybook .manuscript-spread.active{
+    width:100%!important;
+    height:auto!important;
+    min-height:0!important;
+    max-height:calc(100dvh - 145px)!important;
+    overflow:visible!important;
+  }
+
+  /* One deliberately proportioned mobile card. */
+  #storybook .manuscript-spread .folio{
+    box-sizing:border-box!important;
+    width:min(94vw,560px)!important;
+    height:auto!important;
+    min-height:min(72dvh,650px)!important;
+    max-height:calc(100dvh - 150px)!important;
+    margin:auto!important;
+    padding:clamp(24px,4.5dvh,42px) clamp(22px,6vw,34px) 48px!important;
+    border-radius:10px!important;
+    overflow-y:auto!important;
+    overflow-x:hidden!important;
+    display:grid!important;
+    grid-template-rows:auto minmax(170px,1fr)!important;
+    align-content:stretch!important;
+    gap:clamp(14px,2.3dvh,24px)!important;
+    scrollbar-width:none;
+  }
+  #storybook .manuscript-spread .folio::-webkit-scrollbar{display:none}
+
+  #storybook .manuscript-spread .folio-right{display:none!important}
+  #storybook .manuscript-spread.mobile-second .folio-left{display:none!important}
+  #storybook .manuscript-spread.mobile-second .folio-right{display:grid!important}
+
+  /* Reading block: comfortably readable again. */
+  #storybook .manuscript-copy,
+  #storybook .manuscript-copy.right-copy{
+    position:relative!important;
+    inset:auto!important;
+    width:100%!important;
+    height:auto!important;
+    min-height:0!important;
+    margin:0!important;
+    padding:0!important;
+    align-self:start!important;
+  }
+  html body #storybook .manuscript-copy p,
+  html body #storybook .quest-list,
+  html body #storybook .bond-legend{
+    font-size:12px!important;
+    line-height:1.42!important;
+    margin:.36em 0!important;
+  }
+  html body #storybook .scribe-note,
+  html body #storybook .aside{
+    font-size:9px!important;
+    line-height:1.32!important;
+  }
+  html body #storybook .manuscript-copy h3{
+    font-size:17px!important;
+    line-height:1.08!important;
+  }
+  #storybook .v4-rubric{
+    font-size:8px!important;
+    margin-bottom:7px!important;
+  }
+
+  /* Artwork owns the second half of the composition instead of floating
+     at an arbitrary desktop coordinate. */
+  #storybook .manuscript-spread .miniature,
+  #storybook .manuscript-spread .castle-mini,
+  #storybook .manuscript-spread .bus-mini,
+  #storybook .manuscript-spread .scroll-mini,
+  #storybook .manuscript-spread .chat-mini,
+  #storybook .manuscript-spread .thread-mini,
+  #storybook .manuscript-spread .bloom-mini,
+  #storybook .manuscript-spread .home-mini,
+  #storybook .manuscript-spread .family-mini,
+  #storybook .manuscript-spread .road-mini,
+  #storybook .manuscript-spread .cocker-mini{
+    position:relative!important;
+    inset:auto!important;
+    left:auto!important;
+    right:auto!important;
+    top:auto!important;
+    bottom:auto!important;
+    box-sizing:border-box!important;
+    width:min(78vw,410px)!important;
+    height:100%!important;
+    min-height:170px!important;
+    max-height:30dvh!important;
+    margin:auto!important;
+    align-self:center!important;
+    justify-self:center!important;
+  }
+  #storybook .manuscript-spread .cocker-mini{
+    width:min(84vw,440px)!important;
+    max-height:32dvh!important;
+  }
+  #storybook .manuscript-spread .miniature svg,
+  #storybook .manuscript-spread .castle-mini svg,
+  #storybook .manuscript-spread .bus-mini svg,
+  #storybook .manuscript-spread .scroll-mini svg,
+  #storybook .manuscript-spread .chat-mini svg,
+  #storybook .manuscript-spread .thread-mini svg,
+  #storybook .manuscript-spread .bloom-mini svg,
+  #storybook .manuscript-spread .home-mini svg,
+  #storybook .manuscript-spread .family-mini svg,
+  #storybook .manuscript-spread .road-mini svg,
+  #storybook .manuscript-spread .cocker-mini svg{
+    display:block!important;
+    width:100%!important;
+    height:100%!important;
+    object-fit:contain!important;
+  }
+
+  /* Progress belongs to the card, visually close to the content. */
+  #storybook .book-progress{
+    position:fixed!important;
+    left:50%!important;
+    transform:translateX(-50%)!important;
+    bottom:max(20px,calc(env(safe-area-inset-bottom) + 10px))!important;
+    z-index:10040!important;
+  }
+  #storybook .book-nav{
+    position:fixed!important;
+    bottom:max(12px,env(safe-area-inset-bottom))!important;
+    z-index:10045!important;
+  }
+
+  /* Less ornamental dead space on short phones. */
+  @media(max-height:760px){
+    #storybook .manuscript-stage,
+    #storybook .storybook-stage{
+      padding-top:max(62px,calc(env(safe-area-inset-top) + 48px))!important;
+      padding-bottom:max(48px,calc(env(safe-area-inset-bottom) + 38px))!important;
+    }
+    #storybook .manuscript-spread .folio{
+      min-height:calc(100dvh - 125px)!important;
+      max-height:calc(100dvh - 125px)!important;
+      padding-top:22px!important;
+      gap:10px!important;
+      grid-template-rows:auto minmax(130px,1fr)!important;
+    }
+    #storybook .manuscript-spread .miniature,
+    #storybook .manuscript-spread .castle-mini,
+    #storybook .manuscript-spread .bus-mini,
+    #storybook .manuscript-spread .scroll-mini,
+    #storybook .manuscript-spread .chat-mini,
+    #storybook .manuscript-spread .thread-mini,
+    #storybook .manuscript-spread .bloom-mini,
+    #storybook .manuscript-spread .home-mini,
+    #storybook .manuscript-spread .family-mini,
+    #storybook .manuscript-spread .road-mini{
+      min-height:130px!important;
+      max-height:25dvh!important;
+    }
   }
 }
 </style>
