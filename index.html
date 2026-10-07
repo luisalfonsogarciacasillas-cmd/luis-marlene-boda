@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#F4EDE3" />
   <meta name="description" content="Invitación de boda civil de Luis & Marlene — 19 de diciembre de 2026." />
-  <title>Luis & Marlene | 19.12.2026 · V3.5</title>
+  <title>Luis & Marlene | 19.12.2026 · V3.5.1</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -3109,6 +3109,89 @@ html body #storybook.manuscript-mode .quest-list{
     animation-duration:.01ms!important;
   }
 }
+
+/* ============================================================
+   V3.5.1 — fitted Uncial typography
+   ============================================================ */
+
+/* Keep Uncial forced, but size it according to its role. */
+html body #storybook.manuscript-mode .manuscript-copy p,
+html body #storybook.manuscript-mode .quest-list,
+html body #storybook.manuscript-mode .bond-legend{
+  font-family:"Uncial Antiqua",serif!important;
+  font-size:clamp(12px,1.02vw,15px)!important;
+  line-height:1.36!important;
+  letter-spacing:0!important;
+  margin-top:.48em!important;
+  margin-bottom:.48em!important;
+}
+html body #storybook.manuscript-mode .scribe-note{
+  font-family:"Uncial Antiqua",serif!important;
+  font-size:clamp(9px,.72vw,11px)!important;
+  line-height:1.28!important;
+  letter-spacing:.005em!important;
+}
+html body #storybook.manuscript-mode .manuscript-copy h3{
+  font-family:"Uncial Antiqua",serif!important;
+  font-size:clamp(18px,1.65vw,27px)!important;
+  line-height:1.08!important;
+  margin-top:.38em!important;
+  margin-bottom:.38em!important;
+}
+html body #storybook.manuscript-mode .illuminated-initial{
+  font-family:"Uncial Antiqua",serif!important;
+  font-size:2.25em!important;
+  line-height:.82!important;
+}
+html body #storybook.manuscript-mode .bond-title{
+  font-family:"Uncial Antiqua",serif!important;
+  font-size:clamp(23px,2.3vw,36px)!important;
+  line-height:1!important;
+  margin:.22em 0!important;
+}
+html body #storybook.manuscript-mode .aside,
+html body #storybook.manuscript-mode .bond-last-word{
+  font-size:clamp(11px,.94vw,14px)!important;
+  line-height:1.32!important;
+}
+
+/* Give illustrated folios more breathing room. */
+#storybook .book-page:has(svg) .manuscript-copy p,
+#storybook .book-page:has(.cocker-mini) .manuscript-copy p,
+#storybook .bond-folio .manuscript-copy p{
+  font-size:clamp(11px,.92vw,14px)!important;
+  line-height:1.31!important;
+  margin-top:.38em!important;
+  margin-bottom:.38em!important;
+}
+
+@media(max-width:700px){
+  html body #storybook.manuscript-mode .manuscript-copy p,
+  html body #storybook.manuscript-mode .quest-list,
+  html body #storybook.manuscript-mode .bond-legend{
+    font-size:12px!important;
+    line-height:1.34!important;
+    margin-top:.42em!important;
+    margin-bottom:.42em!important;
+  }
+  html body #storybook.manuscript-mode .scribe-note{
+    font-size:9px!important;
+    line-height:1.25!important;
+  }
+  html body #storybook.manuscript-mode .manuscript-copy h3{
+    font-size:19px!important;
+    line-height:1.08!important;
+  }
+  html body #storybook.manuscript-mode .bond-title{
+    font-size:25px!important;
+  }
+  #storybook .book-page:has(svg) .manuscript-copy p,
+  #storybook .book-page:has(.cocker-mini) .manuscript-copy p,
+  #storybook .bond-folio .manuscript-copy p{
+    font-size:11px!important;
+    line-height:1.28!important;
+  }
+}
 </style>
 </head>
 
@@ -3975,25 +4058,6 @@ html body #storybook.manuscript-mode .quest-list{
       paperTurnOverlay.classList.remove('turn-next','turn-prev');
     },620);
   }
-
-  let medievalPrimed = false;
-  function primeMedievalAudio(){
-    if(!medievalAudio || medievalPrimed) return;
-    try{
-      medievalAudio.preload = 'auto';
-      medievalAudio.load();
-      medievalAudio.volume = 0.001;
-      const p = medievalAudio.play();
-      if(p && p.then){
-        p.then(()=>{
-          medievalAudio.pause();
-          medievalAudio.currentTime = 0;
-          medievalPrimed = true;
-        }).catch(()=>{});
-      }
-    }catch(e){}
-  }
-
   let weddingResumeTime = 0;
   let weddingWasPlaying = false;
   let fadeToken = 0;
@@ -4014,27 +4078,54 @@ html body #storybook.manuscript-mode .quest-list{
   }
   function crossfadeIntoStory(){
     if(!medievalAudio) return;
+
     weddingWasPlaying = !!weddingAudio && !weddingAudio.paused;
     if(weddingAudio) weddingResumeTime = weddingAudio.currentTime || 0;
 
-    // Opening the book is a direct user gesture, so browsers permit this play().
-    medievalAudio.currentTime = 0;
-    medievalAudio.volume = 0;
-    const playPromise = medievalAudio.play();
-    if(playPromise && playPromise.catch) playPromise.catch(()=>{});
+    // This function is invoked synchronously by openBook(), which itself is
+    // invoked by the user's click/tap. Start the medieval track immediately
+    // inside that gesture. No async priming, pausing, or resetting afterward.
+    try{
+      medievalAudio.pause();
+      medievalAudio.currentTime = 0;
+      medievalAudio.volume = 0.06;
+      medievalAudio.muted = false;
+    }catch(e){}
 
-    const token = ++fadeToken;
-    const start = performance.now();
-    const weddingStart = weddingAudio ? weddingAudio.volume : 0;
-    function step(now){
-      if(token !== fadeToken) return;
-      const p = Math.min(1,(now-start)/1800);
-      if(weddingAudio) weddingAudio.volume = weddingStart*(1-p);
-      medievalAudio.volume = 0.72*p;
-      if(p < 1) requestAnimationFrame(step);
-      else if(weddingAudio) weddingAudio.pause();
+    let started = false;
+    const p = medievalAudio.play();
+
+    const beginFade = ()=>{
+      if(started) return;
+      started = true;
+      const token = ++fadeToken;
+      const fadeStart = performance.now();
+      const weddingStart = weddingAudio ? weddingAudio.volume : 0;
+
+      function step(now){
+        if(token !== fadeToken) return;
+        const x = Math.min(1,(now-fadeStart)/1500);
+        if(weddingAudio) weddingAudio.volume = weddingStart*(1-x);
+        medievalAudio.volume = 0.06 + ((0.72-0.06)*x);
+        if(x < 1){
+          requestAnimationFrame(step);
+        }else{
+          medievalAudio.volume = 0.72;
+          if(weddingAudio) weddingAudio.pause();
+        }
+      }
+      requestAnimationFrame(step);
+    };
+
+    if(p && typeof p.then === 'function'){
+      p.then(beginFade).catch(()=>{
+        // If a browser rejects the first attempt, keep the wedding track
+        // untouched rather than creating a broken half-transition.
+        if(weddingAudio) weddingAudio.volume = 1;
+      });
+    }else{
+      beginFade();
     }
-    requestAnimationFrame(step);
   }
   function crossfadeOutOfStory(){
     if(!medievalAudio) return;
@@ -4130,13 +4221,14 @@ html body #storybook.manuscript-mode .quest-list{
     go(page-1,mobileMQ.matches?1:0);
   }
   function openBook(){
+    crossfadeIntoStory();
     page=0;mobileSide=0;
     bookPages.forEach((p,i)=>{p.classList.toggle('active',i===0);p.classList.remove('mobile-second','leaving')});
     bookShell.classList.remove('opened');
     storybook.classList.add('open');
     storybook.setAttribute('aria-hidden','false');
     document.body.classList.add('storybook-open');
-    crossfadeIntoStory();
+    
     dots();controls();
   }
   function closeBook(){
@@ -4151,10 +4243,7 @@ html body #storybook.manuscript-mode .quest-list{
     },600);
   }
 
-  if(storyTrigger)storyTrigger.addEventListener('click',function(e){
-    primeMedievalAudio();
-    openBook(e);
-  });
+  if(storyTrigger)storyTrigger.addEventListener('click',openBook);
   if(storyX)storyX.addEventListener('click',closeBook);
   if(closeBookButton)closeBookButton.addEventListener('click',closeBook);
   if(bookPrev)bookPrev.addEventListener('click',prev);
