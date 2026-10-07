@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#F4EDE3" />
   <meta name="description" content="Invitación de boda civil de Luis & Marlene — 19 de diciembre de 2026." />
-  <title>Luis & Marlene | 19.12.2026 · V3.0</title>
+  <title>Luis & Marlene | 19.12.2026 · V3.2</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -2652,6 +2652,297 @@
   .book-nav.prev{left:10px}.book-nav.next{right:10px}
   .book-progress{bottom:28px}
 }
+
+/* ============================================================
+   V3.1 — Richer illuminated scenes + editorial mobile reading
+   ============================================================ */
+
+/* Make miniatures feel like manuscript scenes rather than floating icons */
+.manuscript-spread .folio{
+  isolation:isolate;
+}
+.manuscript-spread .folio:after{
+  content:"";
+  position:absolute;
+  left:7%;right:7%;bottom:4.5%;
+  height:30%;
+  border-radius:50% 50% 9% 9% / 18% 18% 8% 8%;
+  background:
+    radial-gradient(ellipse at 50% 100%,rgba(82,96,48,.13),transparent 62%),
+    linear-gradient(180deg,transparent 70%,rgba(126,76,34,.055));
+  z-index:1;
+  pointer-events:none;
+}
+.manuscript-spread .miniature{
+  width:52%;
+  height:39%;
+  right:4%;
+  bottom:3%;
+  filter:drop-shadow(0 2px 0 rgba(81,46,24,.10));
+}
+.manuscript-spread .castle-mini,
+.manuscript-spread .bus-mini,
+.manuscript-spread .scroll-mini,
+.manuscript-spread .chat-mini,
+.manuscript-spread .thread-mini,
+.manuscript-spread .bloom-mini,
+.manuscript-spread .home-mini,
+.manuscript-spread .family-mini,
+.manuscript-spread .road-mini{
+  width:53%;
+  height:38%;
+}
+.manuscript-spread .cocker-mini{
+  width:56%;
+  height:42%;
+  right:2%;
+  bottom:1%;
+}
+
+/* Decorative manuscript vegetation around the lower scene */
+.manuscript-spread .folio .miniature:before{
+  content:"";
+}
+.folio-border.blue,
+.folio-border.red,
+.folio-border.green,
+.folio-border.gold{
+  box-shadow:0 5px 0 -4px currentColor;
+}
+
+/* richer linework / ink */
+.castle-line,.ground,.bus-stop,.bus,.figure-line,.scroll-line,.quill,
+.window-v3,.house-line,.smoke-v3,.cocker-smile,.cocker-feather,
+.cocker-tail,.cocker-leg,.cocker-collar,.heroic-rays,.tree{
+  stroke-width:2.6;
+}
+.castle-fill{fill:#a44d32}
+.hill-green{fill:#687844}
+.ribbon.r1{fill:#314b8c}.ribbon.r2{fill:#a24631}
+.scroll-paper{fill:#e4c98e}
+.house-fill{fill:#b66f3c;opacity:.42}
+
+/* Bond: more Cocker-like silhouette and richer manuscript treatment */
+.cocker-body{fill:#ad7044}
+.cocker-head{fill:#bd8050}
+.cocker-ear{fill:#74452d}
+.cocker-muzzle{fill:#d8aa73}
+.cocker-feather{
+  stroke:#704127;
+  stroke-width:2.2;
+}
+.cocker-collar{stroke:#2f477e;stroke-width:4}
+.cocker-tag{fill:#c9993e}
+.bond-folio .cocker-mini{
+  animation:bondHero 5s ease-in-out infinite;
+  transform-origin:50% 75%;
+}
+@keyframes bondHero{
+  0%,100%{transform:translateY(0) rotate(0deg)}
+  50%{transform:translateY(-4px) rotate(-.5deg)}
+}
+
+/* Page illustrations gently come alive when a spread opens */
+.book-page.active .miniature{
+  animation:manuscriptSceneIn 1.1s cubic-bezier(.2,.8,.2,1) both;
+}
+.book-page.active .folio-right .miniature{animation-delay:.18s}
+@keyframes manuscriptSceneIn{
+  from{opacity:0;transform:translateY(14px) scale(.965)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+.book-page.active .gold-sun{
+  animation:manuscriptSun 5s ease-in-out infinite;
+  transform-origin:center;
+}
+@keyframes manuscriptSun{
+  50%{opacity:.82;transform:scale(1.06)}
+}
+.book-page.active .flower{
+  animation:flowerPulse 3.6s ease-in-out infinite alternate;
+  transform-origin:center;
+}
+@keyframes flowerPulse{
+  to{transform:scale(1.16)}
+}
+
+/* Give copy more room above the illustration */
+.manuscript-copy{
+  max-width:94%;
+}
+.manuscript-copy p{
+  text-wrap:pretty;
+}
+
+/* -------------------- MOBILE BOOK TYPOGRAPHY -------------------- */
+@media(max-width:700px){
+  .manuscript-spread.active{
+    text-align:left!important;
+  }
+  .manuscript-spread .folio{
+    min-height:100svh;
+    padding:58px 28px 48px;
+    text-align:left!important;
+  }
+  .manuscript-spread .folio:before{
+    inset:13px;
+  }
+  .manuscript-spread .folio:after{
+    left:4%;right:4%;height:27%;bottom:4%;
+  }
+  .manuscript-copy,
+  .manuscript-copy.right-copy,
+  .manuscript-copy p,
+  .manuscript-copy h3,
+  .quest-list,
+  .bond-legend,
+  .three-lines{
+    text-align:left!important;
+  }
+  .manuscript-copy{
+    width:100%;
+    max-width:none;
+    margin:22px 0 0;
+    padding:0 4px;
+  }
+  .manuscript-copy p{
+    font-size:19px;
+    line-height:1.36;
+    margin:.58em 0;
+  }
+  .illuminated-paragraph{
+    min-height:0;
+  }
+  .illuminated-initial{
+    float:left;
+    margin:.06em .14em .03em 0;
+    font-size:2.65em;
+  }
+  .manuscript-copy h3{
+    margin:.48em 0;
+  }
+  .narrator-pause{
+    text-align:left!important;
+    padding-left:1.1em;
+  }
+  .manuscript-copy .aside{
+    border-left:1px solid rgba(142,78,37,.45);
+    padding-left:13px;
+    margin-left:2px;
+  }
+
+  /* Illustration becomes a proper lower-page miniature on phones */
+  .manuscript-spread .miniature,
+  .manuscript-spread .castle-mini,
+  .manuscript-spread .bus-mini,
+  .manuscript-spread .scroll-mini,
+  .manuscript-spread .chat-mini,
+  .manuscript-spread .thread-mini,
+  .manuscript-spread .bloom-mini,
+  .manuscript-spread .home-mini,
+  .manuscript-spread .family-mini,
+  .manuscript-spread .road-mini{
+    width:82%;
+    height:31%;
+    left:9%;
+    right:auto;
+    bottom:3.5%;
+  }
+  .manuscript-spread .cocker-mini{
+    width:88%;
+    height:34%;
+    left:6%;
+    right:auto;
+    bottom:1.8%;
+  }
+
+  /* Preserve deliberate centered finale, but body copy remains editorial */
+  .finale-spread .finale-left .manuscript-copy,
+  .finale-spread .finale-left .manuscript-copy p,
+  .finale-spread .finale-left .manuscript-copy h3{
+    text-align:left!important;
+  }
+  .finale-spread .final-center,
+  .finale-spread .final-center p,
+  .finale-spread .final-center h3{
+    text-align:center!important;
+  }
+  .grand-date{
+    text-align:left!important;
+  }
+}
+
+/* Extra narrow phones */
+@media(max-width:390px){
+  .manuscript-spread .folio{padding-left:23px;padding-right:23px}
+  .manuscript-copy p{font-size:18px}
+  .manuscript-copy h3{font-size:29px}
+  .manuscript-spread .miniature,
+  .manuscript-spread .castle-mini,
+  .manuscript-spread .bus-mini,
+  .manuscript-spread .scroll-mini,
+  .manuscript-spread .chat-mini,
+  .manuscript-spread .thread-mini,
+  .manuscript-spread .bloom-mini,
+  .manuscript-spread .home-mini,
+  .manuscript-spread .family-mini,
+  .manuscript-spread .road-mini{
+    width:88%;left:6%;
+  }
+}
+
+/* V3.2 — narrator personality + medieval marginalia */
+.scribe-note{
+  position:relative;
+  max-width:72%;
+  margin-top:1.05rem!important;
+  padding:.55rem .7rem .5rem 1rem;
+  border-left:2px solid rgba(137,77,36,.52);
+  font-size:clamp(13px,1.05vw,16px)!important;
+  line-height:1.2!important;
+  font-style:italic;
+  color:#81552f!important;
+  opacity:.88;
+}
+.scribe-note:before{
+  content:"✦";
+  position:absolute;left:-8px;top:-11px;
+  font-style:normal;font-size:11px;color:#a26b2f;
+  background:#ead7a7;padding:2px;
+}
+.note-right{margin-left:auto;text-align:right}
+.note-left{margin-right:auto}
+.bond-last-word{
+  margin:.45rem 0 0!important;
+  font:italic 600 clamp(16px,1.35vw,20px)/1.18 "Cormorant Garamond",Georgia,serif!important;
+  color:#754326!important;
+}
+.bond-last-word span{
+  font-size:.78em;font-weight:400;opacity:.72;
+}
+.book-page.active .scribe-note{
+  animation:scribeReveal 1.2s ease .8s both;
+}
+@keyframes scribeReveal{
+  from{opacity:0;transform:translateX(-7px)}
+  to{opacity:.88;transform:translateX(0)}
+}
+@media(max-width:700px){
+  .scribe-note,
+  .scribe-note.note-right,
+  .scribe-note.note-left{
+    max-width:88%;
+    margin-left:0!important;
+    margin-right:auto!important;
+    text-align:left!important;
+    padding-left:12px;
+    font-size:14px!important;
+  }
+  .bond-last-word,
+  .bond-last-word span{
+    text-align:center!important;
+  }
+}
 </style>
 </head>
 
@@ -3229,6 +3520,7 @@
               <p>Quizá durante un elegante baile real.</p>
               <p class="narrator-pause">…</p>
               <h3 class="punch">No.</h3>
+              <p class="scribe-note note-left">El narrador había preparado un castillo. Fue rechazado por falta de evidencia histórica.</p>
             </div>
             <svg class="miniature castle-mini" viewBox="0 0 400 240" aria-hidden="true">
               <path class="hill-green" d="M12 211 Q95 119 190 193 Q270 111 391 205 V239 H12Z"/>
@@ -3245,9 +3537,10 @@
               <p class="illuminated-paragraph"><span class="illuminated-initial initial-blue">E</span>staban esperando el camión para regresar a casa.</p>
               <p>Después de la universidad.</p>
               <p>Después de entrenar tochito.</p>
-              <p>Probablemente cansados.</p>
+              <p>Probablemente cansados, sudados y pensando más en llegar a casa que en encontrar al amor de su vida.</p>
               <h3 class="aside">Muy de cuento de hadas. ♡</h3>
               <p>Y fue ahí, entre un par de miradas, donde comenzó una historia que ninguno de los dos sabía que estaba empezando.</p>
+              <p class="scribe-note note-right">Representación artística. El camión probablemente tardó más.</p>
             </div>
             <svg class="miniature bus-mini" viewBox="0 0 400 240" aria-hidden="true">
               <path class="ground" d="M15 211 H385"/>
@@ -3258,7 +3551,10 @@
               <circle class="figure" cx="130" cy="162" r="9"/><path class="figure-line" d="M130 171 V208 M130 184 L112 197"/>
               <circle class="figure" cx="160" cy="163" r="9"/><path class="figure-line" d="M160 172 V208 M160 184 L178 197"/>
               <path class="glance" d="M140 151 Q145 145 150 151"/>
-            </svg>
+            
+              <path d="M20 218 Q70 189 119 214 Q164 185 207 216 Q272 184 381 216" fill="#667641" stroke="#43522b" stroke-width="1.5"/>
+              <path d="M25 70 Q47 43 67 69 M335 78 Q357 48 379 78" fill="none" stroke="#9b452f" stroke-width="2"/>
+</svg>
           </div>
         </section>
 
@@ -3267,10 +3563,11 @@
           <div class="folio folio-left">
             <div class="folio-border green"></div>
             <div class="manuscript-copy">
-              <p class="illuminated-paragraph"><span class="illuminated-initial initial-green">M</span>arlene, intrigada por aquel misterioso joven, emprendió una misión digna de cualquier gran aventura.</p>
-              <p class="quest-list">No cruzó un bosque encantado.<br>No enfrentó a un dragón.<br>No consultó a un hechicero.</p>
+              <p class="illuminated-paragraph"><span class="illuminated-initial initial-green">M</span>arlene, intrigada por aquel misterioso joven, emprendió una misión tan peligrosa que pocos se habrían atrevido a intentarla.</p>
+              <p class="quest-list">No cruzó un bosque encantado.<br>No enfrentó a un dragón.<br>No consultó a una bruja.</p>
               <h3 class="punch facebook-line">Buscó a Luis en Facebook.</h3>
-              <p class="aside">Y funcionó.</p>
+              <p class="aside">Eran otros tiempos. No juzguen.</p>
+              <p class="scribe-note note-left">Fuentes históricas confirman que Marlene inició esta expedición.</p>
             </div>
             <svg class="miniature scroll-mini" viewBox="0 0 400 240" aria-hidden="true">
               <path class="scroll-paper" d="M103 55 Q84 55 84 76 V180 Q84 199 103 199 H301 Q319 199 319 180 V76 Q319 55 301 55Z"/>
@@ -3284,12 +3581,14 @@
           <div class="folio folio-right">
             <div class="folio-border blue"></div>
             <div class="manuscript-copy right-copy">
-              <p class="illuminated-paragraph"><span class="illuminated-initial initial-gold">D</span>espués llegaron los chats, más miradas, más conversaciones y más momentos juntos.</p>
-              <p>Sin anunciarlo.</p>
-              <p>Sin proponérselo.</p>
-              <p>Sin ninguna proclamación real ni confirmación oficial…</p>
-              <h3 class="punch">ya estaban juntos. ♡</h3>
+              <p class="illuminated-paragraph"><span class="illuminated-initial initial-gold">D</span>espués llegaron los mensajes, más miradas, más conversaciones y cada vez más tiempo juntos.</p>
+              <p>No hubo una gran declaración.</p>
+              <p>No hubo una proclamación real.</p>
+              <p>Nadie levantó un pergamino para preguntar: “¿Quieres ser mi novia?”</p>
+              <p>Pero un buen día, después de revisar cuidadosamente la evidencia…</p>
+              <h3 class="punch">resulta que ya eran novios. ♡</h3>
               <p class="aside">Nadie sabe exactamente cuándo ocurrió.<br>Ellos tampoco.</p>
+              <p class="scribe-note note-right">La administración de esta historia aún investiga la fecha exacta.</p>
             </div>
             <svg class="miniature chat-mini" viewBox="0 0 400 240" aria-hidden="true">
               <path class="ribbon r1" d="M59 83 Q120 44 183 86 L169 119 Q111 86 65 118Z"/>
@@ -3307,8 +3606,10 @@
           <div class="folio folio-left">
             <div class="folio-border red"></div>
             <div class="manuscript-copy">
-              <p class="illuminated-paragraph"><span class="illuminated-initial initial-red">P</span>asaron los años. Llegaron aventuras, cambios, dificultades y algunos tropiezos.</p>
-              <p>Pero entre Luis y Marlene permaneció algo que no necesitaba explicación.</p>
+              <p class="illuminated-paragraph"><span class="illuminated-initial initial-red">P</span>asaron los años. Llegaron aventuras, cambios, buenos momentos, dificultades y algunos tropiezos.</p>
+              <p>Porque aparentemente una relación de casi diez años no incluye instrucciones.</p>
+              <p class="aside">Qué falta de consideración.</p>
+              <p>Pero incluso cuando las cosas se complicaban, entre Luis y Marlene permanecía algo difícil de explicar.</p>
               <h3 class="emotional-manuscript">Una conexión que quizá no podía verse,<br>pero siempre podía sentirse.</h3>
             </div>
             <svg class="miniature thread-mini" viewBox="0 0 400 240" aria-hidden="true">
@@ -3322,12 +3623,12 @@
           <div class="folio folio-right">
             <div class="folio-border green"></div>
             <div class="manuscript-copy right-copy">
-              <p class="illuminated-paragraph"><span class="illuminated-initial initial-blue">Y</span>entonces, un día, el mundo se detuvo.</p>
-              <p>Una pandemia separó personas, cambió rutinas y volvió distantes muchas cosas que antes parecían cercanas.</p>
-              <p>Pero ocurrió algo curioso.</p>
-              <h3 class="punch softer">Mientras el mundo se alejaba,<br>ellos se acercaron más.</h3>
-              <p>Su amor no se detuvo.</p>
-              <p class="aside">Floreció.</p>
+              <p class="illuminated-paragraph"><span class="illuminated-initial initial-blue">Y</span>entonces llegó el año en que todo el reino recibió una orden inesperada:</p>
+              <h3 class="punch softer">Quédense en sus casas.</h3>
+              <p>El mundo se detuvo. Las calles quedaron vacías y las personas tuvieron que mantenerse alejadas.</p>
+              <p>Y mientras una pandemia cortaba conexiones por todas partes… estos dos hicieron exactamente lo contrario.</p>
+              <h3 class="emotional-manuscript">Se acercaron todavía más.</h3>
+              <p class="aside">Claramente nunca han sido buenos siguiendo la trama.</p>
             </div>
             <svg class="miniature bloom-mini" viewBox="0 0 400 240" aria-hidden="true">
               <path class="window-v3" d="M113 47 H289 V211 H113Z M201 47 V211 M113 129 H289"/>
@@ -3345,28 +3646,37 @@
           <div class="folio folio-left">
             <div class="folio-border gold"></div>
             <div class="manuscript-copy">
-              <p class="illuminated-paragraph"><span class="illuminated-initial initial-gold">C</span>on el tiempo dejaron de imaginar cómo sería compartir una vida y decidieron comenzar a vivirla.</p>
-              <h3 class="chapter-date">Diciembre de 2023.</h3>
-              <p>Eligieron compartir los buenos días, las noches cansadas, las responsabilidades, las risas, los planes y esa maravillosa normalidad de terminar cada día juntos.</p>
-              <p class="aside">Construyeron un hogar.</p>
+              <p class="illuminated-paragraph"><span class="illuminated-initial initial-gold">C</span>on el tiempo dejaron de imaginar cómo sería compartir una vida y tomaron una decisión importante:</p>
+              <h3 class="chapter-date">vivir juntos.</h3>
+              <p>Compartir los buenos días. Las noches cansadas. Las responsabilidades. Los sueños. Las risas.</p>
+              <p>Y, por supuesto, compartir la eterna pregunta:</p>
+              <h3 class="aside">“¿Quién dejó eso ahí?”</h3>
+              <p>En diciembre de 2023 comenzó un nuevo capítulo: construir un hogar y terminar cada día juntos.</p>
+              <p class="scribe-note note-left">El verdadero examen final. No se permitían acordeones.</p>
             </div>
             <svg class="miniature home-mini" viewBox="0 0 400 240" aria-hidden="true">
               <path class="house-fill" d="M76 137 L200 48 L325 137 V219 H76Z"/>
               <path class="house-line" d="M76 137 L200 48 L325 137 V219 H76Z M137 219 V151 H196 V219 M235 148 H293 V188 H235Z"/>
               <rect class="lit-window" x="241" y="154" width="46" height="28"/>
               <path class="smoke-v3" d="M282 76 C297 63 283 51 296 39 C307 29 297 18 307 9"/>
-            </svg>
+            
+              <path d="M28 223 Q86 174 143 216 Q207 171 372 223" fill="#667641" stroke="#43522b" stroke-width="1.5"/>
+              <path d="M53 216 Q43 181 59 157 M347 216 Q360 181 343 153" fill="none" stroke="#566638" stroke-width="2"/>
+              <circle cx="58" cy="158" r="6" fill="#a84631"/><circle cx="343" cy="154" r="6" fill="#a84631"/>
+</svg>
           </div>
 
           <div class="folio folio-right bond-folio">
             <div class="folio-border blue"></div>
             <div class="manuscript-copy right-copy">
-              <p class="illuminated-paragraph"><span class="illuminated-initial initial-blue">P</span>ero toda gran historia necesita una criatura legendaria.</p>
-              <p>Y así llegó…</p>
-              <h3 class="bond-title">Bond.</h3>
+              <p class="illuminated-paragraph"><span class="illuminated-initial initial-blue">P</span>ero cuando parecía que el reino finalmente estaba en paz… apareció una criatura.</p>
+              <p>De largas orejas.<br>Mirada irresistible.<br>Y absolutamente ninguna intención de respetar la propiedad privada.</p>
+              <p>Su nombre era…</p>
+              <h3 class="bond-title">BOND.</h3>
               <p>Un temible English Cocker Spaniel.</p>
-              <p class="bond-legend">Guardián del hogar.<br>Protector de la familia.<br>Destructor ocasional de la tranquilidad.</p>
-              <p class="aside">Y dueño indiscutible de cualquier espacio que antes perteneciera a Luis y Marlene.</p>
+              <p class="bond-legend">Guardián del hogar.<br>Protector de la familia.<br>Inspector oficial de cualquier alimento que toque el suelo.</p>
+              <p class="aside">Su llegada completó la familia y dejó perfectamente claro quién era ahora el verdadero dueño de la casa. No era Luis.</p>
+              <p class="scribe-note note-right">Bestia representada aproximadamente a escala. Su apetito, no.</p>
             </div>
             <svg class="miniature cocker-mini" viewBox="0 0 400 260" aria-label="Ilustración de Bond, un English Cocker Spaniel">
               <ellipse class="cocker-body" cx="224" cy="176" rx="80" ry="48"/>
@@ -3384,7 +3694,12 @@
               <circle class="cocker-tag" cx="149" cy="180" r="8"/>
               <text x="149" y="184" text-anchor="middle" class="tag-letter-v3">B</text>
               <path class="heroic-rays" d="M147 46 V17 M101 56 L85 30 M193 56 L210 30"/>
-            </svg>
+            
+              <path d="M30 245 Q83 207 137 238 Q203 208 370 245" fill="#657642" stroke="#43522b" stroke-width="1.5"/>
+              <path d="M54 238 Q42 203 61 178 M345 239 Q359 201 341 177" fill="none" stroke="#536438" stroke-width="2"/>
+              <circle cx="60" cy="178" r="7" fill="#a84330"/><circle cx="341" cy="177" r="7" fill="#a84330"/>
+              <path d="M112 96 Q145 74 181 96" fill="none" stroke="#b17b31" stroke-width="1.5"/>
+</svg>
           </div>
         </section>
 
@@ -3395,7 +3710,8 @@
             <div class="manuscript-copy">
               <p class="illuminated-paragraph"><span class="illuminated-initial initial-green">D</span>esde entonces han seguido creciendo.</p>
               <p>Personalmente.<br>Profesionalmente.<br>Espiritualmente.</p>
-              <p>Han aprendido a acompañarse en los cambios, a celebrar cada pequeña victoria y a construir algo que años atrás ninguno de los dos podía imaginar.</p>
+              <p>Aprendieron a acompañarse en los cambios, a celebrar las pequeñas victorias, a sostenerse cuando algo pesa y a disfrutar esa vida cotidiana que alguna vez sólo imaginaron.</p>
+              <p>Y casi sin darse cuenta, aquello que comenzó con dos personas esperando un camión se convirtió en algo mucho más grande.</p>
               <h3 class="punch softer">Una familia.</h3>
             </div>
             <svg class="miniature family-mini" viewBox="0 0 400 240" aria-hidden="true">
@@ -3413,8 +3729,8 @@
             <div class="manuscript-copy right-copy">
               <p class="illuminated-paragraph"><span class="illuminated-initial initial-red">Y</span>así llegamos al</p>
               <h3 class="grand-date">19 · 12 · 2026</h3>
-              <p>Tres años después de comenzar aquel capítulo, lo que empezó con un par de miradas en una parada de camión se convirtió en algo mucho más grande.</p>
-              <div class="three-lines">Un hogar.<br>Una historia.<br>Una familia.</div>
+              <p>Tres años después de comenzar aquel capítulo, lo que nació de un par de miradas en una parada de camión ya no es sólo una historia de amor.</p>
+              <div class="three-lines">Es un hogar.<br>Es una historia.<br>Es una familia.</div>
             </div>
             <svg class="miniature road-mini" viewBox="0 0 400 240" aria-hidden="true">
               <path class="gold-road" d="M203 239 C179 197 248 177 219 138 C194 105 168 98 194 62 C213 36 243 42 250 14"/>
@@ -3429,11 +3745,13 @@
           <div class="folio folio-left finale-left">
             <div class="folio-border blue"></div>
             <div class="manuscript-copy">
-              <p class="illuminated-paragraph"><span class="illuminated-initial initial-blue">D</span>espués de casi diez años, comprendieron que su historia nunca necesitó castillos, príncipes ni finales perfectos.</p>
-              <p>Porque encontraron algo mucho más extraordinario:</p>
-              <h3 class="emotional-manuscript large">un hogar el uno en el otro.</h3>
-              <p>El 19 de diciembre de 2026 no será el día en que comience su historia.</p>
-              <p>Será el día en que, frente a las personas que aman, decidan seguir eligiéndose.</p>
+              <p class="illuminated-paragraph"><span class="illuminated-initial initial-blue">D</span>espués de casi diez años, quizá esta nunca fue la historia de dos personas destinadas a encontrarse.</p>
+              <p>Tal vez fue la historia de dos personas que, después de encontrarse, decidieron seguir eligiéndose.</p>
+              <p>En los días buenos. En los difíciles. En los extraordinarios.</p>
+              <p>Y, sobre todo, en todos esos días comunes que terminaron convirtiéndose en una vida juntos.</p>
+              <h3 class="emotional-manuscript large">Un hogar el uno en el otro.</h3>
+              <p>El 19 de diciembre de 2026 no comienza su historia.</p>
+              <h3 class="emotional-manuscript">La celebra.</h3>
             </div>
             <svg class="miniature final-vine" viewBox="0 0 400 180" aria-hidden="true">
               <path class="green-vine final-grow" d="M25 151 Q83 93 144 132 Q198 164 252 112 Q303 64 376 113"/>
@@ -3444,15 +3762,16 @@
           <div class="folio folio-right finale-right">
             <div class="folio-border gold"></div>
             <div class="final-center">
-              <p class="final-prelude">Porque el amor no consiste solamente en encontrarse.</p>
+              <p class="final-prelude">Frente a las personas que forman parte de su historia, Luis y Marlene comenzarán un nuevo capítulo de algo que llevan casi diez años escribiendo.</p>
               <h3>Consiste en<br>elegir quedarse.</h3>
               <div class="final-crest">
                 <div class="crest-crown">♕</div>
                 <div class="crest-monogram">L <span>♡</span> M</div>
                 <div class="crest-bond">🐾</div>
               </div>
-              <p class="final-cont">Y así, Luis, Marlene y Bond continuaron escribiendo su historia…</p>
+              <p class="final-cont">Y así, Luis y Marlene continuaron escribiendo su historia…</p>
               <p class="final-together">juntos.</p>
+              <p class="bond-last-word">Y, por supuesto, Bond.<br><span>Porque aparentemente él también tenía que salir en el final.</span></p>
               <p class="continuara-v3">Continuará…</p>
             </div>
             <button class="close-book-button" id="closeBookButton" type="button">Cerrar el libro</button>
