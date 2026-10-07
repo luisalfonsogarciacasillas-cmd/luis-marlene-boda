@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#F4EDE3" />
   <meta name="description" content="Invitación de boda civil de Luis & Marlene — 19 de diciembre de 2026." />
-  <title>Luis & Marlene | 19.12.2026 · V3.6</title>
+  <title>Luis & Marlene | 19.12.2026 · V4</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&family=Uncial+Antiqua&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Uncial+Antiqua&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
     :root{
@@ -2980,356 +2980,153 @@
   .bond-folio:after{right:13%;bottom:27%}
 }
 
-
-
 /* ============================================================
-   V3.5 — forced Uncial manuscript + clean paper sweep
+   V4 — Storybook only. Main invitation intentionally untouched.
    ============================================================ */
 
-/* Force Uncial Antiqua throughout the hidden manuscript.
-   The regular wedding invitation remains untouched. */
-html body #storybook.manuscript-mode,
-html body #storybook.manuscript-mode button,
-html body #storybook.manuscript-mode .book-cover,
-html body #storybook.manuscript-mode .book-cover *,
-html body #storybook.manuscript-mode .storybook-cover,
-html body #storybook.manuscript-mode .storybook-cover *,
-html body #storybook.manuscript-mode .book-page,
-html body #storybook.manuscript-mode .book-page *,
-html body #storybook.manuscript-mode .folio,
-html body #storybook.manuscript-mode .folio *,
-html body #storybook.manuscript-mode .manuscript-copy,
-html body #storybook.manuscript-mode .manuscript-copy *,
-html body #storybook.manuscript-mode .scribe-note,
-html body #storybook.manuscript-mode .bond-legend,
-html body #storybook.manuscript-mode .quest-list{
-  font-family:"Uncial Antiqua",serif!important;
+/* Medieval display type, compact enough to coexist with artwork. */
+#storybook .storybook-cover h2,
+#storybook .book-cover h2,
+#storybook .cover-title,
+#storybook .manuscript-title,
+#storybook .manuscript-copy h3,
+#storybook .bond-title,
+#storybook .chapter-date,
+#storybook .grand-date,
+#storybook .continuara-v3,
+#storybook .final-center h3{
+  font-family:"Uncial Antiqua","Cormorant Garamond",serif!important;
 }
-
-/* Body copy needs a little more air with Uncial */
 #storybook .manuscript-copy p,
 #storybook .quest-list,
 #storybook .bond-legend{
-  letter-spacing:.012em;
-  line-height:1.48;
+  font-family:"Uncial Antiqua","Cormorant Garamond",serif!important;
+  font-size:10.5px!important;
+  line-height:1.43!important;
+  letter-spacing:-.012em!important;
+  margin:.34em 0!important;
 }
-#storybook .scribe-note{
-  line-height:1.34!important;
+#storybook .scribe-note,
+#storybook .aside{
+  font-family:"Uncial Antiqua","Cormorant Garamond",serif!important;
+  font-size:8px!important;
+  line-height:1.3!important;
+}
+#storybook .manuscript-copy h3{
+  font-size:16px!important;
+  line-height:1.08!important;
+  margin:.25em 0 .38em!important;
+}
+#storybook .bond-title{
+  font-size:22px!important;
+  line-height:1!important;
+}
+#storybook .illuminated-initial{
+  font-family:"Uncial Antiqua","Cormorant Garamond",serif!important;
+  font-size:1.9em!important;
+  line-height:.82!important;
 }
 
-/* A visual sheet that sweeps over the book.
-   It is independent from the actual pages/navigation. */
-.paper-turn-overlay{
+/* Quiet chapter rubric: decorative, never part of navigation logic. */
+#storybook .v4-rubric{
+  display:inline-block;
+  margin:0 0 6px;
+  padding:2px 7px 2px;
+  border-top:1px solid rgba(113,67,29,.38);
+  border-bottom:1px solid rgba(113,67,29,.38);
+  font-family:"Uncial Antiqua","Cormorant Garamond",serif!important;
+  font-size:7px!important;
+  line-height:1.25;
+  letter-spacing:.13em;
+  color:#74451f;
+  text-transform:uppercase;
+  opacity:.84;
+}
+
+/* Fine parchment depth; pseudo-elements never receive clicks. */
+#storybook .folio{position:relative;isolation:isolate}
+#storybook .folio::after{
+  content:"";
   position:absolute;
-  z-index:120;
+  inset:7px;
+  z-index:20;
   pointer-events:none;
-  opacity:0;
-  top:5.5%;
-  bottom:5.5%;
-  left:50%;
-  width:45%;
-  border-radius:3px 13px 13px 3px;
-  background:
-    linear-gradient(90deg,
-      rgba(102,61,28,.12) 0%,
-      rgba(250,235,190,.96) 8%,
-      rgba(237,213,160,.98) 48%,
-      rgba(255,244,207,.96) 80%,
-      rgba(104,63,28,.15) 100%),
-    radial-gradient(circle at 35% 24%,rgba(123,73,34,.09),transparent 28%);
-  box-shadow:-18px 5px 32px rgba(36,21,12,.24);
-  transform-origin:left center;
-  transform:perspective(1500px) rotateY(90deg);
-  will-change:transform,opacity;
+  border:1px solid rgba(122,78,36,.14);
+  box-shadow:inset 0 0 22px rgba(91,54,24,.035);
 }
-.paper-turn-overlay.turn-next{
-  animation:cleanTurnNext .58s cubic-bezier(.4,.08,.25,1) both;
+#storybook .manuscript-copy,
+#storybook .manuscript-miniature,
+#storybook .cocker-mini,
+#storybook .folio svg{position:relative;z-index:2}
+
+/* Dedicated story soundtrack control = fallback if a browser rejects first play. */
+#storybook .story-sound{
+  position:fixed;
+  z-index:10020;
+  right:58px;
+  top:18px;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  border:1px solid rgba(218,188,126,.55);
+  border-radius:999px;
+  padding:7px 10px;
+  background:rgba(43,25,17,.82);
+  color:#f3dfad;
+  font-family:"Uncial Antiqua","Cormorant Garamond",serif!important;
+  font-size:9px;
+  letter-spacing:.025em;
+  cursor:pointer;
+  backdrop-filter:blur(7px);
+  box-shadow:0 5px 18px rgba(0,0,0,.22);
 }
-.paper-turn-overlay.turn-prev{
-  left:5%;
-  transform-origin:right center;
-  border-radius:13px 3px 3px 13px;
-  box-shadow:18px 5px 32px rgba(36,21,12,.24);
-  animation:cleanTurnPrev .58s cubic-bezier(.4,.08,.25,1) both;
+#storybook .story-sound.is-playing .story-sound-icon{
+  animation:v4MusicPulse 1.5s ease-in-out infinite;
 }
-@keyframes cleanTurnNext{
-  0%{opacity:0;transform:perspective(1500px) rotateY(92deg) scaleX(.86)}
-  12%{opacity:1}
-  48%{opacity:1;transform:perspective(1500px) rotateY(5deg) scaleX(1)}
-  52%{opacity:1;transform:perspective(1500px) rotateY(-5deg) scaleX(1)}
-  88%{opacity:1}
-  100%{opacity:0;transform:perspective(1500px) rotateY(-92deg) scaleX(.86)}
+#storybook .story-sound.needs-tap{
+  animation:v4SoundHint 1.8s ease-in-out 2;
 }
-@keyframes cleanTurnPrev{
-  0%{opacity:0;transform:perspective(1500px) rotateY(-92deg) scaleX(.86)}
-  12%{opacity:1}
-  48%{opacity:1;transform:perspective(1500px) rotateY(-5deg) scaleX(1)}
-  52%{opacity:1;transform:perspective(1500px) rotateY(5deg) scaleX(1)}
-  88%{opacity:1}
-  100%{opacity:0;transform:perspective(1500px) rotateY(92deg) scaleX(.86)}
+@keyframes v4MusicPulse{50%{transform:scale(1.18);opacity:.72}}
+@keyframes v4SoundHint{50%{box-shadow:0 0 0 5px rgba(221,181,101,.16)}}
+
+/* Page motion only decorates the already-working V3.3 transition. */
+#storybook .book-page.v4-turn-next{animation:v4PageInNext .42s ease both}
+#storybook .book-page.v4-turn-prev{animation:v4PageInPrev .42s ease both}
+@keyframes v4PageInNext{
+  0%{opacity:.35;transform:perspective(1400px) rotateY(-7deg) translateX(10px)}
+  100%{opacity:1;transform:perspective(1400px) rotateY(0) translateX(0)}
+}
+@keyframes v4PageInPrev{
+  0%{opacity:.35;transform:perspective(1400px) rotateY(7deg) translateX(-10px)}
+  100%{opacity:1;transform:perspective(1400px) rotateY(0) translateX(0)}
 }
 
-/* Mobile = one full parchment sheet, short and subtle */
 @media(max-width:700px){
   #storybook .manuscript-copy p,
   #storybook .quest-list,
   #storybook .bond-legend{
-    line-height:1.44;
+    font-size:9.5px!important;
+    line-height:1.4!important;
   }
-  .paper-turn-overlay,
-  .paper-turn-overlay.turn-prev{
-    top:2%;
-    bottom:2%;
-    left:3%;
-    width:94%;
-    border-radius:10px;
-    transform-origin:left center;
-    box-shadow:-10px 4px 24px rgba(36,21,12,.18);
+  #storybook .scribe-note,
+  #storybook .aside{font-size:7.5px!important}
+  #storybook .manuscript-copy h3{font-size:14.5px!important}
+  #storybook .bond-title{font-size:19px!important}
+  #storybook .story-sound{
+    top:12px;
+    right:48px;
+    padding:6px 8px;
+    font-size:8px;
   }
-  .paper-turn-overlay.turn-prev{transform-origin:right center}
-  .paper-turn-overlay.turn-next{animation-name:cleanTurnNextMobile}
-  .paper-turn-overlay.turn-prev{animation-name:cleanTurnPrevMobile}
-  @keyframes cleanTurnNextMobile{
-    0%{opacity:0;transform:perspective(1000px) rotateY(74deg) translateX(5%)}
-    15%{opacity:.94}
-    48%{opacity:.96;transform:perspective(1000px) rotateY(4deg)}
-    55%{opacity:.96;transform:perspective(1000px) rotateY(-4deg)}
-    100%{opacity:0;transform:perspective(1000px) rotateY(-74deg) translateX(-5%)}
-  }
-  @keyframes cleanTurnPrevMobile{
-    0%{opacity:0;transform:perspective(1000px) rotateY(-74deg) translateX(-5%)}
-    15%{opacity:.94}
-    48%{opacity:.96;transform:perspective(1000px) rotateY(-4deg)}
-    55%{opacity:.96;transform:perspective(1000px) rotateY(4deg)}
-    100%{opacity:0;transform:perspective(1000px) rotateY(74deg) translateX(5%)}
-  }
+  #storybook .story-sound-label{display:none}
+  #storybook .book-page.v4-turn-next,
+  #storybook .book-page.v4-turn-prev{animation-duration:.32s}
 }
 @media(prefers-reduced-motion:reduce){
-  .paper-turn-overlay.turn-next,.paper-turn-overlay.turn-prev{
-    animation-duration:.01ms!important;
-  }
-}
-
-/* ============================================================
-   V3.5.1 — fitted Uncial typography
-   ============================================================ */
-
-/* Keep Uncial forced, but size it according to its role. */
-html body #storybook.manuscript-mode .manuscript-copy p,
-html body #storybook.manuscript-mode .quest-list,
-html body #storybook.manuscript-mode .bond-legend{
-  font-family:"Uncial Antiqua",serif!important;
-  font-size:clamp(12px,1.02vw,15px)!important;
-  line-height:1.36!important;
-  letter-spacing:0!important;
-  margin-top:.48em!important;
-  margin-bottom:.48em!important;
-}
-html body #storybook.manuscript-mode .scribe-note{
-  font-family:"Uncial Antiqua",serif!important;
-  font-size:clamp(9px,.72vw,11px)!important;
-  line-height:1.28!important;
-  letter-spacing:.005em!important;
-}
-html body #storybook.manuscript-mode .manuscript-copy h3{
-  font-family:"Uncial Antiqua",serif!important;
-  font-size:clamp(18px,1.65vw,27px)!important;
-  line-height:1.08!important;
-  margin-top:.38em!important;
-  margin-bottom:.38em!important;
-}
-html body #storybook.manuscript-mode .illuminated-initial{
-  font-family:"Uncial Antiqua",serif!important;
-  font-size:2.25em!important;
-  line-height:.82!important;
-}
-html body #storybook.manuscript-mode .bond-title{
-  font-family:"Uncial Antiqua",serif!important;
-  font-size:clamp(23px,2.3vw,36px)!important;
-  line-height:1!important;
-  margin:.22em 0!important;
-}
-html body #storybook.manuscript-mode .aside,
-html body #storybook.manuscript-mode .bond-last-word{
-  font-size:clamp(11px,.94vw,14px)!important;
-  line-height:1.32!important;
-}
-
-/* Give illustrated folios more breathing room. */
-#storybook .book-page:has(svg) .manuscript-copy p,
-#storybook .book-page:has(.cocker-mini) .manuscript-copy p,
-#storybook .bond-folio .manuscript-copy p{
-  font-size:clamp(11px,.92vw,14px)!important;
-  line-height:1.31!important;
-  margin-top:.38em!important;
-  margin-bottom:.38em!important;
-}
-
-@media(max-width:700px){
-  html body #storybook.manuscript-mode .manuscript-copy p,
-  html body #storybook.manuscript-mode .quest-list,
-  html body #storybook.manuscript-mode .bond-legend{
-    font-size:12px!important;
-    line-height:1.34!important;
-    margin-top:.42em!important;
-    margin-bottom:.42em!important;
-  }
-  html body #storybook.manuscript-mode .scribe-note{
-    font-size:9px!important;
-    line-height:1.25!important;
-  }
-  html body #storybook.manuscript-mode .manuscript-copy h3{
-    font-size:19px!important;
-    line-height:1.08!important;
-  }
-  html body #storybook.manuscript-mode .bond-title{
-    font-size:25px!important;
-  }
-  #storybook .book-page:has(svg) .manuscript-copy p,
-  #storybook .book-page:has(.cocker-mini) .manuscript-copy p,
-  #storybook .bond-folio .manuscript-copy p{
-    font-size:11px!important;
-    line-height:1.28!important;
-  }
-}
-
-/* ============================================================
-   V3.6 — readable illuminated manuscript
-   ============================================================ */
-
-/* Uncial remains the identity, but reading comes first. */
-html body #storybook.manuscript-mode .manuscript-copy p,
-html body #storybook.manuscript-mode .quest-list,
-html body #storybook.manuscript-mode .bond-legend,
-html body #storybook.manuscript-mode .aside,
-html body #storybook.manuscript-mode .bond-last-word{
-  font-family:"Uncial Antiqua",Georgia,serif!important;
-  font-size:11px!important;
-  line-height:1.42!important;
-  letter-spacing:-.01em!important;
-  margin:.38em 0!important;
-}
-html body #storybook.manuscript-mode .scribe-note{
-  font-family:"Uncial Antiqua",Georgia,serif!important;
-  font-size:8px!important;
-  line-height:1.28!important;
-  letter-spacing:0!important;
-}
-html body #storybook.manuscript-mode .manuscript-copy h3{
-  font-family:"Uncial Antiqua",Georgia,serif!important;
-  font-size:17px!important;
-  line-height:1.08!important;
-  margin:.28em 0 .38em!important;
-}
-html body #storybook.manuscript-mode .bond-title{
-  font-family:"Uncial Antiqua",Georgia,serif!important;
-  font-size:23px!important;
-  line-height:1!important;
-  margin:.18em 0!important;
-}
-html body #storybook.manuscript-mode .illuminated-initial{
-  font-size:2em!important;
-  line-height:.78!important;
-}
-
-/* Illuminated chapter marker */
-#storybook .chapter-ribbon{
-  display:inline-block;
-  position:relative;
-  z-index:5;
-  margin:0 0 7px;
-  padding:3px 8px 2px;
-  border-top:1px solid rgba(115,72,34,.42);
-  border-bottom:1px solid rgba(115,72,34,.42);
-  font-family:"Uncial Antiqua",Georgia,serif!important;
-  font-size:8px!important;
-  line-height:1.2;
-  letter-spacing:.13em;
-  color:#74451f;
-  text-transform:uppercase;
-  opacity:.82;
-}
-
-/* Give artwork its own visual territory. */
-#storybook .folio{
-  overflow:hidden;
-}
-#storybook .manuscript-copy{
-  position:relative;
-  z-index:5;
-}
-#storybook .cocker-mini,
-#storybook .manuscript-miniature,
-#storybook svg{
-  position:relative;
-  z-index:2;
-}
-#storybook .bond-folio .manuscript-copy p{
-  font-size:10px!important;
-  line-height:1.34!important;
-}
-
-/* More dimensional parchment without touching page navigation. */
-#storybook .folio:before{
-  content:"";
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  z-index:1;
-  background:
-    radial-gradient(circle at 16% 13%,rgba(114,71,31,.055),transparent 22%),
-    radial-gradient(circle at 82% 77%,rgba(114,71,31,.045),transparent 25%),
-    linear-gradient(90deg,rgba(73,39,16,.06),transparent 7%,transparent 93%,rgba(73,39,16,.055));
-  mix-blend-mode:multiply;
-}
-#storybook .folio:after{
-  content:"";
-  position:absolute;
-  inset:8px;
-  border:1px solid rgba(133,86,39,.17);
-  pointer-events:none;
-  z-index:3;
-}
-
-/* Cleaner, restrained page-turn sheet */
-.paper-turn-overlay{
-  animation-duration:.48s!important;
-  background:
-    linear-gradient(90deg,
-      rgba(93,53,24,.08) 0%,
-      rgba(247,232,190,.97) 10%,
-      rgba(255,243,208,.98) 50%,
-      rgba(231,205,153,.97) 91%,
-      rgba(93,53,24,.10) 100%)!important;
-}
-@media(max-width:700px){
-  html body #storybook.manuscript-mode .manuscript-copy p,
-  html body #storybook.manuscript-mode .quest-list,
-  html body #storybook.manuscript-mode .bond-legend,
-  html body #storybook.manuscript-mode .aside,
-  html body #storybook.manuscript-mode .bond-last-word{
-    font-size:10px!important;
-    line-height:1.4!important;
-    margin:.34em 0!important;
-  }
-  html body #storybook.manuscript-mode .scribe-note{
-    font-size:7.5px!important;
-    line-height:1.25!important;
-  }
-  html body #storybook.manuscript-mode .manuscript-copy h3{
-    font-size:15px!important;
-    line-height:1.08!important;
-  }
-  html body #storybook.manuscript-mode .bond-title{
-    font-size:20px!important;
-  }
-  #storybook .chapter-ribbon{
-    font-size:7px!important;
-    margin-bottom:5px;
-  }
-  #storybook .bond-folio .manuscript-copy p{
-    font-size:9.5px!important;
-  }
+  #storybook .book-page.v4-turn-next,
+  #storybook .book-page.v4-turn-prev,
+  #storybook .story-sound.is-playing .story-sound-icon,
+  #storybook .story-sound.needs-tap{animation:none!important}
 }
 </style>
 </head>
@@ -3877,7 +3674,10 @@ html body #storybook.manuscript-mode .illuminated-initial{
 
   <!-- V3.0 — Illuminated manuscript Easter egg -->
   <div class="storybook manuscript-mode" id="storybook" aria-hidden="true">
-    <div class="paper-turn-overlay" id="paperTurnOverlay" aria-hidden="true"></div>
+    <button class="story-sound" id="storySound" type="button" aria-label="Activar o pausar música del cuento">
+      <span class="story-sound-icon">♫</span>
+      <span class="story-sound-label">Música del cuento</span>
+    </button>
     <div class="story-sound-cue" aria-hidden="true">♪ música del reino ♪</div>
     <div class="storybook-vignette" aria-hidden="true"></div>
     <button class="storybook-x" id="storybookX" type="button" aria-label="Cerrar nuestra historia">×</button>
@@ -3953,8 +3753,8 @@ html body #storybook.manuscript-mode .illuminated-initial{
         <section class="book-page manuscript-spread" data-page="2">
           <div class="folio folio-left">
             <div class="folio-border green"></div>
-            <div class="chapter-ribbon">II · LA GRAN EXPEDICIÓN</div>
-              <div class="manuscript-copy">
+            <div class="manuscript-copy">
+<div class="v4-rubric">II · LA EXPEDICIÓN DIGITAL</div>
               <p class="illuminated-paragraph"><span class="illuminated-initial initial-green">M</span>arlene, intrigada por aquel misterioso joven, emprendió una misión tan peligrosa que pocos se habrían atrevido a intentarla.</p>
               <p class="quest-list">No cruzó un bosque encantado.<br>No enfrentó a un dragón.<br>No consultó a una bruja.</p>
               <h3 class="punch facebook-line">Buscó a Luis en Facebook.</h3>
@@ -3972,8 +3772,8 @@ html body #storybook.manuscript-mode .illuminated-initial{
 
           <div class="folio folio-right">
             <div class="folio-border blue"></div>
-            <div class="chapter-ribbon">III · SIN ACTA OFICIAL</div>
-              <div class="manuscript-copy right-copy">
+            <div class="manuscript-copy right-copy">
+<div class="v4-rubric">III · EL CASO RESUELTO</div>
               <p class="illuminated-paragraph"><span class="illuminated-initial initial-gold">D</span>espués llegaron los mensajes, más miradas, más conversaciones y cada vez más tiempo juntos.</p>
               <p>No hubo una gran declaración.</p>
               <p>No hubo una proclamación real.</p>
@@ -3998,8 +3798,7 @@ html body #storybook.manuscript-mode .illuminated-initial{
         <section class="book-page manuscript-spread" data-page="3">
           <div class="folio folio-left">
             <div class="folio-border red"></div>
-            <div class="chapter-ribbon">IV · AVENTURAS Y TROPIEZOS</div>
-              <div class="manuscript-copy">
+            <div class="manuscript-copy">
               <p class="illuminated-paragraph"><span class="illuminated-initial initial-red">P</span>asaron los años. Llegaron aventuras, cambios, buenos momentos, dificultades y algunos tropiezos.</p>
               <p>Porque aparentemente una relación de casi diez años no incluye instrucciones.</p>
               <p class="aside">Qué falta de consideración. Ni tutorial. Ni garantía. Ni servicio al cliente.</p>
@@ -4017,8 +3816,8 @@ html body #storybook.manuscript-mode .illuminated-initial{
 
           <div class="folio folio-right">
             <div class="folio-border green"></div>
-            <div class="chapter-ribbon">V · EL REINO SE CIERRA</div>
-              <div class="manuscript-copy right-copy">
+            <div class="manuscript-copy right-copy">
+<div class="v4-rubric">V · EL REINO SE CIERRA</div>
               <p class="illuminated-paragraph"><span class="illuminated-initial initial-blue">Y</span>entonces llegó el año en que todo el reino recibió una orden inesperada:</p>
               <h3 class="punch softer">Quédense en sus casas.</h3>
               <p>El mundo se detuvo. Las calles quedaron vacías y las personas tuvieron que mantenerse alejadas.</p>
@@ -4041,8 +3840,8 @@ html body #storybook.manuscript-mode .illuminated-initial{
         <section class="book-page manuscript-spread" data-page="4">
           <div class="folio folio-left">
             <div class="folio-border gold"></div>
-            <div class="chapter-ribbon">VI · EL HOGAR</div>
-              <div class="manuscript-copy">
+            <div class="manuscript-copy">
+<div class="v4-rubric">VI · UN HOGAR</div>
               <p class="illuminated-paragraph"><span class="illuminated-initial initial-gold">C</span>on el tiempo dejaron de imaginar cómo sería compartir una vida y tomaron una decisión importante:</p>
               <h3 class="chapter-date">vivir juntos.</h3>
               <p>Compartir los buenos días. Las noches cansadas. Las responsabilidades. Los sueños. Las risas.</p>
@@ -4065,8 +3864,8 @@ html body #storybook.manuscript-mode .illuminated-initial{
 
           <div class="folio folio-right bond-folio">
             <div class="folio-border blue"></div>
-            <div class="chapter-ribbon">VII · APARECE LA BESTIA</div>
-              <div class="manuscript-copy right-copy">
+            <div class="manuscript-copy right-copy">
+<div class="v4-rubric">VII · APARECE LA BESTIA</div>
               <p class="illuminated-paragraph"><span class="illuminated-initial initial-blue">P</span>ero cuando parecía que el reino finalmente estaba en paz… apareció una criatura.</p>
               <p>De largas orejas.<br>Mirada irresistible.<br>Y una agenda extremadamente ocupada.</p>
               <p>Su nombre era…</p>
@@ -4188,197 +3987,258 @@ html body #storybook.manuscript-mode .illuminated-initial{
 
 <script>
 (function(){
+  "use strict";
+
   const storybook = document.getElementById('storybook');
-  
-  const weddingAudio = document.getElementById('weddingAudio') || document.querySelector('audio:not(#medievalAudio)');
-  const medievalAudio = document.getElementById('medievalAudio');
-
-  /* One authoritative soundtrack controller.
-     No priming, no delayed pause callbacks, no competing fade promises. */
-  const Soundtrack = {
-    mode: 'wedding',
-    weddingTime: 0,
-    raf: 0,
-    storyStarted: false,
-
-    cancelFade(){
-      if(this.raf) cancelAnimationFrame(this.raf);
-      this.raf = 0;
-    },
-
-    fadePair(outTrack, inTrack, inTarget, duration, done){
-      this.cancelFade();
-      const start = performance.now();
-      const outStart = outTrack ? outTrack.volume : 0;
-      const inStart = inTrack ? inTrack.volume : 0;
-      const tick = (now)=>{
-        const p = Math.min(1,(now-start)/duration);
-        const eased = p*p*(3-2*p);
-        if(outTrack) outTrack.volume = Math.max(0,outStart*(1-eased));
-        if(inTrack) inTrack.volume = inStart + ((inTarget-inStart)*eased);
-        if(p < 1) this.raf = requestAnimationFrame(tick);
-        else{
-          this.raf = 0;
-          if(outTrack) outTrack.pause();
-          if(done) done();
-        }
-      };
-      this.raf = requestAnimationFrame(tick);
-    },
-
-    enterStory(){
-      if(!medievalAudio) return;
-      this.cancelFade();
-      this.mode = 'medieval';
-
-      if(weddingAudio){
-        this.weddingTime = weddingAudio.currentTime || 0;
-      }
-
-      // Critical: this play() happens immediately during the user's click.
-      try{
-        medievalAudio.pause();
-        medievalAudio.currentTime = 0;
-        medievalAudio.muted = false;
-        medievalAudio.volume = 0.12;
-        medievalAudio.loop = true;
-      }catch(e){}
-
-      const playAttempt = medievalAudio.play();
-
-      const started = ()=>{
-        this.storyStarted = true;
-        if(weddingAudio && !weddingAudio.paused){
-          this.fadePair(weddingAudio, medievalAudio, 0.72, 1100);
-        }else{
-          // No wedding track playing: medieval still plays normally.
-          const from = medievalAudio.volume;
-          const start = performance.now();
-          const tick = (now)=>{
-            const p=Math.min(1,(now-start)/650);
-            medievalAudio.volume=from+((0.72-from)*p);
-            if(p<1) this.raf=requestAnimationFrame(tick);
-            else this.raf=0;
-          };
-          this.raf=requestAnimationFrame(tick);
-        }
-      };
-
-      if(playAttempt && typeof playAttempt.then === 'function'){
-        playAttempt.then(started).catch(()=>{
-          // Keep state sane. A later user interaction can retry via toggle.
-          this.storyStarted = false;
-          this.mode = 'medieval';
-        });
-      }else{
-        started();
-      }
-    },
-
-    leaveStory(){
-      this.cancelFade();
-      this.mode = 'wedding';
-
-      if(!medievalAudio){
-        return;
-      }
-
-      if(weddingAudio){
-        try{
-          weddingAudio.currentTime = this.weddingTime || weddingAudio.currentTime || 0;
-          weddingAudio.muted = false;
-          weddingAudio.volume = 0.05;
-        }catch(e){}
-        const wp = weddingAudio.play();
-        const resume = ()=>{
-          this.fadePair(medievalAudio,weddingAudio,1,1100,()=>{
-            medievalAudio.currentTime=0;
-            medievalAudio.volume=0.72;
-            this.storyStarted=false;
-          });
-        };
-        if(wp && typeof wp.then === 'function'){
-          wp.then(resume).catch(()=>{
-            medievalAudio.pause();
-            medievalAudio.currentTime=0;
-            this.storyStarted=false;
-          });
-        }else resume();
-      }else{
-        medievalAudio.pause();
-        medievalAudio.currentTime=0;
-        this.storyStarted=false;
-      }
-    }
-  };
-
-
-const paperTurnOverlay = document.getElementById('paperTurnOverlay');
-  let paperTurnTimer = 0;
-  function paperSweep(direction){
-    if(!paperTurnOverlay) return;
-    clearTimeout(paperTurnTimer);
-    paperTurnOverlay.classList.remove('turn-next','turn-prev');
-    void paperTurnOverlay.offsetWidth;
-    paperTurnOverlay.classList.add(direction === 'prev' ? 'turn-prev' : 'turn-next');
-    paperTurnTimer = setTimeout(()=>{
-      paperTurnOverlay.classList.remove('turn-next','turn-prev');
-    }
+  const storyTrigger = document.getElementById('storyEastereggTrigger');
+  const storyX = document.getElementById('storybookX');
   const closeBookButton = document.getElementById('closeBookButton');
   const bookShell = document.getElementById('bookShell');
   const bookPages = Array.from(document.querySelectorAll('.book-page'));
   const bookPrev = document.getElementById('bookPrev');
   const bookNext = document.getElementById('bookNext');
   const bookProgress = document.getElementById('bookProgress');
+  const storySound = document.getElementById('storySound');
+  const weddingAudio = document.getElementById('weddingAudio') || document.querySelector('audio:not(#medievalAudio)');
+  const medievalAudio = document.getElementById('medievalAudio');
   const mobileMQ = window.matchMedia('(max-width:700px)');
-  function openBook(){
-    Soundtrack.enterStory();
-    page=0;mobileSide=0;
-    bookPages.forEach((p,i)=>{p.classList.toggle('active',i===0);p.classList.remove('mobile-second','leaving')});
-    bookShell.classList.remove('opened');
+
+  let page = 0;
+  let mobileSide = 0;
+  let busy = false;
+  let weddingResumeTime = 0;
+  let weddingWasPlaying = false;
+  let storyMusicWanted = true;
+
+  /* ---------------- SOUNDTRACK ----------------
+     Reliability first:
+     - no priming
+     - no competing fade timers
+     - no async callback is allowed to pause a newly-started track
+     - first medieval play is called directly from the trigger click
+  ------------------------------------------------ */
+  function updateStorySoundUI(needsTap=false){
+    if(!storySound) return;
+    const playing = !!medievalAudio && !medievalAudio.paused;
+    storySound.classList.toggle('is-playing',playing);
+    storySound.classList.toggle('needs-tap',needsTap);
+    storySound.setAttribute('aria-label',playing ? 'Pausar música del cuento' : 'Activar música del cuento');
+  }
+
+  function startStoryMusic(){
+    if(!medievalAudio || !storyMusicWanted) return;
+    try{
+      medievalAudio.loop = true;
+      medievalAudio.muted = false;
+      medievalAudio.volume = 0.68;
+      medievalAudio.currentTime = 0;
+      const p = medievalAudio.play();
+      if(p && typeof p.then === 'function'){
+        p.then(()=>updateStorySoundUI(false))
+         .catch(()=>updateStorySoundUI(true));
+      }else{
+        updateStorySoundUI(false);
+      }
+    }catch(e){
+      updateStorySoundUI(true);
+    }
+  }
+
+  function enterStoryAudio(){
+    weddingWasPlaying = !!weddingAudio && !weddingAudio.paused;
+    if(weddingAudio){
+      weddingResumeTime = weddingAudio.currentTime || 0;
+      // Pause synchronously before starting the second track.
+      // This avoids mobile browsers juggling two media play states.
+      weddingAudio.pause();
+    }
+    startStoryMusic();
+  }
+
+  function leaveStoryAudio(){
+    if(medievalAudio){
+      medievalAudio.pause();
+      try{ medievalAudio.currentTime = 0; }catch(e){}
+    }
+    updateStorySoundUI(false);
+
+    if(weddingAudio && weddingWasPlaying){
+      try{
+        weddingAudio.currentTime = weddingResumeTime;
+        weddingAudio.volume = 1;
+        weddingAudio.muted = false;
+        const p = weddingAudio.play();
+        if(p && p.catch) p.catch(()=>{});
+      }catch(e){}
+    }
+  }
+
+  function toggleStorySound(){
+    if(!medievalAudio) return;
+    if(medievalAudio.paused){
+      storyMusicWanted = true;
+      medievalAudio.muted = false;
+      medievalAudio.volume = 0.68;
+      const p = medievalAudio.play();
+      if(p && p.then) p.then(()=>updateStorySoundUI(false)).catch(()=>updateStorySoundUI(true));
+      else updateStorySoundUI(false);
+    }else{
+      storyMusicWanted = false;
+      medievalAudio.pause();
+      updateStorySoundUI(false);
+    }
+  }
+
+  /* ---------------- BOOK STATE ----------------
+     This is intentionally based on the proven V3.3 navigation.
+     Audio and visual effects cannot block or mutate navigation.
+  ------------------------------------------------ */
+  function dots(){
+    if(!bookProgress) return;
+    bookProgress.innerHTML='';
+    bookPages.forEach((_,i)=>{
+      const d=document.createElement('i');
+      if(i===page)d.classList.add('active');
+      bookProgress.appendChild(d);
+    });
+  }
+
+  function mobileHasSecond(){
+    const p=bookPages[page];
+    return mobileMQ.matches && p && p.classList.contains('manuscript-spread') && !!p.querySelector('.folio-right');
+  }
+
+  function syncMobile(){
+    bookPages.forEach(p=>p.classList.remove('mobile-second'));
+    if(mobileSide===1 && mobileHasSecond()) bookPages[page].classList.add('mobile-second');
+  }
+
+  function controls(){
+    const atStart=page===0;
+    const atEnd=page===bookPages.length-1 && (!mobileHasSecond() || mobileSide===1);
+    if(bookPrev) bookPrev.disabled=atStart;
+    if(bookNext) bookNext.disabled=atEnd || page===0;
+    if(bookProgress){
+      Array.from(bookProgress.children).forEach((d,i)=>d.classList.toggle('active',i===page));
+    }
+    syncMobile();
+  }
+
+  function decorateTurn(el,direction){
+    if(!el) return;
+    el.classList.remove('v4-turn-next','v4-turn-prev');
+    void el.offsetWidth;
+    el.classList.add(direction==='prev'?'v4-turn-prev':'v4-turn-next');
+    setTimeout(()=>el.classList.remove('v4-turn-next','v4-turn-prev'),460);
+  }
+
+  function go(index,side=0,direction='next'){
+    if(busy || index<0 || index>=bookPages.length)return;
+    busy=true;
+    const cur=bookPages[page], nxt=bookPages[index];
+    cur.classList.add('leaving');
+    setTimeout(()=>{
+      cur.classList.remove('active','leaving','mobile-second');
+      page=index;
+      mobileSide=side;
+      nxt.classList.add('active');
+      decorateTurn(nxt,direction);
+      if(page>0)bookShell.classList.add('opened');
+      controls();
+      setTimeout(()=>busy=false,500);
+    },260);
+  }
+
+  function next(){
+    if(page===0){go(1,0,'next');return}
+    if(mobileHasSecond() && mobileSide===0){
+      mobileSide=1;
+      syncMobile();
+      decorateTurn(bookPages[page],'next');
+      return;
+    }
+    go(page+1,0,'next');
+  }
+
+  function prev(){
+    if(page===0)return;
+    if(mobileHasSecond() && mobileSide===1){
+      mobileSide=0;
+      syncMobile();
+      decorateTurn(bookPages[page],'prev');
+      return;
+    }
+    if(page===1){go(0,0,'prev');return}
+    go(page-1,mobileMQ.matches?1:0,'prev');
+  }
+
+  function resetBook(){
+    page=0;
+    mobileSide=0;
+    busy=false;
+    bookPages.forEach((p,i)=>{
+      p.classList.toggle('active',i===0);
+      p.classList.remove('mobile-second','leaving','v4-turn-next','v4-turn-prev');
+    });
+    if(bookShell) bookShell.classList.remove('opened');
+    dots();
+    controls();
+  }
+
+  function openBook(e){
+    if(e) e.preventDefault();
+
+    // Audio is deliberately first so play() remains in the direct click gesture.
+    enterStoryAudio();
+
+    resetBook();
     storybook.classList.add('open');
     storybook.setAttribute('aria-hidden','false');
     document.body.classList.add('storybook-open');
-    
-    dots();controls();
   }
+
   function closeBook(){
     storybook.classList.remove('open');
     storybook.setAttribute('aria-hidden','true');
     document.body.classList.remove('storybook-open');
-    Soundtrack.leaveStory();
-    setTimeout(()=>{
-      page=0;mobileSide=0;
-      bookPages.forEach((p,i)=>{p.classList.toggle('active',i===0);p.classList.remove('mobile-second','leaving')});
-      bookShell.classList.remove('opened');controls();
-    },600);
+    leaveStoryAudio();
+    setTimeout(resetBook,420);
   }
 
-  if(storyTrigger)storyTrigger.addEventListener('click',openBook);
-  if(storyX)storyX.addEventListener('click',closeBook);
-  if(closeBookButton)closeBookButton.addEventListener('click',closeBook);
-  if(bookPrev)bookPrev.addEventListener('click',prev);
-  if(bookNext)bookNext.addEventListener('click',next);
+  if(storyTrigger) storyTrigger.addEventListener('click',openBook);
+  if(storyX) storyX.addEventListener('click',closeBook);
+  if(closeBookButton) closeBookButton.addEventListener('click',closeBook);
+  if(bookPrev) bookPrev.addEventListener('click',prev);
+  if(bookNext) bookNext.addEventListener('click',next);
+  if(storySound) storySound.addEventListener('click',toggleStorySound);
+
   const start=document.querySelector('[data-next]');
-  if(start)start.addEventListener('click',next);
+  if(start) start.addEventListener('click',next);
 
   document.addEventListener('keydown',e=>{
-    if(!storybook.classList.contains('open'))return;
+    if(!storybook || !storybook.classList.contains('open'))return;
     if(e.key==='Escape')closeBook();
-    if(e.key==='ArrowRight')next();
-    if(e.key==='ArrowLeft')prev();
+    else if(e.key==='ArrowRight')next();
+    else if(e.key==='ArrowLeft')prev();
   });
 
   let tx=null;
-  storybook.addEventListener('touchstart',e=>{tx=e.changedTouches[0].clientX},{passive:true});
-  storybook.addEventListener('touchend',e=>{
-    if(tx===null)return;
-    const dx=e.changedTouches[0].clientX-tx;tx=null;
-    if(Math.abs(dx)<55)return;
-    dx<0?next():prev();
-  },{passive:true});
+  if(storybook){
+    storybook.addEventListener('touchstart',e=>{tx=e.changedTouches[0].clientX},{passive:true});
+    storybook.addEventListener('touchend',e=>{
+      if(tx===null)return;
+      const dx=e.changedTouches[0].clientX-tx;
+      tx=null;
+      if(Math.abs(dx)<55)return;
+      dx<0?next():prev();
+    },{passive:true});
+  }
 
-  mobileMQ.addEventListener?.('change',()=>{mobileSide=0;syncMobile();});
+  if(mobileMQ.addEventListener){
+    mobileMQ.addEventListener('change',()=>{mobileSide=0;syncMobile();});
+  }
+
+  resetBook();
 })();
 </script>
 </body>
