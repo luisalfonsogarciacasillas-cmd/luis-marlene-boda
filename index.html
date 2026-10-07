@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#F4EDE3" />
   <meta name="description" content="Invitación de boda civil de Luis & Marlene — 19 de diciembre de 2026." />
-  <title>Luis & Marlene | 19.12.2026 · V3.3</title>
+  <title>Luis & Marlene | 19.12.2026 · V3.4</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&family=Uncial+Antiqua&display=swap" rel="stylesheet">
 
   <style>
     :root{
@@ -2979,6 +2979,175 @@
   .story-sound-cue{top:14px;font-size:8px}
   .bond-folio:after{right:13%;bottom:27%}
 }
+
+/* ============================================================
+   V3.4 — Uncial manuscript display type + physical paper turns
+   ============================================================ */
+
+/* Fantasy display lettering only; body copy stays highly readable */
+.storybook .storybook-cover h2,
+.storybook .book-cover h2,
+.storybook .cover-title,
+.storybook .manuscript-title,
+.storybook .manuscript-copy h3,
+.storybook .bond-title,
+.storybook .chapter-date,
+.storybook .grand-date,
+.storybook .continuara-v3,
+.storybook .final-center h3{
+  font-family:"Uncial Antiqua","Cormorant Garamond",Georgia,serif!important;
+  font-weight:400!important;
+  letter-spacing:.015em;
+}
+.storybook .manuscript-copy p,
+.storybook .quest-list,
+.storybook .bond-legend,
+.storybook .scribe-note{
+  font-family:"Cormorant Garamond",Georgia,serif;
+}
+
+/* Slightly tame the ornate face on phones */
+@media(max-width:700px){
+  .storybook .manuscript-copy h3{
+    line-height:1.13;
+  }
+}
+
+/* Physical-page animation layer */
+.storybook .book-stage,
+.storybook .manuscript-book{
+  perspective:1800px;
+  transform-style:preserve-3d;
+}
+.book-page{
+  transform-style:preserve-3d;
+  backface-visibility:hidden;
+}
+.book-page.paper-enter-next{
+  display:flex!important;
+  animation:paperEnterNext .72s cubic-bezier(.22,.72,.18,1) both;
+  transform-origin:left center;
+  z-index:14;
+}
+.book-page.paper-exit-next{
+  display:flex!important;
+  animation:paperExitNext .72s cubic-bezier(.55,.05,.5,.95) both;
+  transform-origin:left center;
+  z-index:15;
+  pointer-events:none;
+}
+.book-page.paper-enter-prev{
+  display:flex!important;
+  animation:paperEnterPrev .72s cubic-bezier(.22,.72,.18,1) both;
+  transform-origin:right center;
+  z-index:14;
+}
+.book-page.paper-exit-prev{
+  display:flex!important;
+  animation:paperExitPrev .72s cubic-bezier(.55,.05,.5,.95) both;
+  transform-origin:right center;
+  z-index:15;
+  pointer-events:none;
+}
+@keyframes paperExitNext{
+  0%{transform:rotateY(0deg);filter:brightness(1);box-shadow:0 0 0 rgba(35,19,10,0)}
+  45%{filter:brightness(.87);box-shadow:22px 5px 30px rgba(35,19,10,.23)}
+  100%{transform:rotateY(-88deg);filter:brightness(.72);box-shadow:35px 8px 42px rgba(35,19,10,.30)}
+}
+@keyframes paperEnterNext{
+  0%{transform:rotateY(72deg);filter:brightness(.76);box-shadow:-28px 7px 38px rgba(35,19,10,.27)}
+  55%{filter:brightness(.93)}
+  100%{transform:rotateY(0);filter:brightness(1);box-shadow:0 0 0 rgba(35,19,10,0)}
+}
+@keyframes paperExitPrev{
+  0%{transform:rotateY(0deg);filter:brightness(1)}
+  45%{filter:brightness(.87);box-shadow:-22px 5px 30px rgba(35,19,10,.23)}
+  100%{transform:rotateY(88deg);filter:brightness(.72);box-shadow:-35px 8px 42px rgba(35,19,10,.30)}
+}
+@keyframes paperEnterPrev{
+  0%{transform:rotateY(-72deg);filter:brightness(.76);box-shadow:28px 7px 38px rgba(35,19,10,.27)}
+  55%{filter:brightness(.93)}
+  100%{transform:rotateY(0);filter:brightness(1);box-shadow:0 0 0 rgba(35,19,10,0)}
+}
+
+/* A moving fold highlight helps sell the parchment */
+.book-page.paper-exit-next::after,
+.book-page.paper-exit-prev::after,
+.book-page.paper-enter-next::after,
+.book-page.paper-enter-prev::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:80;
+  pointer-events:none;
+  background:linear-gradient(90deg,
+    rgba(255,246,210,0) 0%,
+    rgba(255,246,210,.22) 42%,
+    rgba(88,48,20,.18) 51%,
+    rgba(255,246,210,.13) 58%,
+    rgba(255,246,210,0) 100%);
+  mix-blend-mode:multiply;
+  animation:paperFoldSheen .72s ease both;
+}
+@keyframes paperFoldSheen{
+  0%{opacity:0;transform:translateX(-24%)}
+  45%{opacity:.9}
+  100%{opacity:0;transform:translateX(24%)}
+}
+
+/* On phones, animate the visible folio like a single physical sheet */
+@media(max-width:700px){
+  .book-page.paper-enter-next,
+  .book-page.paper-exit-next,
+  .book-page.paper-enter-prev,
+  .book-page.paper-exit-prev{
+    transform-origin:left center;
+  }
+  @keyframes paperExitNext{
+    0%{transform:rotateY(0deg) translateX(0);filter:brightness(1)}
+    55%{filter:brightness(.82);box-shadow:18px 5px 26px rgba(35,19,10,.27)}
+    100%{transform:rotateY(-82deg) translateX(-2%);filter:brightness(.72)}
+  }
+  @keyframes paperEnterNext{
+    0%{transform:rotateY(78deg) translateX(2%);filter:brightness(.74)}
+    100%{transform:rotateY(0deg) translateX(0);filter:brightness(1)}
+  }
+}
+
+/* Honor accessibility preferences */
+@media(prefers-reduced-motion:reduce){
+  .book-page.paper-enter-next,.book-page.paper-exit-next,
+  .book-page.paper-enter-prev,.book-page.paper-exit-prev{
+    animation-duration:.01ms!important;
+  }
+  .book-page.paper-exit-next::after,.book-page.paper-exit-prev::after,
+  .book-page.paper-enter-next::after,.book-page.paper-enter-prev::after{
+    animation:none!important;
+  }
+}
+
+@media(max-width:700px){
+  .book-page.folio-paper-next .folio{
+    animation:folioSheetNext .7s cubic-bezier(.22,.72,.18,1);
+    transform-origin:left center;
+  }
+  .book-page.folio-paper-prev .folio{
+    animation:folioSheetPrev .7s cubic-bezier(.22,.72,.18,1);
+    transform-origin:right center;
+  }
+  @keyframes folioSheetNext{
+    0%{transform:rotateY(0);filter:brightness(1)}
+    46%{transform:rotateY(-16deg) translateX(-3%);filter:brightness(.83);box-shadow:18px 5px 28px rgba(35,19,10,.25)}
+    51%{transform:rotateY(14deg) translateX(3%);filter:brightness(.84)}
+    100%{transform:rotateY(0);filter:brightness(1)}
+  }
+  @keyframes folioSheetPrev{
+    0%{transform:rotateY(0);filter:brightness(1)}
+    46%{transform:rotateY(16deg) translateX(3%);filter:brightness(.83);box-shadow:-18px 5px 28px rgba(35,19,10,.25)}
+    51%{transform:rotateY(-14deg) translateX(-3%);filter:brightness(.84)}
+    100%{transform:rotateY(0);filter:brightness(1)}
+  }
+}
 </style>
 </head>
 
@@ -3832,6 +4001,11 @@
   const storybook = document.getElementById('storybook');
   const weddingAudio = document.getElementById('weddingAudio') || document.querySelector('audio:not(#medievalAudio)');
   const medievalAudio = document.getElementById('medievalAudio');
+  if(medievalAudio){
+    medievalAudio.preload = 'auto';
+    // Prime metadata early; actual playback still begins only from a user gesture.
+    try{ medievalAudio.load(); }catch(e){}
+  }
   let weddingResumeTime = 0;
   let weddingWasPlaying = false;
   let fadeToken = 0;
@@ -3852,27 +4026,49 @@
   }
   function crossfadeIntoStory(){
     if(!medievalAudio) return;
+
     weddingWasPlaying = !!weddingAudio && !weddingAudio.paused;
     if(weddingAudio) weddingResumeTime = weddingAudio.currentTime || 0;
 
-    // Opening the book is a direct user gesture, so browsers permit this play().
-    medievalAudio.currentTime = 0;
-    medievalAudio.volume = 0;
-    const playPromise = medievalAudio.play();
-    if(playPromise && playPromise.catch) playPromise.catch(()=>{});
+    // IMPORTANT: play() is called synchronously inside the user's click/tap.
+    // This reliably unlocks the second audio element on the very first opening.
+    try{
+      medievalAudio.pause();
+      medievalAudio.currentTime = 0;
+      medievalAudio.volume = 0.001;
+    }catch(e){}
 
-    const token = ++fadeToken;
-    const start = performance.now();
-    const weddingStart = weddingAudio ? weddingAudio.volume : 0;
-    function step(now){
-      if(token !== fadeToken) return;
-      const p = Math.min(1,(now-start)/1800);
-      if(weddingAudio) weddingAudio.volume = weddingStart*(1-p);
-      medievalAudio.volume = 0.72*p;
-      if(p < 1) requestAnimationFrame(step);
-      else if(weddingAudio) weddingAudio.pause();
+    const playPromise = medievalAudio.play();
+
+    const beginFade = ()=>{
+      const token = ++fadeToken;
+      const startTime = performance.now();
+      const weddingStart = weddingAudio ? weddingAudio.volume : 0;
+      function step(now){
+        if(token !== fadeToken) return;
+        const p = Math.min(1,(now-startTime)/1800);
+        if(weddingAudio) weddingAudio.volume = weddingStart*(1-p);
+        medievalAudio.volume = 0.001 + (0.719*p);
+        if(p < 1) requestAnimationFrame(step);
+        else{
+          medievalAudio.volume = 0.72;
+          if(weddingAudio) weddingAudio.pause();
+        }
+      }
+      requestAnimationFrame(step);
+    };
+
+    if(playPromise && typeof playPromise.then === 'function'){
+      playPromise.then(beginFade).catch(()=>{
+        // One immediate retry remains inside the gesture event lifecycle on
+        // browsers that need the media element loaded before its first play.
+        medievalAudio.load();
+        const retry = medievalAudio.play();
+        if(retry && retry.then) retry.then(beginFade).catch(()=>{});
+      });
+    }else{
+      beginFade();
     }
-    requestAnimationFrame(step);
   }
   function crossfadeOutOfStory(){
     if(!medievalAudio) return;
@@ -3950,7 +4146,33 @@
       setTimeout(()=>busy=false,560);
     },300);
   }
+
+  let paperTurning = false;
+  function animatePaperTurn(fromPage,toPage,direction,after){
+    if(!fromPage || !toPage || fromPage === toPage){
+      if(after) after();
+      return;
+    }
+    if(paperTurning) return;
+    paperTurning = true;
+
+    const exitClass = direction === 'prev' ? 'paper-exit-prev' : 'paper-exit-next';
+    const enterClass = direction === 'prev' ? 'paper-enter-prev' : 'paper-enter-next';
+
+    fromPage.classList.add(exitClass);
+    toPage.classList.add('active',enterClass);
+
+    window.setTimeout(()=>{
+      fromPage.classList.remove('active',exitClass);
+      toPage.classList.remove(enterClass);
+      paperTurning = false;
+      if(after) after();
+    },740);
+  }
+
   function next(){
+    if(paperTurning) return;
+    storybook.dataset.turnDirection = 'next';
     if(page===0){go(1,0);return}
     if(mobileHasSecond() && mobileSide===0){
       mobileSide=1;syncMobile();return;
@@ -3958,6 +4180,8 @@
     go(page+1,0);
   }
   function prev(){
+    if(paperTurning) return;
+    storybook.dataset.turnDirection = 'prev';
     if(page===0)return;
     if(mobileHasSecond() && mobileSide===1){
       mobileSide=0;syncMobile();return;
@@ -3987,7 +4211,33 @@
     },600);
   }
 
-  if(storyTrigger)storyTrigger.addEventListener('click',openBook);
+  if(storyTrigger)
+  let lastActivePaper = document.querySelector('.book-page.active');
+  const paperObserver = new MutationObserver(()=>{
+    const nowActive = document.querySelector('.book-page.active');
+    const dir = storybook.dataset.turnDirection || 'next';
+    if(nowActive && nowActive !== lastActivePaper){
+      const cls = dir === 'prev' ? 'paper-enter-prev' : 'paper-enter-next';
+      nowActive.classList.add(cls);
+      paperTurning = true;
+      setTimeout(()=>{
+        nowActive.classList.remove(cls);
+        paperTurning = false;
+      },740);
+      lastActivePaper = nowActive;
+    }else if(nowActive && nowActive === lastActivePaper){
+      // Mobile can turn from left folio to right folio inside the same spread.
+      nowActive.classList.remove('folio-paper-next','folio-paper-prev');
+      void nowActive.offsetWidth;
+      nowActive.classList.add(dir === 'prev' ? 'folio-paper-prev' : 'folio-paper-next');
+      setTimeout(()=>nowActive.classList.remove('folio-paper-next','folio-paper-prev'),740);
+    }
+  });
+  document.querySelectorAll('.book-page').forEach(p=>{
+    paperObserver.observe(p,{attributes:true,attributeFilter:['class']});
+  });
+
+  storyTrigger.addEventListener('click',openBook);
   if(storyX)storyX.addEventListener('click',closeBook);
   if(closeBookButton)closeBookButton.addEventListener('click',closeBook);
   if(bookPrev)bookPrev.addEventListener('click',prev);
