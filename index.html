@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#F4EDE3" />
   <meta name="description" content="Invitación de boda civil de Luis & Marlene — 19 de diciembre de 2026." />
-  <title>Luis & Marlene | 19.12.2026 · V2.3</title>
+  <title>Luis & Marlene | 19.12.2026 · V2.4</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -698,6 +698,168 @@
       #gate.opening .gate-monogram{transform:none}
     }
 
+
+    /* V2.4 — ANIMATED WEDDING JOURNEY */
+    .timeline{
+      --journey-progress:0%;
+    }
+    .timeline:after{
+      content:"";
+      position:absolute;
+      top:12px;
+      left:50%;
+      width:2px;
+      height:var(--journey-progress);
+      max-height:calc(100% - 24px);
+      transform:translateX(-50%);
+      background:linear-gradient(to bottom,var(--terracotta),var(--gold));
+      border-radius:999px;
+      z-index:0;
+      pointer-events:none;
+      transition:height .12s linear;
+    }
+    .timeline-item{z-index:1}
+    .timeline-dot{
+      z-index:3;
+      transition:transform .6s cubic-bezier(.2,.8,.2,1),background .6s ease,box-shadow .6s ease;
+    }
+    .timeline-item.stage-active .timeline-dot{
+      background:var(--gold);
+      box-shadow:0 0 0 1px var(--gold),0 0 0 7px rgba(185,148,91,.10);
+    }
+    .stage-wrap{
+      display:flex;
+      align-items:center;
+      gap:18px;
+    }
+    .timeline-item:nth-child(odd) .stage-wrap{
+      flex-direction:row-reverse;
+    }
+    .stage-icon{
+      width:68px;
+      height:68px;
+      flex:0 0 68px;
+      color:var(--cinnamon);
+      opacity:.72;
+      display:grid;
+      place-items:center;
+      transform:translateY(4px) scale(.94);
+      transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1);
+    }
+    .stage-icon svg{
+      width:62px;
+      height:62px;
+      overflow:visible;
+    }
+    .stage-icon path,
+    .stage-icon line,
+    .stage-icon circle,
+    .stage-icon ellipse,
+    .stage-icon polyline{
+      fill:none;
+      stroke:currentColor;
+      stroke-width:1.35;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+      vector-effect:non-scaling-stroke;
+    }
+    .stage-icon .draw{
+      stroke-dasharray:180;
+      stroke-dashoffset:180;
+    }
+    .timeline-item.stage-active .stage-icon{
+      opacity:1;
+      transform:translateY(0) scale(1);
+    }
+    .timeline-item.stage-active .stage-icon .draw{
+      animation:stageDraw 1.45s cubic-bezier(.2,.7,.2,1) forwards;
+    }
+    @keyframes stageDraw{to{stroke-dashoffset:0}}
+
+    /* Reception: little welcome sparkle */
+    .spark{
+      opacity:0;
+      transform-origin:center;
+    }
+    .timeline-item.stage-active .reception-icon .spark{
+      animation:sparkIn .65s ease .9s forwards;
+    }
+    @keyframes sparkIn{
+      0%{opacity:0;transform:scale(.3)}
+      65%{opacity:1;transform:scale(1.18)}
+      100%{opacity:.85;transform:scale(1)}
+    }
+
+    /* Ceremony: rings meet */
+    .ring-left,.ring-right{
+      transition:transform .8s cubic-bezier(.2,.8,.2,1);
+    }
+    .ring-left{transform:translateX(-7px)}
+    .ring-right{transform:translateX(7px)}
+    .timeline-item.stage-active .ring-left,
+    .timeline-item.stage-active .ring-right{transform:translateX(0)}
+
+    /* Toast: glasses gently clink */
+    .glass-left,.glass-right{transform-origin:bottom center}
+    .timeline-item.stage-active .glass-left{
+      animation:clinkLeft .85s ease .72s both;
+    }
+    .timeline-item.stage-active .glass-right{
+      animation:clinkRight .85s ease .72s both;
+    }
+    @keyframes clinkLeft{
+      0%{transform:rotate(0)}
+      55%{transform:translate(3px,-2px) rotate(7deg)}
+      100%{transform:rotate(0)}
+    }
+    @keyframes clinkRight{
+      0%{transform:rotate(0)}
+      55%{transform:translate(-3px,-2px) rotate(-7deg)}
+      100%{transform:rotate(0)}
+    }
+
+    /* Dinner: plate settles */
+    .plate-inner{transform-origin:center}
+    .timeline-item.stage-active .plate-inner{
+      animation:plateSet .9s ease .72s both;
+    }
+    @keyframes plateSet{
+      0%{transform:scale(.7);opacity:0}
+      70%{transform:scale(1.06);opacity:1}
+      100%{transform:scale(1);opacity:1}
+    }
+
+    /* Dance: music notes rise once */
+    .music-note{opacity:0}
+    .timeline-item.stage-active .music-note.n1{
+      animation:noteRise 1.4s ease .65s both;
+    }
+    .timeline-item.stage-active .music-note.n2{
+      animation:noteRise 1.4s ease .88s both;
+    }
+    @keyframes noteRise{
+      0%{opacity:0;transform:translateY(8px)}
+      45%{opacity:1}
+      100%{opacity:.85;transform:translateY(-3px)}
+    }
+
+    @media(max-width:520px){
+      .timeline:after{left:18px}
+      .stage-wrap,
+      .timeline-item:nth-child(odd) .stage-wrap{
+        flex-direction:row;
+        gap:14px;
+      }
+      .stage-icon{width:54px;height:54px;flex-basis:54px}
+      .stage-icon svg{width:50px;height:50px}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .timeline:after{transition:none}
+      .stage-icon .draw{stroke-dashoffset:0!important;animation:none!important}
+      .ring-left,.ring-right{transform:none!important}
+      .glass-left,.glass-right,.plate-inner,.music-note,.spark{animation:none!important;opacity:1!important}
+    }
+
     /* V2.2 — TIMELINE */
     .timeline-section{
       background:var(--paper);
@@ -1020,46 +1182,100 @@
       <div class="timeline">
         <div class="timeline-item reveal reveal-left">
           <span class="timeline-dot" aria-hidden="true"></span>
-          <div>
-            <span class="timeline-time">5:00 PM</span>
-            <span class="timeline-event">Recepción de invitados</span>
-            <span class="timeline-note">Bienvenida</span>
+          <div class="stage-wrap">
+            <span class="stage-icon reception-icon" aria-hidden="true">
+              <svg viewBox="0 0 64 64">
+                <path class="draw" d="M17 19 L21 45 M11 31 H25 M39 20 L43 45 M33 31 H47"/>
+                <path class="draw" d="M15 19 H19 M37 20 H41"/>
+                <path class="draw spark" d="M52 12 V20 M48 16 H56"/>
+                <path class="draw spark" d="M8 12 V17 M5.5 14.5 H10.5"/>
+              </svg>
+            </span>
+            <div>
+              <span class="timeline-time">5:00 PM</span>
+              <span class="timeline-event">Recepción de invitados</span>
+              <span class="timeline-note">Bienvenida</span>
+            </div>
           </div>
         </div>
 
         <div class="timeline-item reveal reveal-right delay-1">
           <span class="timeline-dot" aria-hidden="true"></span>
-          <div>
-            <span class="timeline-time">6:00 PM</span>
-            <span class="timeline-event">Ceremonia civil</span>
-            <span class="timeline-note">El momento del “sí”</span>
+          <div class="stage-wrap">
+            <span class="stage-icon ceremony-icon" aria-hidden="true">
+              <svg viewBox="0 0 64 64">
+                <circle class="draw ring-left" cx="26" cy="33" r="12"/>
+                <circle class="draw ring-right" cx="38" cy="33" r="12"/>
+                <path class="draw spark" d="M32 9 V15 M29 12 H35"/>
+              </svg>
+            </span>
+            <div>
+              <span class="timeline-time">6:00 PM</span>
+              <span class="timeline-event">Ceremonia civil</span>
+              <span class="timeline-note">El momento del “sí”</span>
+            </div>
           </div>
         </div>
 
         <div class="timeline-item reveal reveal-left">
           <span class="timeline-dot" aria-hidden="true"></span>
-          <div>
-            <span class="timeline-time">6:30 PM</span>
-            <span class="timeline-event">Brindis</span>
-            <span class="timeline-note">Por lo que comienza</span>
+          <div class="stage-wrap">
+            <span class="stage-icon toast-icon" aria-hidden="true">
+              <svg viewBox="0 0 64 64">
+                <g class="glass-left">
+                  <path class="draw" d="M15 16 H29 L27 29 C26 35 18 35 17 29 Z"/>
+                  <path class="draw" d="M22 34 V47 M16 47 H28"/>
+                </g>
+                <g class="glass-right">
+                  <path class="draw" d="M35 16 H49 L47 29 C46 35 38 35 37 29 Z"/>
+                  <path class="draw" d="M42 34 V47 M36 47 H48"/>
+                </g>
+                <path class="draw spark" d="M32 8 V13 M29.5 10.5 H34.5"/>
+              </svg>
+            </span>
+            <div>
+              <span class="timeline-time">6:30 PM</span>
+              <span class="timeline-event">Brindis</span>
+              <span class="timeline-note">Por lo que comienza</span>
+            </div>
           </div>
         </div>
 
         <div class="timeline-item reveal reveal-right delay-1">
           <span class="timeline-dot" aria-hidden="true"></span>
-          <div>
-            <span class="timeline-time">7:00 PM</span>
-            <span class="timeline-event">Cena</span>
-            <span class="timeline-note">A la mesa</span>
+          <div class="stage-wrap">
+            <span class="stage-icon dinner-icon" aria-hidden="true">
+              <svg viewBox="0 0 64 64">
+                <circle class="draw" cx="32" cy="32" r="18"/>
+                <circle class="draw plate-inner" cx="32" cy="32" r="11"/>
+                <path class="draw" d="M9 16 V48 M6 16 V28 C6 32 12 32 12 28 V16"/>
+                <path class="draw" d="M54 16 C49 21 49 29 54 32 V48"/>
+              </svg>
+            </span>
+            <div>
+              <span class="timeline-time">7:00 PM</span>
+              <span class="timeline-event">Cena</span>
+              <span class="timeline-note">A la mesa</span>
+            </div>
           </div>
         </div>
 
         <div class="timeline-item reveal reveal-left">
           <span class="timeline-dot" aria-hidden="true"></span>
-          <div>
-            <span class="timeline-time">8:00 PM</span>
-            <span class="timeline-event">¡A bailar!</span>
-            <span class="timeline-note">Que empiece la fiesta</span>
+          <div class="stage-wrap">
+            <span class="stage-icon dance-icon" aria-hidden="true">
+              <svg viewBox="0 0 64 64">
+                <path class="draw" d="M18 43 C23 34 28 28 32 20 C36 29 40 35 47 42"/>
+                <path class="draw" d="M25 45 C30 40 35 40 40 45"/>
+                <path class="draw music-note n1" d="M45 14 V29 C42 27 38 29 39 32 C40 35 46 34 46 30 V19 L54 17 V27 C51 25 48 27 49 30 C50 33 55 32 55 28 V14 Z"/>
+                <path class="draw music-note n2" d="M13 19 V30 C10 28 7 30 8 33 C9 36 14 35 14 31 V22 L20 20"/>
+              </svg>
+            </span>
+            <div>
+              <span class="timeline-time">8:00 PM</span>
+              <span class="timeline-event">¡A bailar!</span>
+              <span class="timeline-note">Que empiece la fiesta</span>
+            </div>
           </div>
         </div>
       </div>
@@ -1082,7 +1298,7 @@
         <div class="reveal">
           <div class="section-kicker">Código de vestimenta</div>
           <h2 class="section-title" id="vestimenta">Cóctel Chic</h2>
-          <span class="dress-label">Elegante · Moderno · Celebración</span>
+          <span class="dress-label">Elegante · Moderno · Cómodo</span>
         </div>
 
         <div class="wardrobe reveal delay-1">
@@ -1131,7 +1347,7 @@
           </article>
         </div>
 
-        <p class="dress-foot reveal delay-2">Elegante, moderno y listo para celebrar. Queremos verte increíble, pero sobre todo disfrutar contigo.</p>
+        <p class="dress-foot reveal delay-2">Elegante, moderno y cómodo. Queremos que te veas increíble y disfrutes cada momento con nosotros.</p>
       </div>
     </section>
 
@@ -1296,6 +1512,35 @@
       });
     }, { threshold: 0.18 });
     botanicals.forEach(el => botanicalObserver.observe(el));
+
+
+    // V2.4 — animate each wedding stage once as it enters the viewport
+    const weddingStages = document.querySelectorAll('.timeline-item');
+    const stageObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('stage-active');
+          stageObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.48 });
+    weddingStages.forEach(stage => stageObserver.observe(stage));
+
+    // Draw the wedding journey progressively as the guest scrolls through it.
+    const weddingTimeline = document.querySelector('.timeline');
+    function updateWeddingJourney(){
+      if (!weddingTimeline) return;
+      const r = weddingTimeline.getBoundingClientRect();
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      const start = vh * 0.72;
+      const travelled = start - r.top;
+      const total = Math.max(1, r.height - 24);
+      const progress = Math.max(0, Math.min(1, travelled / total));
+      weddingTimeline.style.setProperty('--journey-progress', (progress * 100).toFixed(2) + '%');
+    }
+    updateWeddingJourney();
+    window.addEventListener('scroll', updateWeddingJourney, { passive:true });
+    window.addEventListener('resize', updateWeddingJourney);
 
 </script>
 </body>
