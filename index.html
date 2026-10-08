@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#F4EDE3" />
   <meta name="description" content="Invitación de boda civil de Luis & Marlene — 19 de diciembre de 2026." />
-  <title>V5.4 · Luis & Marlene | 19.12.2026 · Illustrated Storybook</title>
+  <title>V5.5 · Luis & Marlene | 19.12.2026 · Narrated Storybook</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -3802,6 +3802,15 @@
 @media(max-width:700px){#storybook.v5-book .v5-counter{bottom:max(38px,env(safe-area-inset-bottom));font-size:7px}.v5-book .book-progress{bottom:max(19px,env(safe-area-inset-bottom))}}
 @media(prefers-reduced-motion:reduce){#storybook.v5-book .v53-particles i{animation:none!important}.v5-book .v5-page.v53-enter-next,.v5-book .v5-page.v53-exit-next,.v5-book .v5-page.v53-enter-prev,.v5-book .v5-page.v53-exit-prev,.v5-book.v53-opening .v5-folio-frame,.v5-book.v53-closing .v5-folio-frame{animation-duration:.01ms!important}}
 </style>\n
+<style id="v55-narrator-style">
+/* V5.5 — Narration and accessible story audio controls */
+#storybook.v5-book .v55-audio-controls{position:absolute;z-index:90;top:13px;right:70px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+#storybook.v5-book .v55-audio-controls .story-sound{position:static;transform:none;margin:0}
+#storybook.v5-book .v55-narrator{border:1px solid rgba(210,170,103,.55);border-radius:999px;padding:9px 13px;min-height:36px;background:rgba(38,23,14,.82);color:#f3d9a0;cursor:pointer;font:500 10px/1.2 Montserrat,sans-serif;letter-spacing:.04em}
+#storybook.v5-book .v55-narrator[aria-pressed="false"]{color:#c5b9a5;border-color:rgba(210,170,103,.25)}
+#storybook.v5-book .v55-narrator:focus-visible{outline:2px solid #ffe2a4;outline-offset:3px}
+@media(max-width:700px){#storybook.v5-book .v55-audio-controls{top:12px;right:56px;left:9px;gap:5px}#storybook.v5-book .v55-narrator{font-size:9px;padding:7px 9px;min-height:32px}#storybook.v5-book .v55-audio-controls .story-sound{min-height:32px;padding:5px 8px}}
+</style>
 <style id="v54-living-storybook">
 /* V5.4 — Living Storybook: delayed scene magic layered over the finished PNG folios. */
 #storybook.v5-book .v54-effects{position:absolute;inset:0;z-index:38;pointer-events:none;overflow:hidden;border-radius:4px}
@@ -3900,6 +3909,7 @@
     <source src="lofi-wedding.mp3" type="audio/mpeg">
   </audio>
   <audio id="medievalAudio" src="medieval-theme.mp3" preload="auto" loop></audio>
+  <audio id="storyNarration" preload="none"></audio>
 
   <button class="music" id="musicButton" type="button" aria-label="Pausar música" aria-pressed="true">
     <span class="music-icon" aria-hidden="true">♪</span>
@@ -4386,7 +4396,7 @@
   <div class="storybook v5-book" id="storybook" aria-hidden="true">
     <div class="v5-ambient" aria-hidden="true"></div><div class="v53-particles" id="v53Particles" aria-hidden="true"></div>
     <div class="v5-topbar"><span class="v5-music-label">♪ Música del reino ♪</span></div>
-    <button class="story-sound" id="storySound" type="button" aria-label="Activar o pausar música del cuento"><span class="story-sound-icon">♫</span><span class="story-sound-label">Música del cuento</span></button>
+    <div class="v55-audio-controls"><button class="story-sound" id="storySound" type="button" aria-label="Activar o pausar música del cuento"><span class="story-sound-icon">♫</span><span class="story-sound-label">Música del cuento</span></button><button class="v55-narrator" id="storyNarratorToggle" type="button" aria-pressed="true" aria-label="Desactivar narrador">🎙 Narrador: ON</button></div>
     <button class="storybook-x" id="storybookX" type="button" aria-label="Cerrar nuestra historia">×</button>
     <main class="v5-stage" aria-label="La historia de Luis y Marlene">
       <div class="v5-folio-frame" id="bookShell">
@@ -4407,13 +4417,41 @@
     "07-Vivir_Juntos.png","08-Aparece_el_Guardian.png","09-Una_Familia.png","10-La_Misión_del_Anillo.png",
     "11-Una_Sorpresa.png","12_De_Vuelta_A_Casa.png","13-Ultimo_Folio.png"
   ];
+  // Narration names mirror the PNG stems; upload matching .m4a files alongside index.html.
+  // If your recordings have different names, edit this array only.
+  const narrationFiles=files.map(name=>name.replace(/\.png$/i,'.m4a'));
   const labels=["Portada","I · El Encuentro","II · La Conexión","III · La Expedición Digital","IV · El Caso Resuelto","V · Los Años Compartidos","VI · Unidos a la distancia","VII · Vivir Juntos","VIII · Aparece el Guardián","IX · Una Familia","X · La Misión del Anillo","XI · Una Sorpresa","XII · De Vuelta a Casa","Último Folio"];
   const storybook=document.getElementById('storybook'), trigger=document.getElementById('storyEastereggTrigger'), x=document.getElementById('storybookX');
   const pagesHost=document.getElementById('bookPages'), prev=document.getElementById('bookPrev'), next=document.getElementById('bookNext'), progress=document.getElementById('bookProgress'), counter=document.getElementById('v5Counter'), sound=document.getElementById('storySound');
   const weddingAudio=document.getElementById('bgMusic')||document.querySelector('audio:not(#medievalAudio)');
   const medievalAudio=document.getElementById('medievalAudio');
+  const narrationAudio=document.getElementById('storyNarration');
+  const narratorToggle=document.getElementById('storyNarratorToggle');
   let page=0,busy=false,touchX=null,weddingWasPlaying=false,weddingResumeTime=0,storyMusicWanted=true,loadRetries={};
   let audioCtx=null;
+  const MUSIC_NORMAL=.35, MUSIC_DUCKED=.10, NARRATION_VOLUME=1;
+  let narratorWanted=true,narrationToken=0,musicFadeFrame=0,storyAudioActive=false;
+  function fadeMedievalVolume(target,duration=650){
+    if(!medievalAudio)return;
+    if(musicFadeFrame)cancelAnimationFrame(musicFadeFrame);
+    const from=medievalAudio.volume,start=performance.now();
+    const tick=now=>{const t=Math.min(1,(now-start)/duration);const eased=t*t*(3-2*t);medievalAudio.volume=Math.max(0,Math.min(1,from+(target-from)*eased));if(t<1)musicFadeFrame=requestAnimationFrame(tick);else musicFadeFrame=0};
+    musicFadeFrame=requestAnimationFrame(tick);
+  }
+  function stopNarration(){narrationToken++;narrationAudio.pause();narrationAudio.removeAttribute('src');narrationAudio.load();if(storyAudioActive)fadeMedievalVolume(MUSIC_NORMAL)}
+  function updateNarratorButton(){narratorToggle.setAttribute('aria-pressed',String(narratorWanted));narratorToggle.setAttribute('aria-label',narratorWanted?'Desactivar narrador':'Activar narrador');narratorToggle.textContent=narratorWanted?'🎙 Narrador: ON':'🎙 Narrador: OFF'}
+  function playNarration(i){
+    stopNarration();if(!narratorWanted||!storyAudioActive)return;
+    const token=narrationToken;
+    narrationAudio.src=encodeURI(narrationFiles[i]);narrationAudio.volume=NARRATION_VOLUME;
+    narrationAudio.load();
+    const playPromise=narrationAudio.play();
+    if(playPromise&&playPromise.then)playPromise.then(()=>{if(token===narrationToken)fadeMedievalVolume(MUSIC_DUCKED)}).catch(()=>{if(token===narrationToken)fadeMedievalVolume(MUSIC_NORMAL)});
+  }
+  narrationAudio.addEventListener('ended',()=>{if(storyAudioActive)fadeMedievalVolume(MUSIC_NORMAL)});
+  narrationAudio.addEventListener('error',()=>{if(storyAudioActive)fadeMedievalVolume(MUSIC_NORMAL)});
+  narratorToggle.addEventListener('click',()=>{narratorWanted=!narratorWanted;updateNarratorButton();if(narratorWanted)playNarration(page);else stopNarration()});
+  updateNarratorButton();
   let sceneTimer=null,sceneRun=0;
   const pages=[];
   files.forEach((src,i)=>{
@@ -4452,19 +4490,19 @@
     else if(i===12){fxEl(host,'v54-flicker',{left:'19%',top:'62%',width:'20%',height:'23%'});[[23,53],[77,52],[29,45],[70,43],[52,38]].forEach((p,n)=>fxEl(host,'v54-star v54-twinkle',{left:p[0]+'%',top:p[1]+'%',animationDelay:(n*.18)+'s'},'✦'));fxEl(host,'v54-zzz-auto',{left:'57%',top:'78%',animationDelay:'.55s'},'z  z…')}
     else if(i===13){fxEl(host,'v54-glow v54-pulse',{left:'31%',top:'27%',width:'38%',height:'22%'});fxEl(host,'v54-ring-glint',{left:'50%',top:'69%'},'✦');fxEl(host,'v54-button-trail',{left:'34%',top:'88%',width:'32%',animationDelay:'.55s'})}
   },delay)}
-  function go(i,dir){if(busy||i<0||i>=pages.length||i===page)return;clearSceneEffects();busy=true;pageRustle();const old=pages[page],incoming=pages[i];old.classList.add('active',dir==='prev'?'v53-exit-prev':'v53-exit-next');incoming.classList.add('active',dir==='prev'?'v53-enter-prev':'v53-enter-next');page=i;controls();preloadAround();setTimeout(()=>{old.classList.remove('active','v53-exit-next','v53-exit-prev');incoming.classList.remove('v53-enter-next','v53-enter-prev');busy=false;activateScene(page,850)},1280)}
+  function go(i,dir){if(busy||i<0||i>=pages.length||i===page)return;stopNarration();clearSceneEffects();busy=true;pageRustle();const old=pages[page],incoming=pages[i];old.classList.add('active',dir==='prev'?'v53-exit-prev':'v53-exit-next');incoming.classList.add('active',dir==='prev'?'v53-enter-prev':'v53-enter-next');page=i;controls();preloadAround();setTimeout(()=>{old.classList.remove('active','v53-exit-next','v53-exit-prev');incoming.classList.remove('v53-enter-next','v53-enter-prev');busy=false;activateScene(page,850);playNarration(page)},1280)}
   function bondNap(p){if(p.querySelector('.v53-zzz'))return;const z=document.createElement('div');z.className='v53-zzz';z.textContent='Z  z  z…';p.appendChild(z);setTimeout(()=>z.remove(),2200)}
   function seedParticles(){const host=document.getElementById('v53Particles');if(!host||host.children.length)return;for(let i=0;i<18;i++){const q=document.createElement('i');q.style.setProperty('--x',(4+Math.random()*92)+'%');q.style.setProperty('--d',(7+Math.random()*9)+'s');q.style.setProperty('--delay',(-Math.random()*12)+'s');q.style.setProperty('--s',(.6+Math.random()*1.4));host.appendChild(q)}}
   function updateSound(needsTap=false){if(!sound)return;const playing=medievalAudio&&!medievalAudio.paused;sound.classList.toggle('is-playing',!!playing);sound.classList.toggle('needs-tap',needsTap);sound.setAttribute('aria-label',playing?'Pausar música del cuento':'Activar música del cuento')}
-  function enterAudio(){weddingWasPlaying=!!weddingAudio&&!weddingAudio.paused;if(weddingAudio){weddingResumeTime=weddingAudio.currentTime||0;weddingAudio.pause()}if(!medievalAudio||!storyMusicWanted)return;try{medievalAudio.loop=true;medievalAudio.muted=false;medievalAudio.volume=.68;medievalAudio.currentTime=0;const p=medievalAudio.play();if(p&&p.then)p.then(()=>updateSound(false)).catch(()=>updateSound(true));else updateSound(false)}catch(e){updateSound(true)}}
-  function leaveAudio(){if(medievalAudio){medievalAudio.pause();try{medievalAudio.currentTime=0}catch(e){}}updateSound(false);if(weddingAudio&&weddingWasPlaying){try{weddingAudio.currentTime=weddingResumeTime;weddingAudio.volume=1;weddingAudio.muted=false;const p=weddingAudio.play();if(p&&p.catch)p.catch(()=>{})}catch(e){}}}
-  function toggleSound(){if(!medievalAudio)return;if(medievalAudio.paused){storyMusicWanted=true;medievalAudio.muted=false;medievalAudio.volume=.68;const p=medievalAudio.play();if(p&&p.then)p.then(()=>updateSound(false)).catch(()=>updateSound(true));else updateSound(false)}else{storyMusicWanted=false;medievalAudio.pause();updateSound(false)}}
+  function enterAudio(){storyAudioActive=true;weddingWasPlaying=!!weddingAudio&&!weddingAudio.paused;if(weddingAudio){weddingResumeTime=weddingAudio.currentTime||0;weddingAudio.pause()}if(!medievalAudio||!storyMusicWanted)return;try{medievalAudio.loop=true;medievalAudio.muted=false;medievalAudio.volume=MUSIC_NORMAL;medievalAudio.currentTime=0;const p=medievalAudio.play();if(p&&p.then)p.then(()=>updateSound(false)).catch(()=>updateSound(true));else updateSound(false)}catch(e){updateSound(true)}}
+  function leaveAudio(){storyAudioActive=false;stopNarration();if(musicFadeFrame)cancelAnimationFrame(musicFadeFrame);musicFadeFrame=0;if(medievalAudio){medievalAudio.pause();try{medievalAudio.currentTime=0}catch(e){}}updateSound(false);if(weddingAudio&&weddingWasPlaying){try{weddingAudio.currentTime=weddingResumeTime;weddingAudio.volume=1;weddingAudio.muted=false;const p=weddingAudio.play();if(p&&p.catch)p.catch(()=>{})}catch(e){}}}
+  function toggleSound(){if(!medievalAudio)return;if(medievalAudio.paused){storyMusicWanted=true;medievalAudio.muted=false;medievalAudio.volume=narratorWanted&&!narrationAudio.paused?MUSIC_DUCKED:MUSIC_NORMAL;const p=medievalAudio.play();if(p&&p.then)p.then(()=>updateSound(false)).catch(()=>updateSound(true));else updateSound(false)}else{storyMusicWanted=false;medievalAudio.pause();updateSound(false)}}
   function reset(){clearSceneEffects();pages.forEach((p,i)=>{p.classList.toggle('active',i===0);p.classList.remove('turn-next','turn-prev')});page=0;busy=false;makeDots();controls();preloadAround()}
-  function openBook(e){if(e)e.preventDefault();enterAudio();reset();seedParticles();storybook.classList.add('open','v53-opening');storybook.setAttribute('aria-hidden','false');document.body.classList.add('storybook-open');setTimeout(()=>{storybook.classList.remove('v53-opening');activateScene(0,900)},1100)}
-  function closeBook(){if(storybook.classList.contains('v53-closing'))return;clearSceneEffects();storybook.classList.add('v53-closing');pageRustle();setTimeout(()=>{storybook.classList.remove('open','v53-closing');storybook.setAttribute('aria-hidden','true');document.body.classList.remove('storybook-open');leaveAudio();reset()},900)}
+  function openBook(e){if(e)e.preventDefault();enterAudio();reset();seedParticles();storybook.classList.add('open','v53-opening');storybook.setAttribute('aria-hidden','false');document.body.classList.add('storybook-open');setTimeout(()=>{storybook.classList.remove('v53-opening');activateScene(0,900);playNarration(0)},1100)}
+  function closeBook(){if(storybook.classList.contains('v53-closing'))return;stopNarration();clearSceneEffects();storybook.classList.add('v53-closing');pageRustle();setTimeout(()=>{storybook.classList.remove('open','v53-closing');storybook.setAttribute('aria-hidden','true');document.body.classList.remove('storybook-open');leaveAudio();reset()},900)}
   trigger&&trigger.addEventListener('click',openBook);x&&x.addEventListener('click',closeBook);sound&&sound.addEventListener('click',toggleSound);prev.addEventListener('click',()=>go(page-1,'prev'));next.addEventListener('click',()=>go(page+1,'next'));
   document.addEventListener('keydown',e=>{if(!storybook.classList.contains('open'))return;if(e.key==='Escape')closeBook();else if(e.key==='ArrowRight')go(page+1,'next');else if(e.key==='ArrowLeft')go(page-1,'prev')});
-  storybook.addEventListener('touchstart',e=>{touchX=e.changedTouches[0].clientX},{passive:true});storybook.addEventListener('touchend',e=>{if(e.target.closest&&e.target.closest('.v5-cover-action,.v5-close-action,.story-sound,.storybook-x,.v5-nav')){touchX=null;return}if(touchX===null)return;const dx=e.changedTouches[0].clientX-touchX;touchX=null;if(Math.abs(dx)>52)go(page+(dx<0?1:-1),dx<0?'next':'prev')},{passive:true});
+  storybook.addEventListener('touchstart',e=>{touchX=e.changedTouches[0].clientX},{passive:true});storybook.addEventListener('touchend',e=>{if(e.target.closest&&e.target.closest('.v5-cover-action,.v5-close-action,.story-sound,.v55-narrator,.storybook-x,.v5-nav')){touchX=null;return}if(touchX===null)return;const dx=e.changedTouches[0].clientX-touchX;touchX=null;if(Math.abs(dx)>52)go(page+(dx<0?1:-1),dx<0?'next':'prev')},{passive:true});
   makeDots();controls();preloadAround();
 })();
 </script>
