@@ -4447,6 +4447,9 @@
   // Narration names mirror the PNG stems; upload matching .m4a files alongside index.html.
   // If your recordings have different names, edit this array only.
   const narrationFiles=files.map(name=>name.replace(/\.png$/i,'.m4a'));
+  // Narration recordings use ASCII filenames for chapters III and X.
+  narrationFiles[3]='03-La_Expedicion_Digital.m4a';
+  narrationFiles[10]='10-La_Mision_del_Anillo.m4a';
   const labels=["Portada","I · El Encuentro","II · La Conexión","III · La Expedición Digital","IV · El Caso Resuelto","V · Los Años Compartidos","VI · Unidos a la distancia","VII · Vivir Juntos","VIII · Aparece el Guardián","IX · Una Familia","X · La Misión del Anillo","XI · Una Sorpresa","XII · De Vuelta a Casa","Último Folio"];
   const storybook=document.getElementById('storybook'), trigger=document.getElementById('storyEastereggTrigger'), x=document.getElementById('storybookX');
   const pagesHost=document.getElementById('bookPages'), prev=document.getElementById('bookPrev'), next=document.getElementById('bookNext'), progress=document.getElementById('bookProgress'), counter=document.getElementById('v5Counter'), sound=document.getElementById('storySound');
