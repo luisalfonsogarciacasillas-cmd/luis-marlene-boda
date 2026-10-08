@@ -3873,6 +3873,17 @@
 .music.playing .vinyl-disc{animation:spin 5s linear infinite}
 @media(max-width:600px){.hero .story-easteregg-trigger{bottom:clamp(112px,14svh,155px);font-size:9px;padding:10px 6px}.hero-scroll-guide{bottom:clamp(30px,5svh,58px);font-size:8px}}
 @media(prefers-reduced-motion:reduce){.hero .story-easteregg-trigger,.hero .story-easteregg-trigger .secret-spark,.hero .story-easteregg-trigger:after,.hero-scroll-arrow,.music.playing .vinyl-disc{animation:none!important}.hero-scroll-guide{opacity:1;animation:none!important}.hero .story-easteregg-trigger:after{width:55%}}
+/* V5.8 — Precisely center the story Easter egg on every screen.
+   CSS translate is independent of animations and reduced-motion transforms. */
+.hero button.scroll.story-easteregg-trigger{
+  left:50%;
+  right:auto;
+  translate:-50% 0;
+  transform:none;
+  justify-content:center;
+  width:max-content;
+  max-width:calc(100vw - 24px);
+}
 </style>
 </head>
 
