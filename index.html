@@ -3885,6 +3885,20 @@
   max-width:calc(100vw - 24px);
 }
 
+/* V5.10 — robust centering: equal left/right anchors, no transforms. */
+.hero button.scroll.story-easteregg-trigger{
+  left:0;
+  right:0;
+  margin-left:auto;
+  margin-right:auto;
+  width:max-content;
+  max-width:calc(100% - 24px);
+  transform:none;
+  translate:none;
+  box-sizing:border-box;
+  justify-content:center;
+}
+
 /* V5.9 — balanced editorial flourish, below the wedding date. */
 .hero-chapter-note{
   margin:30px auto 0;
