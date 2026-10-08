@@ -3707,7 +3707,7 @@
   #storybook .bond-art-v46 text{animation:none!important}
 }
 </style>
-\n<style id="v5-png-storybook-css">
+<style id="v5-png-storybook-css">
 /* V5 — PNG folio storybook. Main invitation intentionally untouched. */
 #storybook.v5-book{position:fixed;inset:0;z-index:99999;background:radial-gradient(circle at 50% 38%,#24170f 0,#0b0806 48%,#020202 100%);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .35s ease,visibility .35s ease;overflow:hidden;touch-action:pan-y}
 #storybook.v5-book.open{opacity:1;visibility:visible;pointer-events:auto}
@@ -3747,7 +3747,7 @@
 }
 @media(max-width:380px){#storybook.v5-book .v5-stage{padding-left:4px;padding-right:4px}#storybook.v5-book .v5-folio-frame{width:min(98vw,calc((100svh - 102px)*.6667))}}
 @media(prefers-reduced-motion:reduce){#storybook.v5-book .v5-ambient{animation:none}.v5-book .v5-page.turn-next,.v5-book .v5-page.turn-prev{animation:none!important}}
-</style>\n
+</style>
 <style id="v51-mobile-and-turn-fixes">
 /* V5.1 — fit the entire illustrated folio inside the usable viewport. */
 #storybook.v5-book .v5-stage{inset:64px 0 42px;padding:10px 52px;overflow:hidden}
@@ -3773,7 +3773,7 @@
 @media(max-width:380px){#storybook.v5-book .v5-stage{padding-left:6px;padding-right:6px}#storybook.v5-book .v5-page img{max-width:calc(100vw - 12px)}}
 @media(prefers-reduced-motion:reduce){#storybook.v5-book .v5-page.turn-next,#storybook.v5-book .v5-page.turn-prev{animation:none!important}}
 </style>
-\n<style id="v53-experience-polish">
+<style id="v53-experience-polish">
 /* V5.4 — final storybook experience polish */
 #storybook.v5-book .v53-particles{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}
 #storybook.v5-book .v53-particles i{position:absolute;left:var(--x);bottom:-4%;width:3px;height:3px;border-radius:50%;background:#d9aa58;box-shadow:0 0 9px rgba(218,166,80,.75);opacity:0;animation:v53Dust var(--d) linear var(--delay) infinite;transform:scale(var(--s))}
@@ -3801,7 +3801,7 @@
 @keyframes v53Zzz{0%{opacity:0;transform:translateY(12px) scale(.8)}20%{opacity:1}100%{opacity:0;transform:translate(24px,-80px) scale(1.3)}}
 @media(max-width:700px){#storybook.v5-book .v5-counter{bottom:max(38px,env(safe-area-inset-bottom));font-size:7px}.v5-book .book-progress{bottom:max(19px,env(safe-area-inset-bottom))}}
 @media(prefers-reduced-motion:reduce){#storybook.v5-book .v53-particles i{animation:none!important}.v5-book .v5-page.v53-enter-next,.v5-book .v5-page.v53-exit-next,.v5-book .v5-page.v53-enter-prev,.v5-book .v5-page.v53-exit-prev,.v5-book.v53-opening .v5-folio-frame,.v5-book.v53-closing .v5-folio-frame{animation-duration:.01ms!important}}
-</style>\n
+</style>
 <style id="v55-narrator-style">
 /* V5.5 — Narration and accessible story audio controls */
 #storybook.v5-book .v55-audio-controls{position:absolute;z-index:90;top:13px;right:70px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
@@ -3848,6 +3848,32 @@
 @media(prefers-reduced-motion:reduce){#storybook.v5-book .v54-fx{animation:none!important;display:none!important}}
 </style>
 
+
+<style id="v56-hero-experience">
+/* V5.6: understated scroll affordance and a discoverable secret. */
+.hero{position:relative}
+.hero .story-easteregg-trigger{bottom:clamp(118px,15svh,165px);display:flex;align-items:center;gap:9px;white-space:nowrap;color:#9f3334;opacity:1;font-size:clamp(9px,2.25vw,11px);font-weight:600;letter-spacing:.15em;text-shadow:0 0 12px rgba(181,47,52,.15);animation:secretReveal 3.8s ease-in-out infinite}
+.hero .story-easteregg-trigger .secret-spark{font-size:13px;color:#b72f39;animation:secretTwinkle 2.6s ease-in-out infinite;filter:drop-shadow(0 0 5px rgba(193,39,51,.4))}
+.hero .story-easteregg-trigger .secret-spark:last-child{animation-delay:1.2s}
+.hero .story-easteregg-trigger:after{background:#b72f39;bottom:2px;animation:secretUnderline 4s ease-in-out infinite}
+.hero .story-easteregg-trigger:hover,.hero .story-easteregg-trigger:focus-visible{color:#b52a36;letter-spacing:.17em}
+.hero-scroll-guide{position:absolute;bottom:clamp(32px,5svh,65px);left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;text-decoration:none;color:#8b6c5a;text-transform:uppercase;font:500 9px/1.3 Montserrat,sans-serif;letter-spacing:.2em;white-space:nowrap;z-index:18;opacity:0;animation:guideAppear 1s 2.2s ease forwards}
+.hero-scroll-arrow{font:300 27px/1 Georgia,serif;color:#a77d52;animation:guideBounce 2.1s ease-in-out infinite}
+@keyframes secretReveal{0%,100%{text-shadow:0 0 2px rgba(181,47,52,.12)}48%{text-shadow:0 0 15px rgba(181,47,52,.55)}}
+@keyframes secretTwinkle{0%,100%{opacity:.3;transform:scale(.72)}45%{opacity:1;transform:scale(1.18)}}
+@keyframes secretUnderline{0%,100%{width:10%;opacity:.25}50%{width:72%;opacity:.85}}
+@keyframes guideAppear{to{opacity:1}}
+@keyframes guideBounce{0%,100%{transform:translateY(0);opacity:.55}50%{transform:translateY(7px);opacity:1}}
+/* Vinyl record replaces the music note, with rotation only during playback. */
+.music-icon{width:25px;height:25px;display:grid;place-items:center}
+.vinyl-disc{position:relative;display:block;width:23px;height:23px;border-radius:50%;background:repeating-radial-gradient(circle at center,#42312d 0 2px,#65504a 2.4px 3px,#342723 3.5px 4.3px);border:1px solid #59423b;box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.vinyl-center{position:absolute;inset:7px;border-radius:50%;background:#b16b59;border:1px solid #e0b49d}
+.vinyl-center:after{content:"";position:absolute;width:2px;height:2px;left:50%;top:50%;transform:translate(-50%,-50%);border-radius:50%;background:#f7ece0}
+.music.playing .music-icon{animation:none}
+.music.playing .vinyl-disc{animation:spin 5s linear infinite}
+@media(max-width:600px){.hero .story-easteregg-trigger{bottom:clamp(112px,14svh,155px);font-size:9px;padding:10px 6px}.hero-scroll-guide{bottom:clamp(30px,5svh,58px);font-size:8px}}
+@media(prefers-reduced-motion:reduce){.hero .story-easteregg-trigger,.hero .story-easteregg-trigger .secret-spark,.hero .story-easteregg-trigger:after,.hero-scroll-arrow,.music.playing .vinyl-disc{animation:none!important}.hero-scroll-guide{opacity:1;animation:none!important}.hero .story-easteregg-trigger:after{width:55%}}
+</style>
 </head>
 
 <body class="locked">
@@ -3912,7 +3938,7 @@
   <audio id="storyNarration" preload="none"></audio>
 
   <button class="music" id="musicButton" type="button" aria-label="Pausar música" aria-pressed="true">
-    <span class="music-icon" aria-hidden="true">♪</span>
+    <span class="music-icon" aria-hidden="true"><span class="vinyl-disc"><span class="vinyl-center"></span></span></span>
     <span class="music-text">Pausar</span>
   </button>
 
@@ -3940,7 +3966,8 @@
         <div class="date"><span>19 · 12 · 2026</span></div>
       </div>
 
-      <button class="scroll story-easteregg-trigger" id="storyEastereggTrigger" type="button" aria-label="Descubre nuestra historia">Descubre nuestra historia</button>
+      <button class="scroll story-easteregg-trigger" id="storyEastereggTrigger" type="button" aria-label="Descubre nuestra historia"><span class="secret-spark" aria-hidden="true">✦</span><span>Descubre nuestra historia</span><span class="secret-spark" aria-hidden="true">✦</span></button>
+      <a class="hero-scroll-guide" href="#invitacion" aria-label="Desliza hacia abajo para continuar con la invitación"><span>Desliza para continuar</span><span class="hero-scroll-arrow" aria-hidden="true">↓</span></a>
     </section>
 
 
