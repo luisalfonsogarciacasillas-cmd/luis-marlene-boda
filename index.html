@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#F4EDE3" />
   <meta name="description" content="Invitación de boda civil de Luis & Marlene — 19 de diciembre de 2026." />
-  <title>V5.5 · Luis & Marlene | 19.12.2026 · Narrated Storybook</title>
+  <title>V5.9 · Luis & Marlene | 19.12.2026 · Narrated Storybook</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -3878,12 +3878,29 @@
 .hero button.scroll.story-easteregg-trigger{
   left:50%;
   right:auto;
-  translate:-50% 0;
-  transform:none;
+  translate:none;
+  transform:translateX(-50%);
   justify-content:center;
   width:max-content;
   max-width:calc(100vw - 24px);
 }
+
+/* V5.9 — balanced editorial flourish, below the wedding date. */
+.hero-chapter-note{
+  margin:30px auto 0;
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  color:var(--muted);
+  font:italic 400 clamp(17px,3.7vw,23px)/1.3 "Cormorant Garamond",serif;
+  letter-spacing:.015em;
+  opacity:0;transform:translateY(8px);
+}
+.hero-chapter-note .chapter-ornament{
+  color:var(--gold);font:400 12px/1 "Cormorant Garamond",serif;
+  letter-spacing:.2em;
+}
+.hero.animate .hero-chapter-note{animation:heroIn 1s 1.45s var(--ease) forwards}
+@media(max-width:600px){.hero-chapter-note{margin-top:27px;max-width:95%}}
+@media(prefers-reduced-motion:reduce){.hero-chapter-note{opacity:1;transform:none;animation:none!important}}
 </style>
 </head>
 
@@ -3975,6 +3992,7 @@
         </h1>
 
         <div class="date"><span>19 · 12 · 2026</span></div>
+        <div class="hero-chapter-note" aria-label="El comienzo de nuestro siguiente capítulo"><span class="chapter-ornament" aria-hidden="true">✦ &nbsp; ♡ &nbsp; ✦</span><span>El comienzo de nuestro siguiente capítulo</span></div>
       </div>
 
       <button class="scroll story-easteregg-trigger" id="storyEastereggTrigger" type="button" aria-label="Descubre nuestra historia"><span class="secret-spark" aria-hidden="true">✦</span><span>Descubre nuestra historia</span><span class="secret-spark" aria-hidden="true">✦</span></button>
