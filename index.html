@@ -4265,6 +4265,69 @@ footer{padding-top:25px;padding-bottom:29px}
   .open-invite,.open-invite:before{animation:none!important}
 }
 </style>
+
+<style id="v5-19-1-button-alignment">
+/* V5.19.1 — identical CTA geometry and refined ivory opening button. */
+:root{--lm-cta-width:290px;--lm-cta-height:48px}
+.registry-button,
+.rsvp-toggle,
+.calendar-chooser,
+.details .location-button{
+  box-sizing:border-box;
+  width:min(var(--lm-cta-width),100%);
+  max-width:100%;
+  min-height:var(--lm-cta-height);
+  margin-left:auto;
+  margin-right:auto;
+}
+.calendar-chooser summary{
+  box-sizing:border-box;
+  width:100%;
+  min-height:var(--lm-cta-height);
+}
+.details .location-button{display:flex}
+.open-invite{
+  box-sizing:border-box;
+  min-width:min(250px,86vw);
+  min-height:50px;
+  border:1px solid #bc9c72;
+  border-radius:13px;
+  background:linear-gradient(115deg,#f9f3e9,#fffaf1,#f1e6d5);
+  background-size:200% 100%;
+  color:#79513f;
+  box-shadow:0 5px 18px rgba(116,83,56,.12);
+  animation:lmOpeningGlow 3.5s ease-in-out infinite,lmGradient 7s ease-in-out infinite;
+}
+.open-invite:hover{color:#79513f}
+.open-invite:before{
+  content:"";
+  position:absolute;
+  inset:auto;
+  top:-80%;
+  left:-75%;
+  right:auto;
+  bottom:auto;
+  width:40%;
+  height:260%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.85),transparent);
+  transform:rotate(25deg);
+  animation:lmSweep 4.5s ease-in-out infinite;
+  pointer-events:none;
+  z-index:0;
+}
+.open-invite:hover:before{transform:rotate(25deg)}
+.open-invite:after{border-color:rgba(174,139,91,.35)}
+@keyframes lmOpeningGlow{
+  0%,100%{box-shadow:0 5px 18px rgba(116,83,56,.12)}
+  50%{box-shadow:0 0 19px rgba(192,154,102,.32),0 0 34px rgba(192,154,102,.13)}
+}
+@media(max-width:520px){
+  :root{--lm-cta-width:278px;--lm-cta-height:46px}
+}
+@media(prefers-reduced-motion:reduce){
+  .open-invite,.open-invite:before{animation:none!important}
+}
+</style>
 </head>
 
 <body class="locked">
