@@ -4004,13 +4004,12 @@ footer{padding-top:25px;padding-bottom:29px}
 }
 
 
-/* V5.18.1 — tighter transition: dress code → gift registry */
-.dresscode{padding-bottom:12px}
-.registry-section{padding-top:15px}
-.dresscode .wardrobe{margin-bottom:0}
+/* V5.18.2 — balanced breathing room between dress code and registry */
+.dresscode{padding-bottom:28px}
+.registry-section{padding-top:27px}
 @media(max-width:520px){
-  .dresscode{padding-bottom:8px}
-  .registry-section{padding-top:12px}
+  .dresscode{padding-bottom:24px}
+  .registry-section{padding-top:25px}
 }
 </style>
 <style id="v5-png-storybook-css">
@@ -4221,6 +4220,15 @@ footer{padding-top:25px;padding-bottom:29px}
 .hero.animate .hero-chapter-note{animation:heroIn 1s 1.45s var(--ease) forwards}
 @media(max-width:600px){.hero-chapter-note{margin-top:27px;max-width:95%}}
 @media(prefers-reduced-motion:reduce){.hero-chapter-note{opacity:1;transform:none;animation:none!important}}
+</style>
+<style id="v5-18-3-registry-sage">
+/* V5.18.3 — gentle visual separation; preserve the balanced spacing. */
+.registry-section {
+  background:linear-gradient(180deg,#e9eadf 0%,#e7e9dd 55%,#ebede3 100%);
+}
+.registry-card {
+  box-shadow:0 12px 30px rgba(85,92,69,.09);
+}
 </style>
 </head>
 
