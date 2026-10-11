@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#F4EDE3" />
   <meta name="description" content="Invitación de boda civil de Luis & Marlene — 19 de diciembre de 2026." />
-  <title>V5.9 · Luis & Marlene | 19.12.2026 · Narrated Storybook</title>
+  <title>Luis & Marlene | 19.12.2026 · Invitación y RSVP</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -3706,6 +3706,23 @@
   #storybook .book-page.active .art-caption-v46,
   #storybook .bond-art-v46 text{animation:none!important}
 }
+
+    /* RSVP integration — V5.11 */
+    .rsvp-section{background:var(--paper);text-align:center;position:relative;overflow:hidden}
+    .rsvp-inner{width:min(860px,100%);margin:0 auto}
+    .rsvp-section .section-title{margin-bottom:18px}
+    .rsvp-description{font:400 clamp(19px,3vw,25px)/1.45 "Cormorant Garamond",serif;color:var(--muted);max-width:600px;margin:0 auto 22px}
+    .rsvp-deadline{color:var(--terracotta);font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;margin:0 auto 26px}
+    .rsvp-frame-wrap{width:100%;max-width:760px;margin:0 auto;border:1px solid rgba(164,93,67,.22);border-radius:20px;overflow:hidden;background:#FBF7F1;box-shadow:0 14px 55px rgba(56,42,37,.07)}
+    .rsvp-frame{display:block;width:100%;height:780px;border:0;background:#FBF7F1}
+    .rsvp-link{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 22px;border:1px solid var(--cinnamon);color:var(--cinnamon);text-decoration:none;text-transform:uppercase;letter-spacing:.13em;font-size:10px;font-weight:600;transition:background .25s,color .25s}
+    .rsvp-link:hover{background:var(--cinnamon);color:var(--paper)}
+    .rsvp-fallback{margin:20px 0 0;color:var(--muted);font-size:11px;line-height:1.7}
+    .rsvp-missing{max-width:550px;margin:0 auto;padding:30px 24px;border:1px solid var(--line);background:var(--ivory);border-radius:14px;color:var(--muted);font-size:12px;line-height:1.9}
+    .rsvp-missing strong{display:block;color:var(--ink);font:500 25px/1.3 "Cormorant Garamond",serif;margin-bottom:8px}
+    [hidden].rsvp-frame-wrap,[hidden].rsvp-missing,[hidden].rsvp-fallback{display:none!important}
+    @media(max-width:760px){.rsvp-frame{height:850px}.rsvp-frame-wrap{border-radius:14px}}
+    @media(max-width:420px){.rsvp-frame{height:920px}.rsvp-section{padding-left:12px;padding-right:12px}}
 </style>
 <style id="v5-png-storybook-css">
 /* V5 — PNG folio storybook. Main invitation intentionally untouched. */
@@ -4270,6 +4287,26 @@
         </div>
       </div>
     </section>
+
+    <!-- RSVP personalized invitation — V5.11 -->
+    <section class="rsvp-section" id="confirmar-asistencia" aria-labelledby="rsvpHeading">
+      <div class="rsvp-inner">
+        <div class="reveal">
+          <div class="section-kicker">Un momento especial</div>
+          <h2 class="section-title" id="rsvpHeading">Confirma tu asistencia</h2>
+          <p class="rsvp-description">Nos hará muy felices compartir este día contigo. Cuéntanos si podremos celebrar juntos.</p>
+          <p class="rsvp-deadline">Confirma antes del 31 de octubre de 2026</p>
+        </div>
+        <div class="rsvp-frame-wrap" id="rsvpFrameWrap" hidden>
+          <iframe id="rsvpFrame" class="rsvp-frame" title="Confirmar asistencia a la boda de Luis y Marlene" loading="lazy" referrerpolicy="no-referrer" allow="clipboard-write"></iframe>
+        </div>
+        <p class="rsvp-fallback" id="rsvpFallback" hidden>¿No aparece el formulario? <a id="rsvpDirectLink" class="rsvp-link" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">Abrir confirmación</a></p>
+        <div class="rsvp-missing" id="rsvpMissing" hidden>
+          <strong>Tu confirmación es personal</strong>
+          Abre esta invitación desde el enlace que te compartimos para acceder a tus lugares asignados. Si necesitas ayuda, escríbenos directamente.
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer>
@@ -4577,6 +4614,29 @@
   document.addEventListener('keydown',e=>{if(!storybook.classList.contains('open'))return;if(e.key==='Escape')closeBook();else if(e.key==='ArrowRight')go(page+1,'next');else if(e.key==='ArrowLeft')go(page-1,'prev')});
   storybook.addEventListener('touchstart',e=>{touchX=e.changedTouches[0].clientX},{passive:true});storybook.addEventListener('touchend',e=>{if(e.target.closest&&e.target.closest('.v5-cover-action,.v5-close-action,.story-sound,.v55-narrator,.storybook-x,.v5-nav')){touchX=null;return}if(touchX===null)return;const dx=e.changedTouches[0].clientX-touchX;touchX=null;if(Math.abs(dx)>52)go(page+(dx<0?1:-1),dx<0?'next':'prev')},{passive:true});
   makeDots();controls();preloadAround();
+})();
+</script>
+
+<script>
+/* RSVP V5.11 — only the individual invite token is passed to Apps Script. */
+(function(){
+  'use strict';
+  const APP_URL='https://script.google.com/macros/s/AKfycbwubVIRDCTPt6iIyF5tbFqBxvhfxk0uvSSXMa38vmtKocG6QeGVMxyILYmkXAhGjGdO2g/exec';
+  const token=new URLSearchParams(window.location.search).get('invite');
+  const valid=typeof token==='string' && /^[a-f0-9]{64}$/i.test(token);
+  const wrap=document.getElementById('rsvpFrameWrap');
+  const frame=document.getElementById('rsvpFrame');
+  const fallback=document.getElementById('rsvpFallback');
+  const link=document.getElementById('rsvpDirectLink');
+  const missing=document.getElementById('rsvpMissing');
+  if(!valid){missing.hidden=false;return;}
+  const url=APP_URL+'?invite='+encodeURIComponent(token.toLowerCase());
+  link.href=url;
+  wrap.hidden=false;
+  fallback.hidden=false;
+  // The iframe is lazy-loaded by the browser. Some in-app browsers may block
+  // Apps Script framing; the direct link remains available in that case.
+  frame.src=url;
 })();
 </script>
 </body>
