@@ -3762,6 +3762,20 @@
     @media(max-width:520px){.registry-section{padding:73px 20px 60px}.registry-card{padding:27px 17px 20px}.registry-fairy.one{left:1%}.registry-fairy.two{right:1%}.registry-button{font-size:9px;gap:9px}}
     @media(prefers-reduced-motion:reduce){.registry-icon,.registry-icon:before,.registry-fairy,.registry-button,.registry-button:before,.registry-button-spark{animation:none!important}}
 
+    /* V5.15.1 — smaller buttons, clean registry ending, gentle event reminder */
+    .registry-button{width:min(310px,100%);min-height:52px;margin:0 auto;padding:11px 12px;border-radius:13px;font-size:9px;gap:9px}
+    .registry-button svg{width:18px;height:18px}
+    .registry-arrow{font-size:17px}
+    .rsvp-toggle{width:min(295px,100%);min-height:50px;padding:11px 16px;border-radius:13px;font-size:10px}
+    .registry-reminder{max-width:370px;margin:23px auto 0;padding-top:18px;border-top:1px solid rgba(185,154,106,.25);color:var(--muted);font-size:10px;line-height:1.85;letter-spacing:.012em}
+    .registry-reminder strong{color:var(--cinnamon);font-weight:600}
+    .registry-reminder span{color:var(--gold)}
+    @media(max-width:520px){
+      .registry-button{width:min(292px,100%);min-height:50px;font-size:8.5px}
+      .rsvp-toggle{width:min(286px,100%);min-height:50px}
+      .registry-reminder{font-size:9.5px}
+    }
+
     /* V5.14 — Enchanted RSVP */
     .rsvp-section{padding-top:76px;padding-bottom:46px}
     .rsvp-section .section-title{margin-bottom:15px}
@@ -4386,8 +4400,8 @@
             <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="10" width="18" height="12" rx="1"/><path d="M2 10h20V6H2zM12 6v16M12 6C6 6 5 3 7 2c3-2 5 3 5 4zm0 0c6 0 7-3 5-4-3-2-5 3-5 4z"/></svg>
             <span>Ver nuestra mesa de regalos</span><span class="registry-arrow" aria-hidden="true">↗</span>
           </a>
+          <p class="registry-reminder"><span aria-hidden="true">✧</span> <strong>Un pequeño recordatorio:</strong> si eligen un regalo para nosotros en Liverpool, recuerden proporcionar nuestro número de evento al realizar la compra para que quede asociado a nuestra mesa. <span aria-hidden="true">✧</span></p>
         </div>
-        <div class="love-divider" aria-hidden="true"><span class="heart">♡</span></div>
       </div>
     </section>
 
