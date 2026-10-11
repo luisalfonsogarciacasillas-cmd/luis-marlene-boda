@@ -3876,6 +3876,133 @@ footer{padding-top:33px;padding-bottom:38px}
  .details .section-title{margin-bottom:22px}
 }
 @media(prefers-reduced-motion:reduce){.calendar-chooser summary{animation:none!important}.calendar-chevron{transition:none!important}}
+
+/* V5.18 — unified enchanted buttons and tighter mobile rhythm.
+   Overrides only presentation; RSVP/calendar/links remain unchanged. */
+.intro{padding-top:58px;padding-bottom:58px}
+.intro .ornament{margin-bottom:16px}
+.intro small{margin-top:16px}
+.countdown{padding-top:47px;padding-bottom:48px}
+.countdown .section-title{margin-bottom:20px}
+.countdown .unit{padding-top:16px;padding-bottom:16px}
+.timeline-section{padding-top:52px;padding-bottom:50px}
+.timeline-head{margin-bottom:24px}
+.dresscode{padding-top:42px;padding-bottom:43px}
+.dresscode .section-kicker{margin-bottom:7px}
+.dress-label{margin:4px 0 17px}
+.look{padding:17px 15px 18px}
+.fashion-icon{width:68px;height:87px;margin-bottom:8px}
+.look h3{font-size:27px;margin-bottom:5px}
+.registry-section{padding-top:42px;padding-bottom:35px}
+.registry-icon{margin-bottom:10px}
+.registry-section .section-title{margin-bottom:8px}
+.registry-card{margin-top:13px}
+.rsvp-section{padding-top:38px;padding-bottom:24px}
+.rsvp-heart-ring{width:64px;height:64px;margin-bottom:12px}
+.rsvp-heart-icon{font-size:34px}
+.rsvp-enchanted{margin-bottom:8px}
+.calendar-section{padding-top:33px;padding-bottom:35px}
+.calendar-emblem{width:40px;height:40px;margin-bottom:10px}
+.calendar-section .section-kicker{margin-bottom:7px}
+.calendar-section .section-title{margin-bottom:8px}
+.calendar-description{margin-bottom:13px}
+.calendar-note{margin-top:10px}
+.details{padding-top:53px;padding-bottom:54px}
+.details .section-title{margin-bottom:19px}
+.detail-time{margin-bottom:17px}
+.venue{padding-top:17px}
+.venue p{margin-bottom:16px}
+footer{padding-top:25px;padding-bottom:29px}
+
+/* Same shimmer, animated gradient, glowing halo and inner border on all CTAs. */
+.registry-button,.rsvp-toggle,.calendar-chooser summary,.details .location-button{
+  width:min(290px,100%);
+  min-height:48px;
+  padding:10px 15px;
+  border:1px solid #b87865;
+  border-radius:13px;
+  background:linear-gradient(110deg,#96513f,#b46c57,#98523f);
+  background-size:200% 100%;
+  color:#fff9f5;
+  font-family:Montserrat,sans-serif;
+  font-size:9px;
+  font-weight:600;
+  letter-spacing:.055em;
+  text-transform:none;
+  box-shadow:0 4px 12px rgba(162,93,75,.18);
+  animation:lmGlow 3.2s ease-in-out infinite,lmGradient 6s ease-in-out infinite;
+  transition:transform .25s ease,box-shadow .25s ease;
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+}
+.registry-button:hover,.rsvp-toggle:hover,.calendar-chooser summary:hover,.details .location-button:hover{
+  transform:translateY(-2px);
+  color:#fff9f5;
+}
+.registry-button:before,.rsvp-toggle:before,.calendar-chooser summary:before,.details .location-button:before{
+  content:"";
+  position:absolute;
+  top:-80%;left:-75%;
+  width:40%;height:260%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.48),transparent);
+  transform:rotate(25deg);
+  animation:lmSweep 4.5s ease-in-out infinite;
+  pointer-events:none;
+  inset-block:auto;
+  z-index:0;
+}
+.registry-button:after,.rsvp-toggle:after,.calendar-chooser summary:after,.details .location-button:after{
+  content:"";position:absolute;inset:3px;
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:10px;pointer-events:none;z-index:0;
+}
+.calendar-chooser summary{display:flex;cursor:pointer;list-style:none;justify-content:center;align-items:center}
+.calendar-chooser[open] summary,.rsvp-toggle[aria-expanded="true"]{
+  animation:none;background:#985b48;
+  box-shadow:0 5px 15px rgba(162,93,75,.15);
+}
+.calendar-chooser[open] summary:before,.rsvp-toggle[aria-expanded="true"]:before{animation:none;opacity:0}
+.details .location-button{display:inline-flex;align-items:center;justify-content:center;text-transform:uppercase;letter-spacing:.15em}
+.details .location-button:focus-visible,.registry-button:focus-visible,.rsvp-toggle:focus-visible{
+  outline:3px solid var(--gold);outline-offset:3px;
+}
+/* Keep the location in a rich dark section but harmonize its gold button. */
+.details .location-button{
+  border-color:#c5a476;
+  background:linear-gradient(110deg,#8d6743,#c19a62,#8d6743);
+  box-shadow:0 4px 14px rgba(201,161,104,.17);
+  animation:lmLocationGlow 3.2s ease-in-out infinite,lmGradient 6s ease-in-out infinite;
+}
+@keyframes lmLocationGlow{
+  0%,100%{box-shadow:0 4px 14px rgba(201,161,104,.17)}
+  50%{box-shadow:0 0 22px rgba(223,179,114,.5),0 0 38px rgba(223,179,114,.18)}
+}
+@media(max-width:520px){
+  .intro{padding-top:47px;padding-bottom:46px}
+  .countdown{padding-top:38px;padding-bottom:39px}
+  .timeline-section{padding-top:44px;padding-bottom:43px}
+  .timeline-head{margin-bottom:18px}
+  .dresscode{padding-top:35px;padding-bottom:35px}
+  .dress-label{margin-bottom:13px}
+  .look{padding:14px 12px 15px}
+  .fashion-icon{width:59px;height:76px;margin-bottom:7px}
+  .look h3{font-size:25px}
+  .registry-section{padding-top:35px;padding-bottom:29px}
+  .rsvp-section{padding-top:33px;padding-bottom:21px}
+  .calendar-section{padding-top:27px;padding-bottom:29px}
+  .details{padding-top:45px;padding-bottom:46px}
+  .registry-button,.rsvp-toggle,.calendar-chooser summary,.details .location-button{
+    width:min(278px,100%);min-height:46px;font-size:9px;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .registry-button,.rsvp-toggle,.calendar-chooser summary,.details .location-button,
+  .registry-button:before,.rsvp-toggle:before,.calendar-chooser summary:before,.details .location-button:before{
+    animation:none!important;
+  }
+}
+
 </style>
 <style id="v5-png-storybook-css">
 /* V5 — PNG folio storybook. Main invitation intentionally untouched. */
