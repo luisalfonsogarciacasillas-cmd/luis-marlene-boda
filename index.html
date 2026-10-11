@@ -4782,6 +4782,50 @@ footer{padding-top:25px;padding-bottom:29px}
     const toast = document.getElementById("toast");
     let toastTimer;
 
+    // V5.19.3: Web Audio gain controls also work on iOS Safari, where
+    // HTMLMediaElement.volume is sometimes ignored.
+    const LM_AUDIO = (function(){
+      const levels={main:0.055,story:0.065};
+      let ctx=null, mainGain=null, storyGain=null;
+      function setup(){
+        if(ctx){if(ctx.state==='suspended')ctx.resume().catch(()=>{});return;}
+        const Ctor=window.AudioContext||window.webkitAudioContext;
+        if(!Ctor)return;
+        try{
+          const candidate=new Ctor();
+          const story=document.getElementById('medievalAudio');
+          const mainSource=candidate.createMediaElementSource(music);
+          const mainNode=candidate.createGain();
+          mainSource.connect(mainNode);mainNode.connect(candidate.destination);
+          mainNode.gain.value=0;
+          let storyNode=null;
+          if(story){
+            const source=candidate.createMediaElementSource(story);
+            storyNode=candidate.createGain();
+            source.connect(storyNode);storyNode.connect(candidate.destination);
+            storyNode.gain.value=levels.story;
+          }
+          ctx=candidate;mainGain=mainNode;storyGain=storyNode;
+          // Avoid applying the gain twice on browsers honoring element.volume.
+          music.volume=1;
+          if(story)story.volume=1;
+          ctx.resume().catch(()=>{});
+        }catch(e){try{if(ctx)ctx.close()}catch(_){}}
+      }
+      function set(which,level){
+        const n=which==='main'?mainGain:storyGain;
+        const el=which==='main'?music:document.getElementById('medievalAudio');
+        const v=Math.max(0,Math.min(1,level));
+        if(n){n.gain.value=v;if(el)el.volume=1;}
+        else if(el)el.volume=v;
+      }
+      function get(which){
+        const n=which==='main'?mainGain:storyGain;
+        const el=which==='main'?music:document.getElementById('medievalAudio');
+        return n?n.gain.value:(el?el.volume:0);
+      }
+      return {setup,set,get,levels};
+    })();
     music.volume = 0;
 
     function showToast(message){
@@ -4791,13 +4835,13 @@ footer{padding-top:25px;padding-bottom:29px}
       toastTimer = setTimeout(() => toast.classList.remove("show"), 3600);
     }
 
-    function fadeMusicTo(target=.12, duration=1800){
-      const start = music.volume;
+    function fadeMusicTo(target=LM_AUDIO.levels.main, duration=1800){
+      const start = LM_AUDIO.get("main");
       const started = performance.now();
 
       function step(now){
         const progress = Math.min((now-started)/duration,1);
-        music.volume = start + (target-start)*progress;
+        LM_AUDIO.set("main",start + (target-start)*progress);
         if(progress < 1) requestAnimationFrame(step);
       }
       requestAnimationFrame(step);
@@ -4805,8 +4849,10 @@ footer{padding-top:25px;padding-bottom:29px}
 
     async function startMusic(){
       try{
+        LM_AUDIO.setup();
+        LM_AUDIO.set("main",0);
         await music.play();
-        fadeMusicTo(.12,1800);
+        fadeMusicTo(LM_AUDIO.levels.main,1800);
         musicButton.classList.add("playing");
         musicButton.setAttribute("aria-pressed","true");
         musicButton.setAttribute("aria-label","Pausar música");
@@ -4995,13 +5041,13 @@ footer{padding-top:25px;padding-bottom:29px}
   const narratorToggle=document.getElementById('storyNarratorToggle');
   let page=0,busy=false,touchX=null,weddingWasPlaying=false,weddingResumeTime=0,storyMusicWanted=true,loadRetries={};
   let audioCtx=null;
-  const MUSIC_NORMAL=.35, MUSIC_DUCKED=.10, NARRATION_VOLUME=1;
+  const MUSIC_NORMAL=LM_AUDIO.levels.story, MUSIC_DUCKED=.025, NARRATION_VOLUME=.72;
   let narratorWanted=true,narrationToken=0,musicFadeFrame=0,storyAudioActive=false;
   function fadeMedievalVolume(target,duration=650){
     if(!medievalAudio)return;
     if(musicFadeFrame)cancelAnimationFrame(musicFadeFrame);
-    const from=medievalAudio.volume,start=performance.now();
-    const tick=now=>{const t=Math.min(1,(now-start)/duration);const eased=t*t*(3-2*t);medievalAudio.volume=Math.max(0,Math.min(1,from+(target-from)*eased));if(t<1)musicFadeFrame=requestAnimationFrame(tick);else musicFadeFrame=0};
+    const from=LM_AUDIO.get("story"),start=performance.now();
+    const tick=now=>{const t=Math.min(1,(now-start)/duration);const eased=t*t*(3-2*t);LM_AUDIO.set("story",from+(target-from)*eased);if(t<1)musicFadeFrame=requestAnimationFrame(tick);else musicFadeFrame=0};
     musicFadeFrame=requestAnimationFrame(tick);
   }
   function stopNarration(){narrationToken++;narrationAudio.pause();narrationAudio.removeAttribute('src');narrationAudio.load();if(storyAudioActive)fadeMedievalVolume(MUSIC_NORMAL)}
@@ -5060,9 +5106,9 @@ footer{padding-top:25px;padding-bottom:29px}
   function bondNap(p){if(p.querySelector('.v53-zzz'))return;const z=document.createElement('div');z.className='v53-zzz';z.textContent='Z  z  z…';p.appendChild(z);setTimeout(()=>z.remove(),2200)}
   function seedParticles(){const host=document.getElementById('v53Particles');if(!host||host.children.length)return;for(let i=0;i<18;i++){const q=document.createElement('i');q.style.setProperty('--x',(4+Math.random()*92)+'%');q.style.setProperty('--d',(7+Math.random()*9)+'s');q.style.setProperty('--delay',(-Math.random()*12)+'s');q.style.setProperty('--s',(.6+Math.random()*1.4));host.appendChild(q)}}
   function updateSound(needsTap=false){if(!sound)return;const playing=medievalAudio&&!medievalAudio.paused;sound.classList.toggle('is-playing',!!playing);sound.classList.toggle('needs-tap',needsTap);sound.setAttribute('aria-label',playing?'Pausar música del cuento':'Activar música del cuento')}
-  function enterAudio(){storyAudioActive=true;weddingWasPlaying=!!weddingAudio&&!weddingAudio.paused;if(weddingAudio){weddingResumeTime=weddingAudio.currentTime||0;weddingAudio.pause()}if(!medievalAudio||!storyMusicWanted)return;try{medievalAudio.loop=true;medievalAudio.muted=false;medievalAudio.volume=MUSIC_NORMAL;medievalAudio.currentTime=0;const p=medievalAudio.play();if(p&&p.then)p.then(()=>updateSound(false)).catch(()=>updateSound(true));else updateSound(false)}catch(e){updateSound(true)}}
-  function leaveAudio(){storyAudioActive=false;stopNarration();if(musicFadeFrame)cancelAnimationFrame(musicFadeFrame);musicFadeFrame=0;if(medievalAudio){medievalAudio.pause();try{medievalAudio.currentTime=0}catch(e){}}updateSound(false);if(weddingAudio&&weddingWasPlaying){try{weddingAudio.currentTime=weddingResumeTime;weddingAudio.volume=1;weddingAudio.muted=false;const p=weddingAudio.play();if(p&&p.catch)p.catch(()=>{})}catch(e){}}}
-  function toggleSound(){if(!medievalAudio)return;if(medievalAudio.paused){storyMusicWanted=true;medievalAudio.muted=false;medievalAudio.volume=narratorWanted&&!narrationAudio.paused?MUSIC_DUCKED:MUSIC_NORMAL;const p=medievalAudio.play();if(p&&p.then)p.then(()=>updateSound(false)).catch(()=>updateSound(true));else updateSound(false)}else{storyMusicWanted=false;medievalAudio.pause();updateSound(false)}}
+  function enterAudio(){LM_AUDIO.setup();storyAudioActive=true;weddingWasPlaying=!!weddingAudio&&!weddingAudio.paused;if(weddingAudio){weddingResumeTime=weddingAudio.currentTime||0;weddingAudio.pause()}if(!medievalAudio||!storyMusicWanted)return;try{medievalAudio.loop=true;medievalAudio.muted=false;LM_AUDIO.set("story",MUSIC_NORMAL);medievalAudio.currentTime=0;const p=medievalAudio.play();if(p&&p.then)p.then(()=>updateSound(false)).catch(()=>updateSound(true));else updateSound(false)}catch(e){updateSound(true)}}
+  function leaveAudio(){storyAudioActive=false;stopNarration();if(musicFadeFrame)cancelAnimationFrame(musicFadeFrame);musicFadeFrame=0;if(medievalAudio){medievalAudio.pause();try{medievalAudio.currentTime=0}catch(e){}}updateSound(false);if(weddingAudio&&weddingWasPlaying){try{weddingAudio.currentTime=weddingResumeTime;LM_AUDIO.set("main",LM_AUDIO.levels.main);weddingAudio.muted=false;const p=weddingAudio.play();if(p&&p.catch)p.catch(()=>{})}catch(e){}}}
+  function toggleSound(){if(!medievalAudio)return;if(medievalAudio.paused){storyMusicWanted=true;medievalAudio.muted=false;LM_AUDIO.set("story",narratorWanted&&!narrationAudio.paused?MUSIC_DUCKED:MUSIC_NORMAL);const p=medievalAudio.play();if(p&&p.then)p.then(()=>updateSound(false)).catch(()=>updateSound(true));else updateSound(false)}else{storyMusicWanted=false;medievalAudio.pause();updateSound(false)}}
   function reset(){clearSceneEffects();pages.forEach((p,i)=>{p.classList.toggle('active',i===0);p.classList.remove('turn-next','turn-prev')});page=0;busy=false;makeDots();controls();preloadAround()}
   function openBook(e){if(e)e.preventDefault();enterAudio();reset();seedParticles();storybook.classList.add('open','v53-opening');storybook.setAttribute('aria-hidden','false');document.body.classList.add('storybook-open');setTimeout(()=>{storybook.classList.remove('v53-opening');activateScene(0,900);playNarration(0)},1100)}
   function closeBook(){if(storybook.classList.contains('v53-closing'))return;stopNarration();clearSceneEffects();storybook.classList.add('v53-closing');pageRustle();setTimeout(()=>{storybook.classList.remove('open','v53-closing');storybook.setAttribute('aria-hidden','true');document.body.classList.remove('storybook-open');leaveAudio();reset()},900)}
