@@ -4631,7 +4631,7 @@
 </script>
 
 <script>
-/* RSVP V5.12 — discreet expandable fallback; individual token only. */
+/* RSVP V5.13 — dynamic iframe height + discreet fallback; individual token only. */
 (function(){
   'use strict';
   const APP_URL='https://script.google.com/macros/s/AKfycbwubVIRDCTPt6iIyF5tbFqBxvhfxk0uvSSXMa38vmtKocG6QeGVMxyILYmkXAhGjGdO2g/exec';
@@ -4650,6 +4650,20 @@
   // The iframe is lazy-loaded by the browser. Some in-app browsers may block
   // Apps Script framing; the direct link remains available in that case.
   frame.src=url;
+  // Accept size messages only from our embedded Google Apps Script document.
+  // The child page must emit {type:'LM_RSVP_HEIGHT_V1',height:<number>}.
+  window.addEventListener('message',function(event){
+    if(event.source!==frame.contentWindow)return;
+    const allowed=event.origin==='https://script.google.com' ||
+      event.origin==='https://script.googleusercontent.com' ||
+      /^https:\/\/[a-z0-9-]+\.googleusercontent\.com$/i.test(event.origin);
+    if(!allowed)return;
+    const data=event.data;
+    if(!data || data.type!=='LM_RSVP_HEIGHT_V1')return;
+    const h=Number(data.height);
+    if(!Number.isFinite(h) || h<250 || h>3000)return;
+    frame.style.height=Math.ceil(h+8)+'px';
+  });
 })();
 </script>
 </body>
