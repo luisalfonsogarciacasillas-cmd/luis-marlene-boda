@@ -4290,10 +4290,6 @@
       </div>
     </section>
 
-    <div class="love-divider reveal" aria-hidden="true">
-      <span>L <span class="heart">♡</span> M</span>
-    </div>
-
     <section class="dresscode" aria-labelledby="vestimenta">
       <div class="botanical right" aria-hidden="true">
         <svg viewBox="0 0 150 230">
@@ -4329,7 +4325,7 @@
               </svg>
             </span>
             <h3>Ellas</h3>
-            <p>Vestido cóctel, vestido midi o jumpsuit elegante.</p>
+            <p>Vestido cóctel, midi o jumpsuit elegante.</p>
           </article>
 
           <article class="look">
@@ -4352,30 +4348,10 @@
               </svg>
             </span>
             <h3>Ellos</h3>
-            <p>Traje, blazer y pantalón de vestir con un estilo pulido.</p>
+            <p>Traje o saco con pantalón de vestir.</p>
           </article>
         </div>
 
-        <p class="dress-foot reveal delay-2">Elegante, moderno y cómodo. Queremos que te veas increíble y disfrutes cada momento con nosotros.</p>
-      </div>
-    </section>
-
-    <section class="details">
-      <div class="details-inner">
-        <div class="reveal">
-          <div class="section-kicker">Nuestra boda civil</div>
-          <h2 class="section-title">Acompáñanos a celebrar</h2>
-        </div>
-
-        <div class="reveal delay-1">
-          <div class="detail-date">Sábado, 19 de diciembre</div>
-          <div class="detail-time">6:00 de la tarde</div>
-        </div>
-
-        <div class="venue reveal delay-2">
-          <p>Zapopan, Jalisco<br>Consulta la ubicación y traza tu ruta en Google Maps.</p>
-          <a class="button" href="https://maps.app.goo.gl/sZ1zv949udNNBKaG8" target="_blank" rel="noopener noreferrer">Cómo llegar</a>
-        </div>
       </div>
     </section>
 
@@ -4446,6 +4422,40 @@
         </div>
       </div>
     </section>
+    <!-- V5.16 — Add to calendar: Google + universal ICS -->
+    <section class="calendar-section" id="guardar-fecha" aria-labelledby="calendarHeading">
+      <div class="calendar-inner reveal">
+        <span class="calendar-symbol" aria-hidden="true">✧</span>
+        <div class="section-kicker">Guarda nuestra fecha</div>
+        <h2 class="section-title" id="calendarHeading">Nos vemos el 19 de diciembre</h2>
+        <p class="calendar-description">Guarda este día especial en tu calendario.</p>
+        <div class="calendar-actions">
+          <a id="googleCalendarLink" class="calendar-action" target="_blank" rel="noopener noreferrer" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Boda%20de%20Luis%20y%20Marlene&amp;dates=20261219T170000/20261220T000000&amp;ctz=America%2FMexico_City&amp;details=Celebraci%C3%B3n%20de%20la%20boda%20civil%20de%20Luis%20y%20Marlene.%20Recepci%C3%B3n%20desde%20las%205%3A00%20p.%20m.%20Ceremonia%20a%20las%206%3A00%20p.%20m.&amp;location=Zapopan%2C%20Jalisco">Google Calendar <span aria-hidden="true">↗</span></a>
+          <button id="downloadCalendarIcs" class="calendar-action calendar-action-secondary" type="button">Apple · Samsung · Outlook <span aria-hidden="true">↓</span></button>
+        </div>
+        <p class="calendar-note">Sábado 19, 5:00 p. m. — domingo 20, 12:00 a. m. · Zapopan, Jalisco</p>
+      </div>
+    </section>
+
+    <section class="details" id="ubicacion" aria-labelledby="ubicacionTitulo">
+      <div class="details-inner">
+        <div class="reveal">
+          <div class="section-kicker">Nuestra boda civil</div>
+          <h2 class="section-title" id="ubicacionTitulo">Acompáñanos a celebrar</h2>
+        </div>
+
+        <div class="reveal delay-1">
+          <div class="detail-date">Sábado, 19 de diciembre</div>
+          <div class="detail-time">6:00 de la tarde</div>
+        </div>
+
+        <div class="venue reveal delay-2">
+          <p>Zapopan, Jalisco<br>Consulta la ubicación y traza tu ruta en Google Maps.</p>
+          <a class="button location-button" href="https://maps.app.goo.gl/sZ1zv949udNNBKaG8" target="_blank" rel="noopener noreferrer">Cómo llegar</a>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer>
@@ -4797,6 +4807,33 @@
     const h=Number(data.height);
     if(!Number.isFinite(h) || h<250 || h>3000)return;
     frame.style.height=Math.ceil(h+8)+'px';
+  });
+})();
+</script>
+
+<script>
+/* V5.16 — downloadable calendar event (Zapopan UTC−06:00 in December 2026). */
+(function(){
+  'use strict';
+  const btn=document.getElementById('downloadCalendarIcs');
+  if(!btn)return;
+  btn.addEventListener('click',function(){
+    const lines=[
+      'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Luis y Marlene//Invitacion de boda//ES',
+      'CALSCALE:GREGORIAN','METHOD:PUBLISH','BEGIN:VEVENT',
+      'UID:luis-marlene-boda-20261219@luis-marlene-boda',
+      'DTSTAMP:20261010T120000Z',
+      'DTSTART:20261219T230000Z','DTEND:20261220T060000Z',
+      'SUMMARY:Boda de Luis y Marlene',
+      'DESCRIPTION:Recepcion desde las 5:00 p. m.\\nCeremonia a las 6:00 p. m.\\nCelebracion en Zapopan Jalisco.',
+      'LOCATION:Zapopan\\, Jalisco',
+      'END:VEVENT','END:VCALENDAR'
+    ];
+    const ics=lines.join('\r\n')+'\r\n';
+    const url=URL.createObjectURL(new Blob([ics],{type:'text/calendar;charset=utf-8'}));
+    const a=document.createElement('a');a.href=url;a.download='Boda_Luis_y_Marlene_19_Dic_2026.ics';
+    document.body.appendChild(a);a.click();a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),3000);
   });
 })();
 </script>
