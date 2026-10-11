@@ -4230,6 +4230,41 @@ footer{padding-top:25px;padding-bottom:29px}
   box-shadow:0 12px 30px rgba(112,76,54,.09);
 }
 </style>
+
+<style id="v5-19-final-polish">
+/* V5.19 — Gate CTA shares the warm animated glow of the RSVP. */
+.open-invite{
+  border:1px solid #b87865;
+  border-radius:13px;
+  background:linear-gradient(110deg,#96513f,#b46c57,#98523f);
+  background-size:200% 100%;
+  color:#fff9f5;
+  min-height:49px;
+  box-shadow:0 4px 12px rgba(162,93,75,.18);
+  animation:lmGlow 3.2s ease-in-out infinite,lmGradient 6s ease-in-out infinite;
+  transition:transform .25s ease,box-shadow .25s ease;
+}
+.open-invite:hover{color:#fff9f5;transform:translateY(-2px)}
+.open-invite:active{transform:scale(.98)}
+.open-invite:before{
+  content:"";position:absolute;top:-80%;left:-75%;right:auto;bottom:auto;
+  width:40%;height:260%;inset:auto;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.48),transparent);
+  transform:rotate(25deg);
+  animation:lmSweep 4.5s ease-in-out infinite;
+  z-index:0;pointer-events:none;
+}
+.open-invite:hover:before{transform:rotate(25deg)}
+.open-invite:after{
+  content:"";position:absolute;inset:3px;border:1px solid rgba(255,255,255,.2);
+  border-radius:10px;pointer-events:none;z-index:0;
+}
+.open-invite > *{position:relative;z-index:2}
+.open-invite:focus-visible{outline:3px solid var(--gold);outline-offset:4px}
+@media(prefers-reduced-motion:reduce){
+  .open-invite,.open-invite:before{animation:none!important}
+}
+</style>
 </head>
 
 <body class="locked">
@@ -4693,7 +4728,7 @@ footer{padding-top:25px;padding-bottom:29px}
       toastTimer = setTimeout(() => toast.classList.remove("show"), 3600);
     }
 
-    function fadeMusicTo(target=.30, duration=1800){
+    function fadeMusicTo(target=.12, duration=1800){
       const start = music.volume;
       const started = performance.now();
 
@@ -4708,7 +4743,7 @@ footer{padding-top:25px;padding-bottom:29px}
     async function startMusic(){
       try{
         await music.play();
-        fadeMusicTo(.30,1800);
+        fadeMusicTo(.12,1800);
         musicButton.classList.add("playing");
         musicButton.setAttribute("aria-pressed","true");
         musicButton.setAttribute("aria-label","Pausar música");
