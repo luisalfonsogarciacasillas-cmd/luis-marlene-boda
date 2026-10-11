@@ -5041,7 +5041,7 @@ footer{padding-top:25px;padding-bottom:29px}
   const narratorToggle=document.getElementById('storyNarratorToggle');
   let page=0,busy=false,touchX=null,weddingWasPlaying=false,weddingResumeTime=0,storyMusicWanted=true,loadRetries={};
   let audioCtx=null;
-  const MUSIC_NORMAL=LM_AUDIO.levels.story, MUSIC_DUCKED=.025, NARRATION_VOLUME=.29;
+  const MUSIC_NORMAL=LM_AUDIO.levels.story, MUSIC_DUCKED=.025, NARRATION_VOLUME=.15;
   let narratorWanted=true,narrationToken=0,musicFadeFrame=0,storyAudioActive=false;
   function fadeMedievalVolume(target,duration=650){
     if(!medievalAudio)return;
