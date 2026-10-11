@@ -4653,7 +4653,9 @@
   // Accept size messages only from our embedded Google Apps Script document.
   // The child page must emit {type:'LM_RSVP_HEIGHT_V1',height:<number>}.
   window.addEventListener('message',function(event){
-    if(event.source!==frame.contentWindow)return;
+    // Apps Script may use a nested googleusercontent iframe, so event.source
+    // is not necessarily the direct iframe window. Validate Google origin,
+    // message type and bounded height instead.
     const allowed=event.origin==='https://script.google.com' ||
       event.origin==='https://script.googleusercontent.com' ||
       /^https:\/\/[a-z0-9-]+\.googleusercontent\.com$/i.test(event.origin);
