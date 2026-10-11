@@ -3814,6 +3814,68 @@
     @keyframes lmSweep{0%,20%{left:-75%}43%,100%{left:145%}}
     @media(max-width:520px){.rsvp-section{padding-top:64px;padding-bottom:34px}.rsvp-fairy.one{left:2%}.rsvp-fairy.two{right:2%}footer{padding-top:36px;padding-bottom:44px}}
     @media(prefers-reduced-motion:reduce){.rsvp-heart-ring,.rsvp-heart-ring:before,.rsvp-heart-icon,.rsvp-fairy,.rsvp-toggle,.rsvp-toggle:before{animation:none!important}.rsvp-panel{transition:none!important}}
+
+/* V5.17 — mobile rhythm and cohesive calendar */
+.countdown{padding-top:68px;padding-bottom:72px}
+.countdown .section-title{margin-bottom:27px}
+.countdown .unit{padding-top:20px;padding-bottom:20px}
+.timeline-section{padding-top:73px;padding-bottom:72px}
+.timeline-head{margin-bottom:35px}
+.dresscode{padding-top:57px;padding-bottom:59px}
+.dresscode .section-kicker{margin-bottom:10px}
+.dresscode .section-title{margin-bottom:4px}
+.dress-label{margin:6px 0 22px;letter-spacing:.22em}
+.look{padding:23px 20px 22px}
+.fashion-icon{width:82px;height:105px;margin-bottom:13px}
+.look h3{margin-bottom:7px;font-size:29px}
+.look p{line-height:1.5;letter-spacing:0}
+.registry-section{padding-top:61px;padding-bottom:48px}
+.registry-icon{margin-bottom:15px}
+.registry-section .section-title{margin-bottom:12px}
+.registry-card{margin-top:18px}
+.rsvp-section{padding-top:55px;padding-bottom:33px}
+.rsvp-heart-ring{margin-bottom:15px}
+.rsvp-enchanted{margin-bottom:12px}
+.calendar-section{position:relative;background:var(--ivory);text-align:center;padding:48px 20px 51px}
+.calendar-inner{width:min(460px,100%);margin:0 auto}
+.calendar-emblem{display:grid;place-items:center;margin:0 auto 13px;width:46px;height:46px;border:1px solid rgba(185,154,106,.5);border-radius:50%;color:var(--terracotta);font:400 27px/1 'Cormorant Garamond',serif}
+.calendar-section .section-kicker{font-size:9px;letter-spacing:.25em;margin-bottom:10px}
+.calendar-section .section-title{font-size:clamp(34px,6vw,46px);line-height:1.03;margin:0 0 12px}
+.calendar-section .section-title:after{margin-top:11px}
+.calendar-description{color:var(--muted);font-size:11px;line-height:1.65;margin:0 auto 19px}
+.calendar-chooser{width:min(305px,100%);margin:0 auto}
+.calendar-chooser summary{list-style:none;position:relative;display:flex;align-items:center;justify-content:center;gap:12px;min-height:50px;padding:11px 17px;border-radius:13px;border:1px solid #b87865;background:linear-gradient(110deg,#96513f,#b46c57,#98523f);color:#fff9f5;box-shadow:0 5px 17px rgba(162,93,75,.16);font-size:10px;font-weight:600;letter-spacing:.035em;cursor:pointer;animation:lmGlow 3.2s ease-in-out infinite}
+.calendar-chooser summary::-webkit-details-marker{display:none}
+.calendar-chooser summary:focus-visible,.calendar-action:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.calendar-chevron{transition:transform .25s ease;font-size:17px}
+.calendar-chooser[open] .calendar-chevron{transform:rotate(180deg)}
+.calendar-chooser[open] summary{animation:none}
+.calendar-actions{display:grid;gap:9px;padding:12px 0 0}
+.calendar-action{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:42px;width:100%;padding:10px 15px;border:1px solid rgba(185,154,106,.42);border-radius:10px;background:rgba(251,247,241,.84);color:var(--cinnamon);font-family:Montserrat,sans-serif;font-size:10px;font-weight:500;text-decoration:none;cursor:pointer}
+.calendar-action:hover{background:#fffaf2}
+.calendar-action-secondary{appearance:none}
+.calendar-note{font-size:9px;color:var(--muted);line-height:1.5;margin:14px auto 0;max-width:330px}
+.details{padding-top:73px;padding-bottom:74px}
+.details .section-title{margin-bottom:26px}
+.detail-time{margin-bottom:25px}
+.venue{padding-top:23px}
+.venue p{margin-bottom:19px}
+footer{padding-top:33px;padding-bottom:38px}
+@media(max-width:520px){
+ .countdown{padding-top:56px;padding-bottom:59px}
+ .timeline-section{padding-top:60px;padding-bottom:59px}
+ .timeline-head{margin-bottom:28px}
+ .dresscode{padding-top:48px;padding-bottom:48px}
+ .dress-label{font-size:9px;margin-bottom:20px}
+ .look{padding:19px 15px 20px}
+ .fashion-icon{width:72px;height:94px;margin-bottom:10px}
+ .registry-section{padding-top:54px;padding-bottom:42px}
+ .rsvp-section{padding-top:49px;padding-bottom:28px}
+ .calendar-section{padding-top:40px;padding-bottom:43px}
+ .details{padding-top:62px;padding-bottom:63px}
+ .details .section-title{margin-bottom:22px}
+}
+@media(prefers-reduced-motion:reduce){.calendar-chooser summary{animation:none!important}.calendar-chevron{transition:none!important}}
 </style>
 <style id="v5-png-storybook-css">
 /* V5 — PNG folio storybook. Main invitation intentionally untouched. */
@@ -4422,18 +4484,21 @@
         </div>
       </div>
     </section>
-    <!-- V5.16 — Add to calendar: Google + universal ICS -->
+    <!-- V5.17 — Compact, integrated calendar card -->
     <section class="calendar-section" id="guardar-fecha" aria-labelledby="calendarHeading">
       <div class="calendar-inner reveal">
-        <span class="calendar-symbol" aria-hidden="true">✧</span>
-        <div class="section-kicker">Guarda nuestra fecha</div>
-        <h2 class="section-title" id="calendarHeading">Nos vemos el 19 de diciembre</h2>
-        <p class="calendar-description">Guarda este día especial en tu calendario.</p>
-        <div class="calendar-actions">
-          <a id="googleCalendarLink" class="calendar-action" target="_blank" rel="noopener noreferrer" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Boda%20de%20Luis%20y%20Marlene&amp;dates=20261219T170000/20261220T000000&amp;ctz=America%2FMexico_City&amp;details=Celebraci%C3%B3n%20de%20la%20boda%20civil%20de%20Luis%20y%20Marlene.%20Recepci%C3%B3n%20desde%20las%205%3A00%20p.%20m.%20Ceremonia%20a%20las%206%3A00%20p.%20m.&amp;location=Zapopan%2C%20Jalisco">Google Calendar <span aria-hidden="true">↗</span></a>
-          <button id="downloadCalendarIcs" class="calendar-action calendar-action-secondary" type="button">Apple · Samsung · Outlook <span aria-hidden="true">↓</span></button>
-        </div>
-        <p class="calendar-note">Sábado 19, 5:00 p. m. — domingo 20, 12:00 a. m. · Zapopan, Jalisco</p>
+        <div class="calendar-emblem" aria-hidden="true">✧</div>
+        <div class="section-kicker">Un día para recordar</div>
+        <h2 class="section-title" id="calendarHeading">Guarda nuestra fecha</h2>
+        <p class="calendar-description">Sábado 19 de diciembre de 2026 · 5:00 p. m.</p>
+        <details class="calendar-chooser">
+          <summary><span aria-hidden="true">▦</span> Agregar a mi calendario <span class="calendar-chevron" aria-hidden="true">⌄</span></summary>
+          <div class="calendar-actions">
+            <a id="googleCalendarLink" class="calendar-action" target="_blank" rel="noopener noreferrer" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Boda%20de%20Luis%20y%20Marlene&amp;dates=20261219T170000/20261220T000000&amp;ctz=America%2FMexico_City&amp;details=Celebraci%C3%B3n%20de%20la%20boda%20civil%20de%20Luis%20y%20Marlene.%20Recepci%C3%B3n%20desde%20las%205%3A00%20p.%20m.%20Ceremonia%20a%20las%206%3A00%20p.%20m.&amp;location=Zapopan%2C%20Jalisco">Google Calendar <span aria-hidden="true">↗</span></a>
+            <button id="downloadCalendarIcs" class="calendar-action calendar-action-secondary" type="button">Apple · Samsung · Outlook <span aria-hidden="true">↓</span></button>
+          </div>
+        </details>
+        <p class="calendar-note">Hasta las 12:00 a. m. del domingo 20 · Zapopan, Jalisco</p>
       </div>
     </section>
 
