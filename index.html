@@ -3730,6 +3730,45 @@
     [hidden].rsvp-frame-wrap,[hidden].rsvp-missing,[hidden].rsvp-fallback{display:none!important}
     @media(max-width:760px){.rsvp-frame{height:850px}.rsvp-frame-wrap{border-radius:14px}}
     @media(max-width:420px){.rsvp-frame{height:920px}.rsvp-section{padding-left:12px;padding-right:12px}}
+
+    /* V5.14 — Enchanted RSVP */
+    .rsvp-section{padding-top:76px;padding-bottom:46px}
+    .rsvp-section .section-title{margin-bottom:15px}
+    .rsvp-enchanted{position:relative;max-width:760px;margin:0 auto 22px;isolation:isolate}
+    .rsvp-heart-ring{position:relative;display:grid;place-items:center;width:74px;height:74px;margin:0 auto 24px;border:1px solid rgba(164,93,67,.35);border-radius:50%;animation:lmRing 4s ease-in-out infinite}
+    .rsvp-heart-ring:before{content:"";position:absolute;inset:-9px;border:1px solid rgba(164,93,67,.16);border-radius:50%;animation:lmHalo 4s ease-in-out infinite}
+    .rsvp-heart-icon{font:400 38px/1 "Cormorant Garamond",serif;color:var(--terracotta);animation:lmBeat 2.8s ease-in-out infinite}
+    .rsvp-fairy{position:absolute;pointer-events:none;color:var(--gold);opacity:0;animation:lmSpark 4.8s ease-in-out infinite}
+    .rsvp-fairy.one{left:12%;top:10%;font-size:21px}
+    .rsvp-fairy.two{right:12%;top:30%;font-size:17px;animation-delay:1.1s}
+    .rsvp-fairy.three{left:8%;bottom:12%;font-size:14px;animation-delay:2.3s}
+    .rsvp-fairy.four{right:9%;bottom:6%;font-size:20px;animation-delay:3.2s}
+    .rsvp-toggle{position:relative;isolation:isolate;display:flex;align-items:center;justify-content:center;gap:12px;width:min(340px,100%);min-height:59px;margin:0 auto;padding:14px 20px;overflow:hidden;border:1px solid #b87865;border-radius:15px;background:linear-gradient(110deg,#96513f,#b46c57,#98523f);background-size:200% 100%;color:#fff9f5;cursor:pointer;font-size:11px;font-weight:600;letter-spacing:.065em;box-shadow:0 4px 12px rgba(162,93,75,.18);animation:lmGlow 3.2s ease-in-out infinite,lmGradient 6s ease-in-out infinite;transition:transform .25s ease}
+    .rsvp-toggle:hover{transform:translateY(-2px)}
+    .rsvp-toggle:active{transform:scale(.98)}
+    .rsvp-toggle:before{content:"";position:absolute;top:-80%;left:-75%;width:40%;height:260%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.48),transparent);transform:rotate(25deg);animation:lmSweep 4.5s ease-in-out infinite;pointer-events:none}
+    .rsvp-toggle:after{content:"";position:absolute;inset:3px;border:1px solid rgba(255,255,255,.2);border-radius:11px;pointer-events:none}
+    .rsvp-toggle > span{position:relative;z-index:1}
+    .rsvp-toggle-arrow{display:inline-block;transition:transform .35s ease}
+    .rsvp-toggle[aria-expanded="true"] .rsvp-toggle-arrow{transform:rotate(180deg)}
+    .rsvp-toggle[aria-expanded="true"]{animation:none;background:#985b48;box-shadow:0 5px 15px rgba(162,93,75,.15)}
+    .rsvp-toggle[aria-expanded="true"]:before{animation:none;opacity:0}
+    .rsvp-panel{display:grid;grid-template-rows:0fr;opacity:0;visibility:hidden;transition:grid-template-rows .65s var(--ease),opacity .45s ease,visibility .65s}
+    .rsvp-panel.is-open{grid-template-rows:1fr;opacity:1;visibility:visible}
+    .rsvp-panel-inner{min-height:0;overflow:hidden}
+    .rsvp-panel-content{padding-top:22px}
+    .rsvp-panel .rsvp-fallback{margin-top:14px}
+    .rsvp-section + footer{padding-top:42px}
+    footer{padding-top:42px;padding-bottom:48px}
+    @keyframes lmBeat{0%,68%,100%{transform:scale(1)}74%{transform:scale(1.19)}81%{transform:scale(1.02)}87%{transform:scale(1.12)}}
+    @keyframes lmRing{0%,100%{box-shadow:0 0 0 0 rgba(164,93,67,.07)}50%{box-shadow:0 0 0 11px rgba(164,93,67,.04)}}
+    @keyframes lmHalo{0%,100%{transform:scale(.95);opacity:.35}50%{transform:scale(1.12);opacity:.9}}
+    @keyframes lmSpark{0%,100%{opacity:0;transform:translateY(7px) scale(.5) rotate(-15deg)}35%{opacity:.9;transform:translateY(-9px) scale(1.2) rotate(15deg)}65%{opacity:.25;transform:translateY(-16px) scale(.8)}}
+    @keyframes lmGlow{0%,100%{box-shadow:0 4px 12px rgba(162,93,75,.18)}50%{box-shadow:0 0 24px rgba(162,93,75,.48),0 0 45px rgba(185,154,106,.2)}}
+    @keyframes lmGradient{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
+    @keyframes lmSweep{0%,20%{left:-75%}43%,100%{left:145%}}
+    @media(max-width:520px){.rsvp-section{padding-top:64px;padding-bottom:34px}.rsvp-fairy.one{left:2%}.rsvp-fairy.two{right:2%}footer{padding-top:36px;padding-bottom:44px}}
+    @media(prefers-reduced-motion:reduce){.rsvp-heart-ring,.rsvp-heart-ring:before,.rsvp-heart-icon,.rsvp-fairy,.rsvp-toggle,.rsvp-toggle:before{animation:none!important}.rsvp-panel{transition:none!important}}
 </style>
 <style id="v5-png-storybook-css">
 /* V5 — PNG folio storybook. Main invitation intentionally untouched. */
@@ -4295,25 +4334,41 @@
       </div>
     </section>
 
-    <!-- RSVP personalized invitation — V5.11 -->
+    <!-- RSVP personalized invitation — V5.14 Enchanted RSVP -->
     <section class="rsvp-section" id="confirmar-asistencia" aria-labelledby="rsvpHeading">
       <div class="rsvp-inner">
-        <div class="reveal">
+        <div class="rsvp-enchanted reveal">
+          <span class="rsvp-fairy one" aria-hidden="true">✦</span>
+          <span class="rsvp-fairy two" aria-hidden="true">✧</span>
+          <span class="rsvp-fairy three" aria-hidden="true">✦</span>
+          <span class="rsvp-fairy four" aria-hidden="true">✧</span>
+          <div class="rsvp-heart-ring" aria-hidden="true"><span class="rsvp-heart-icon">♥</span></div>
           <div class="section-kicker">Un momento especial</div>
-          <h2 class="section-title" id="rsvpHeading">Confirma tu asistencia</h2>
-          <p class="rsvp-description">Nos hará muy felices compartir este día contigo. Cuéntanos si podremos celebrar juntos.</p>
+          <h2 class="section-title" id="rsvpHeading">Tenemos un lugar especial para ustedes</h2>
+          <p class="rsvp-description">Nos haría muy felices compartir este día con ustedes.</p>
           <p class="rsvp-deadline">Confirma antes del 31 de octubre de 2026</p>
+          <button type="button" class="rsvp-toggle" id="rsvpToggle" aria-expanded="false" aria-controls="rsvpPanel" hidden>
+            <span aria-hidden="true">♡</span>
+            <span id="rsvpToggleLabel">Confirmar mi asistencia</span>
+            <span class="rsvp-toggle-arrow" aria-hidden="true">⌄</span>
+          </button>
         </div>
-        <div class="rsvp-frame-wrap" id="rsvpFrameWrap" hidden>
-          <iframe id="rsvpFrame" class="rsvp-frame" title="Confirmar asistencia a la boda de Luis y Marlene" loading="lazy" referrerpolicy="no-referrer" allow="clipboard-write"></iframe>
-        </div>
-        <details class="rsvp-fallback" id="rsvpFallback" hidden>
-          <summary>¿Tienes problemas para confirmar?</summary>
-          <div class="rsvp-fallback-content">
-            <p>Si el formulario no aparece o no responde, puedes abrir tu confirmación directamente.</p>
-            <a id="rsvpDirectLink" class="rsvp-link" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">Abrir mi confirmación ↗</a>
+        <div class="rsvp-panel" id="rsvpPanel" aria-hidden="true">
+          <div class="rsvp-panel-inner">
+            <div class="rsvp-panel-content">
+              <div class="rsvp-frame-wrap" id="rsvpFrameWrap" hidden>
+                <iframe id="rsvpFrame" class="rsvp-frame" title="Confirmar asistencia a la boda de Luis y Marlene" loading="lazy" referrerpolicy="no-referrer" allow="clipboard-write"></iframe>
+              </div>
+              <details class="rsvp-fallback" id="rsvpFallback" hidden>
+                <summary>¿Tienes problemas para confirmar?</summary>
+                <div class="rsvp-fallback-content">
+                  <p>Si el formulario no aparece o no responde, puedes abrir tu confirmación directamente.</p>
+                  <a id="rsvpDirectLink" class="rsvp-link" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">Abrir mi confirmación ↗</a>
+                </div>
+              </details>
+            </div>
           </div>
-        </details>
+        </div>
         <div class="rsvp-missing" id="rsvpMissing" hidden>
           <strong>Tu confirmación es personal</strong>
           Abre esta invitación desde el enlace que te compartimos para acceder a tus lugares asignados. Si necesitas ayuda, escríbenos directamente.
@@ -4631,7 +4686,7 @@
 </script>
 
 <script>
-/* RSVP V5.13 — dynamic iframe height + discreet fallback; individual token only. */
+/* RSVP V5.14 — Enchanted expandable RSVP, preserving V5.13 smart height. */
 (function(){
   'use strict';
   const APP_URL='https://script.google.com/macros/s/AKfycbwubVIRDCTPt6iIyF5tbFqBxvhfxk0uvSSXMa38vmtKocG6QeGVMxyILYmkXAhGjGdO2g/exec';
@@ -4642,20 +4697,26 @@
   const fallback=document.getElementById('rsvpFallback');
   const link=document.getElementById('rsvpDirectLink');
   const missing=document.getElementById('rsvpMissing');
+  const toggle=document.getElementById('rsvpToggle');
+  const label=document.getElementById('rsvpToggleLabel');
+  const panel=document.getElementById('rsvpPanel');
   if(!valid){missing.hidden=false;return;}
   const url=APP_URL+'?invite='+encodeURIComponent(token.toLowerCase());
   link.href=url;
   wrap.hidden=false;
   fallback.hidden=false;
-  // The iframe is lazy-loaded by the browser. Some in-app browsers may block
-  // Apps Script framing; the direct link remains available in that case.
-  frame.src=url;
-  // Accept size messages only from our embedded Google Apps Script document.
-  // The child page must emit {type:'LM_RSVP_HEIGHT_V1',height:<number>}.
+  toggle.hidden=false;
+  let loaded=false;
+  toggle.addEventListener('click',function(){
+    const open=toggle.getAttribute('aria-expanded')!=='true';
+    toggle.setAttribute('aria-expanded',String(open));
+    label.textContent=open?'Ocultar confirmación':'Confirmar mi asistencia';
+    panel.classList.toggle('is-open',open);
+    panel.setAttribute('aria-hidden',String(!open));
+    if(open && !loaded){loaded=true;frame.src=url;}
+  });
+  // Smart Height V5.13: Apps Script can relay through nested googleusercontent frames.
   window.addEventListener('message',function(event){
-    // Apps Script may use a nested googleusercontent iframe, so event.source
-    // is not necessarily the direct iframe window. Validate Google origin,
-    // message type and bounded height instead.
     const allowed=event.origin==='https://script.google.com' ||
       event.origin==='https://script.googleusercontent.com' ||
       /^https:\/\/[a-z0-9-]+\.googleusercontent\.com$/i.test(event.origin);
