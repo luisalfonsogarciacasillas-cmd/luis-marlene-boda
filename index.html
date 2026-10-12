@@ -4495,30 +4495,41 @@ footer{padding-top:25px;padding-bottom:29px}
 }
 </style>
 <style>
-/* LM · Transición fotográfica al hero (prueba V3) */
-.lm-photo-gate{background:#F4EDE3!important;padding:0!important;display:grid!important;place-items:center!important;transition:opacity 1.35s cubic-bezier(.2,.7,.25,1),visibility 1.35s!important;transform:none!important;isolation:isolate}
-.lm-photo-frame{position:relative;width:min(100vw,66.6667dvh);height:min(100dvh,150vw);max-width:100%;aspect-ratio:2/3;overflow:hidden;box-shadow:0 15px 70px rgba(56,42,37,.10);background:#FBF7F1}
-.lm-photo{display:block;width:100%;height:100%;object-fit:cover;transition:transform 1.45s cubic-bezier(.2,.7,.25,1),filter 1.45s ease;transform-origin:50% 52%}
+/* LM · Bienvenida a pantalla completa + transición mágica V4 */
+.lm-photo-gate{position:fixed!important;inset:0!important;width:100%!important;height:100dvh!important;min-height:100svh!important;background:#F4EDE3!important;padding:0!important;display:grid!important;place-items:center!important;overflow:hidden!important;isolation:isolate;transform:none!important;transition:opacity 1.4s cubic-bezier(.2,.7,.25,1),visibility 1.4s!important}
+.lm-photo-frame{position:absolute;inset:0;width:100%!important;height:100%!important;max-width:none!important;aspect-ratio:auto!important;overflow:hidden;box-shadow:none;background:#FBF7F1}
+.lm-photo-frame:before{content:"";position:absolute;inset:-28px;background:url('Luis_Marlene_Sobre_Portada.webp') center/cover no-repeat;filter:blur(23px) brightness(1.045);transform:scale(1.08);opacity:.65;z-index:0}
+.lm-photo{position:relative;z-index:1;display:block;width:100%;height:100%;object-fit:contain;object-position:center;transition:transform 1.45s cubic-bezier(.2,.7,.25,1),filter 1.45s ease;transform-origin:50% 52%}
 .lm-photo-gate.open{opacity:0!important;visibility:hidden!important;pointer-events:none!important}
-.lm-photo-gate.open .lm-photo{transform:scale(1.055);filter:brightness(1.055) blur(2px)}
-.lm-photo-hit,.lm-photo-hit:hover,.lm-photo-hit:active{position:absolute!important;left:25%!important;top:79%!important;width:50%!important;height:7%!important;min-width:0!important;min-height:0!important;margin:0!important;padding:0!important;border:0!important;outline-offset:3px!important;background:transparent!important;box-shadow:none!important;opacity:1!important;transform:none!important;animation:none!important;cursor:pointer!important;z-index:3!important}
-.lm-photo-hit:before,.lm-photo-hit:after{display:none!important}
-.lm-photo-hit:focus-visible{outline:3px solid #86503E!important}
+.lm-photo-gate.open .lm-photo{transform:scale(1.055);filter:brightness(1.14) blur(2px)}
+/* The button is baked into the photograph: transparent hit target follows its true size. */
+.lm-photo-hit,.lm-photo-hit:hover,.lm-photo-hit:active{position:absolute!important;left:50%!important;top:calc(50% + min(50vw,33.333dvh)*.87)!important;width:calc(min(100vw,66.6667dvh)*.50)!important;height:calc(min(100vw,66.6667dvh)*.105)!important;min-width:0!important;min-height:0!important;margin:0!important;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important;opacity:1!important;transform:translate(-50%,-50%)!important;animation:none!important;cursor:pointer!important;z-index:3!important}
+.lm-photo-hit:before,.lm-photo-hit:after{display:none!important}.lm-photo-hit:focus-visible{outline:3px solid #86503E!important;outline-offset:4px!important}
 .lm-screen-reader{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
-@media(min-aspect-ratio:2/3){.lm-photo-frame{height:100dvh;width:66.6667dvh}}
-@media(prefers-reduced-motion:reduce){.lm-photo-gate,.lm-photo{transition-duration:.18s!important}.lm-photo-gate.open .lm-photo{transform:none;filter:none}}
+.lm-magic-layer{position:fixed;inset:0;z-index:1002;pointer-events:none;overflow:hidden;opacity:0;transition:opacity .16s ease}
+.lm-magic-layer.active{opacity:1}
+.lm-magic-glow{position:absolute;left:50%;top:53%;width:min(110vw,760px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(251,247,241,.58) 0%,rgba(185,154,106,.24) 23%,rgba(185,154,106,.07) 45%,transparent 70%);transform:translate(-50%,-50%) scale(.3);opacity:0;animation:lm-glow 1.45s ease-out both}
+.lm-magic-spark{position:absolute;left:var(--x);top:var(--y);width:var(--s);height:var(--s);border-radius:50%;background:radial-gradient(circle,#fffefa 0%,#f6e4b8 40%,#b99a6a 72%,transparent 100%);box-shadow:0 0 9px 2px rgba(235,204,149,.55),0 0 20px rgba(185,154,106,.3);opacity:0;animation:lm-spark var(--dur) ease-out var(--delay) both}
+.lm-magic-spark.star{border-radius:0;background:transparent;box-shadow:none}
+.lm-magic-spark.star:before,.lm-magic-spark.star:after{content:"";position:absolute;background:linear-gradient(90deg,transparent,#fff9e8 40%,#c7a46c 50%,#fff9e8 60%,transparent);left:50%;top:50%;transform:translate(-50%,-50%);width:240%;height:1.5px;filter:drop-shadow(0 0 5px #d7b67e)}
+.lm-magic-spark.star:after{transform:translate(-50%,-50%) rotate(90deg)}
+@keyframes lm-spark{0%{opacity:0;transform:translate(0,14px) scale(.15)}25%{opacity:var(--alpha)}60%{opacity:var(--alpha);transform:translate(calc(var(--dx)*.65),calc(var(--dy)*.65)) scale(1)}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(.25)}}
+@keyframes lm-glow{0%{opacity:0;transform:translate(-50%,-50%) scale(.3)}35%{opacity:.75}100%{opacity:0;transform:translate(-50%,-50%) scale(1.7)}}
+@media(prefers-reduced-motion:reduce){.lm-photo-gate,.lm-photo{transition-duration:.18s!important}.lm-photo-gate.open .lm-photo{transform:none;filter:none}.lm-magic-layer{display:none!important}}
 </style>
 </head>
 
 <body class="locked">
 
-  <!-- Pantalla de bienvenida fotográfica: el resto de la invitación permanece intacto. -->
+  <!-- Pantalla de bienvenida fotográfica V4: pantalla completa, destellos al abrir. -->
   <div class="gate lm-photo-gate" id="gate">
     <div class="lm-photo-frame">
       <img class="lm-photo" src="Luis_Marlene_Sobre_Portada.webp" alt="Sobre marfil con flores y sello de cera L y M" fetchpriority="high" decoding="async">
       <button class="open-invite lm-photo-hit" id="openInvite" type="button" aria-label="Abrir invitación de Luis y Marlene"><span class="lm-screen-reader">Abrir invitación</span></button>
     </div>
   </div>
+
+  <div class="lm-magic-layer" id="lmMagicLayer" aria-hidden="true"></div>
 
   <div class="grain" aria-hidden="true"></div>
 
@@ -4982,7 +4993,36 @@ footer{padding-top:25px;padding-bottom:29px}
       // This user tap allows audio playback on mobile browsers.
       const musicStarted = await startMusic();
 
-      // Transición: la foto desaparece suavemente y revela el hero original.
+      // Destellos solo al pulsar: se dibujan en una capa independiente, sin alterar la foto.
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const magicLayer = document.getElementById('lmMagicLayer');
+      if (!reducedMotion && magicLayer) {
+        magicLayer.replaceChildren();
+        const glow = document.createElement('span');
+        glow.className = 'lm-magic-glow';
+        magicLayer.appendChild(glow);
+        for (let i = 0; i < 48; i++) {
+          const p = document.createElement('span');
+          p.className = 'lm-magic-spark' + (i % 5 === 0 ? ' star' : '');
+          const a = i * 2.399963229728653;
+          const r = Math.sqrt((i + .5) / 48);
+          const x = 50 + Math.cos(a) * r * 44;
+          const y = 52 + Math.sin(a) * r * 42;
+          const dx = Math.cos(a) * (18 + 64 * r);
+          const dy = Math.sin(a) * (18 + 64 * r) - 18;
+          p.style.setProperty('--x', x.toFixed(2) + '%');
+          p.style.setProperty('--y', y.toFixed(2) + '%');
+          p.style.setProperty('--dx', dx.toFixed(1) + 'px');
+          p.style.setProperty('--dy', dy.toFixed(1) + 'px');
+          p.style.setProperty('--s', (i % 5 === 0 ? 7 : 2.5 + (i % 4)) + 'px');
+          p.style.setProperty('--alpha', (0.5 + (i % 4) * .12).toFixed(2));
+          p.style.setProperty('--delay', (i % 7 * .055).toFixed(3) + 's');
+          p.style.setProperty('--dur', (1.05 + i % 4 * .15).toFixed(2) + 's');
+          magicLayer.appendChild(p);
+        }
+        magicLayer.classList.add('active');
+        setTimeout(() => { magicLayer.classList.remove('active'); magicLayer.replaceChildren(); }, 1750);
+      }
       openInvite.disabled = true;
       gate.classList.add("open");
       document.body.classList.remove("locked");
@@ -4990,7 +5030,7 @@ footer{padding-top:25px;padding-bottom:29px}
       setTimeout(() => {
         hero.classList.add("animate");
         musicButton.classList.add("ready");
-      }, window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 80 : 620);
+      }, reducedMotion ? 80 : 750);
 
       if(!musicStarted){
         setTimeout(() => {
