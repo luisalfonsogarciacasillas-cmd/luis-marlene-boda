@@ -4075,6 +4075,71 @@ footer{padding-top:25px;padding-bottom:29px}
 }
 @media(max-width:355px){.dc-look{grid-template-columns:minmax(0,37%) minmax(0,63%)}.dc-figure{height:250px}.dc-copy h3{font-size:20px}.dc-copy li{font-size:16px}}
 
+
+/* Dress Code v3 — clean illustrations and phone-first editorial composition */
+@media(max-width:820px){
+  .dresscode .dresscode-refined{max-width:560px}
+  .dc-looks{grid-template-columns:1fr;gap:0;max-width:440px;margin:0 auto}
+  .dc-look{display:flex;flex-direction:column;align-items:center;gap:0;padding:20px 0 26px;border-bottom:1px solid var(--line)}
+  .dc-look:last-child{border-bottom:0}
+  .dc-art{width:100%;height:auto;min-height:0;justify-content:center}
+  .dc-figure{width:auto;max-width:70%;height:245px;max-height:245px;object-fit:contain}
+  .dc-copy{width:100%;max-width:300px;margin:16px auto 0;text-align:left}
+  .dc-copy h3{text-align:center;font-size:29px;letter-spacing:.07em;margin-bottom:19px}
+  .dc-copy h3:after{margin:11px auto 0}
+  .dc-copy ul{display:grid;gap:10px}
+  .dc-copy li{font-size:20px;line-height:1.2;padding:0 0 0 20px}
+  .dc-copy li:before{top:7px;font-size:8px}
+  .dc-advice{margin-top:18px;gap:20px}
+}
+@media(max-width:430px){
+  .dc-looks{gap:0}
+  .dc-look{display:flex;gap:0;padding:15px 0 27px}
+  .dc-figure{height:235px;max-height:235px;max-width:72%}
+  .dc-copy{max-width:280px;margin-top:12px}
+  .dc-copy h3{font-size:28px;letter-spacing:.07em}
+  .dc-copy li{font-size:19px;padding:0 0 0 19px;line-height:1.25}
+  .dc-swatches{gap:5px}
+  .dc-swatch{font-size:13px}
+  .dc-color{width:clamp(48px,13vw,62px)}
+}
+@media(max-width:355px){
+  .dc-look{display:flex}
+  .dc-figure{height:210px}
+  .dc-copy h3{font-size:26px}
+  .dc-copy li{font-size:18px}
+}
+
+
+/* Dress Code v4: isolated artwork, generous mobile stacking, no overlaps */
+.dc-art{overflow:visible;isolation:isolate}
+.dc-figure{filter:none;object-fit:contain}
+@media(max-width:820px){
+ .dresscode .dresscode-refined{width:min(100%,500px)}
+ .dc-looks{display:flex;flex-direction:column;gap:0;max-width:390px;margin:0 auto}
+ .dc-look{display:flex;flex-direction:column;align-items:center;gap:0;width:100%;padding:22px 0 30px;border-bottom:1px solid var(--line)}
+ .dc-look:last-child{border-bottom:none}
+ .dc-art{display:flex;justify-content:center;align-items:center;width:100%;height:auto;min-height:0}
+ .dc-figure{display:block;width:auto;height:clamp(250px,74vw,350px);max-width:92%;max-height:none;object-fit:contain}
+ .dc-copy{width:min(100%,310px);max-width:none;margin:16px auto 0;padding:0 12px;text-align:left}
+ .dc-copy h3{text-align:center;font-size:30px;letter-spacing:.055em;margin-bottom:18px}
+ .dc-copy h3:after{margin:10px auto 0}
+ .dc-copy ul{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+ .dc-copy li{font-size:21px;line-height:1.2;padding:0 0 0 21px;margin:0}
+ .dc-copy li:before{left:1px;top:7px;font-size:8px}
+ .dc-advice{margin:16px auto 32px;gap:20px;padding:25px 0;max-width:390px}
+ .dc-advice p{font-size:18px;line-height:1.4}
+ .dc-swatches{gap:7px}
+ .dc-swatch{font-size:14px}
+ .dc-color{width:clamp(48px,13vw,64px)}
+}
+@media(max-width:370px){
+ .dc-figure{height:260px}
+ .dc-copy{padding:0 16px}
+ .dc-copy h3{font-size:28px}
+ .dc-copy li{font-size:19px}
+ .dc-swatch{font-size:12px}
+}
 </style>
 <style id="v5-png-storybook-css">
 /* V5 — PNG folio storybook. Main invitation intentionally untouched. */
