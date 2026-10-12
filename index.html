@@ -4029,6 +4029,34 @@ footer{padding-top:25px;padding-bottom:29px}
   .dresscode{padding-bottom:24px}
   .registry-section{padding-top:25px}
 }
+
+/* Cocktail Chic — refined, responsive, transparent artwork */
+.dresscode .dresscode-refined{width:min(1030px,100%)}
+.dc-ornament{color:var(--gold);font:28px/1 'Cormorant Garamond',serif;margin:6px 0 23px}
+.dc-looks{display:grid;grid-template-columns:1fr 1fr;gap:30px;text-align:left}
+.dc-look{display:grid;grid-template-columns:minmax(105px,42%) 1fr;align-items:center;gap:10px;min-width:0}
+.dc-figure{width:100%;height:330px;object-fit:contain;object-position:center;display:block;filter:drop-shadow(0 6px 12px rgba(56,42,37,.06))}
+.dc-copy h3,.dc-reserved h3{font:500 29px/1.1 'Cormorant Garamond',serif;color:var(--cinnamon);letter-spacing:.08em;text-transform:uppercase;margin:0 0 16px}
+.dc-copy h3:after{content:'';display:block;width:35px;height:1px;background:var(--gold);margin-top:12px}
+.dc-copy ul{list-style:none;margin:0;padding:0}
+.dc-copy li{position:relative;padding:0 0 12px 18px;font:400 17px/1.3 'Cormorant Garamond',serif;color:var(--ink)}
+.dc-copy li:before{content:'◆';position:absolute;left:0;top:3px;color:var(--gold);font:9px/1.4 sans-serif}
+.dc-advice{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:27px auto 36px;padding:21px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);text-align:left}
+.dc-advice p{display:flex;gap:13px;align-items:flex-start;margin:0;color:var(--muted);font:400 17px/1.35 'Cormorant Garamond',serif}
+.dc-advice-icon{flex:0 0 26px;color:var(--gold);font-size:27px;line-height:1}
+.dc-advice strong{display:block;margin-bottom:5px;font:500 12px/1.4 'Cormorant Garamond',serif;text-transform:uppercase;letter-spacing:.13em;color:var(--cinnamon)}
+.dc-reserved{text-align:center}
+.dc-reserved h3{font-size:23px;margin-bottom:4px}
+.dc-reserved>p{margin:0;color:var(--muted);font:400 17px/1.4 'Cormorant Garamond',serif}
+.dc-swatches{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;max-width:590px;margin:18px auto 10px}
+.dc-swatch{display:flex;flex-direction:column;align-items:center;gap:9px;color:var(--muted);font:400 16px/1.15 'Cormorant Garamond',serif}
+.dc-color{display:block;width:clamp(52px,9vw,86px);aspect-ratio:1;border-radius:50%;background:var(--swatch);border:2px solid #A77C49;position:relative;box-shadow:0 0 0 3px rgba(255,248,237,.85) inset}
+.dc-color:before{content:'';position:absolute;inset:3px;border:4px solid #FFF8ED;border-radius:50%;box-shadow:0 0 0 2px #713A3B inset}
+.dc-color:after{content:'';position:absolute;width:calc(100% - 8px);height:7px;background:#713A3B;border-top:2px solid #FFF8ED;border-bottom:2px solid #FFF8ED;left:4px;top:50%;transform:translateY(-50%) rotate(45deg);border-radius:3px}
+.dc-reserved .dc-fineprint{font-size:14px;font-style:italic;margin-top:12px}
+@media(max-width:760px){.dc-looks{grid-template-columns:1fr;gap:8px;max-width:490px;margin:auto}.dc-look{grid-template-columns:42% 1fr;gap:12px}.dc-figure{height:280px}.dc-advice{grid-template-columns:1fr;gap:18px;max-width:490px}.dc-copy li{font-size:18px}}
+@media(max-width:390px){.dc-look{grid-template-columns:40% 1fr;gap:7px}.dc-figure{height:245px}.dc-copy h3{font-size:23px}.dc-copy li{font-size:16px;padding-bottom:10px}.dc-swatches{gap:5px}.dc-swatch{font-size:13px}.dc-color{width:54px}}
+
 </style>
 <style id="v5-png-storybook-css">
 /* V5 — PNG folio storybook. Main invitation intentionally untouched. */
@@ -4613,67 +4641,37 @@ footer{padding-top:25px;padding-bottom:29px}
     </section>
 
     <section class="dresscode" aria-labelledby="vestimenta">
-      <div class="botanical right" aria-hidden="true">
-        <svg viewBox="0 0 150 230">
-          <path d="M27 218 C46 177 54 135 55 91 C56 58 47 33 35 13"/>
-          <path d="M53 116 C35 108 24 94 19 78 C36 80 49 91 55 105"/>
-          <path d="M55 86 C73 76 84 60 88 43 C70 47 58 60 54 74"/>
-          <path d="M47 157 C29 151 16 138 10 122 C28 123 42 134 50 146"/>
-        </svg>
-      </div>
-      <div class="dresscode-inner">
+      <div class="botanical right" aria-hidden="true"><svg viewBox="0 0 150 230"><path d="M27 218 C46 177 54 135 55 91 C56 58 47 33 35 13"/><path d="M53 116 C35 108 24 94 19 78 C36 80 49 91 55 105"/><path d="M55 86 C73 76 84 60 88 43 C70 47 58 60 54 74"/><path d="M47 157 C29 151 16 138 10 122 C28 123 42 134 50 146"/></svg></div>
+      <div class="dresscode-inner dresscode-refined">
         <div class="reveal">
           <div class="section-kicker">Código de vestimenta</div>
-          <h2 class="section-title" id="vestimenta">Cóctel Chic</h2>
-          <span class="dress-label">Elegante · Moderno · Cómodo</span>
+          <h2 class="section-title" id="vestimenta">Cocktail Chic</h2>
+          <div class="dc-ornament" aria-hidden="true">✧</div>
         </div>
-
-        <div class="wardrobe reveal delay-1">
-          <article class="look">
-            <span class="fashion-icon" aria-hidden="true">
-              <svg viewBox="0 0 120 160" role="img">
-                <!-- Custom minimalist cocktail dress -->
-                <path d="M48 13 C51 20 53 27 52 36" />
-                <path d="M72 13 C69 20 67 27 68 36" />
-                <path d="M48 13 C52 17 56 19 60 19 C64 19 68 17 72 13" />
-                <path d="M52 36 C50 49 46 62 40 75" />
-                <path d="M68 36 C70 49 74 62 80 75" />
-                <path d="M40 75 C33 96 27 118 23 143" />
-                <path d="M80 75 C87 96 93 118 97 143" />
-                <path d="M23 143 C43 149 77 149 97 143" />
-                <path d="M52 36 C56 39 64 39 68 36" />
-                <line x1="40" y1="75" x2="80" y2="75" />
-                <path d="M46 55 C54 59 66 59 74 55" opacity=".55" />
-              </svg>
-            </span>
-            <h3>Ellas</h3>
-            <p>Vestido cóctel, midi o jumpsuit elegante.</p>
+        <div class="dc-looks reveal delay-1">
+          <article class="dc-look">
+            <img class="dc-figure" src="assets/dresscode/caballeros.webp" alt="Referencia de vestimenta para caballeros: blazer, camisa abierta y pantalón de vestir" loading="lazy" decoding="async" width="240" height="698">
+            <div class="dc-copy"><h3>Caballeros</h3><ul><li>Saco o blazer</li><li>Camisa</li><li>Pantalón de vestir</li><li>Zapatos de vestir</li></ul></div>
           </article>
-
-          <article class="look">
-            <span class="fashion-icon" aria-hidden="true">
-              <svg viewBox="0 0 120 160" role="img">
-                <!-- Custom minimalist blazer / suit -->
-                <path d="M45 20 L29 31 L22 73 L31 77 L35 142" />
-                <path d="M75 20 L91 31 L98 73 L89 77 L85 142" />
-                <path d="M45 20 L53 39 L60 32 L67 39 L75 20" />
-                <path d="M53 39 L46 53 L59 67" />
-                <path d="M67 39 L74 53 L61 67" />
-                <line x1="60" y1="32" x2="60" y2="137" />
-                <line x1="35" y1="142" x2="85" y2="142" />
-                <line x1="31" y1="77" x2="28" y2="127" />
-                <line x1="89" y1="77" x2="92" y2="127" />
-                <circle cx="66" cy="81" r="1.2" />
-                <circle cx="66" cy="94" r="1.2" />
-                <path d="M42 88 L51 88" />
-                <path d="M69 88 L78 88" />
-              </svg>
-            </span>
-            <h3>Ellos</h3>
-            <p>Traje o saco con pantalón de vestir.</p>
+          <article class="dc-look">
+            <img class="dc-figure" src="assets/dresscode/damas.webp" alt="Referencia de vestimenta para damas: vestido midi de cóctel" loading="lazy" decoding="async" width="295" height="597">
+            <div class="dc-copy"><h3>Damas</h3><ul><li>Vestido midi o de cóctel</li><li>Conjunto de vestir</li><li>Calzado de tacón ancho o bajo</li><li>Bolsa de mano pequeña</li></ul></div>
           </article>
         </div>
-
+        <div class="dc-advice reveal">
+          <p><span class="dc-advice-icon" aria-hidden="true">✿</span><span><strong>Celebración en jardín</strong>Recomendamos evitar tacones de aguja para mayor comodidad.</span></p>
+          <p><span class="dc-advice-icon" aria-hidden="true">☾</span><span><strong>Una nota para la noche</strong>La temperatura puede descender; sugerimos llevar un abrigo ligero.</span></p>
+        </div>
+        <div class="dc-reserved reveal">
+          <h3>Colores reservados</h3><p>Agradecemos evitar los siguientes tonos.</p>
+          <div class="dc-swatches">
+            <div class="dc-swatch"><span class="dc-color" style="--swatch:#F7F4E9" aria-hidden="true"></span><span>Blanco y<br>marfil</span></div>
+            <div class="dc-swatch"><span class="dc-color" style="--swatch:#DCC6A7" aria-hidden="true"></span><span>Beige y<br>aperlado</span></div>
+            <div class="dc-swatch"><span class="dc-color" style="--swatch:#E4C1C9" aria-hidden="true"></span><span>Pasteles<br>claros</span></div>
+            <div class="dc-swatch"><span class="dc-color" style="--swatch:#B92739" aria-hidden="true"></span><span>Rojo</span></div>
+          </div>
+          <p class="dc-fineprint">*Incluye tonalidades similares.</p>
+        </div>
       </div>
     </section>
 
@@ -4771,7 +4769,7 @@ footer{padding-top:25px;padding-bottom:29px}
 
         <div class="reveal delay-1">
           <div class="detail-date">Sábado, 19 de diciembre</div>
-          <div class="detail-time">5:00 de la tarde</div>
+          <div class="detail-time">6:00 de la tarde</div>
         </div>
 
         <div class="venue reveal delay-2">
