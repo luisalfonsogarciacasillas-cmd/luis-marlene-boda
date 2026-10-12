@@ -4177,30 +4177,6 @@ footer{padding-top:25px;padding-bottom:29px}
  .dc-copy li{font-size:13px!important;padding-left:10px!important}
 }
 
-
-/* V3 — SOBRE INTERACTIVO: apertura editorial */
-.gate-content.envelope-intro{width:min(560px,100%);animation:gateContent 1s var(--ease) both}
-.envelope-intro .gate-monogram,.envelope-intro .gate-title,.envelope-intro .gate-date{display:none}
-.envelope-intro .gate-kicker{margin-bottom:24px;letter-spacing:.38em}
-.envelope-intro .gate-note{margin-top:20px}
-.envelope-intro .envelope-subtitle{font:400 clamp(23px,5vw,34px)/1.2 'Cormorant Garamond',serif;color:var(--cinnamon);margin:0 0 26px}
-.wedding-envelope{position:relative;width:min(410px,84vw);height:clamp(195px,50vw,265px);margin:0 auto 40px;perspective:1100px;filter:drop-shadow(0 18px 23px rgba(67,43,30,.15));transform:translateZ(0)}
-.envelope-back{position:absolute;inset:0;background:#e6d4bd;border:1px solid #cbb18d;box-shadow:inset 0 0 0 5px rgba(255,255,255,.2)}
-.envelope-letter{position:absolute;left:9%;right:9%;bottom:8%;height:83%;z-index:2;background:#fffaf1;border:1px solid #dfcbb0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;transform:translateY(0);transition:transform 1.15s cubic-bezier(.2,.72,.15,1) .42s;box-shadow:0 0 12px rgba(72,47,32,.08)}
-.envelope-letter span{font:500 clamp(25px,6vw,39px)/1 'Cormorant Garamond',serif;color:#80523e}
-.envelope-letter small{font:500 8px/1.5 Montserrat,sans-serif;letter-spacing:.24em;color:#a17c62}
-.envelope-front{position:absolute;inset:0;z-index:3;background:linear-gradient(145deg,#f8eee0,#ead7bf);clip-path:polygon(0 0,50% 55%,100% 0,100% 100%,0 100%);border-bottom:1px solid #cbb18d}
-.envelope-front:after{content:'';position:absolute;inset:0;background:linear-gradient(33deg,rgba(176,136,92,.13),transparent 55%)}
-.envelope-flap{position:absolute;inset:0;z-index:5;transform-origin:50% 0;transform-style:preserve-3d;backface-visibility:hidden;clip-path:polygon(0 0,100% 0,50% 59%);background:linear-gradient(160deg,#f8ecdc,#dec5a7);filter:drop-shadow(0 2px 2px rgba(77,53,38,.12));transition:transform .9s cubic-bezier(.35,.05,.3,1)}
-.envelope-seal{position:absolute;left:50%;top:53%;transform:translate(-50%,-50%);z-index:6;width:60px;height:60px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 32% 26%,#c7a47d,#a77c58 65%,#875d40);color:#fff4e4;font:500 20px 'Cormorant Garamond',serif;border:3px double rgba(255,235,206,.65);box-shadow:0 2px 7px #79553e55,0 0 0 4px #a47b5d;transition:opacity .3s ease,transform .45s ease}
-.gate.envelope-opening .envelope-seal{opacity:0;transform:translate(-50%,-50%) scale(.65)}
-.gate.envelope-opening .envelope-flap{transform:rotateX(180deg);z-index:1}
-.gate.envelope-opening .envelope-letter{transform:translateY(-68%);transition-delay:.65s}
-.gate.envelope-opening .wedding-envelope{animation:envelopeDepart .65s 1.85s ease-in both}
-@keyframes envelopeDepart{to{opacity:0;transform:translateY(-35px) scale(1.04)}}
-.gate.envelope-opening .envelope-intro .open-invite{pointer-events:none;opacity:.35}
-@media(prefers-reduced-motion:reduce){.envelope-flap,.envelope-letter,.envelope-seal{transition:none!important}.gate.envelope-opening .wedding-envelope{animation:none!important}}
-
 </style>
 <style id="v5-png-storybook-css">
 /* V5 — PNG folio storybook. Main invitation intentionally untouched. */
@@ -4518,55 +4494,29 @@ footer{padding-top:25px;padding-bottom:29px}
   .open-invite,.open-invite:before{animation:none!important}
 }
 </style>
+<style>
+/* LM · Transición fotográfica al hero (prueba V3) */
+.lm-photo-gate{background:#F4EDE3!important;padding:0!important;display:grid!important;place-items:center!important;transition:opacity 1.35s cubic-bezier(.2,.7,.25,1),visibility 1.35s!important;transform:none!important;isolation:isolate}
+.lm-photo-frame{position:relative;width:min(100vw,66.6667dvh);height:min(100dvh,150vw);max-width:100%;aspect-ratio:2/3;overflow:hidden;box-shadow:0 15px 70px rgba(56,42,37,.10);background:#FBF7F1}
+.lm-photo{display:block;width:100%;height:100%;object-fit:cover;transition:transform 1.45s cubic-bezier(.2,.7,.25,1),filter 1.45s ease;transform-origin:50% 52%}
+.lm-photo-gate.open{opacity:0!important;visibility:hidden!important;pointer-events:none!important}
+.lm-photo-gate.open .lm-photo{transform:scale(1.055);filter:brightness(1.055) blur(2px)}
+.lm-photo-hit,.lm-photo-hit:hover,.lm-photo-hit:active{position:absolute!important;left:25%!important;top:79%!important;width:50%!important;height:7%!important;min-width:0!important;min-height:0!important;margin:0!important;padding:0!important;border:0!important;outline-offset:3px!important;background:transparent!important;box-shadow:none!important;opacity:1!important;transform:none!important;animation:none!important;cursor:pointer!important;z-index:3!important}
+.lm-photo-hit:before,.lm-photo-hit:after{display:none!important}
+.lm-photo-hit:focus-visible{outline:3px solid #86503E!important}
+.lm-screen-reader{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+@media(min-aspect-ratio:2/3){.lm-photo-frame{height:100dvh;width:66.6667dvh}}
+@media(prefers-reduced-motion:reduce){.lm-photo-gate,.lm-photo{transition-duration:.18s!important}.lm-photo-gate.open .lm-photo{transform:none;filter:none}}
+</style>
 </head>
 
 <body class="locked">
 
-  <div class="gate" id="gate">
-    <div class="gate-light-arc" aria-hidden="true"></div>
-    <svg class="gate-heart-thread" viewBox="0 0 700 520" aria-hidden="true">
-      <path d="M40 330 C150 190 248 185 350 298 C452 185 550 190 660 330"/>
-    </svg>
-    <div class="gate-ghost" aria-hidden="true">L<span class="ghost-heart">♡</span>M</div>
-    <div class="gate-ring three" aria-hidden="true"></div>
-    <div class="gate-botanical gb-left" aria-hidden="true">
-      <svg viewBox="0 0 180 300">
-        <path d="M35 286 C61 235 73 184 70 130 C68 82 52 43 31 15"/>
-        <path d="M69 168 C45 160 29 142 21 120 C46 122 64 139 71 157"/>
-        <path d="M69 125 C94 111 109 89 113 66 C89 72 74 91 69 112"/>
-        <path d="M58 216 C34 209 17 193 8 171 C34 172 53 188 62 205"/>
-      </svg>
-    </div>
-    <div class="gate-botanical gb-right" aria-hidden="true">
-      <svg viewBox="0 0 180 300">
-        <path d="M35 286 C61 235 73 184 70 130 C68 82 52 43 31 15"/>
-        <path d="M69 168 C45 160 29 142 21 120 C46 122 64 139 71 157"/>
-        <path d="M69 125 C94 111 109 89 113 66 C89 72 74 91 69 112"/>
-        <path d="M58 216 C34 209 17 193 8 171 C34 172 53 188 62 205"/>
-      </svg>
-    </div>
-    <i class="gate-petal p1" aria-hidden="true"></i>
-    <i class="gate-petal p2" aria-hidden="true"></i>
-    <i class="gate-petal p3" aria-hidden="true"></i>
-    <div class="gate-ring" aria-hidden="true"></div>
-    <div class="gate-ring two" aria-hidden="true"></div>
-
-    <div class="gate-content envelope-intro">
-      <p class="gate-kicker">Una invitación muy especial</p>
-      <p class="envelope-subtitle">Hay momentos que merecen abrirse con el corazón</p>
-      <div class="wedding-envelope" aria-label="Sobre de invitación color marfil con sello L y M">
-        <div class="envelope-back"></div>
-        <div class="envelope-letter"><small>NUESTRA BODA</small><span>Luis &amp; Marlene</span><small>19 · DICIEMBRE · 2026</small></div>
-        <div class="envelope-front"></div>
-        <div class="envelope-flap"></div>
-        <div class="envelope-seal">L&amp;M</div>
-      </div>
-      <button class="open-invite" id="openInvite" type="button"><span class="open-label">Abrir invitación</span> <span class="open-heart" aria-hidden="true">♡</span></button>
-      <p class="gate-note">Preparada con cariño para ti</p>
-    </div>
-    <div class="gate-scroll-cue" aria-hidden="true">
-      <span>Nuestra historia comienza aquí</span>
-      <i></i>
+  <!-- Pantalla de bienvenida fotográfica: el resto de la invitación permanece intacto. -->
+  <div class="gate lm-photo-gate" id="gate">
+    <div class="lm-photo-frame">
+      <img class="lm-photo" src="Luis_Marlene_Sobre_Portada.webp" alt="Sobre marfil con flores y sello de cera L y M" fetchpriority="high" decoding="async">
+      <button class="open-invite lm-photo-hit" id="openInvite" type="button" aria-label="Abrir invitación de Luis y Marlene"><span class="lm-screen-reader">Abrir invitación</span></button>
     </div>
   </div>
 
@@ -5028,23 +4978,25 @@ footer{padding-top:25px;padding-bottom:29px}
       }
     }
 
-    openInvite.addEventListener("click", () => {
-      if(gate.classList.contains("envelope-opening")) return;
-      // Start audio within the actual user gesture for mobile browser compatibility.
-      const musicPromise = startMusic();
-      gate.classList.add("envelope-opening");
-      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    openInvite.addEventListener("click", async () => {
+      // This user tap allows audio playback on mobile browsers.
+      const musicStarted = await startMusic();
+
+      // Transición: la foto desaparece suavemente y revela el hero original.
+      openInvite.disabled = true;
+      gate.classList.add("open");
+      document.body.classList.remove("locked");
+
       setTimeout(() => {
-        gate.classList.add("open");
-        document.body.classList.remove("locked");
+        hero.classList.add("animate");
+        musicButton.classList.add("ready");
+      }, window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 80 : 620);
+
+      if(!musicStarted){
         setTimeout(() => {
-          hero.classList.add("animate");
-          musicButton.classList.add("ready");
-        }, 330);
-      }, reducedMotion ? 150 : 2300);
-      musicPromise.then(started => {
-        if(!started) setTimeout(() => showToast('La invitación está lista. Para activar la música, agrega "lofi-wedding.mp3" junto a index.html.'), reducedMotion ? 1200 : 3200);
-      });
+          showToast('La invitación está lista. Para activar la música, agrega "lofi-wedding.mp3" junto a index.html.');
+        }, 1100);
+      }
     });
 
     musicButton.addEventListener("click", async () => {
