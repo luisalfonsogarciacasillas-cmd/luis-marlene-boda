@@ -5121,13 +5121,11 @@ html,body{ -webkit-tap-highlight-color:transparent; }
       host.appendChild(fragment);
     })();
 
-    gate.addEventListener("click", (event) => {
-      if(event.target !== openInvite && !gate.classList.contains("open")) openInvite.click();
-    });
-    // V4.3: The invitation opens immediately on the FIRST tap.
-    // Audio playback is requested within the gesture, but never blocks the visual transition.
+    // V4.5: Unified first-touch opening for the entire photographic welcome screen.
+    // Pointer events run before the browser's synthesized click and avoid a second tap
+    // when the transparent button overlaps the photograph. Keyboard click is supported.
     let invitationOpening = false;
-    openInvite.addEventListener("click", () => {
+    function openPhotoInvitation() {
       if (invitationOpening) return;
       invitationOpening = true;
       openInvite.disabled = true;
@@ -5181,6 +5179,18 @@ html,body{ -webkit-tap-highlight-color:transparent; }
           }, 1100);
         }
       }).catch(() => {});
+    }
+    gate.addEventListener('pointerdown', (event) => {
+      if (event.pointerType === 'mouse' && event.button !== 0) return;
+      openPhotoInvitation();
+    }, {passive:true, capture:true});
+    // Fallback for older browsers, keyboard activation and assistive technologies.
+    gate.addEventListener('click', openPhotoInvitation);
+    openInvite.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        openPhotoInvitation();
+      }
     });
 
     musicButton.addEventListener("click", async () => {
