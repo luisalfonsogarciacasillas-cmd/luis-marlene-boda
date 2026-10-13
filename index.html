@@ -4993,10 +4993,9 @@ html,body{ -webkit-tap-highlight-color:transparent; }
         try{
           const candidate=new Ctor();
           const story=document.getElementById('medievalAudio');
-          const mainSource=candidate.createMediaElementSource(music);
-          const mainNode=candidate.createGain();
-          mainSource.connect(mainNode);mainNode.connect(candidate.destination);
-          mainNode.gain.value=0;
+          // Main track uses direct HTMLAudioElement playback for reliable mobile audio.
+          // Only the story track uses Web Audio gain control.
+          const mainNode=null;
           let storyNode=null;
           if(story){
             const source=candidate.createMediaElementSource(story);
@@ -5006,7 +5005,7 @@ html,body{ -webkit-tap-highlight-color:transparent; }
           }
           ctx=candidate;mainGain=mainNode;storyGain=storyNode;
           // Avoid applying the gain twice on browsers honoring element.volume.
-          music.volume=1;
+          music.volume=levels.main;
           if(story)story.volume=1;
           ctx.resume().catch(()=>{});
         }catch(e){try{if(ctx)ctx.close()}catch(_){}}
@@ -5025,7 +5024,7 @@ html,body{ -webkit-tap-highlight-color:transparent; }
       }
       return {setup,set,get,levels};
     })();
-    music.volume = 0;
+    music.volume = LM_AUDIO.levels.main;
 
     function showToast(message){
       toast.textContent = message;
@@ -5046,12 +5045,13 @@ html,body{ -webkit-tap-highlight-color:transparent; }
       requestAnimationFrame(step);
     }
 
+    // V4.9: one user gesture starts the music directly at 25%.
+    // Do not reset the volume to zero or wait for audio before opening.
     async function startMusic(){
       try{
-        LM_AUDIO.setup();
-        LM_AUDIO.set("main",0);
+        music.volume = LM_AUDIO.levels.main;
+        music.muted = false;
         await music.play();
-        fadeMusicTo(LM_AUDIO.levels.main,1800);
         musicButton.classList.add("playing");
         musicButton.setAttribute("aria-pressed","true");
         musicButton.setAttribute("aria-label","Pausar música");
@@ -5180,11 +5180,7 @@ html,body{ -webkit-tap-highlight-color:transparent; }
       // Audio errors are intentionally silent; the invitation always opens.
       Promise.resolve(musicResult).catch(() => {});
     }
-    gate.addEventListener('pointerdown', (event) => {
-      if (event.pointerType === 'mouse' && event.button !== 0) return;
-      openPhotoInvitation();
-    }, {passive:true, capture:true});
-    // Fallback for older browsers, keyboard activation and assistive technologies.
+    // Exactly one activation path for mouse and touch. No pointerdown handler.
     gate.addEventListener('click', openPhotoInvitation);
     gate.addEventListener('keydown', (event) => {
       if (event.key === 'Enter' || event.key === ' ') {
@@ -5204,9 +5200,7 @@ html,body{ -webkit-tap-highlight-color:transparent; }
       }
 
       const started = await startMusic();
-      if(!started){
-        showToast('No encontramos "lofi-wedding.mp3". Revisa que esté en la misma carpeta que index.html.');
-      }
+      // If playback is blocked, keep the control available without an intrusive popup.
     });
 
     music.addEventListener("error", () => {
