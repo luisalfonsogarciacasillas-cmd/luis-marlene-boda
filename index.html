@@ -5179,6 +5179,23 @@ html,body{ -webkit-tap-highlight-color:transparent; }
       openPhotoInvitation();
     }
     document.addEventListener('pointerdown', firstWelcomeTap, {capture:true, passive:true});
+    // V5.2: pointerdown opens immediately, but on mobile the browser may only
+    // authorize audible media at touchend/click. Retry playback in that same gesture.
+    // Keep these listeners short-lived so later clicks never restart paused music.
+    let openingAudioGestureConsumed = false;
+    function completeOpeningAudioGesture(event) {
+      if (!invitationOpening || openingAudioGestureConsumed) return;
+      if (event.type === 'click' && event.detail === 0) return; // keyboard handled below
+      openingAudioGestureConsumed = true;
+      if (music.paused) {
+        // play() is called synchronously from the trusted touchend/click event.
+        startMusic();
+      }
+      document.removeEventListener('touchend', completeOpeningAudioGesture, true);
+      document.removeEventListener('click', completeOpeningAudioGesture, true);
+    }
+    document.addEventListener('touchend', completeOpeningAudioGesture, {capture:true, passive:true});
+    document.addEventListener('click', completeOpeningAudioGesture, true);
     gate.addEventListener('click', firstWelcomeTap);
     gate.addEventListener('keydown', (event) => {
       if (event.key === 'Enter' || event.key === ' ') {
