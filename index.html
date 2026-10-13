@@ -5176,13 +5176,9 @@ html,body{ -webkit-tap-highlight-color:transparent; }
         musicButton.classList.add("ready");
       }, reducedMotion ? 80 : 750);
 
-      Promise.resolve(musicResult).then(musicStarted => {
-        if (!musicStarted) {
-          setTimeout(() => {
-            showToast('La invitación está lista. Para activar la música, agrega "lofi-wedding.mp3" junto a index.html.');
-          }, 1100);
-        }
-      }).catch(() => {});
+      // No warning popup during the welcome-to-invitation transition.
+      // Audio errors are intentionally silent; the invitation always opens.
+      Promise.resolve(musicResult).catch(() => {});
     }
     gate.addEventListener('pointerdown', (event) => {
       if (event.pointerType === 'mouse' && event.button !== 0) return;
