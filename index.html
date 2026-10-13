@@ -4530,6 +4530,40 @@ html,body{ -webkit-tap-highlight-color:transparent; }
 @keyframes lm-glow{0%{opacity:0;transform:translate(-50%,-50%) scale(.3)}35%{opacity:.75}100%{opacity:0;transform:translate(-50%,-50%) scale(1.7)}}
 @media(prefers-reduced-motion:reduce){.lm-photo-gate,.lm-photo{transition-duration:.18s!important}.lm-photo-gate.open .lm-photo{transform:none;filter:none}.lm-magic-layer{display:none!important}}
 
+
+/* V4.4 — Destellos ambientales continuos antes de abrir la invitación. */
+.lm-ambient-sparks{
+ position:absolute;inset:0;z-index:2;overflow:hidden;pointer-events:none;
+ transition:opacity .35s ease;
+}
+.lm-ambient-spark{
+ position:absolute;left:var(--ax);top:var(--ay);
+ width:var(--size);height:var(--size);border-radius:50%;
+ background:radial-gradient(circle,#fffdf5 0%,#f6e8c9 32%,rgba(185,154,106,.5) 62%,transparent 78%);
+ box-shadow:0 0 7px 2px rgba(255,244,209,.45),0 0 17px rgba(185,154,106,.25);
+ opacity:0;will-change:transform,opacity;
+ animation:lm-ambient-twinkle var(--time) ease-in-out var(--wait) infinite;
+}
+.lm-ambient-spark:nth-child(5n)::before,
+.lm-ambient-spark:nth-child(5n)::after{
+ content:"";position:absolute;left:50%;top:50%;
+ width:240%;height:1px;transform:translate(-50%,-50%);
+ background:linear-gradient(90deg,transparent,rgba(255,252,236,.95),transparent);
+ filter:drop-shadow(0 0 3px #b99a6a);
+}
+.lm-ambient-spark:nth-child(5n)::after{transform:translate(-50%,-50%) rotate(90deg)}
+@keyframes lm-ambient-twinkle{
+ 0%,100%{opacity:0;transform:translate3d(0,8px,0) scale(.55)}
+ 35%{opacity:var(--peak);transform:translate3d(3px,-4px,0) scale(1)}
+ 58%{opacity:calc(var(--peak) * .65);transform:translate3d(-2px,-10px,0) scale(.85)}
+ 78%{opacity:0;transform:translate3d(0,-17px,0) scale(.55)}
+}
+.lm-photo-gate.open .lm-ambient-sparks{opacity:0}
+.lm-photo-gate.open .lm-ambient-spark{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){
+ .lm-ambient-sparks{display:none!important}
+}
+
 /* V4.2: geometric alignment to the real image rectangle, not viewport percentages. */
 .lm-photo-frame{position:absolute!important;inset:0!important}
 .lm-photo-hit,.lm-photo-hit:hover,.lm-photo-hit:active{
@@ -4562,6 +4596,7 @@ html,body{ -webkit-tap-highlight-color:transparent; }
   <div class="gate lm-photo-gate" id="gate">
     <div class="lm-photo-frame">
       <img class="lm-photo" src="Luis_Marlene_Sobre_Portada_2K.webp" alt="Sobre marfil con flores y sello de cera L y M" fetchpriority="high" decoding="async">
+      <div class="lm-ambient-sparks" id="lmAmbientSparks" aria-hidden="true"></div>
       <span class="lm-cta-shimmer" id="lmCtaShimmer" aria-hidden="true"></span>
       <button class="open-invite lm-photo-hit" id="openInvite" type="button" aria-label="Abrir invitación de Luis y Marlene"><span class="lm-screen-reader">Abrir invitación</span></button>
     </div>
@@ -5061,12 +5096,45 @@ html,body{ -webkit-tap-highlight-color:transparent; }
       place();
     })();
 
+
+    // V4.4: small, lightweight, perpetual warm sparkles while the envelope is waiting.
+    // These use CSS animations (no animation loop in JavaScript) and never intercept taps.
+    (() => {
+      const host = document.getElementById('lmAmbientSparks');
+      if (!host || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const count = 27;
+      const fragment = document.createDocumentFragment();
+      for (let i = 0; i < count; i++) {
+        const spark = document.createElement('span');
+        spark.className = 'lm-ambient-spark';
+        // Deterministic positions avoid visible layout jumps between refreshes.
+        const x = 7 + ((i * 47 + 19) % 87);
+        const y = 8 + ((i * 31 + 11) % 84);
+        spark.style.setProperty('--ax', x + '%');
+        spark.style.setProperty('--ay', y + '%');
+        spark.style.setProperty('--size', (i % 5 === 0 ? 6 : 2 + (i % 3)) + 'px');
+        spark.style.setProperty('--peak', (0.38 + (i % 4) * .12).toFixed(2));
+        spark.style.setProperty('--time', (2.8 + (i % 6) * .55).toFixed(2) + 's');
+        spark.style.setProperty('--wait', (-i * .49).toFixed(2) + 's');
+        fragment.appendChild(spark);
+      }
+      host.appendChild(fragment);
+    })();
+
     gate.addEventListener("click", (event) => {
       if(event.target !== openInvite && !gate.classList.contains("open")) openInvite.click();
     });
-    openInvite.addEventListener("click", async () => {
-      // This user tap allows audio playback on mobile browsers.
-      const musicStarted = await startMusic();
+    // V4.3: The invitation opens immediately on the FIRST tap.
+    // Audio playback is requested within the gesture, but never blocks the visual transition.
+    let invitationOpening = false;
+    openInvite.addEventListener("click", () => {
+      if (invitationOpening) return;
+      invitationOpening = true;
+      openInvite.disabled = true;
+
+      // Start the audio asynchronously without waiting for play() to resolve.
+      // Some mobile browsers delay the play() promise until audio can begin.
+      const musicResult = startMusic();
 
       // Destellos solo al pulsar: se dibujan en una capa independiente, sin alterar la foto.
       const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -5098,7 +5166,6 @@ html,body{ -webkit-tap-highlight-color:transparent; }
         magicLayer.classList.add('active');
         setTimeout(() => { magicLayer.classList.remove('active'); magicLayer.replaceChildren(); }, 1750);
       }
-      openInvite.disabled = true;
       gate.classList.add("open");
       document.body.classList.remove("locked");
 
@@ -5107,11 +5174,13 @@ html,body{ -webkit-tap-highlight-color:transparent; }
         musicButton.classList.add("ready");
       }, reducedMotion ? 80 : 750);
 
-      if(!musicStarted){
-        setTimeout(() => {
-          showToast('La invitación está lista. Para activar la música, agrega "lofi-wedding.mp3" junto a index.html.');
-        }, 1100);
-      }
+      Promise.resolve(musicResult).then(musicStarted => {
+        if (!musicStarted) {
+          setTimeout(() => {
+            showToast('La invitación está lista. Para activar la música, agrega "lofi-wedding.mp3" junto a index.html.');
+          }, 1100);
+        }
+      }).catch(() => {});
     });
 
     musicButton.addEventListener("click", async () => {
