@@ -4564,6 +4564,10 @@ html,body{ -webkit-tap-highlight-color:transparent; }
  .lm-ambient-sparks{display:none!important}
 }
 
+/* V4.6: The visual button overlay never captures taps; the entire gate is the single interactive target. */
+.lm-photo-hit{pointer-events:none!important}
+.lm-photo-gate{cursor:pointer;touch-action:manipulation}
+.lm-photo-gate:focus-visible{outline:3px solid #B99A6A;outline-offset:-6px}
 /* V4.2: geometric alignment to the real image rectangle, not viewport percentages. */
 .lm-photo-frame{position:absolute!important;inset:0!important}
 .lm-photo-hit,.lm-photo-hit:hover,.lm-photo-hit:active{
@@ -4593,12 +4597,12 @@ html,body{ -webkit-tap-highlight-color:transparent; }
 <body class="locked">
 
   <!-- Pantalla de bienvenida fotográfica V4: pantalla completa, destellos al abrir. -->
-  <div class="gate lm-photo-gate" id="gate">
+  <div class="gate lm-photo-gate" id="gate" role="button" tabindex="0" aria-label="Abrir invitación de Luis y Marlene">
     <div class="lm-photo-frame">
       <img class="lm-photo" src="Luis_Marlene_Sobre_Portada_2K.webp" alt="Sobre marfil con flores y sello de cera L y M" fetchpriority="high" decoding="async">
       <div class="lm-ambient-sparks" id="lmAmbientSparks" aria-hidden="true"></div>
       <span class="lm-cta-shimmer" id="lmCtaShimmer" aria-hidden="true"></span>
-      <button class="open-invite lm-photo-hit" id="openInvite" type="button" aria-label="Abrir invitación de Luis y Marlene"><span class="lm-screen-reader">Abrir invitación</span></button>
+      <span class="lm-photo-hit" id="openInvite" aria-hidden="true"></span>
     </div>
   </div>
 
@@ -5128,7 +5132,7 @@ html,body{ -webkit-tap-highlight-color:transparent; }
     function openPhotoInvitation() {
       if (invitationOpening) return;
       invitationOpening = true;
-      openInvite.disabled = true;
+      gate.setAttribute("aria-disabled", "true");
 
       // Start the audio asynchronously without waiting for play() to resolve.
       // Some mobile browsers delay the play() promise until audio can begin.
@@ -5186,7 +5190,7 @@ html,body{ -webkit-tap-highlight-color:transparent; }
     }, {passive:true, capture:true});
     // Fallback for older browsers, keyboard activation and assistive technologies.
     gate.addEventListener('click', openPhotoInvitation);
-    openInvite.addEventListener('keydown', (event) => {
+    gate.addEventListener('keydown', (event) => {
       if (event.key === 'Enter' || event.key === ' ') {
         event.preventDefault();
         openPhotoInvitation();
