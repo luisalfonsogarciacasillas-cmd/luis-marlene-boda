@@ -4498,12 +4498,25 @@ footer{padding-top:25px;padding-bottom:29px}
 /* LM · Bienvenida a pantalla completa + transición mágica V4 */
 .lm-photo-gate{position:fixed!important;inset:0!important;width:100%!important;height:100dvh!important;min-height:100svh!important;background:#F4EDE3!important;padding:0!important;display:grid!important;place-items:center!important;overflow:hidden!important;isolation:isolate;transform:none!important;transition:opacity 1.4s cubic-bezier(.2,.7,.25,1),visibility 1.4s!important}
 .lm-photo-frame{position:absolute;inset:0;width:100%!important;height:100%!important;max-width:none!important;aspect-ratio:auto!important;overflow:hidden;box-shadow:none;background:#FBF7F1}
-.lm-photo-frame:before{content:"";position:absolute;inset:-28px;background:url('Luis_Marlene_Sobre_Portada.webp') center/cover no-repeat;filter:blur(23px) brightness(1.045);transform:scale(1.08);opacity:.65;z-index:0}
-.lm-photo{position:relative;z-index:1;display:block;width:100%;height:100%;object-fit:contain;object-position:center;transition:transform 1.45s cubic-bezier(.2,.7,.25,1),filter 1.45s ease;transform-origin:50% 52%}
+.lm-photo-frame:before{display:none!important}
+.lm-photo{position:relative;z-index:1;display:block;width:100%;height:100%;object-fit:cover;object-position:center center;transition:transform 1.45s cubic-bezier(.2,.7,.25,1),filter 1.45s ease;transform-origin:50% 52%}
 .lm-photo-gate.open{opacity:0!important;visibility:hidden!important;pointer-events:none!important}
 .lm-photo-gate.open .lm-photo{transform:scale(1.055);filter:brightness(1.14) blur(2px)}
+/* V4.1: edge-to-edge on mobile and no Android blue touch highlight. */
+html,body{ -webkit-tap-highlight-color:transparent; }
+.lm-photo-gate,.lm-photo-frame,.lm-photo,.lm-photo-hit{
+  -webkit-tap-highlight-color:transparent!important;
+  -webkit-touch-callout:none;
+  -webkit-user-select:none;
+  user-select:none;
+}
+.lm-photo-hit:focus:not(:focus-visible){outline:none!important}
+.lm-photo-hit{-webkit-appearance:none!important;appearance:none!important;touch-action:manipulation}
+@media(max-width:600px){
+  .lm-photo-hit{width:49%!important;height:6.2%!important;top:82.2%!important}
+}
 /* The button is baked into the photograph: transparent hit target follows its true size. */
-.lm-photo-hit,.lm-photo-hit:hover,.lm-photo-hit:active{position:absolute!important;left:50%!important;top:calc(50% + min(50vw,33.333dvh)*.87)!important;width:calc(min(100vw,66.6667dvh)*.50)!important;height:calc(min(100vw,66.6667dvh)*.105)!important;min-width:0!important;min-height:0!important;margin:0!important;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important;opacity:1!important;transform:translate(-50%,-50%)!important;animation:none!important;cursor:pointer!important;z-index:3!important}
+.lm-photo-hit,.lm-photo-hit:hover,.lm-photo-hit:active{position:absolute!important;left:50%!important;top:82.1%!important;width:48%!important;height:6.1%!important;min-width:0!important;min-height:0!important;margin:0!important;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important;opacity:1!important;transform:translate(-50%,-50%)!important;animation:none!important;cursor:pointer!important;z-index:3!important}
 .lm-photo-hit:before,.lm-photo-hit:after{display:none!important}.lm-photo-hit:focus-visible{outline:3px solid #86503E!important;outline-offset:4px!important}
 .lm-screen-reader{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
 .lm-magic-layer{position:fixed;inset:0;z-index:1002;pointer-events:none;overflow:hidden;opacity:0;transition:opacity .16s ease}
@@ -4516,6 +4529,30 @@ footer{padding-top:25px;padding-bottom:29px}
 @keyframes lm-spark{0%{opacity:0;transform:translate(0,14px) scale(.15)}25%{opacity:var(--alpha)}60%{opacity:var(--alpha);transform:translate(calc(var(--dx)*.65),calc(var(--dy)*.65)) scale(1)}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(.25)}}
 @keyframes lm-glow{0%{opacity:0;transform:translate(-50%,-50%) scale(.3)}35%{opacity:.75}100%{opacity:0;transform:translate(-50%,-50%) scale(1.7)}}
 @media(prefers-reduced-motion:reduce){.lm-photo-gate,.lm-photo{transition-duration:.18s!important}.lm-photo-gate.open .lm-photo{transform:none;filter:none}.lm-magic-layer{display:none!important}}
+
+/* V4.2: geometric alignment to the real image rectangle, not viewport percentages. */
+.lm-photo-frame{position:absolute!important;inset:0!important}
+.lm-photo-hit,.lm-photo-hit:hover,.lm-photo-hit:active{
+ left:0!important;top:0!important;width:1px!important;height:1px!important;
+ transform:none!important;transition:none!important;z-index:6!important;
+ -webkit-tap-highlight-color:transparent!important;outline:none!important;
+}
+.lm-cta-shimmer{
+ position:absolute;z-index:5;left:0;top:0;width:1px;height:1px;
+ pointer-events:none;overflow:hidden;border:1px solid rgba(185,154,106,.18);
+ box-shadow:0 0 12px rgba(185,154,106,.18),inset 0 0 14px rgba(255,251,234,.12);
+ animation:lm-cta-breathe 2.9s ease-in-out infinite;
+}
+.lm-cta-shimmer::before{content:"";position:absolute;inset:-40% auto -40% -50%;width:32%;
+ transform:skewX(-22deg) translateX(0);
+ background:linear-gradient(90deg,transparent,rgba(255,253,242,.03),rgba(255,250,224,.65),rgba(255,253,242,.08),transparent);
+ filter:blur(5px);animation:lm-cta-sweep 3.2s ease-in-out infinite;}
+.lm-cta-shimmer::after{content:"";position:absolute;inset:0;border-radius:2px;
+ box-shadow:inset 0 0 12px rgba(255,246,211,.12);}
+@keyframes lm-cta-sweep{0%,18%{transform:skewX(-22deg) translateX(0)}60%,100%{transform:skewX(-22deg) translateX(570%)}}
+@keyframes lm-cta-breathe{0%,100%{box-shadow:0 0 6px rgba(185,154,106,.12)}50%{box-shadow:0 0 19px 3px rgba(185,154,106,.4)}}
+.lm-photo-gate.open .lm-cta-shimmer{animation:none;opacity:0;transition:opacity .25s}
+@media(prefers-reduced-motion:reduce){.lm-cta-shimmer,.lm-cta-shimmer::before{animation:none!important}}
 </style>
 </head>
 
@@ -4524,7 +4561,8 @@ footer{padding-top:25px;padding-bottom:29px}
   <!-- Pantalla de bienvenida fotográfica V4: pantalla completa, destellos al abrir. -->
   <div class="gate lm-photo-gate" id="gate">
     <div class="lm-photo-frame">
-      <img class="lm-photo" src="Luis_Marlene_Sobre_Portada.webp" alt="Sobre marfil con flores y sello de cera L y M" fetchpriority="high" decoding="async">
+      <img class="lm-photo" src="Luis_Marlene_Sobre_Portada_2K.webp" alt="Sobre marfil con flores y sello de cera L y M" fetchpriority="high" decoding="async">
+      <span class="lm-cta-shimmer" id="lmCtaShimmer" aria-hidden="true"></span>
       <button class="open-invite lm-photo-hit" id="openInvite" type="button" aria-label="Abrir invitación de Luis y Marlene"><span class="lm-screen-reader">Abrir invitación</span></button>
     </div>
   </div>
@@ -4907,7 +4945,7 @@ footer{padding-top:25px;padding-bottom:29px}
     // V5.19.3: Web Audio gain controls also work on iOS Safari, where
     // HTMLMediaElement.volume is sometimes ignored.
     const LM_AUDIO = (function(){
-      const levels={main:0.055,story:0.065};
+      const levels={main:0.25,story:0.065};
       let ctx=null, mainGain=null, storyGain=null;
       function setup(){
         if(ctx){if(ctx.state==='suspended')ctx.resume().catch(()=>{});return;}
@@ -4989,6 +5027,43 @@ footer{padding-top:25px;padding-bottom:29px}
       }
     }
 
+    // V4.2: Map the button rectangle from 1440x2560 image pixels to its
+    // actual visible location after object-fit:cover crops the photograph.
+    (function positionPhotoButton(){
+      const photo = document.querySelector('.lm-photo');
+      const frame = document.querySelector('.lm-photo-frame');
+      const shimmer = document.getElementById('lmCtaShimmer');
+      const naturalWidth = 1440, naturalHeight = 2560;
+      // Button in the original photo: x 200..568, y 912..982 on 768x1152.
+      // New 2K image was center-cropped by 60px on each side.
+      const rect = {x:(200-60)*2560/1152, y:912*2560/1152,
+                    w:368*2560/1152, h:70*2560/1152};
+      function place(){
+        const w=frame.clientWidth, h=frame.clientHeight;
+        if(!w||!h)return;
+        const scale=Math.max(w/naturalWidth,h/naturalHeight);
+        const dx=(w-naturalWidth*scale)/2;
+        const dy=(h-naturalHeight*scale)/2;
+        const left=dx+rect.x*scale, top=dy+rect.y*scale;
+        const width=rect.w*scale, height=rect.h*scale;
+        for(const el of [openInvite,shimmer]){
+          if(!el)continue;
+          el.style.setProperty('left',left+'px','important');
+          el.style.setProperty('top',top+'px','important');
+          el.style.setProperty('width',width+'px','important');
+          el.style.setProperty('height',height+'px','important');
+        }
+      }
+      window.addEventListener('resize',place,{passive:true});
+      if(window.visualViewport)window.visualViewport.addEventListener('resize',place,{passive:true});
+      if('ResizeObserver' in window)new ResizeObserver(place).observe(frame);
+      photo.addEventListener('load',place,{once:true});
+      place();
+    })();
+
+    gate.addEventListener("click", (event) => {
+      if(event.target !== openInvite && !gate.classList.contains("open")) openInvite.click();
+    });
     openInvite.addEventListener("click", async () => {
       // This user tap allows audio playback on mobile browsers.
       const musicStarted = await startMusic();
