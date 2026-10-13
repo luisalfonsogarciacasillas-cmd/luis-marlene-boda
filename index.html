@@ -5165,8 +5165,21 @@ html,body{ -webkit-tap-highlight-color:transparent; }
       // Audio errors are intentionally silent; the invitation always opens.
       Promise.resolve(musicResult).catch(() => {});
     }
-    // Single click action on the entire gate; decorative shimmer does not intercept taps.
-    gate.addEventListener('click', openPhotoInvitation);
+    // V5.1: Handle the FIRST physical tap at document capture phase.
+    // This runs before any legacy button/storybook handler can consume the gesture.
+    // The guard in openPhotoInvitation prevents a subsequent synthetic click from reopening.
+    function firstWelcomeTap(event) {
+      if (invitationOpening || !document.body.classList.contains('locked')) return;
+      if (event.type === 'pointerdown' && event.pointerType === 'mouse' && event.button !== 0) return;
+      if (!gate.contains(event.target) && event.target !== gate) {
+        // A floating decorative layer may be hit-tested instead of the gate.
+        // While locked, any touch in the viewport means 'open invitation'.
+        if (event.type !== 'pointerdown' || event.pointerType === 'mouse') return;
+      }
+      openPhotoInvitation();
+    }
+    document.addEventListener('pointerdown', firstWelcomeTap, {capture:true, passive:true});
+    gate.addEventListener('click', firstWelcomeTap);
     gate.addEventListener('keydown', (event) => {
       if (event.key === 'Enter' || event.key === ' ') {
         event.preventDefault();
